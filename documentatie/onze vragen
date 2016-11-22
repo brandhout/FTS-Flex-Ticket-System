@@ -1,0 +1,87 @@
+1. Is het klantgericht of alleen voor intern?
+Voor intern en voor buiten school (bedrijven).
+
+2. Moet het online of offline werken?
+Online registratie en het systeem moet altijd draaiend blijven.
+
+3. Voor hoeveel gebruikers is het bedoeld?
+Voor ± 25 gebruikers.
+
+4. Werkt iedereen met een account of algemeen?
+Diverse algemene accounts.
+
+5. Welke gegevens heeft het systeem nodig van de klant?
+NAW, e-mail (zelf beslissen wat vrijblijvend of verplicht is), incidentennummer.
+
+6. Hebben jullie al en klantenlijst? 
+Geen klantenlijst, wat dat betreft mag de database leeg aangeleverd worden.
+
+7. Wat voor functies verwacht u in het system?
+Goede rapportage, goed overzicht van de tickets die aangemaakt zijn (ook terug te zien in het dashboard: vraag 20) Goede pop up van alle tickets
+
+8. Hebben de tickets een tijdslimiet (SLA)?
+Flexibele tijd voor de tickets, maar er moet wel een overzicht komen met welke tickets die nog openstaan.
+
+9. Wilt u ook dat alle tickets genummerd worden, of per klant, probleem?
+Op al deze punten moeten de tickets worden gefilterd (flexibele zoek functie)
+
+10. Moeten de tickets op urgentie ingedeeld worden?
+Ja, er moet een duidelijke urgentie aanduiding zijn. (Uitzoeken wat voorrang heeft!!)
+denk aan hoog, middel, laag of 1,2,3.
+
+11. Naam/ beschrijving (log) werknemer?
+De ticket moet op naam van de werknemer en er moet een duidelijke omschrijving (log) zijn van wat er gedaan is aan de ticket en wat er eventueel nog moet gebeuren.
+
+12. Kan er een instantie worden gekozen (klant, bedrijf, student)?
+Ja, en daardoor wordt ook gedeeltelijk de urgentie door bepaald.
+
+13. Moet het mogelijk zijn om bijlages toe te voegen aan de ticket?
+Ja, is belangrijk om bijlages te kunnen toevoegen. Denk aan screenshots etc. 
+
+14. Kunnen alle werknemers de problemen oplossen of alleen diegene die het probleem aan neemt?  
+Het moet kunnen, alleen de werknemer die de ticket heeft aangemaakt blijft hoofdverantwoordelijke. 
+
+15. Kunnen problemen tussentijds half opgelost worden (update)?
+Ja, als ze open blijven staan mogen verschillende mensen eraan werken alleen, net als vraag 14 blijft de werknemer hoofdverantwoordelijke.
+16. Hoe zit het met 1e 2e 3e line?
+1e line is niveau 2, 2e line is niveau 3 en 3e line is niveau 4 (Het is nog een concept, wij moeten inspelen op hoe dat mogelijk wordt en hoe we de verschillende lines kunnen benaderen).
+
+17. Moet er een melding komen als een ticket is afgehandeld?
+Niet per se, wel net als bij vraag 20 moet alles goed duidelijk te zien zijn op het dashboard zodat de begeleider de werknemer aan kan sturen.
+
+18. Bij welk proces moet er een pop up plaats vinden? Moet het überhaupt?
+Niet nodig, laten we ons maar aan het dashboard houden of als het kan dat er een melding wordt gegeven als er te veel aangemaakte tickets niet zijn opgelost en afgehandeld. (Met aanduiding hoeveel tickets het zijn)
+
+19. Krijgt de persoon bericht als de ticket opgelost is?
+Ja, een e-mail.
+
+20. Worden de oude tickets bewaard?
+Alle tickets worden bewaard.
+
+21. Een gefilterd dashboard van tickets (overzicht van niet verholpen tickets) en hoe?
+Ja er moet een duidelijk overzicht komen van alle tickets die niet zijn opgelost: Hoelang ze openstaan, wie de tickets heeft aangemaakt en wat het probleem is.
+
+22. Uit wat voor velden moet de invoerpagina bestaan?
+Duidelijke klacht omschrijving, lijst met veel voorkomende laptops, wat voor spullen worden er ingeleverd (Laptop, adapter etc.) en wat voor afspraken worden er gemaakt met de klant.
+
+23. Moet er een FAQ komen op de eerste pagina met de top 10 meest gestelde vragen?
+Ja, voor de werknemers. Zodat alles opgeloste problemen op poppen als het probleem wordt ingetikt, dat ze al de klant kunnen informeren en misschien al helpen.
+
+24. Draait de installatie op de server of op de cliënt?
+Op de server (ze hebben zelf een server die is volledig ingericht en staat tot onze beschikking).
+
+25. Op welke webserver moet de applicatie draaien?
+Mogen wij zelf bepalen samen met welke OS wij willen gebruiken.
+
+26. Wat zijn de beeldscherm afmetingen?
+Het beeld moet zich aanpassen aan het beeldscherm.
+
+27. Wordt het gehost bij een extern bedrijf?
+Het wordt door school gehost.
+
+28. Zijn er ook speciale admin rechten?
+ Met 1 admin. (Er zijn 1 of 2 beheerders van het systeem).
+
+
+
+
