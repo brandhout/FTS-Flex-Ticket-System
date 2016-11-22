@@ -1,2 +1,2 @@
 # ticketsysteem
-Ticketsystem made for pujre educational use.
+Ticketsystem made for pure educational use.
