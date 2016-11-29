@@ -26,15 +26,13 @@ de gangbare browsers. Er word een webserver voor ons ingericht, de programmatuur
 
 USE-CASE 1
 1ste lijn registreert gegevens van de klant en vult de ticket verder aan.
-Als ticket is aangemaakt, dan wordt er een bevestiging gestuurd naar de klant.
 Ticket staat vanaf dan open voor behandeling.
 1ste lijn kan nu de ticket selecteren en in behandeling nemen
 1ste lijn behandeld de ticket en heeft de mogelijkheid om de ticket door te sturen naar de 2de lijn
-En de 2de naar de 3de 
-Als ticket na een tijdslimiet niet behandeld is komt er een melding in het dashboard.
+En de 2de naar de 3de. Bij uitzondering kan de ticket ook teruggestuurd worden, dit kan maar een aantal keer.
+Als ticket na een ingestelde vaste tijdslimiet niet behandeld is komt er een melding in het dashboard.
 Zodra de ticket is voltooid of niet gemaakt kan worden, word de klant opgebeld door de 1ste lijn
-En word de ticket bewaard.
-Als er na drie keer geen gehoor is. dan word er een email verstuurd vanaf de 1ste lijn.
+Tevens word de ticket altijd opgeslagen. Opgelosd of niet.
 
 
 Use-case description
@@ -44,8 +42,10 @@ Naam: Ticketsystem
 Aanleiding:
 1. 1ste lijn voert gegevens in en maakt ticket
 2. 1ste lijn behandelt ticket en heeft de mogelijkheid om tickets door te sluizen
-3. 1ste lijn contacteerd klant.
-4. Ticket word bewaard.
+3. Ticket wordt door medewerker opgelosd
+4. Oplossing wordt definitief gezet
+5. 1ste lijn contacteerd klant met de status.
+6. Ticket word bewaard
 Actoren:
 
 				Admin
@@ -57,7 +57,7 @@ doel:
 Leerlingen van niveau 2,3,4 kunnen aanmelden
 Leerlingen van niveau 2 kunnen tickets aanmaken ( 1ste lijn )
 1ste lijn kan tickets doorsluizen naar een hogere lijn
-Zowel 1,2 en 3 kunne tickets in behandelen mits het is doorgezet
+Zowel 1,2 en 3 kunnen tickets in behandelen mits het is doorgezet
 3 en 2 kunnen tickets terug sturen naar 1
 Alleen lijn 1 kan contact opnemen met klant
 Iedereen die gebruikt maakt van het systeem kan alle tickets inzien
