@@ -19,10 +19,10 @@ zitten wij niet vast aan de limitaties die eerder opgelegd zijn door de ontwerpe
 opnieuw (?) gedacht worden over de toekomstbestendigheid van de database. We weten namelijk niet wat
 de toekomst brengt, maar moeten er wel zoveel mogelijk op voorbereid zijn.
 
-Het is een webapplicatie. Wij hoeven daarom ook vooral in dit stadium niet veel rekening te houden met bestaande systemen
+Het is een webapplicatie. Wij hoeven daarom ook zeker in dit stadium niet veel rekening te houden met bestaande systemen
 en de compatibiliteit tussen die systemem. Internetstandaarden (HTML, PHP, CSS) worden tegenwoordig voldoende gevolgd door
 de gangbare browsers. Er word een webserver voor ons ingericht, de programmatuur mogen wij in grote lijnen zelf kiezen. 
-(denk aan apache2, NGINX) 
+(denk aan apache2, NGINX).
 
 USE-CASE 1
 1ste lijn registreert gegevens van de klant en vult de ticket verder aan.
