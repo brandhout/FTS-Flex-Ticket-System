@@ -15,7 +15,7 @@ function verbinddatabase() {
 $servernaam = "localhost";
 $username = "root";
 $password = "Admin01!";
-$database = "fts";
+$database = "ftsPrimair";
     
 // Maak connectie
 $conn = new mysqli($servernaam, $username, $password, $database);    
