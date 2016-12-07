@@ -30,7 +30,7 @@ $besturingssysteem="standaard";
           Probleem (korte omschrijving) <br>
           <input type="text" name="Beschrijving"><br>
 
-          trefwoorden (aan elkaar, door komma gescheiden) <br>
+          trefwoorden (aan elkaar, door komma gescheiden) <br> <!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
           <input type="text" name="Beschrijving"><br>
 
           Probleem (korte omschrijving) <br>
@@ -38,7 +38,7 @@ $besturingssysteem="standaard";
 
           <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden<br><br>
           
-          Categorie 
+          Categorie <!-- Moet uit database komen -->
           <select name="categorie">
               <option></option>
               <option></option>
@@ -62,12 +62,12 @@ $besturingssysteem="standaard";
           </select><br><br>
 
                      Lokatie: 
-          <select name="binnenkomstType">
+          <select name="binnenkomstType"> <!-- Helaas moet ook deze uit de database komen :( -->
               <option></option>
               <option></option>
           </select><br><br>
 
-          <strong>Veelvoorkomend laptop:</strong><br>
+          <strong>Veelvoorkomend laptop:</strong><br> <!-- Ook deze twee zou eigenlijk uit de database moeten komen. Schrappen bij weinig tijd -->
           Merk
           <select name="vVLaptopMerk">
               <option></option>
