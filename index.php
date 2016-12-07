@@ -1,8 +1,16 @@
-<?php
+<html>
+    
+    <body>
+        
+        
+<form action="#" method="POST">
+  klasnaam: <input type="text" name="klascode"><br>
+  wachtwoord: <input type="text" name="wachtwoord"><br>
+  <input type="submit" value="Submit">
+</form>  
+    
+    
+    </body>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+</html>
