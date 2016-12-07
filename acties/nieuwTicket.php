@@ -29,8 +29,7 @@ $vVlaptopType=NULL;
 $besturingssysteem="standaard";
 
 ?>
-<img src="../fts.PNG">
-<h1> Plaatshouder </h1>
+<h1> Nieuw ticket </h1>
 <form name="nieuwTicket" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
     
           Probleem (korte omschrijving) <br>
@@ -42,26 +41,49 @@ $besturingssysteem="standaard";
           Probleem (korte omschrijving) <br>
           <input type="text" name="Beschrijving"><br>
 
-          <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden<br>
+          <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden<br><br>
           
           Categorie 
           <select name="categorie">
               <option></option>
               <option></option>
-          </select><br>
+          </select><br><br>
           
-          Streefdatum <br>
+          <strong>Streefdatum</strong><br>
           
                 Dag (17) <br>
-                <input type="text" name="Beschrijving"><br>
+                <input type="text" name="dag"><br>
           
                 Maand (2) <br>
-                <input type="text" name="Beschrijving"><br>
+                <input type="text" name="maand"><br>
           
                 Jaar (2017) <br>
-                <input type="text" name="Beschrijving"><br>
+                <input type="text" name="jaar"><br><br>
 
+                     Binnenkomst type: 
+          <select name="binnenkomstType">
+              <option></option>
+              <option></option>
+          </select><br><br>
 
+                     Lokatie: 
+          <select name="binnenkomstType">
+              <option></option>
+              <option></option>
+          </select><br><br>
+
+          <strong>Veelvoorkomend laptop:</strong><br>
+          Merk
+          <select name="vVLaptopMerk">
+              <option></option>
+              <option></option>
+          </select><br><br>
+          
+          Type
+          <select name="vVLaptopType">
+              <option></option>
+              <option></option>
+          </select><br><br>
 
     
 <input type="submit" name="invoeren" value="invoeren"><br>    
