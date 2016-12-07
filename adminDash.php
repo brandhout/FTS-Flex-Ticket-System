@@ -1,8 +1,12 @@
 <?php
+require_once 'functies.php'; //Include de functies.
+require_once 'header.php'; // Zet de header bovenaan deze pagina.
+?>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+<form name="nieuwaccount" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+          Naam <br>
+          <input type="text" name="Naam"><br>
+          Beschrijving <br>
+          <input type="text" name="Wachtwoord"><br>
+          <input type="submit" name="zoeken" value="zoeken"><br>    
+      </form>
