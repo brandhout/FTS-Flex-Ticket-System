@@ -61,9 +61,9 @@ $besturingssysteem="standaard";
                 <input type="text" name="jaar"><br><br>
 
                      Binnenkomst type: 
-          <select name="binnenkomstType">
-              <option></option>
-              <option></option>
+          <select name="binnenkomstType"> <!-- Moet nog gescript worden! Data moet uit database komen -->
+              <option>Telefoon</option>
+              <option>Herman liep langs</option>
           </select><br><br>
 
                      Lokatie: 
