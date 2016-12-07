@@ -11,7 +11,7 @@ require_once 'header.php'; // Zet de header bovenaan deze pagina.
           
           <input type="checkbox" name="isLeerling" value="isLeerling" checked>Is een leerling<br><br>
 
-                Klassencode (indien leerling!)  <br>
+                Klassencode (indien leerling!)  <br> <!-- Kan eventueel gescript worden. (indien leerling verschijnt dit) -->
                 <input type="text" name="klas" disabled><br><br>
           
             vestiging/lokatie <br> <!-- Moet nog gescript worden! Data moet uit database komen -->
