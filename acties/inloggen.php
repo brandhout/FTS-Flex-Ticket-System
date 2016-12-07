@@ -6,7 +6,7 @@ require_once '../header.php'; // Zet de header bovenaan deze pagina.
 <html>
 
 <header>
-<img src="fts.PNG">
+<img src="../fts.PNG">
 <style>
 img {
     display: block;
