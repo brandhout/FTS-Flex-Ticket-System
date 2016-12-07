@@ -27,3 +27,7 @@ if ($conn->connect_error) {
 return true;
 }}
 
+function mysqldatum(){
+$datum = date("Y-m-d H:i:s");
+return $datum;    
+}
