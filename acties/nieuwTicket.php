@@ -13,5 +13,5 @@ verbinddatabase();
 ?>
 <h1> Test </h1>
 <form name="nieuwTicket" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-<input type="invoeren" name="invoeren" value="invoeren"><br>    
+<input type="submit" name="invoeren" value="invoeren"><br>    
 </form>
