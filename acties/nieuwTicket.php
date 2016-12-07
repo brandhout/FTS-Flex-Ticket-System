@@ -62,8 +62,8 @@ $besturingssysteem="standaard";
 
                      Binnenkomst type: 
           <select name="binnenkomstType"> <!-- Moet nog gescript worden! Data moet uit database komen -->
-              <option>Telefoon</option>
-              <option>Herman liep langs</option>
+              <option>Pas op, plaatshouders!</option>
+              <option>E-mail</option>
           </select><br><br>
 
                      Lokatie: 
@@ -84,6 +84,9 @@ $besturingssysteem="standaard";
               <option></option>
               <option></option>
           </select><br><br>
+
+          <input type="checkbox" name="nieuwCommentaar" value="nieuwCommentaar">Nieuw commentaar<br><br>
+          <!-- MOET SCRIPT KOMEN! als aangevinkt dan komt er een GROOT tekstvak waarin nieuw commentaar gegeven kan worden -->
 
     
 <input type="submit" name="invoeren" value="invoeren"><br>    
