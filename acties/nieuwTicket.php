@@ -1,10 +1,5 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 require_once '../functies.php'; //Include de functies.
 require_once '../header.php'; //Include de functies.
 
@@ -35,7 +30,7 @@ $besturingssysteem="standaard";
           Probleem (korte omschrijving) <br>
           <input type="text" name="Beschrijving"><br>
 
-          trefwoorden (aan elkaar, door komma gescheiden ) <br>
+          trefwoorden (aan elkaar, door komma gescheiden) <br>
           <input type="text" name="Beschrijving"><br>
 
           Probleem (korte omschrijving) <br>
