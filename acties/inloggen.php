@@ -1,7 +1,13 @@
+<?php
+require_once '../functies.php'; //Include de functies.
+require_once '../header.php'; // Zet de header bovenaan deze pagina.
+verbinddatabase();
+?>
+
 <html>
 
 <header>
-<img src="fts.PNG">
+<img src="../fts.PNG">
 <style>
 img {
     display: block;
