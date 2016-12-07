@@ -29,5 +29,6 @@ return true;
 
 function mysqldatum(){
 $datum = date("Y-m-d H:i:s");
+//Levert een datum aan die in het SQL variabeltype 'DATE' past.
 return $datum;    
 }
