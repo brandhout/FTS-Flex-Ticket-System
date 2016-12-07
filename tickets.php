@@ -1,6 +1,7 @@
 <?php
 
 include_once 'header.php';
+include_once 'functies.php';
  ?>
 
  <!DOCTYPE html>
@@ -15,3 +16,4 @@ include_once 'header.php';
   
   </body>
 </html>
+
