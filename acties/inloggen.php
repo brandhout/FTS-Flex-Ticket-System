@@ -1,3 +1,8 @@
+<?php
+require_once '../functies.php'; //Include de functies.
+require_once '../header.php'; // Zet de header bovenaan deze pagina.
+?>
+
 <html>
 
 <header>
