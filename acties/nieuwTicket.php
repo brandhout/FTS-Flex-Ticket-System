@@ -64,11 +64,17 @@ if (!$query) {
           
           <strong>Streefdatum</strong><br>
           
-                Dag (17) <br>
-                <input type="text" name="dag"><br>
+                Dag <br>
+                <select name="dag">
+                <option>1</option>
+                <option>2</option>
+                </select><br><br>
           
-                Maand (2) <br>
-                <input type="text" name="maand"><br>
+                Maand <br>
+                <select name="maand">
+                <option>Januari</option>
+                <option>Februari</option>
+                </select><br><br>
           
                 Jaar (2017) <br>
                 <input type="text" name="jaar"><br><br>
