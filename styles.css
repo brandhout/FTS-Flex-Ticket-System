@@ -261,7 +261,7 @@
     padding: 18px 25px 18px 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    background: url('images/bg.png');
+    background: url('bg.png');
     cursor: pointer;
   }
   #cssmenu ul ul,

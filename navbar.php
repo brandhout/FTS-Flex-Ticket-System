@@ -25,7 +25,7 @@
  */
         switch ($isAdmin) { 
             case "TRUE":
-            echo '<li><a href="adminDash.php">administrator</a></li>' ;
+            echo '<li><a href="adminDash.php"><i class="fa fa-unlock-alt"<</i>administrator</a></li>' ;
             break;
     
             case "FALSE":
