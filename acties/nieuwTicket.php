@@ -36,21 +36,41 @@ $factuurNr=NULL;
           Probleem (korte omschrijving) <br>
           <textarea id="probleem" rows="10" cols="90"></textarea><br><br>
 
+          <h3> Klant </h3>
           
-          <input type="checkbox" name="bestaandeKlant" value="bestaandeKlant">Bestaande klant<br>
+          Bestaande klant <br> <!-- Moet uit database komen!! -->
+          <select name="dag">
+          <option>Herman</option>
+          <option>Milad</option>
+          </select><br><br>
+          
+          <input type="checkbox" name="nieuwKlant" value="nieuwKlant">Nieuwe klant<br><br>
+         <!-- Als nieuwe klant aangevinkt is dan kunnen NAW gegevens ingevuld worden -->
+          Nieuwe klant (Achternaam) <br>
+          <input type="text" name="klAchterNaam" disabled><br><br>
+          
+          Nieuwe klant (Voornaam) <br>
+          <input type="text" name="klAchterNaam" disabled><br><br>
 
-          Klantnaam <br>
-          <input type="text" name="Beschrijving"><br><br>
 
           <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden<br><br>
           
+          <h3> Categorieën </h3>
+          
           Categorie <!-- Moet uit database komen -->
-          <select name="categorie">
-              <option></option>
-              <option></option>
+          <select name="categorie" disabled>
+              <option>Software</option>
+              <option>Hardware</option>
           </select><br><br>
           
-          <strong>Streefdatum</strong><br>
+          Subcategorie <!-- Disabled, voor later. -->
+          <select name="categorie" disabled>
+              <option>Fedora Linux</option>
+              <option></option>
+          </select><br>
+
+          
+          <h3> Streefdatum</h3>
           
                 Dag <br>
                 <select name="dag">
@@ -77,9 +97,9 @@ $factuurNr=NULL;
           <select name="binnenkomstType"> <!-- Helaas moet ook deze uit de database komen :( -->
               <option></option>
               <option></option>
-          </select><br><br>
+          </select><br>
 
-          <strong>Veelvoorkomend laptop:</strong><br> <!-- Ook deze twee zou eigenlijk uit de database moeten komen. Schrappen bij weinig tijd -->
+          <h3>Veelvoorkomende laptop:</h3><br> <!-- Ook deze twee zou eigenlijk uit de database moeten komen. Schrappen bij weinig tijd -->
           Merk
           <select name="vVLaptopMerk">
               <option></option>
