@@ -3,6 +3,26 @@
 require_once '../functies.php'; //Include de functies.
 require_once '../header.php'; //Include de functies. 
 
+$fstAccountNr= "";
+$probleem=NULL;
+$trefwoorden=NULL;
+$aantalXterug=NULL;
+$terugstuurLock=FALSE;
+$lijnNr=1;
+$datumAanmaak= mysqldatum();
+$nogBellen=FALSE;
+$log=NULL;
+$verlopen=FALSE;
+$streefdatum=FALSE;
+$binnenkomstType="tel";
+$lokatie="standaard";
+$klantTevreden=NULL;
+$vVLaptopMerk=NULL;
+$vVlaptopType=NULL;
+$besturingssysteem="standaard";
+$factuurNr=NULL;
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,14 +30,17 @@ require_once '../header.php'; //Include de functies.
 <body>
 <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
     
-          Probleem (korte omschrijving) <br>
-          <input type="text" name="Beschrijving"><br>
-
           trefwoorden (aan elkaar, door komma gescheiden) <br> <!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
-          <input type="text" name="Beschrijving"><br>
-
+          <input type="text" name="Beschrijving"><br><br>
+          
           Probleem (korte omschrijving) <br>
-          <input type="text" name="Beschrijving"><br>
+          <textarea id="probleem" rows="10" cols="90"></textarea><br><br>
+
+          
+          <input type="checkbox" name="bestaandeKlant" value="bestaandeKlant">Bestaande klant<br>
+
+          Klantnaam <br>
+          <input type="text" name="Beschrijving"><br><br>
 
           <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden<br><br>
           
@@ -79,25 +102,8 @@ require_once '../header.php'; //Include de functies.
 <?php
 
 verbinddatabase();
-$fstAccountNr= "";
-$probleem=NULL;
-$trefwoorden=NULL;
-$aantalXterug=NULL;
-$terugstuurLock=FALSE;
-$lijnNr=1;
-$datumAanmaak= mysqldatum();
-$nogBellen=FALSE;
-$log=NULL;
-$verlopen=FALSE;
-$streefdatum=FALSE;
-$binnenkomstType="tel";
-$lokatie="standaard";
-$klantTevreden=NULL;
-$vVLaptopMerk=NULL;
-$vVlaptopType=NULL;
-$besturingssysteem="standaard";
-$factuurNr=NULL;
 
+if (!mysqli_real_escape_string(stripcslashes($POST['probleem'])) === "") {
 
 $query = mysqli_query("insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
 probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
@@ -106,10 +112,6 @@ nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
 log = $log, verlopen = $verlopen, streefdatum = $streefdatum, binnenkomstType = $binnenkomstType,
 lokatie = $lokatie, klantTevreden = $klantTevreden, vVLaptopMerk = $vVLaptopMerk,
 vVLaptopType = $vVlaptopType, besturingssysteem = $besturingssysteem");    
-
-
-if (!$query) {
-    $error =TRUE;
 }
-    
+
 ?>
