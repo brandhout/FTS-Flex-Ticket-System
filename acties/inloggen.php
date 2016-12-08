@@ -2,7 +2,7 @@
 <?php
 require_once '../functies.php'; //Include de functies.
 require_once '../header.php'; // Zet de header bovenaan deze pagina.
-verbinddatabase();
+//verbinddatabase();
 
 //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
 $accountNr = mysqli_real_escape_string(stripcslashes($POST['accountNr']));
