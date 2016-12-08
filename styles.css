@@ -7,6 +7,13 @@ li {
 	border-radius:10px;
 	border:1px solid #4e6096;
 	display:inline-block;
+        background-color:#9dc3e6;
+        margin: 4px;	
+}
+
+ul#navmenu li:hover > a{
+        background-color:#7892c2;
+        border-radius:10px;
 }
 
 li a {
