@@ -6,7 +6,7 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
 <header>
-<img src="fts.PNG">
+  <img class="logo" src="fts.PNG">
 </header>
 <?php
 //Hier komt de header, deze is te includen vanuit elke pagina.
