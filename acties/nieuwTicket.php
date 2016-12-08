@@ -64,7 +64,7 @@ $factuurNr=NULL;
           </select><br><br>
           
           Subcategorie <!-- Disabled, voor later. -->
-          <select name="categorie" disabled>
+          <select name="subCategorie" disabled>
               <option>Fedora Linux</option>
               <option></option>
           </select><br>
@@ -73,50 +73,60 @@ $factuurNr=NULL;
           <h3> Streefdatum</h3>
           
                 Dag <br>
-                <select name="dag">
+                <select name="dag" disabled>
                 <option>1</option>
                 <option>2</option>
                 </select><br><br>
           
                 Maand <br>
-                <select name="maand">
+                <select name="maand" disabled>
                 <option>Januari</option>
                 <option>Februari</option>
                 </select><br><br>
           
                 Jaar (2017) <br>
-                <input type="text" name="jaar"><br><br>
+                <input type="text" name="jaar" disabled><br><br>
 
                      Binnenkomst type: 
-          <select name="binnenkomstType"> <!-- Moet nog gescript worden! Data moet uit database komen -->
+          <select name="binnenkomstType" disabled> <!-- Moet nog gescript worden! Data moet uit database komen -->
               <option>Telefoon</option>
               <option>E-mail</option>
           </select><br><br>
 
                      Lokatie: 
-          <select name="binnenkomstType"> <!-- Helaas moet ook deze uit de database komen :( -->
-              <option></option>
+              <br><select name="binnenkomstType" disabled><br> <!-- Disabled, gaan we nog niets mee doen-->
+              <option>Hilversum Soestdijkerstraatweg</option>
               <option></option>
           </select><br>
 
-          <h3>Veelvoorkomende laptop:</h3><br> <!-- Ook deze twee zou eigenlijk uit de database moeten komen. Schrappen bij weinig tijd -->
+          <h3>Veelvoorkomende laptop:</h3><br> <!-- Disabled, weinig tijd -->
           Merk
-          <select name="vVLaptopMerk">
+          <select name="vVLaptopMerk" disabled>
               <option></option>
               <option></option>
           </select><br><br>
           
           Type
-          <select name="vVLaptopType">
+          <select name="vVLaptopType" disabled>
               <option></option>
               <option></option>
           </select><br><br>
+          
+          Besturingssysteem
+          <br><select name="besturingssysteem" disabled>
+              <option>Windows</option>
+              <option></option>
+          </select><br><br>
+          
+          <h3> Potentiele oplossing </h3>
+            <textarea id="oplossing" rows="10" cols="90"></textarea><br><br>
+          
+           <h3> Commentaar </h3>
+            <textarea id="nieuwComment" rows="10" cols="90"></textarea><br><br>
 
-          <input type="checkbox" name="nieuwCommentaar" value="nieuwCommentaar">Nieuw commentaar<br><br>
-          <!-- MOET SCRIPT KOMEN! als aangevinkt dan komt er een GROOT tekstvak waarin nieuw commentaar gegeven kan worden -->
+          
 
-    
-<input type="submit" name="invoeren" value="invoeren"><br>    
+          <input type="submit" name="invoeren" value="invoeren"><br>    
 </form></body></html>
 
 <?php
