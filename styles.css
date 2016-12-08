@@ -15,8 +15,11 @@ li {
 ul#navmenu li:hover > a{
         background-color:#7892c2;
         border-radius:3px;
-        padding: 18px 20px;
+        padding: 14px 16px;
         color:white;
+        font-family:Arial;
+	font-size:18px;
+	font-weight:bold;
 }
 
 li a {
@@ -25,6 +28,9 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-family:Arial;
+    font-size:18px;
+    font-weight:bold;
 }
 /*dashboard knop*/
 .center {
@@ -69,6 +75,7 @@ li a {
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2',GradientType=0);
 	background-color:#476e9e;
         position:absolute;
+        	padding:19px 73px;
 }
 .dbknop:active {
         position:absolute;

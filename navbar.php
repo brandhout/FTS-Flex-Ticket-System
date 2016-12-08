@@ -31,7 +31,7 @@
 
  <!-- database knop -->
 <div class="center">
-    <a href="#" class="dbknop">Dashboard</a>
+    <a href="index.php" class="dbknop">Dashboard</a>
 </div>
  <br><br><br>
 
