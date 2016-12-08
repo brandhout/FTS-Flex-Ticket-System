@@ -1,6 +1,11 @@
 /*navbar*/
 ul {
 float: right;
+background-color:#cccccc;
+border-radius:8px;
+padding:0px 7px;
+border:1px solid black;
+
 }
 
 li {
@@ -8,12 +13,14 @@ li {
 	border:1px solid #4e6096;
 	display:inline-block;
         background-color:#9dc3e6;
-        margin: 4px;	
+        margin: 1px;
 }
 
 ul#navmenu li:hover > a{
         background-color:#7892c2;
         border-radius:10px;
+        padding: 18px 20px;
+        color:white;
 }
 
 li a {
@@ -26,6 +33,7 @@ li a {
 /*dashboard knop*/
 .center {
     text-align: center;
+    display:block;
 }
 
 .dbknop {
