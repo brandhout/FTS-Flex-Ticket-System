@@ -2,6 +2,7 @@
 
 <ul id="navmenu">
     
+  <li><a href="#">Uitloggen</a></li>  
   <li><a href="tickets.php">Tickets</a></li>
 
       <?php
@@ -22,7 +23,8 @@
         break;
 }
 ?>
-  <li style="float:right"><a href="acties/nieuwTicket.php">+ Nieuw ticket</a></li>
+  
+  <li><a href="acties/nieuwTicket.php">+ Nieuw ticket</a></li>
 </ul>
 
 
