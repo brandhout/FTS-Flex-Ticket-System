@@ -3,15 +3,14 @@
 require_once '../functies.php'; //Include de functies.
 require_once '../header.php'; //Include de functies.
 
-
 //verbinddatabase();
-//$fstAccountNr= Moet gekoppeld worden aan momenteel ingelogde account
+$fstAccountNr= "";
 $probleem=NULL;
 $trefwoorden=NULL;
 $aantalXterug=NULL;
 $terugstuurLock=FALSE;
 $lijnNr=1;
-//datumAanmaak erin zetten!!!!!
+$datumAanmaak= mysqldatum();
 $nogBellen=FALSE;
 $log=NULL;
 $verlopen=FALSE;
@@ -22,10 +21,29 @@ $klantTevreden=NULL;
 $vVLaptopMerk=NULL;
 $vVlaptopType=NULL;
 $besturingssysteem="standaard";
+$factuurNr=NULL;
+
+
+$query = mysqli_query("insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
+aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
+log = $log, verlopen = $verlopen, streefdatum = $streefdatum, binnenkomstType = $binnenkomstType,
+lokatie = $lokatie, klantTevreden = $klantTevreden, vVLaptopMerk = $vVLaptopMerk,
+vVLaptopType = $vVlaptopType, besturingssysteem = $besturingssysteem");    
+
+
+if (!$query) {
+    $error =TRUE;
+}
+    
 
 ?>
+<!DOCTYPE html>
+<html>
 <h1> Nieuw ticket </h1>
-<form name="nieuwTicket" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+<body>
+<form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
     
           Probleem (korte omschrijving) <br>
           <input type="text" name="Beschrijving"><br>
@@ -85,4 +103,4 @@ $besturingssysteem="standaard";
 
     
 <input type="submit" name="invoeren" value="invoeren"><br>    
-</form>
+</form></body></html>
