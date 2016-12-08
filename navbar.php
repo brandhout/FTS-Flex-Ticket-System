@@ -1,10 +1,10 @@
+<html>
 
-
- <button type="button">Dashboard</button> 
 <ul id="navmenu">
     
   <li><a href="tickets.php">Tickets</a></li>
-<?php
+
+      <?php
 /*
  * De volgende switch kijkt of de variabele isAdmin TRUE of FALSE is. Als hij true
  * is dan komt er een extra veld bij de navbar. De adminDash kan dan geopend worden.
@@ -25,3 +25,11 @@
   <li style="float:right"><a href="acties/nieuwTicket.php">+ Nieuw ticket</a></li>
 </ul>
 
+
+
+ <!-- database knop -->
+ <div class="center">
+<a href="#" class="dbknop">Dashboard</a>
+ </div>
+
+</html>
