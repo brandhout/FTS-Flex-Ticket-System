@@ -1,24 +1,20 @@
 /*navbar*/
 ul {
 float: right;
-background-color:#cccccc;
-border-radius:8px;
-padding:0px 7px;
-border:1px solid black;
-
 }
 
 li {
-	border-radius:10px;
+	/*border-radius:10px;*/
 	border:1px solid #4e6096;
 	display:inline-block;
         background-color:#9dc3e6;
         margin: 1px;
+        border-radius:3px;
 }
 
 ul#navmenu li:hover > a{
         background-color:#7892c2;
-        border-radius:10px;
+        border-radius:3px;
         padding: 18px 20px;
         color:white;
 }
@@ -61,6 +57,7 @@ li a {
 	padding:15px 69px;
 	text-decoration:none;
 	text-shadow:0px 0px 33px #283966;
+        position:absolute;
 }
 .dbknop:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #476e9e), color-stop(1, #7892c2));
@@ -71,8 +68,8 @@ li a {
 	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2',GradientType=0);
 	background-color:#476e9e;
+        position:absolute;
 }
 .dbknop:active {
-	position:relative;
-	top:1px;
+        position:absolute;
 }
