@@ -22,7 +22,7 @@ if ($row['accountNr'] == $accountNr && $row[wachtwoord] == $wachtwoord){ //Als g
     
 } else { //Als de gevevens niet gelijk zijn
     
-    $foutmelding = "Inloggen mislukt, kloppen uw gegevens?"; //Variabele met foutmelding wordt aangemaakt
+    $foutmelding = "Inloggen mislukt, kloppen uw gegevens?"; //Variabele met foutmelding wordt aangemaakt.
     
 }
        
