@@ -2,7 +2,7 @@
 
 <ul id="navmenu">
     
-  <li><a href="#">Uitloggen</a></li>  
+  <li><a href="#">Uitloggen</a></li>
   <li><a href="tickets.php">Tickets</a></li>
 
     <?php
