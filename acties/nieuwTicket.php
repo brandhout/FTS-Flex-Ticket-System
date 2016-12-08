@@ -1,42 +1,7 @@
 <?php
 
 require_once '../functies.php'; //Include de functies.
-require_once '../header.php'; //Include de functies.
-
-//verbinddatabase();
-$fstAccountNr= "";
-$probleem=NULL;
-$trefwoorden=NULL;
-$aantalXterug=NULL;
-$terugstuurLock=FALSE;
-$lijnNr=1;
-$datumAanmaak= mysqldatum();
-$nogBellen=FALSE;
-$log=NULL;
-$verlopen=FALSE;
-$streefdatum=FALSE;
-$binnenkomstType="tel";
-$lokatie="standaard";
-$klantTevreden=NULL;
-$vVLaptopMerk=NULL;
-$vVlaptopType=NULL;
-$besturingssysteem="standaard";
-$factuurNr=NULL;
-
-
-$query = mysqli_query("insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
-probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
-aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
-nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
-log = $log, verlopen = $verlopen, streefdatum = $streefdatum, binnenkomstType = $binnenkomstType,
-lokatie = $lokatie, klantTevreden = $klantTevreden, vVLaptopMerk = $vVLaptopMerk,
-vVLaptopType = $vVlaptopType, besturingssysteem = $besturingssysteem");    
-
-
-if (!$query) {
-    $error =TRUE;
-}
-    
+require_once '../header.php'; //Include de functies. 
 
 ?>
 <!DOCTYPE html>
@@ -81,7 +46,7 @@ if (!$query) {
 
                      Binnenkomst type: 
           <select name="binnenkomstType"> <!-- Moet nog gescript worden! Data moet uit database komen -->
-              <option>Pas op, plaatshouders!</option>
+              <option>Telefoon</option>
               <option>E-mail</option>
           </select><br><br>
 
@@ -110,3 +75,41 @@ if (!$query) {
     
 <input type="submit" name="invoeren" value="invoeren"><br>    
 </form></body></html>
+
+<?php
+
+verbinddatabase();
+$fstAccountNr= "";
+$probleem=NULL;
+$trefwoorden=NULL;
+$aantalXterug=NULL;
+$terugstuurLock=FALSE;
+$lijnNr=1;
+$datumAanmaak= mysqldatum();
+$nogBellen=FALSE;
+$log=NULL;
+$verlopen=FALSE;
+$streefdatum=FALSE;
+$binnenkomstType="tel";
+$lokatie="standaard";
+$klantTevreden=NULL;
+$vVLaptopMerk=NULL;
+$vVlaptopType=NULL;
+$besturingssysteem="standaard";
+$factuurNr=NULL;
+
+
+$query = mysqli_query("insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
+aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
+log = $log, verlopen = $verlopen, streefdatum = $streefdatum, binnenkomstType = $binnenkomstType,
+lokatie = $lokatie, klantTevreden = $klantTevreden, vVLaptopMerk = $vVLaptopMerk,
+vVLaptopType = $vVlaptopType, besturingssysteem = $besturingssysteem");    
+
+
+if (!$query) {
+    $error =TRUE;
+}
+    
+?>
