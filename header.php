@@ -2,6 +2,8 @@
     <meta charset="UTF-8">
   <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'>
   <link rel="stylesheet" href="styles.css" type="text/css">
+  <script src="script.js"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
 <header>
 <img src="fts.PNG">

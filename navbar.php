@@ -1,10 +1,22 @@
 <html>
 
-<ul id="navmenu">
-    
-  <li><a href="#">Uitloggen</a></li>
-  <li><a href="tickets.php">Tickets</a></li>
-
+<div id="cssmenu" class="align-right">
+  <ul>
+     <li class="active"><a href="#" target="_blank"><i class="fa fa-sign-out"></i> UITLOGGEN</a></li>
+     <li class="has-sub"><a href="#"><i class="fa fa-fw fa-bars"></i>Ga Naar...</a>
+        <ul>
+           <li class="has-sub"><a href="#">Menu 1</a>
+              <ul>
+                 <li><a href="#">Menu 1.1</a></li>
+                 <li><a href="#">Menu 1.2</a></li>
+              </ul>
+           </li>
+           <li><a href="#">Menu 2</a></li>
+        </ul>
+     </li>
+     <li><a href="tickets.php"><i class="fa fa-ticket"></i> Alle Tickets</a></li>
+     <li><a href="acties/nieuwTicket.php"><i class="fa fa-plus-square"></i> nieuw ticket</a></li>
+	 
     <?php
 /*
  * De volgende switch kijkt of de variabele isAdmin TRUE of FALSE is. Als hij true
@@ -23,11 +35,9 @@
             break;
         }
     ?>
-  
-  <li><a href="acties/nieuwTicket.php">+ Nieuw ticket</a></li>
-</ul>
-
-
+	
+  </ul>
+</div>
 
  <!-- database knop -->
 <div class="center">
