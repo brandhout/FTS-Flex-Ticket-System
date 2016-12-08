@@ -2,6 +2,10 @@
 
 include_once 'header.php';
 include_once 'functies.php';
+
+
+
+
  ?>
 
  <!DOCTYPE html>
