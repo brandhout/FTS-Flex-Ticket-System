@@ -16,6 +16,7 @@
      </li>
      <li><a href="tickets.php"><i class="fa fa-ticket"></i> Alle Tickets</a></li>
      <li><a href="acties/nieuwTicket.php"><i class="fa fa-plus-square"></i> nieuw ticket</a></li>
+          <li><a href="index.php"><i class="fa fa-home"></i> DASHBOARD</a></li>
 	 
     <?php
 /*
@@ -35,13 +36,8 @@
             break;
         }
     ?>
-	
+      	
   </ul>
-</div>
-
- <!-- database knop -->
-<div class="center">
-    <a href="index.php" class="dbknop">Dashboard</a>
 </div>
  <br><br><br>
 
