@@ -47,12 +47,21 @@ $factuurNr=NULL;
           <input type="checkbox" name="nieuwKlant" value="nieuwKlant">Nieuwe klant<br><br>
          <!-- Als nieuwe klant aangevinkt is dan kunnen NAW gegevens ingevuld worden -->
           Nieuwe klant (Achternaam) <br>
-          <input type="text" name="klAchterNaam" disabled><br><br>
+          <input type="text" name="klantAchterNaam" disabled><br><br>
           
           Nieuwe klant (Voornaam) <br>
-          <input type="text" name="klAchterNaam" disabled><br><br>
+          <input type="text" name="klantNaam" disabled><br><br>
 
+          Nieuwe klant (Adres) <br>
+          <input type="text" name="klantAdres" disabled><br><br>
+          
+          Nieuwe klant (Postcode) <br>
+          <input type="text" name="klantPostc" disabled><br><br>
 
+          Nieuwe klant (Woonplaats) <br>
+          <input type="text" name="klantStad" disabled><br><br>
+
+          
           <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden<br><br>
           
           <h3> Categorieën </h3>
