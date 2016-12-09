@@ -7,7 +7,7 @@ require_once '../header.php'; // Zet de header bovenaan deze pagina.
     
     <body>
         
-        <div class="login1">
+        <div class="algemeen1">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                     <input type="text" name="accountNr" required placeholder="Vul hier uw leerlingnummer in*"><span id="message1" ></span><br>
                     <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
