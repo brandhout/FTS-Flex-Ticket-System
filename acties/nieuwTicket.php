@@ -29,14 +29,14 @@ $factuurNr=NULL;
 <h1> Nieuw ticket </h1>
 <body>
  <div class="algemeen1">
-<form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-    
+     <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+ <div class="a1">  
           trefwoorden (aan elkaar, door komma gescheiden) <br> <!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
           <input type="text" name="Beschrijving"><br><br>
           
           Probleem (korte omschrijving) <br>
-          <textarea id="probleem" rows="10" cols="90"></textarea><br><br>
-
+          <textarea id="probleem" rows="10" cols="90"></textarea><br><br></div>
+<div class="a2">
           <h3> Klant </h3>
           
           Bestaande klant <br> <!-- Moet uit database komen!! -->
@@ -63,8 +63,9 @@ $factuurNr=NULL;
           <input type="text" name="klantStad" disabled><br><br>
 
           
-          <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden<br><br>
+          <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden<br><br></div>
           
+    <div class="a3">     
           <h3> Categorieën </h3>
           
           Categorie <!-- Moet uit database komen -->
@@ -95,8 +96,8 @@ $factuurNr=NULL;
                 </select><br><br>
           
                 Jaar (2017) <br>
-                <input type="text" name="jaar" disabled><br><br>
-
+                <input type="text" name="jaar" disabled><br><br></div>
+<div class="a4">
                      Binnenkomst type: 
           <select name="binnenkomstType" disabled> <!-- Moet nog gescript worden! Data moet uit database komen -->
               <option>Telefoon</option>
@@ -126,17 +127,18 @@ $factuurNr=NULL;
           <br><select name="besturingssysteem" disabled>
               <option>Windows</option>
               <option></option>
-          </select><br><br>
-          
+          </select><br><br></div>
+         
+          <div class="a5">
           <h3> Potentiele oplossing </h3>
             <textarea id="oplossing" rows="10" cols="90"></textarea><br><br>
           
            <h3> Commentaar </h3>
             <textarea id="nieuwComment" rows="10" cols="90"></textarea><br><br>
 
-          
-
-          <input type="submit" name="invoeren" value="invoeren"><br>    
+            </div>
+<div class="a6">
+    <input type="submit" name="invoeren" value="invoeren"><br></div>    
 </form>
  </div>
 </body></html>
