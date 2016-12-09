@@ -28,6 +28,7 @@ $factuurNr=NULL;
 <html>
 <h1> Nieuw ticket </h1>
 <body>
+ <div class="algemeen1">
 <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
     
           trefwoorden (aan elkaar, door komma gescheiden) <br> <!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
@@ -136,7 +137,9 @@ $factuurNr=NULL;
           
 
           <input type="submit" name="invoeren" value="invoeren"><br>    
-</form></body></html>
+</form>
+ </div>
+</body></html>
 
 <?php
 
