@@ -120,8 +120,10 @@ wordt de gebruiker doorgestuurd naar wijzigTicket.php. Dit alleen als er bijvoor
           </select><br><br>
           
           <h3> Potentiele oplossing </h3>
-            <textarea id="oplossing" rows="10" cols="90" disabled></textarea><br><br>
-          
+            <textarea id="oplossing" rows="10" cols="90" ></textarea><br><br>
+            
+            <input type="checkbox" name="definitief" value="definitief">Oplossing is definitief<br><br>
+        
             <h3> Eerder commentaar </h3>
             <p><strong> Bert Bartsen commenteerd op (datum):</strong><br>
                     Mevrouw van der berg heeft waarschijnlijk geen stroom in huis. </p>
