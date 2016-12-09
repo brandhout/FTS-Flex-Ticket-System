@@ -31,38 +31,30 @@ wordt de gebruiker doorgestuurd naar wijzigTicket.php. Dit alleen als er bijvoor
 <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
     
           trefwoorden (aan elkaar, door komma gescheiden) <br> <!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
-          <input type="text" name="Beschrijving"><br><br>
+          <input type="text" name="Beschrijving" disabled><br><br>
           
           Probleem (korte omschrijving) <br>
-          <textarea id="probleem" rows="10" cols="90"></textarea><br><br>
+          <textarea id="probleem" rows="10" cols="90" disabled></textarea><br><br>
 
           <h3> Klant </h3>
-          
-          Bestaande klant <br> <!-- Moet uit database komen!! -->
-          <select name="dag">
-          <option>Herman</option>
-          <option>Milad</option>
-          </select><br><br>
-          
-          <input type="checkbox" name="nieuwKlant" value="nieuwKlant">Nieuwe klant<br><br>
-         <!-- Als nieuwe klant aangevinkt is dan kunnen NAW gegevens ingevuld worden -->
-          Nieuwe klant (Achternaam) <br>
+                    
+          klant (Achternaam) <br>
           <input type="text" name="klantAchterNaam" disabled><br><br>
           
-          Nieuwe klant (Voornaam) <br>
+          klant (Voornaam) <br>
           <input type="text" name="klantNaam" disabled><br><br>
 
-          Nieuwe klant (Adres) <br>
+          klant (Adres) <br>
           <input type="text" name="klantAdres" disabled><br><br>
           
-          Nieuwe klant (Postcode) <br>
+          klant (Postcode) <br>
           <input type="text" name="klantPostc" disabled><br><br>
 
-          Nieuwe klant (Woonplaats) <br>
+          klant (Woonplaats) <br>
           <input type="text" name="klantStad" disabled><br><br>
 
           
-          <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden<br><br>
+          <input type="checkbox" name="nogBellen" value="nogBellen" disabled>Klant moet nog gebeld worden<br><br>
           
           <h3> Categorieën </h3>
           
@@ -124,16 +116,24 @@ wordt de gebruiker doorgestuurd naar wijzigTicket.php. Dit alleen als er bijvoor
           Besturingssysteem
           <br><select name="besturingssysteem" disabled>
               <option>Windows</option>
-              <option></option>
+              <option>Linux</option>
           </select><br><br>
           
           <h3> Potentiele oplossing </h3>
-            <textarea id="oplossing" rows="10" cols="90"></textarea><br><br>
+            <textarea id="oplossing" rows="10" cols="90" disabled></textarea><br><br>
           
-           <h3> Commentaar </h3>
+            <h3> Eerder commentaar </h3>
+            <p><strong> Bert Bartsen commenteerd op (datum):</strong><br>
+                    Mevrouw van der berg heeft waarschijnlijk geen stroom in huis. </p>
+            
+              <p><strong> Jasper Mijnkipema commenteerd op (datum):</strong><br>
+                      Doorsturen naar energie?? </p>
+
+            
+           <h3> Nieuw Commentaar </h3>
             <textarea id="nieuwComment" rows="10" cols="90"></textarea><br><br>
 
           
 
-          <input type="submit" name="invoeren" value="invoeren"><br>    
+          <input type="submit" name="nieuwCommentaar" value="nieuwCommentaar"><br>    
 </form></body></html>
