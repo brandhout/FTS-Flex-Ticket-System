@@ -35,7 +35,7 @@ $factuurNr=NULL;
           <input type="text" name="Beschrijving"><br><br>
           
           Probleem (korte omschrijving) <br>
-          <textarea id="probleem" rows="10" cols="90"></textarea><br><br></div>
+          <textarea id="probleem" rows="10" cols="90"></textarea></div><br><br>
 <div class="a2">
           <h3> Klant </h3>
           
@@ -63,7 +63,7 @@ $factuurNr=NULL;
           <input type="text" name="klantStad" disabled><br><br>
 
           
-          <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden<br><br></div>
+          <input type="checkbox" name="nogBellen" value="nogBellen">Klant moet nog gebeld worden</div><br><br>
           
     <div class="a3">     
           <h3> Categorieën </h3>
@@ -96,7 +96,7 @@ $factuurNr=NULL;
                 </select><br><br>
           
                 Jaar (2017) <br>
-                <input type="text" name="jaar" disabled><br><br></div>
+                <input type="text" name="jaar" disabled></div><br><br>
 <div class="a4">
                      Binnenkomst type: 
           <select name="binnenkomstType" disabled> <!-- Moet nog gescript worden! Data moet uit database komen -->
@@ -138,7 +138,7 @@ $factuurNr=NULL;
 
             </div>
 <div class="a6">
-    <input type="submit" name="invoeren" value="invoeren"><br></div>    
+    <input type="submit" name="invoeren" value="invoeren"><br></div><br><br><br>    
 </form>
  </div>
 </body></html>

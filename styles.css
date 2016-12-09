@@ -353,7 +353,7 @@ body {
 input[type=text] {
     border: 2px solid #ccc;
     border-radius: 4px;
-        width: 30%;
+        width: 20%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -365,7 +365,7 @@ input[type=text]:focus {
 input[type=password] {
     border: 2px solid #ccc;
     border-radius: 4px;
-        width: 30%;
+        width: 20%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -427,22 +427,22 @@ input[type=submit]:hover
 /*  nieuwe ticket    */
 
 div.a1{
-    
+
 }
 
 div.a2{
-    
+
 }
 
 div.a3{
-    
+
 }
 div.a4{
-    
+
 }
 div.a5{
-    
+
 }
 div.a6{
-    
+
 }
