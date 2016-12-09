@@ -11,3 +11,4 @@ leesTicket.php met de data in de sessie. Deze pagina heeft geen nut zonder leesT
 de ticket geopend en de gebruiker kan daar klikken op wijzigen (of iets in die richting).
 Hier komt een HTML form en daarin staat dus al de data over de ticket. Die kan
 (indien aanvaadbaar) aangepast worden. Nieuw commentaar en oplossingen komen hier niet! -->
+
