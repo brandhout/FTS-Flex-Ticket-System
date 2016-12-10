@@ -3,9 +3,9 @@
 require_once '../functies.php'; //Include de functies.
 require_once '../header.php'; //Include de functies. 
 
-$fstAccountNr= "";
-$probleem=NULL;
-$trefwoorden=NULL;
+$fstAccountNr= $_SESSION["accountNr"];
+$probleem= $_POST[probleem];
+$trefwoorden=$_POST[trefwoorden];;
 $aantalXterug=NULL;
 $terugstuurLock=FALSE;
 $lijnNr=1;
@@ -32,7 +32,7 @@ $factuurNr=NULL;
      <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
  <div class="a1">  
           trefwoorden (aan elkaar, door komma gescheiden) <br> <!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
-          <input type="text" name="Beschrijving"><br><br>
+          <input type="text" name="trefwoorden"><br><br>
           
           Probleem (korte omschrijving) <br>
           <textarea id="probleem" rows="10" cols="90"></textarea></div><br><br>
@@ -138,24 +138,27 @@ $factuurNr=NULL;
 
             </div>
 <div class="a6">
-    <input type="submit" name="invoeren" value="invoeren"><br></div><br><br><br>    
+    <input type="submit" name="submit" value="invoeren"><br></div><br><br><br>    
 </form>
  </div>
 </body></html>
 
 <?php
 
-verbinddatabase();
+if (isset($_POST['submit'])) {
+    
+    verbinddatabase();
 
-if (!mysqli_real_escape_string(stripcslashes($POST['probleem'])) === "") {
+    $query = mysqli_query("insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+    probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
+    aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+    nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
+    log = $log, verlopen = $verlopen, streefdatum = $streefdatum, binnenkomstType = $binnenkomstType,
+    lokatie = $lokatie, klantTevreden = $klantTevreden, vVLaptopMerk = $vVLaptopMerk,
+    vVLaptopType = $vVlaptopType, besturingssysteem = $besturingssysteem"); 
 
-$query = mysqli_query("insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
-probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
-aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
-nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
-log = $log, verlopen = $verlopen, streefdatum = $streefdatum, binnenkomstType = $binnenkomstType,
-lokatie = $lokatie, klantTevreden = $klantTevreden, vVLaptopMerk = $vVLaptopMerk,
-vVLaptopType = $vVlaptopType, besturingssysteem = $besturingssysteem");    
+    $uitkomst= mysqli_query($connectie, $query)
+        or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+
 }
-
 ?>
