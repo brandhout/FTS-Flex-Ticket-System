@@ -27,15 +27,15 @@ require_once '../header.php'; // Zet de header bovenaan deze pagina.
 verbinddatabase();
 
 //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
-$accountNr = mysqli_real_escape_string(stripcslashes($POST['accountNr']));
-$wachtwoord = mysqli_real_escape_string(stripcslashes($POST['wachtwoord']));
+$accountNr = mysqli_real_escape_string(stripcslashes(trim($POST['accountNr'])));
+$wachtwoord = mysqli_real_escape_string(stripcslashes(trim($POST['wachtwoord'])));
 
 //Database kwerrie (NIET KLAAR!!!)
-$uitkomst = mysqli_query("select * from gebruikers where accountNr = '$accountNr' and wachtwoord = '$wachtwoord'")
+$query = mysqli_query("select * from gebruikers where accountNr = '$accountNr' and wachtwoord = '$wachtwoord'")
         or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
-$row = mysqli_fetch_array($uitkomst);
+$uitkomst = mysqli_fetch_array($uitkomst);
 
-if ($row['accountNr'] == $accountNr && $row[wachtwoord] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
+if ($uitkomst['accountNr'] == $accountNr && $uitkomst[wachtwoord] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
     
     // Inloggen succes, hier moet een sessie aangemaakt worden
     session_start();
