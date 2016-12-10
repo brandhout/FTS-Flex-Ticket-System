@@ -13,7 +13,6 @@ require_once '../header.php'; // Zet de header bovenaan deze pagina.
                     <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
                 <input type="submit" value="Submit" onclick="checkinlog()">  
                 
-                <!-- vraagje! Zijn die onblur/onclick functies wel nodig (zie php hierboven) zo ja, dan moeten ze geschreven worden. GEEN JAVASCRIPT -->
             </form>
             <?php if (!$foutmelding == "") {                
                 echo $foutmelding; //Als foutmelding niet leeg is word hij weergegeven
