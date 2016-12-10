@@ -18,11 +18,11 @@ $password = "Admin01!";
 $database = "ftsPrimair";
     
 // Maak connectie
-$conn = new mysqli($servernaam, $username, $password, $database);    
+$connectie = new mysqli($servernaam, $username, $password, $database);    
     
 // Check connection
-if ($conn->connect_error) {
-    die("Verbindingsfout!: " . $conn->connect_error);
+if ($connectie->connect_error) {
+    die("Verbindingsfout!: " . $connectie->connect_error);
 } else{
 return true;
 }}
