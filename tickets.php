@@ -4,7 +4,7 @@ include_once 'header.php';
 include_once 'functies.php';
 verbinddatabase();
 
-$query= "";
+$query= "SELECT * from ticket";
 $uitkomst= mysqli_query($connectie, $query)
         or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
 
@@ -43,13 +43,13 @@ if($uitkomst) {
       <h2> Gevanceerd sorteren </h2>
       <form name="filterfunctie" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
           Naam <br>
-          <input type="text" name="Titel"><br>
+          <input type="text" name="Titel" disabled><br>
           Beschrijving <br>
-          <input type="text" name="Beschrijving"><br>
-          <input type="submit" name="zoeken" value="zoeken"><br>    
+          <input type="text" name="Beschrijving" disabled><br>
+          <input type="submit" name="zoeken" value="zoeken" disabled><br>    
       </form>
       
       
   </body>
 </html>
-
+html/
