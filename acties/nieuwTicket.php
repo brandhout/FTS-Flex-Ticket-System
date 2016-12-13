@@ -2,6 +2,8 @@
 
 require_once '../functies.php'; //Include de functies.
 require_once '../header.php'; //Include de functies. 
+verbinddatabase();
+
 
 $fstAccountNr= $_SESSION["accountNr"];
 $probleem= $_POST[probleem];
@@ -145,24 +147,28 @@ $factuurNr=NULL;
 
 <?php
 
-if (isset($_POST['submit'])) {
-    
-    verbinddatabase();
-
     $ticketQuery = mysqli_query("insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
     probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
     aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
     nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
     log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
     lokatie = $lokatie, klantTevreden = $klantTevreden"); 
+    
+    $nieuweKlantQuery = mysqli_query("insert into klant klantAchterNaam = $klantAchterNaam,
+    klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
+    klantStad = $klantStad, klantEmail = $klantEmail");
 
+if (isset($_POST['submit'])) {
+    
     $uitkomst= mysqli_query($connectie, $ticketQuery)
         or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
     
-    $nieuweKlantQuery = mysqli_query("insert into klant klantAchterNaam = $klantAchterNaam,
-        klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
-        klantStad = $klantStad, klantEmail = $klantEmail")
+        if (isset($_POST['nieuweKlant'])) {
   
 
-}
+        }
+
+    
+}  
+
 ?>
