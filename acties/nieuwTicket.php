@@ -42,7 +42,7 @@ $factuurNr=NULL;
           <h3> Klant </h3>
           
           Bestaande klant <br> <!-- Moet uit database komen!! -->
-          <select name="dag">
+          <select name="dag" id="bestaandeKlant">
           <option>Herman</option>
           <option>Milad</option>
           </select><br><br>
@@ -164,9 +164,17 @@ if (isset($_POST['submit'])) {
         or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
     
         if (isset($_POST['nieuweKlant'])) {
+            
+
+        }
+        
+        if (isset($_POST['bestaandeKlant'])) {
   
 
         }
+
+        
+        
 
     
 }  
