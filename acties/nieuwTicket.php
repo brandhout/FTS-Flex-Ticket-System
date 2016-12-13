@@ -149,16 +149,20 @@ if (isset($_POST['submit'])) {
     
     verbinddatabase();
 
-    $query = mysqli_query("insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+    $ticketQuery = mysqli_query("insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
     probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
     aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
     nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
-    log = $log, verlopen = $verlopen, streefdatum = $streefdatum, binnenkomstType = $binnenkomstType,
-    lokatie = $lokatie, klantTevreden = $klantTevreden, vVLaptopMerk = $vVLaptopMerk,
-    vVLaptopType = $vVlaptopType, besturingssysteem = $besturingssysteem"); 
+    log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
+    lokatie = $lokatie, klantTevreden = $klantTevreden"); 
 
-    $uitkomst= mysqli_query($connectie, $query)
+    $uitkomst= mysqli_query($connectie, $ticketQuery)
         or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+    
+    $nieuweKlantQuery = mysqli_query("insert into klant klantAchterNaam = $klantAchterNaam,
+        klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
+        klantStad = $klantStad, klantEmail = $klantEmail")
+  
 
 }
 ?>
