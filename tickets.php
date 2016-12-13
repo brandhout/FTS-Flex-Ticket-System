@@ -3,6 +3,7 @@
 include_once 'header.php';
 include_once 'functies.php';
 verbinddatabase();
+session_start();
 
 $query= "SELECT * from ticket";
 $uitkomst= mysqli_query($connectie, $query)
@@ -23,7 +24,7 @@ if($uitkomst) {
         // Deze 'zolang' of 'terwijl' loop geeft een rij data, en herhaalt dit totdat er geen data
         // meer in de uitkomst zit.
         echo '<tr><td align=left">' .
-                $rij[ticketId] . '</td><td align="left">' .
+                $rij[ticketId] . '</td><td align="left">' . 
                 $rij[onderwerp] . '</td><td align="left">' .
                 $rij[klantAchterNaam] . '</td><td align="left">' .
                 $rij[lijnNr] . '</td><td align="left">' .
