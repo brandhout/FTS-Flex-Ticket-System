@@ -28,7 +28,7 @@ wordt de gebruiker doorgestuurd naar wijzigTicket.php. Dit alleen als er bijvoor
 <html>
 <h1> Ticketinfo </h1>
 <body>
-<form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+<form name="leesTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
     
           trefwoorden (aan elkaar, door komma gescheiden) <br> <!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
           <input type="text" name="Beschrijving" disabled><br><br>
