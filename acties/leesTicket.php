@@ -135,7 +135,13 @@ wordt de gebruiker doorgestuurd naar wijzigTicket.php. Dit alleen als er bijvoor
            <h3> Nieuw Commentaar </h3>
             <textarea id="nieuwComment" rows="10" cols="90"></textarea><br><br>
 
-          
-
+            <?php
+           if($_SESSION["accountNr"] == $uitkomst['accountNr']) {
+                echo '<input type="checkbox" name="lijnOmhoog" value="lijnOmhoog" disabled>Ticket moet naar volgende lijn<br><br>';
+                if($uitkomst['lijnNr'] > 1) {
+                    echo '<input type="checkbox" name="lijnOmlaag" value="lijnOmlaag" disabled>Ticket moet naar vorige lijn<br><br>';
+                }
+           }
+            ?>       
           <input type="submit" name="nieuwCommentaar" value="nieuwCommentaar"><br>    
 </form></body></html>
