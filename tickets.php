@@ -24,7 +24,7 @@ if($uitkomst) {
         // Deze 'zolang' of 'terwijl' loop geeft een rij data, en herhaalt dit totdat er geen data
         // meer in de uitkomst zit.
         echo '<tr><td align=left">' .
-                $rij[ticketId] . '</td><td align="left"><a href="acties/leesTicket.php?var=' . 
+                $rij[ticketId] . '</td><td align="left">' . 
                 $rij[onderwerp] . '</td><td align="left">' .
                 $rij[klantAchterNaam] . '</td><td align="left">' .
                 $rij[lijnNr] . '</td><td align="left">' .
@@ -47,6 +47,13 @@ if($uitkomst) {
           <input type="text" name="Titel" disabled><br>
           Beschrijving <br>
           <input type="text" name="Beschrijving" disabled><br>
+          <input type="submit" name="zoeken" value="zoeken" disabled><br>    
+      </form>
+      
+      <h2> Ga naar ticket: </h2>
+      <form name="openTicket" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+          Ticket ID: <br>
+          <input type="text" name="ticketId" disabled><br>
           <input type="submit" name="zoeken" value="zoeken" disabled><br>    
       </form>
       
