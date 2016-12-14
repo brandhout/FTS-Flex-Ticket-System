@@ -24,6 +24,11 @@ $vVlaptopType=NULL;
 $besturingssysteem="standaard";
 $factuurNr=NULL;
 
+    $leesKlantQuery= 'select * from klant';
+    $klantenLijst= mysqli_query($connectie, $leesKlantQuery)
+        or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+    
+    
 
 ?>
 <!DOCTYPE html>
@@ -84,7 +89,7 @@ $factuurNr=NULL;
 
           
           <h3> Streefdatum</h3>
-          
+                    
                 Dag <br>
                 <select name="dag" disabled>
                 <option>1</option>
@@ -147,7 +152,6 @@ $factuurNr=NULL;
 
 <?php
 
-    $leesKlantQuery= mysqli_query('select * from klanten');    
     
     $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
     probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
@@ -159,6 +163,7 @@ $factuurNr=NULL;
     $nieuweKlantQuery = "insert into klant klantAchterNaam = $klantAchterNaam,
     klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
     klantStad = $klantStad, klantEmail = $klantEmail";
+    
 
 if (isset($_POST['submit'])) {
     
