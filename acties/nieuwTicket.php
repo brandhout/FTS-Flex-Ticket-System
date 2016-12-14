@@ -147,16 +147,18 @@ $factuurNr=NULL;
 
 <?php
 
-    $ticketQuery = mysqli_query("insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+    $leesKlantQuery= mysqli_query('select * from klanten');    
+    
+    $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
     probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
     aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
     nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
     log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
-    lokatie = $lokatie, klantTevreden = $klantTevreden"); 
+    lokatie = $lokatie, klantTevreden = $klantTevreden"; 
     
-    $nieuweKlantQuery = mysqli_query("insert into klant klantAchterNaam = $klantAchterNaam,
+    $nieuweKlantQuery = "insert into klant klantAchterNaam = $klantAchterNaam,
     klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
-    klantStad = $klantStad, klantEmail = $klantEmail");
+    klantStad = $klantStad, klantEmail = $klantEmail";
 
 if (isset($_POST['submit'])) {
     
