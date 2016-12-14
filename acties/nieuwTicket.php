@@ -153,16 +153,6 @@ $factuurNr=NULL;
 <?php
 
     
-    $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
-    probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
-    aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
-    nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
-    log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
-    lokatie = $lokatie, klantTevreden = $klantTevreden"; 
-    
-    $nieuweKlantQuery = "insert into klant klantAchterNaam = $klantAchterNaam,
-    klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
-    klantStad = $klantStad, klantEmail = $klantEmail";
     
 
 if (isset($_POST['submit'])) {
@@ -171,12 +161,21 @@ if (isset($_POST['submit'])) {
         or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
     
         if (isset($_POST['nieuweKlant'])) {
-            
+                $nieuweKlantQuery = "insert into klant klantAchterNaam = $klantAchterNaam,
+                klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
+                klantStad = $klantStad, klantEmail = $klantEmail";
+    
+
 
         }
         
         if (isset($_POST['bestaandeKlant'])) {
-  
+                $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+                probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
+                aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+                nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
+                log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
+                lokatie = $lokatie, klantTevreden = $klantTevreden"; 
 
         }
 
