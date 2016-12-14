@@ -176,6 +176,10 @@ if (isset($_POST['submit'])) {
                 nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
                 log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
                 lokatie = $lokatie, klantTevreden = $klantTevreden"; 
+                
+                $uitkomst= mysqli_query($connectie, $ticketQuery)
+                or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+
 
         }
 
