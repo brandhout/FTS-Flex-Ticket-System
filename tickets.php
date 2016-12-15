@@ -2,15 +2,16 @@
 
 include_once 'header.php';
 include_once 'functies.php';
-verbinddatabase();
+//verbinddatabase();
 session_start();
 
-$query= "SELECT * from ticket";
-$uitkomst= mysqli_query($connectie, $query)
-        or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
 
 if($uitkomst) {
 // Maak HTML tabel!
+    $query= "SELECT * from ticket";
+    $uitkomst= mysqli_query($connectie, $query)
+        or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+
 
     echo '<table align="left"
         <td><td align="left"><strong>TicketID</strong></td>
