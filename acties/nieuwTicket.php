@@ -33,12 +33,16 @@ $factuurNr=NULL;
 ?>
 <!DOCTYPE html>
 <html>
+
+    <body>
 <h1> Nieuw ticket </h1>
 
-<body>
+
     
- <div class="form1">  
+ <div class="form1">
+     
      <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+         
 <div class="a1">            
      <p>Nieuwe klant (Voornaam)
          <input type="text" name="klantNaam" disabled></p></div>
