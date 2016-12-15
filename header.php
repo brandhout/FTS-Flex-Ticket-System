@@ -1,3 +1,4 @@
+<html>
 <head>
     <meta charset="UTF-8">
   <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'>
@@ -35,8 +36,6 @@ switch ($isAdmin) {
 
 ?>
 
-  <html>
-
 <div id="cssmenu" class="align-right">
   <ul>
      <li class="active"><a href="#" target="_blank"><i class="fa fa-sign-out"></i> UITLOGGEN</a></li>
@@ -58,5 +57,5 @@ switch ($isAdmin) {
   </ul>
 </div>
  <br><br><br>
+  </html>
 
-</html>
