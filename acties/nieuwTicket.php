@@ -43,24 +43,25 @@ $factuurNr=NULL;
      
      <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
          
-<div class="a1">            
-     <p>Nieuwe klant (Voornaam)
-         <input type="text" name="klantNaam" disabled></p></div>
+        <div class="a1">            
+            <p>Nieuwe klant (Voornaam)
+                <input type="text" name="klantNaam" disabled></p></div>
          
-    <div class="a2">     
-        <p>Categorie <!-- Moet uit database komen -->
-          <select name="categorie" disabled>
-              <option>Software</option>
-              <option>Hardware</option>
-          </select><br>
-                  Subcategorie <!-- Disabled, voor later. -->
-          <select name="subCategorie" disabled>
-              <option>Fedora Linux</option>
-              <option></option>
-          </select></p></div>
-<div class="a3">           
-      <p>telefoonnummer klant:<input type="text" name="klantTel">
-          Klant moet nog gebeld worden:<input type="checkbox" name="nogBellen" value="nogBellen">
+        <div class="a2">     
+            <p>Categorie <!-- Moet uit database komen -->
+                <select name="categorie" disabled>
+                    <option>Software</option>
+                    <option>Hardware</option>
+                        </select><br>
+                            Subcategorie <!-- Disabled, voor later. -->
+                                <select name="subCategorie" disabled>
+                                    <option>Fedora Linux</option>
+                                    <option></option>
+                                </select></p></div>
+         
+        <div class="a3">           
+            <p>telefoonnummer klant:<input type="text" name="klantTel">
+            Klant moet nog gebeld worden:<input type="checkbox" name="nogBellen" value="nogBellen">
           </p>
 </div>
 
