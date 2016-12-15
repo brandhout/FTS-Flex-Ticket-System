@@ -104,30 +104,6 @@ if (!$_POST['submit'] === "") {
     <p>Nieuwe klant (Achternaam)
         <input type="text" name="klantAchterNaam" disabled></p></div>
 
-          
-          <h3> Streefdatum</h3>
-                    
-                Dag <br>
-                <select name="dag" disabled>
-                <option>1</option>
-                <option>2</option>
-                </select><br><br>
-          
-                Maand <br>
-                <select name="maand" disabled>
-                <option>Januari</option>
-                <option>Februari</option>
-                </select><br><br>
-          
-                Jaar (2017) <br>
-                <input type="text" name="jaar" disabled></div><br><br>
-<div class="a4">
-                     Binnenkomst type: 
-          <select name="binnenkomstType" disabled> <!-- Moet nog gescript worden! Data moet uit database komen -->
-              <option>Telefoon</option>
-              <option>E-mail</option>
-          </select><br><br>
-
 
  <div class="a2">  
           <p> <!-- Disabled, weinig tijd -->
