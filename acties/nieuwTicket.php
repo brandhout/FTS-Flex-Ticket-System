@@ -2,12 +2,12 @@
 
 require_once '../functies.php'; //Include de functies.
 require_once '../header.php'; //Include de functies. 
-verbinddatabase();
+//verbinddatabase();
 
 
 $fstAccountNr= $_SESSION["accountNr"];
 $probleem= $_POST[probleem];
-$trefwoorden=$_POST[trefwoorden];;
+$trefwoorden=$_POST[trefwoorden];
 $aantalXterug=NULL;
 $terugstuurLock=FALSE;
 $lijnNr=1;
@@ -39,12 +39,12 @@ $factuurNr=NULL;
     
  <div class="form1">  
      <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-<<<<<<< HEAD
+
          
 <div class="a1">
           <p>Bestaande klant <!-- Moet uit database komen!! -->
           <select name="dag">
-=======
+
  <div class="a1">  
           trefwoorden (aan elkaar, door komma gescheiden) <br> <!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
           <input type="text" name="trefwoorden"><br><br>
@@ -56,7 +56,7 @@ $factuurNr=NULL;
           
           Bestaande klant <br> <!-- Moet uit database komen!! -->
           <select name="dag" id="bestaandeKlant">
->>>>>>> origin/master
+
           <option>Herman</option>
           <option>Milad</option>
           </select>
@@ -91,11 +91,11 @@ $factuurNr=NULL;
           </p>
 </div>
 
-<<<<<<< HEAD
+
 <div class="a1">
     <p>Nieuwe klant (Achternaam)
         <input type="text" name="klantAchterNaam" disabled></p></div>
-=======
+
           
           <h3> Streefdatum</h3>
                     
@@ -119,7 +119,7 @@ $factuurNr=NULL;
               <option>Telefoon</option>
               <option>E-mail</option>
           </select><br><br>
->>>>>>> origin/master
+
 
  <div class="a2">  
           <p> <!-- Disabled, weinig tijd -->
