@@ -39,37 +39,6 @@ $factuurNr=NULL;
     
  <div class="form1">  
      <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-
-         
-<div class="a1">
-          <p>Bestaande klant <!-- Moet uit database komen!! -->
-          <select name="dag">
-
- <div class="a1">  
-          trefwoorden (aan elkaar, door komma gescheiden) <br> <!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
-          <input type="text" name="trefwoorden"><br><br>
-          
-          Probleem (korte omschrijving) <br>
-          <textarea id="probleem" rows="10" cols="90"></textarea></div><br><br>
-<div class="a2">
-          <h3> Klant </h3>
-          
-          Bestaande klant <br> <!-- Moet uit database komen!! -->
-          <select name="dag" id="bestaandeKlant">
-
-          <option>Herman</option>
-          <option>Milad</option>
-          </select>
-          Nieuwe klant<input type="checkbox" name="nieuwKlant" value="nieuwKlant"></p></div>
-         <!-- Als nieuwe klant aangevinkt is dan kunnen NAW gegevens ingevuld worden -->         
-<div class="a2">  
-    <p>trefwoorden (aan elkaar, door komma gescheiden)<!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
-        <input type="text" name="trefwoorden"></p></div>
-        
- <div class="a3">            
-          <p>streefdatum: <input type="date" id="datepicker"></p>
-</div>
-
 <div class="a1">            
      <p>Nieuwe klant (Voornaam)
          <input type="text" name="klantNaam" disabled></p></div>
@@ -177,7 +146,7 @@ $factuurNr=NULL;
        
 <div class="a3">
     <input type="submit" name="submit" value="invoeren"></div>   
-</form>
+
  </div>
 
 </body>
