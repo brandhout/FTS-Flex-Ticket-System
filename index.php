@@ -17,7 +17,18 @@
 
 require_once 'functies.php'; //Include de functies.
 require_once 'header.php'; //Include de header.
-
 ?>
 
 <h1> Dasboard </h1>
+
+
+
+
+<?php session_start();
+
+        if(!isset($_SESSION['leerlingnummer'])) {
+            echo "Welkom " . $naambehandelaar['naam'] . "</br>";
+        }  else {
+            header('Location: inloggen.php'); 
+           //It's better to redirect the user to a different page on this scenarios
+        }   ?>
