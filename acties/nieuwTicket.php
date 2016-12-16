@@ -78,7 +78,7 @@ if (!$_POST['submit'] === "") {
             <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
 <!--rij 1-->       
                 <div class="a1"><p>Bestaande klant <!-- Moet uit database komen!! -->
-                    <select name="dag">
+                    <select name="bestaandeKlant">
                         <?php
                         if ($klantenLijst){
                             while($rij = mysqli_fetch_array($klantenlijst)) {
