@@ -24,6 +24,11 @@ $vVlaptopType=NULL;
 $besturingssysteem="standaard";
 $factuurNr=NULL;
 
+    $OSQuery= 'select * from besturingssysteem';
+    $OSLijst= mysqli_query($connectie, $OSQuery)
+        or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+
+
     
 if (!$_POST['submit'] === "") {
     
@@ -85,8 +90,6 @@ if (!$_POST['submit'] === "") {
                                 echo '<option>' . $rij[klantAchterNaam] . '</option>';
                         }}
                         ?>
-                        <option>Herman</option>
-                        <option>Milad</option>
                     </select>Nieuwe klant <!-- Als nieuwe klant aangevinkt is dan kunnen NAW gegevens ingevuld worden -->
                         <input type="checkbox" name="nieuwKlant" value="nieuwKlant"></p>
                 </div>
@@ -156,7 +159,12 @@ if (!$_POST['submit'] === "") {
 
                 <div class="a2"><p>Besturingssysteem<br>
                     <select name="besturingssysteem" disabled>
-                        <option>Windows</option>
+                        <?php
+                        if ($OSLijst){
+                            while($OSrij = mysqli_fetch_array($OSLijst)) {
+                                echo '<option>' . $OSrij[besturingssysteem] . '</option>';
+                        }}
+                        ?>
                         <option></option>
                     </select></p>
                 </div>  
