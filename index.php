@@ -26,9 +26,9 @@ require_once 'header.php'; //Include de header.
 
 <?php session_start();
 
-        if(!isset($_SESSION['leerlingnummer'])) {
+        if(isset($_SESSION['leerlingnummer'])) {
             echo "Welkom " . $naambehandelaar['naam'] . "</br>";
         }  else {
-            header('Location: inloggen.php'); 
-           //It's better to redirect the user to a different page on this scenarios
+            header('Location: acties/inloggen.php'); 
+
         }   ?>
