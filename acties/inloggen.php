@@ -11,10 +11,10 @@ require_once '../functies.php'; //Include de functies.
 
   </head>
 <header>
-    <div class="logo2">
-        <img src="fts.PNG"></div>
+
+        <img src="fts.PNG" class="logo2">
 </header>
-    
+  <br><br><br>    
     <body>
         
         <div class="inlogalgemeen1">

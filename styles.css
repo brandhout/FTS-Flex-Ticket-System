@@ -415,7 +415,8 @@ div.inlogalgemeen1 {
     
 }
 
-logo2.img {
-    display: block;
-    margin: 0 auto;
+img.logo2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
