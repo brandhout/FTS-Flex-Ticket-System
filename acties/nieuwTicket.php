@@ -25,11 +25,10 @@ $besturingssysteem="standaard";
 $factuurNr=NULL;
 
     $OSQuery= 'select * from besturingssysteem';
-    $OSLijst= mysqli_query($connectie, $OSQuery)
-        or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+    $OSLijst= mysqli_query($connectie, $OSQuery);
+    //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
 
 
-    
 if (!$_POST['submit'] === "") {
     
     $leesKlantQuery= 'select * from klant';
