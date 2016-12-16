@@ -86,16 +86,16 @@ if (!$_POST['submit'] === "") {
                 </div>
                          
                 <div class="a2"><p>trefwoorden (aan elkaar, door komma gescheiden)<!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
-                    <input type="text" name="trefwoorden"></p>
+                    <input id="text1" type="text" name="trefwoorden"></p>
                 </div>
         
                 <div class="a3"><p>streefdatum: 
-                    <input type="date" id="datepicker"></p>
+                    <input id="datum1" type="date" id="datepicker"></p>
                 </div>
                 
 <!--rij 2-->                
                 <div class="a1"><p>Nieuwe klant (Voornaam)
-                    <input type="text" name="klantNaam" disabled></p>
+                    <input id="text1" type="text" name="klantNaam" disabled></p>
                 </div>
          
                 <div class="a2"><p>Categorie <!-- Moet uit database komen -->
@@ -111,13 +111,13 @@ if (!$_POST['submit'] === "") {
                 </div>
          
                 <div class="a3"><p>telefoonnummer klant:
-                    <input type="text" name="klantTel">Klant moet nog gebeld worden:
+                    <input id="text1" type="text" name="klantTel">Klant moet nog gebeld worden:
                     <input type="checkbox" name="nogBellen" value="nogBellen"></p>
                 </div>
 <!--rij 3-->  
 
                 <div class="a1"><p>Nieuwe klant (Achternaam)
-                    <input type="text" name="klantAchterNaam" disabled></p>
+                    <input id="text1" type="text" name="klantAchterNaam" disabled></p>
                 </div>
 
                 <div class="a2"><p> <!-- Disabled, weinig tijd -->Merk:
@@ -145,7 +145,7 @@ if (!$_POST['submit'] === "") {
                 </div>
 <!--rij 4--> 
                 <div class="a1"><p>Nieuwe klant (Adres)
-                    <input type="text" name="klantAdres" disabled></p>
+                    <input id="text1" type="text" name="klantAdres" disabled></p>
                 </div>
 
                 <div class="a2"><p>Besturingssysteem<br>
@@ -161,7 +161,7 @@ if (!$_POST['submit'] === "") {
  <!--rij 5-->         
 
                 <div class="a1"><p>Nieuwe klant (Postcode)
-                    <input type="text" name="klantPostc" disabled></p>
+                    <input id="text1" type="text" name="klantPostc" disabled></p>
                 </div>
 
                 <div class="a2"><p> Commentaar
@@ -173,7 +173,7 @@ if (!$_POST['submit'] === "") {
                 </div>    
 <!--rij 6-->          
                 <div class="a1"><p>Nieuwe klant (Woonplaats)</p>
-                    <input type="text" name="klantStad" disabled>
+                    <input id="text1" type="text" name="klantStad" disabled>
                 </div>
        
                 <div class="a3">

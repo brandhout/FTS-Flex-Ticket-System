@@ -1,15 +1,25 @@
 <html>
 <?php
 require_once '../functies.php'; //Include de functies.
-require_once '../header.php'; // Zet de header bovenaan deze pagina.
 ?>
+<head>
+    <meta charset="UTF-8">
+  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'>
+  <link rel="stylesheet" href="styles.css" type="text/css">
+  <link rel="stylesheet" href="../styles.css" type="text/css"> <!-- Tijdelijke oplossing voor het includen van de style in hogere mappen -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+  </head>
+<header>
+    <div class="logo2">
+        <img src="fts.PNG"></div>
+</header>
     
     <body>
         
-        <div class="algemeen1">
+        <div class="inlogalgemeen1">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                    <input type="text" name="accountNr" required placeholder="Vul hier uw leerlingnummer in*"><span id="message1" ></span><br>
+                    <input id="inlog1" type="text" name="accountNr" required placeholder="Vul hier uw leerlingnummer in*"><span id="message1" ></span><br>
                     <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
                 <input type="submit" value="Submit" onclick="checkinlog()">  
                 
