@@ -44,7 +44,7 @@ if (!$_POST['submit'] === "") {
 
         }
         
-        if (isset($_POST['bestaandeKlant'])) {
+        if (!($_POST['bestaandeKlant'] === "")) {
                 $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
                 probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
                 aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
@@ -78,7 +78,13 @@ if (!$_POST['submit'] === "") {
             <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
 <!--rij 1-->       
                 <div class="a1"><p>Bestaande klant <!-- Moet uit database komen!! -->
-                    <select name="dag">
+                    <select name="bestaandeKlant">
+                        <?php
+                        if ($klantenLijst){
+                            while($rij = mysqli_fetch_array($klantenlijst)) {
+                                echo '<option>' . $rij[klantAchterNaam] . '</option>';
+                        }}
+                        ?>
                         <option>Herman</option>
                         <option>Milad</option>
                     </select>Nieuwe klant <!-- Als nieuwe klant aangevinkt is dan kunnen NAW gegevens ingevuld worden -->
