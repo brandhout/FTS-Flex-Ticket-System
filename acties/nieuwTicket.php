@@ -80,7 +80,10 @@ if (!$_POST['submit'] === "") {
                 <div class="a1"><p>Bestaande klant <!-- Moet uit database komen!! -->
                     <select name="dag">
                         <?php
-                        
+                        if ($klantenLijst){
+                            while($rij = mysqli_fetch_array($klantenlijst)) {
+                                echo '<option>' . $rij[klantAchterNaam] . '</option>';
+                        }}
                         ?>
                         <option>Herman</option>
                         <option>Milad</option>
