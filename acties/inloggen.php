@@ -37,19 +37,19 @@ require_once '../functies.php'; //Include de functies.
 verbinddatabase();
 
 //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
-$accountNr = mysqli_real_escape_string(stripcslashes(trim($POST['accountNr'])));
+$naam = mysqli_real_escape_string(stripcslashes(trim($POST['naam'])));
 $wachtwoord = mysqli_real_escape_string(stripcslashes(trim($POST['wachtwoord'])));
 
 //Database kwerrie (NIET KLAAR!!!)
-$query = mysqli_query("select * from gebruikers where accountNr = '$accountNr' and wachtwoord = '$wachtwoord'")
+$query = mysqli_query("select * from gebruikers where naam = '$naam' and wachtwoord = '$wachtwoord'")
         or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
 $uitkomst = mysqli_fetch_array($uitkomst);
 
-if ($uitkomst['accountNr'] == $accountNr && $uitkomst[wachtwoord] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
+if ($uitkomst['naam'] == $naam && $uitkomst[wachtwoord] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
     
     // Inloggen succes, hier moet een sessie aangemaakt worden
     session_start();
-    $_SESSION["accountNr"] = "$accountNr"; //etc etc
+    $_SESSION["naam"] = "naam"; //etc etc
     
     
 } else { //Als de gevevens niet gelijk zijn
