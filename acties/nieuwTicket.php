@@ -26,41 +26,63 @@ $factuurNr=NULL;
 
     $OSQuery= 'select * from besturingssysteem';
     $OSLijst= mysqli_query($connectie, $OSQuery);
-    //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+        //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+    
+    $leesKlantQuery= 'select klantAchterNaam from klant';
+    $klantenLijst= mysqli_query($connectie, $leesKlantQuery);
+        //or die("Kan aangevraagde actie niet verwerken:" .mysql_error())
+
 
 
 if (!$_POST['submit'] === "") {
     
-    $leesKlantQuery= 'select * from klant';
-    $klantenLijst= mysqli_query($connectie, $leesKlantQuery)
-        or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
-
+    /*
+     * Als submit niet leeg is wordt dit script uitgevoerd. Eerst word de ticketQuery
+     * gedeclareerd. Daarna een if die uitgevoerd wordt als er een nieuwe klant is,
+     * daarna eentje als er een bestaande klant gekozen is (niet leeg).
+     * In beide statements wordt de klantId opgevraagd, of die nu van een bestaande
+     * klant of nieuwe klant is, deze is namelijk nodig in de ticket.
+     */
     
-    $uitkomst= mysqli_query($connectie, $ticketQuery)
-        or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+    $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+    probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
+    aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+    nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
+    log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
+    lokatie = $lokatie, klantTevreden = $klantTevreden"; 
+                
     
         if (isset($_POST['nieuweKlant'])) {
+            
+                /*
+                 * Als er een nieuwe klant is, hebben we eerst een query die de klant aanmaakt.
+                 * In de database word er een primary key gemaakt, die zien wij nog niet.
+                 * Vandaar de query eronder die op basis van de (net aangemaakte) klant 
+                 * email de primary key zoekt, van de klant die we zojuist hebben aangemaakt.
+                 */
+            
                 $nieuweKlantQuery = "insert into klant klantAchterNaam = $klantAchterNaam,
                 klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
                 klantStad = $klantStad, klantEmail = $klantEmail";
+                
+                $klantIdQuery = "select klantId from klant where $klantEmail = klantEmail";
+                $klantId = mysqli_query($connectie, $klantIdQuery);
     
-
-
         }
         
-        if (!($_POST['bestaandeKlant'] === "")) {
-                $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
-                probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
-                aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
-                nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
-                log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
-                lokatie = $lokatie, klantTevreden = $klantTevreden"; 
-                
-                $uitkomst= mysqli_query($connectie, $ticketQuery)
-                or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
-
-
+        if (!$_POST['bestaandeKlant'] === "") {
+            
+                /*
+                 * Als er een bestaande klant is (niet leeg)
+                 * dan gaan we de klantid ophalen vanuit de achternaam.
+                 */
+            
+                $klantIdQuery = "select klantId from klant where $klantAchterNaam = klantAchterNaam";
+                $klantId = mysqli_query($connectie, $klantIdQuery);
         }
+
+            $uitkomst= mysqli_query($connectie, $ticketQuery);
+                //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
 
         
         
