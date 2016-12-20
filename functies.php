@@ -23,9 +23,14 @@ $connectie = new mysqli($servernaam, $username, $password, $database);
 // Check connection
 if ($connectie->connect_error) {
     die("Verbindingsfout!: " . $connectie->connect_error);
+        
 } else{
+    
+ echo"connectie gelukt";  
 return true;
-}}
+}
+
+}
 
 function mysqldatum(){
 $datum = date("Y-m-d H:i:s");
