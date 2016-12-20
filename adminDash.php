@@ -4,7 +4,7 @@ require_once 'header.php'; // Zet de header bovenaan deze pagina.
 ?>
 <html>
     <header>
-        
+        <title> </title>
     </header>
     <body>
          
