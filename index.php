@@ -26,8 +26,8 @@ require_once 'header.php'; //Include de header.
 
 <?php session_start();
 
-        if(isset($_SESSION['accountNr'])) {
-            echo "Welkom " . $uitkomst['naam'] . "</br>";
+        if(isset($_SESSION['gebruikersNaam'])) {
+            echo "Welkom " . $uitkomst['GebruikersNaam'] . "</br>";
         }  else {
             header('Location: acties/inloggen.php'); 
 
