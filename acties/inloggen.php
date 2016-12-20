@@ -18,8 +18,9 @@ require_once '../functies.php'; //Include de functies.
     <body>
         
         <div class="inlogalgemeen1">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                    <input id="inlog1" type="text" name="accountNr" required placeholder="Vul hier uw leerlingnummer in*"><span id="message1" ></span><br>
+           <!--<form action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST"> -->
+            <form action="index.php" method="POST">
+                    <input id="inlog1" type="text" name="gebruikersNaam" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
                     <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
                 <input type="submit" value="Submit" onclick="checkinlog()">  
                 
@@ -36,26 +37,28 @@ require_once '../functies.php'; //Include de functies.
 <?php
 verbinddatabase();
 
+if(isset($_POST['Submit'])){
 //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
-$naam = mysqli_real_escape_string(stripcslashes(trim($POST['naam'])));
+$gebruikersNaam= mysqli_real_escape_string(stripcslashes(trim($POST['gebruikersNaam'])));
 $wachtwoord = mysqli_real_escape_string(stripcslashes(trim($POST['wachtwoord'])));
 
 //Database kwerrie (NIET KLAAR!!!)
-$query = mysqli_query("select * from gebruikers where naam = '$naam' and wachtwoord = '$wachtwoord'")
+$query = mysqli_query("SELECT * FROM account WHERE gebruikersNaam = '$gebruikersNaam' and wachtwoord = '$wachtwoord'")
         or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
-$uitkomst = mysqli_fetch_array($uitkomst);
+$uitkomst = mysqli_fetch_array($connectie,$query);
+    echo" gegevens uit de database gehaald";
 
-if ($uitkomst['naam'] == $naam && $uitkomst[wachtwoord] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
+if ($uitkomst['gebruikersNaam'] == $gebruikersNaam && $uitkomst[wachtwoord] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
     
     // Inloggen succes, hier moet een sessie aangemaakt worden
     session_start();
-    $_SESSION["naam"] = "naam"; //etc etc
+    $_SESSION["gebruikersNaam"] = "gebruikersNaam"; //etc etc
+        echo " sessie gestart";
     
+}else { //Als de gevevens niet gelijk zijn
     
-} else { //Als de gevevens niet gelijk zijn
-    
-    $foutmelding = "Inloggen mislukt, kloppen uw gegevens?"; //Variabele met foutmelding wordt aangemaakt.
-    
+    echo"Inloggen mislukt, kloppen uw gegevens?"; //Variabele met foutmelding wordt aangemaakt.
+}
 }
        
 ?>
