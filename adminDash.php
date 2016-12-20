@@ -2,8 +2,13 @@
 require_once 'functies.php'; //Include de functies.
 require_once 'header.php'; // Zet de header bovenaan deze pagina.
 ?>
-
-<form name="nieuwaccount" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+<html>
+    <header>
+        
+    </header>
+    <body>
+         
+        <form name="nieuwaccount" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
           voornaamaam <br>
           <input type="text" name="voornaam"><br>
           achternaam <br>
@@ -21,4 +26,6 @@ require_once 'header.php'; // Zet de header bovenaan deze pagina.
               </select><br><br>
 
           <input type="submit" name="zoeken" value="zoeken"><br>    
-      </form>
+        </form>
+    </body>  
+</html>    
