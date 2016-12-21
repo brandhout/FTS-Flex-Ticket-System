@@ -1,7 +1,7 @@
 <?php
 
 require_once '../functies.php'; //Include de functies.
-require_once '../headertwee.php'; //Include de functies. 
+require_once 'headertwee.php'; //Include de functies. 
 //verbinddatabase();
 
 
