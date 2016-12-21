@@ -15,7 +15,7 @@ session_start();
 unset ($_SESSION['gebruikersNaam']);
 
 session_destroy();
-echo" u bent uitgelogd test";
+echo" u bent uitgelogd" . $uitkomst['gebruikersNaam'];
 //echo ($_POST['gebruikersNaam'] . "is uitgelogd");
 
 header("Refresh:3 ;  URL=acties/inloggen.php");
