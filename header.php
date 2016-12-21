@@ -25,7 +25,7 @@
 </header>
 <?php
 
-switch ($isAdmin) { 
+switch ($_SESSION["isAdmin"]) { 
             case "TRUE":
             echo '<li><a href="adminDash.php"><i class="fa fa-unlock-alt"<</i>administrator</a></li>' ;
             break;
