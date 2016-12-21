@@ -53,7 +53,7 @@ if ($uitkomst['gebruikersNaam'] == $gebruikersNaam && $uitkomst[wachtwoord] == $
     // Inloggen succes, hier moet een sessie aangemaakt worden
     session_start();
     $_SESSION["gebruikersNaam"] = "gebruikersNaam"; //etc etc
-        echo " sessie gestart test test";
+        echo " sessie gestart";
     
 }else { //Als de gevevens niet gelijk zijn
     
