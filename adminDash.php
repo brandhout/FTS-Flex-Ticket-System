@@ -22,7 +22,7 @@ require_once 'header.php'; // Zet de header bovenaan deze pagina.
             vestiging/lokatie <br> <!-- Moet nog gescript worden! Data moet uit database komen -->
             <select name="vestiging">
               <option>Baarn</option>
-              <option>Herman's achtertuin test</option>
+              <option>Herman's achtertuin</option>
               </select><br><br>
 
           <input type="submit" name="zoeken" value="zoeken"><br>    
