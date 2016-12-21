@@ -18,7 +18,7 @@ require_once '../functies.php'; //Include de functies.
         
         <div class="inlogalgemeen1">
            <!--<form action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST"> -->
-            <form action="index.php" method="POST">
+            <form action="../index.php" method="POST">
                     <input id="inlog1" type="text" name="gebruikersNaam" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
                     <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
                 <input type="submit" value="Submit" onclick="checkinlog()">  
