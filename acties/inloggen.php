@@ -57,7 +57,7 @@ if ($uitkomst['gebruikersNaam'] == $gebruikersNaam && $uitkomst[wachtwoord] == $
     
 }else { //Als de gevevens niet gelijk zijn
     
-    echo"Inloggen mislukt, kloppen uw gegevens? tes test"; //Variabele met foutmelding wordt aangemaakt.
+    echo"Inloggen mislukt, kloppen uw gegevens?"; //Variabele met foutmelding wordt aangemaakt.
 }   
     
 }
