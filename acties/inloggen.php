@@ -36,7 +36,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <header>
-        <img src="fts.PNG" class="logo2">
+        <img src="../fts.PNG" class="logo2">
     </header>
     <body>
         <br><br><br>    
