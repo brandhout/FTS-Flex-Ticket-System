@@ -1,39 +1,5 @@
-<html>
 <?php
 require_once '../functies.php'; //Include de functies.
-?>
-<head>
-    <meta charset="UTF-8">
-  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'>
-  <link rel="stylesheet" href="../styles.css" type="text/css"> <!-- Tijdelijke oplossing voor het includen van de style in hogere mappen -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-  </head>
-<header>
-
-        <img src="fts.PNG" class="logo2">
-</header>
-  <br><br><br>    
-    <body>
-        
-        <div class="inlogalgemeen1">
-           <!--<form action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST"> -->
-            <form action="../index.php" method="POST">
-                    <input id="inlog1" type="text" name="gebruikersNaam" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
-                    <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
-                <input type="submit" value="Submit" onclick="checkinlog()">  
-                
-            </form>
-            <?php if (!$foutmelding == "") {                
-                echo $foutmelding; //Als foutmelding niet leeg is word hij weergegeven
-            } ?>
-        </div>
-                
-    </body>
-
-</html>
-
-<?php
 verbinddatabase();
 
 if(isset($_POST['Submit'])){
@@ -60,5 +26,34 @@ if ($uitkomst['gebruikersNaam'] == $gebruikersNaam && $uitkomst[wachtwoord] == $
 }   
     
 }
-       
 ?>
+<html>    
+    <head>
+        <meta charset="UTF-8">
+        <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'>
+        <link rel="stylesheet" href="../styles.css" type="text/css"> <!-- Tijdelijke oplossing voor het includen van de style in hogere mappen -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    </head>
+    <header>
+        <img src="fts.PNG" class="logo2">
+    </header>
+    <body>
+        <br><br><br>    
+        
+        <div class="inlogalgemeen1">
+           <!--<form action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST"> -->
+            <form action="../index.php" method="POST">
+                <input id="inlog1" type="text" name="gebruikersNaam" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
+                <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
+                <input type="submit" value="Submit" onclick="checkinlog()">                  
+            </form>
+            <?php 
+                if (!$foutmelding == "") {                
+                    echo $foutmelding; //Als foutmelding niet leeg is word hij weergegeven
+            } ?>
+        </div>
+                
+    </body>
+
+</html>
+
