@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.5.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 21 dec 2016 om 10:49
+-- Gegenereerd op: 21 dec 2016 om 12:16
 -- Serverversie: 10.1.19-MariaDB
--- PHP-versie: 7.0.13
+-- PHP-versie: 7.0.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -46,7 +46,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`accountNr`, `lijnNr`, `isAdmin`, `schoolKlasId`, `naam`, `achterNaam`, `actief`, `magInloggen`, `vestigingId`, `gebruikersNaam`, `wachtwoord`, `klantId`) VALUES
-(0, 0, 0, '', 'Naomi', 'Berkelaar', 0, 0, 0, '', 'test123', 0);
+(1, 0, 0, '', 'Naomi', 'Berkelaar', 0, 0, 0, '', 'test123', 0);
 
 -- --------------------------------------------------------
 
@@ -399,6 +399,12 @@ ALTER TABLE `veelVoorkomendelaptopMerken`
   ADD PRIMARY KEY (`vVLaptopMerkId`);
 
 --
+-- Indexen voor tabel `veelVoorkomendeLaptopTypes`
+--
+ALTER TABLE `veelVoorkomendeLaptopTypes`
+  ADD PRIMARY KEY (`vVLaptopTypeId`);
+
+--
 -- Indexen voor tabel `vestigingen`
 --
 ALTER TABLE `vestigingen`
@@ -408,6 +414,11 @@ ALTER TABLE `vestigingen`
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
+--
+-- AUTO_INCREMENT voor een tabel `account`
+--
+ALTER TABLE `account`
+  MODIFY `accountNr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT voor een tabel `besturingssysteem`
 --
@@ -439,6 +450,11 @@ ALTER TABLE `doorsluisKoppeling`
 ALTER TABLE `doorsturing`
   MODIFY `doorstuurId` int(10) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT voor een tabel `instantie`
+--
+ALTER TABLE `instantie`
+  MODIFY `instantieId` int(10) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT voor een tabel `klant`
 --
 ALTER TABLE `klant`
@@ -469,10 +485,20 @@ ALTER TABLE `subCategorie`
 ALTER TABLE `terugsturing`
   MODIFY `terugstuurId` int(10) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT voor een tabel `ticket`
+--
+ALTER TABLE `ticket`
+  MODIFY `ticketId` int(10) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT voor een tabel `veelVoorkomendelaptopMerken`
 --
 ALTER TABLE `veelVoorkomendelaptopMerken`
   MODIFY `vVLaptopMerkId` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT voor een tabel `veelVoorkomendeLaptopTypes`
+--
+ALTER TABLE `veelVoorkomendeLaptopTypes`
+  MODIFY `vVLaptopTypeId` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT voor een tabel `vestigingen`
 --
