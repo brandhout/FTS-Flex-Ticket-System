@@ -24,7 +24,7 @@ $connectie = new mysqli($servernaam, $username, $password, $database);
 if ($connectie->connect_error) {
     die("Verbindingsfout!: " . $connectie->connect_error);
         
-} else{
+} else {
     
   echo "connectie gelukt"; 
   
