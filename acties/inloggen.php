@@ -8,17 +8,14 @@
      
 
     if(isset($_POST['gebruikersNaam']) && isset($_POST['wachtwoord'])){
-        echo '<br> eerste IF';
         //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
         $gebruikersNaam= stripcslashes(trim($_POST['gebruikersNaam']));
         $wachtwoord = stripcslashes(trim($_POST['wachtwoord']));
 
-        //Database kwerrie (NIET KLAAR!!!)
         $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
             //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
         $uitkomst = mysqli_fetch_array($query);
         $teller = mysqli_num_rows($query);
-        echo $teller;
 
         if ($teller == 1 && $uitkomst['wachtwoord'] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
 
