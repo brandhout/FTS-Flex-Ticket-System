@@ -18,7 +18,7 @@
         // Inloggen succes, hier moet een sessie aangemaakt worden
         session_start();
         $_SESSION["gebruikersNaam"] = "gebruikersNaam"; //etc etc
-            echo " sessie gestart";
+        echo " sessie gestart";
     
     } else { //Als de gevevens niet gelijk zijn
         
