@@ -26,7 +26,7 @@ if ($connectie->connect_error) {
         
 } else{
     
-  echo"connectie gelukt test test"; 
+  echo"connectie gelukt"; 
   
 return true;
 }
