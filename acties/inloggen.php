@@ -1,31 +1,31 @@
 <?php
-require_once '../functies.php'; //Include de functies.
-verbinddatabase();
+    require_once '../functies.php'; //Include de functies.
+    verbinddatabase();
 
-if(isset($_POST['Submit'])){
-//verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
-$gebruikersNaam= mysqli_real_escape_string(stripcslashes(trim($POST['gebruikersNaam'])));
-$wachtwoord = mysqli_real_escape_string(stripcslashes(trim($POST['wachtwoord'])));
+    if(isset($_POST['Submit'])){
+    //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
+    $gebruikersNaam= mysqli_real_escape_string(stripcslashes(trim($POST['gebruikersNaam'])));
+    $wachtwoord = mysqli_real_escape_string(stripcslashes(trim($POST['wachtwoord'])));
 
-//Database kwerrie (NIET KLAAR!!!)
-$query = mysqli_query("SELECT * FROM account WHERE gebruikersNaam = '$gebruikersNaam' and wachtwoord = '$wachtwoord'")
+    //Database kwerrie (NIET KLAAR!!!)
+    $query = mysqli_query("SELECT * FROM account WHERE gebruikersNaam = '$gebruikersNaam' and wachtwoord = '$wachtwoord'")
         or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
-$uitkomst = mysqli_fetch_array($connectie,$query);
-    echo" gegevens uit de database gehaald";
+    $uitkomst = mysqli_fetch_array($connectie,$query);
+        echo" gegevens uit de database gehaald";
 
-if ($uitkomst['gebruikersNaam'] == $gebruikersNaam && $uitkomst[wachtwoord] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
+    if ($uitkomst['gebruikersNaam'] == $gebruikersNaam && $uitkomst[wachtwoord] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
     
-    // Inloggen succes, hier moet een sessie aangemaakt worden
-    session_start();
-    $_SESSION["gebruikersNaam"] = "gebruikersNaam"; //etc etc
-        echo " sessie gestart";
+        // Inloggen succes, hier moet een sessie aangemaakt worden
+        session_start();
+        $_SESSION["gebruikersNaam"] = "gebruikersNaam"; //etc etc
+            echo " sessie gestart";
     
-}else { //Als de gevevens niet gelijk zijn
+    } else { //Als de gevevens niet gelijk zijn
+        
+        echo"Inloggen mislukt, kloppen uw gegevens?"; //Variabele met foutmelding wordt aangemaakt.
+    }   
     
-    echo"Inloggen mislukt, kloppen uw gegevens?"; //Variabele met foutmelding wordt aangemaakt.
-}   
-    
-}
+    }
 ?>
 <html>    
     <head>
