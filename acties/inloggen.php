@@ -50,7 +50,8 @@ if ($uitkomst['gebruikersNaam'] == $gebruikersNaam && $uitkomst[wachtwoord] == $
             <?php 
                 if (!$foutmelding == "") {                
                     echo $foutmelding; //Als foutmelding niet leeg is word hij weergegeven
-            } ?>
+                }
+            ?>
         </div>
                 
     </body>
