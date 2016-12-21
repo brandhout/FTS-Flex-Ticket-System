@@ -1,29 +1,37 @@
 <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     require_once '../functies.php'; //Include de functies.
-    verbinddatabase();
-
-    if(isset($_POST['Submit'])){
-    //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
-    $gebruikersNaam= mysqli_real_escape_string(stripcslashes(trim($POST['gebruikersNaam'])));
-    $wachtwoord = mysqli_real_escape_string(stripcslashes(trim($POST['wachtwoord'])));
-
-    //Database kwerrie (NIET KLAAR!!!)
-    $query = mysqli_query("SELECT * FROM account WHERE gebruikersNaam = '$gebruikersNaam' and wachtwoord = '$wachtwoord'")
-        or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
-    $uitkomst = mysqli_fetch_array($connectie,$query);
-        echo" gegevens uit de database gehaald";
-
-    if ($uitkomst['gebruikersNaam'] == $gebruikersNaam && $uitkomst[wachtwoord] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
     
-        // Inloggen succes, hier moet een sessie aangemaakt worden
-        session_start();
-        $_SESSION["gebruikersNaam"] = "gebruikersNaam"; //etc etc
-        echo " sessie gestart";
-    
-    } else { //Als de gevevens niet gelijk zijn
-        
-        echo"Inloggen mislukt, kloppen uw gegevens?"; //Variabele met foutmelding wordt aangemaakt.
-    }   
+    $connectie = verbinddatabase();
+     
+
+    if(isset($_POST['gebruikersNaam']) && isset($_POST['wachtwoord'])){
+        echo '<br> eerste IF';
+        //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
+        $gebruikersNaam= stripcslashes(trim($_POST['gebruikersNaam']));
+        $wachtwoord = stripcslashes(trim($_POST['wachtwoord']));
+
+        //Database kwerrie (NIET KLAAR!!!)
+        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
+            //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+        $uitkomst = mysqli_fetch_array($query);
+        $teller = mysqli_num_rows($query);
+        echo $teller;
+
+        if ($teller == 1 && $uitkomst['wachtwoord'] == $wachtwoord){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
+
+            // Inloggen succes, hier moet een sessie aangemaakt worden
+            session_start();
+            $_SESSION["gebruikersNaam"] = "gebruikersNaam"; //etc etc
+            echo " sessie gestart";
+            header('Location: ../index.php'); 
+
+            } else { //Als de gevevens niet gelijk zijn
+
+                echo"Inloggen mislukt, kloppen uw gegevens?"; //Variabele met foutmelding wordt aangemaakt.
+            }   
     
     }
 ?>
@@ -41,8 +49,7 @@
         <br><br><br>    
         
         <div class="inlogalgemeen1">
-           <!--<form action="<?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST"> -->
-            <form action="../index.php" method="POST">
+           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <input id="inlog1" type="text" name="gebruikersNaam" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
                 <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
                 <input type="submit" value="Submit" onclick="checkinlog()">                  
