@@ -1,6 +1,6 @@
 <?php
 
-// Hier komen de globale functies, die in principe op elke pagina geimporteerd worden
+// Hier komen de globale functies, die in principe op elke pagina geimporteerd worden.
 function filtermail($email) {
 if(preg_match("~([a-zA-Z0-9!#$%&amp;'*+-/=?^_`{|}~])@([a-zA-Z0-9-]).([a-zA-Z0-9]{2,4})~",$email)) {
 	//Actie bij geldige mail
@@ -25,13 +25,9 @@ if ($connectie->connect_error) {
     die("Verbindingsfout!: " . $connectie->connect_error);
         
 } else {
-    
-  echo "connectie gelukt"; 
-  
-return $connectie;
-}
-
-}
+    echo "connectie gelukt";   
+    return $connectie;
+}}
 
 function mysqldatum(){
 $datum = date("Y-m-d H:i:s");
