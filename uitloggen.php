@@ -18,7 +18,7 @@ session_destroy();
 echo" u bent uitgelogd" . $uitkomst['gebruikersNaam'];
 //echo ($_POST['gebruikersNaam'] . "is uitgelogd");
 
-header("Refresh:3 ;  URL=acties/inloggen.php");
+header("Refresh:2 ;  URL=acties/inloggen.php");
 
 ?>
 
