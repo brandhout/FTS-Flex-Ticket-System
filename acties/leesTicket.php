@@ -16,7 +16,7 @@
  */
 
 require_once '../functies.php'; //Include de functies.
-require_once 'headertwee.php'; //Include de header.
+require_once 'headerUp.php'; //Include de header.
 
 ?>
 
