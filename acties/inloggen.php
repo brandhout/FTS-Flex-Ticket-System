@@ -38,6 +38,7 @@
     <header>
         <img src="../fts.PNG" class="logo2">
     </header>
+    
     <body>
         <br><br><br>    
         
@@ -48,8 +49,7 @@
                 <input type="submit" value="Submit">                  
             </form>
         </div>
-                
+        
     </body>
-
 </html>
 
