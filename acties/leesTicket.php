@@ -18,6 +18,8 @@
 require_once '../functies.php'; //Include de functies.
 require_once 'headerUp.php'; //Include de header.
 
+
+
 ?>
 
 <!-- Als je op tickets.php een ticket opent, komt de ticket op deze pagina te staan, met de informatie uit de database.
