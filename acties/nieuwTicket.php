@@ -96,90 +96,77 @@ if (!$_POST['submit'] === "") {
 
     <body>
         <h1> Nieuw ticket </h1>
+<script>
+function testf(){
+		$(".hidden").toggle(300);
+}
+</script>	
 
+  <style>
+  .hidden {
+	display:none;
+}
+  </style>    
 
-    
-        <div class="form1">
      
             <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-<!--rij 1-->       
-                <div class="a1"><p>Bestaande klant <!-- Moet uit database komen!! -->
+      
+<!-- <p>Bestaande klant
                     <select name="bestaandeKlant">
-                        <?php
+                        php
                         if ($klantenLijst){
                             while($rij = mysqli_fetch_array($klantenlijst)) {
                                 echo '<option>' . $rij[klantAchterNaam] . '</option>';
-                        }}
-                        ?>
-                    </select>Nieuwe klant <!-- Als nieuwe klant aangevinkt is dan kunnen NAW gegevens ingevuld worden -->
-                        <input type="checkbox" name="nieuwKlant" value="nieuwKlant"></p>
-                </div>
-                         
-                <div class="a2"><p>trefwoorden (aan elkaar, door komma gescheiden)<!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
-                    <input id="text1" type="text" name="trefwoorden"></p>
-                </div>
-        
-                <div class="a3"><p>streefdatum: 
-                    <input id="datum1" type="date" id="datepicker"></p>
-                </div>
-                
-<!--rij 2-->                
-                <div class="a1"><p>Nieuwe klant (Voornaam)
-                    <input id="text1" type="text" name="klantNaam" disabled></p>
-                </div>
-         
-                <div class="a2"><p>Categorie <!-- Moet uit database komen -->
-                    <select name="categorie" disabled>
-                        <option>Software</option>
-                        <option>Hardware</option>
-                    </select><br>
-                    Subcategorie <!-- Disabled, voor later. -->
-                    <select name="subCategorie" disabled>
-                        <option>Fedora Linux</option>
-                        <option></option>
-                    </select></p>
-                </div>
-         
-                <div class="a3"><p>telefoonnummer klant:
-                    <input id="text1" type="text" name="klantTel">Klant moet nog gebeld worden:
-                    <input type="checkbox" name="nogBellen" value="nogBellen"></p>
-                </div>
-<!--rij 3-->  
+                        }}php
+                         -->
+                       
+<!--DIT WORD JAVASCRIPT-->
+<!-- Als nieuwe klant aangevinkt is dan kunnen NAW gegevens ingevuld worden -->
+						<button onclick="testf()" type="button" id="bk" >b k </button>
+						<button type="button" id="nk">Nieuwe klant</button><br>
 
-                <div class="a1"><p>Nieuwe klant (Achternaam)
-                    <input id="text1" type="text" name="klantAchterNaam" disabled></p>
-                </div>
-
-                <div class="a2"><p> <!-- Disabled, weinig tijd -->Merk:
-                    <select name="vVLaptopMerk" disabled>
-                        <option></option>
-                        <option></option>
-                    </select>
-                    Type
-                    <select name="vVLaptopType" disabled>
-                        <option></option>
-                        <option></option>
-                    </select></p>
-                </div>
-
-                <div class="a3"><p>ontvangen via:
-                    <select name="binnenkomstType" disabled> <!-- Moet nog gescript worden! Data moet uit database komen -->
+						
+    
+	
+<!--naw -->                
+<label class="hidden">naam:</label><input id="text1" type="text" name="klantNaam" class="hidden"/><br>
+<label class="hidden">achternaam:</label><input id="text1" type="text" name="klantAchterNaam" class="hidden"/><br>
+<label class="hidden">adres:</label><input id="text1" type="text" name="klantAdres" class="hidden"/><br>
+<label class="hidden">postcode:</label><input id="text1" type="text" name="klantPostc" class="hidden"/><br>			
+<label class="hidden">woonplaats:</label><input id="text1" type="text" name="klantStad" class="hidden"/><br>
+<label class="hidden">telefoonnummer:</label><input id="text1" type="text" name="klantTel" class="hidden"/><br>
+<label class="hidden">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" value="nogBellen" class="hidden"/><br>
+					
+<label class="hidden">binnengekomen via:</label><select name="binnenkomstType" class="hidden"> <!-- Moet nog gescript worden! Data moet uit database komen -->
                         <option>Telefoon</option>
                         <option>E-mail</option>
                     </select><br>
-                    Locatie: 
-                    <select name="binnenkomstType" disabled> <!-- Disabled, gaan we nog niets mee doen-->
+<label class="hidden">locatie:</label><select name="locatie" class="hidden"> <!-- Disabled, gaan we nog niets mee doen-->
                         <option>Hilversum Soestdijkerstraatweg</option>
                         <option>uy</option>
-                    </select></p>
-                </div>
-<!--rij 4--> 
-                <div class="a1"><p>Nieuwe klant (Adres)
-                    <input id="text1" type="text" name="klantAdres" disabled></p>
-                </div>
-
-                <div class="a2"><p>Besturingssysteem<br>
-                    <select name="besturingssysteem" disabled>
+                    </select><br>
+					
+<!-- categorie probleem -->		
+<label class="hidden">trefwoorden (aan elkaar, door komma gescheiden)</label><input id="text1" type="text" name="trefwoorden" class="hidden"/></p>
+			
+<label class="hidden">categorie:</label><select name="categorie" class="hidden">
+                        <option>Software</option>
+                        <option>Hardware</option>
+                    </select><br>
+<label class="hidden">sub-categorie:</label>
+                    <select name="subCategorie" class="hidden">
+                        <option>Fedora Linux</option>
+                        <option></option>
+                    </select><br>
+<label class="hidden">merk:</label><select name="vVLaptopMerk" class="hidden">
+                        <option></option>
+                        <option></option>
+                    </select><br>
+<label class="hidden">type:</label><select name="vVLaptopType" class="hidden">
+                        <option></option>
+                        <option></option>
+                    </select><br>
+<label class="hidden">besturingsysteem:</label><select name="besturingssysteem" class="hidden">
                         <?php
                         if ($OSLijst){
                             while($OSrij = mysqli_fetch_array($OSLijst)) {
@@ -187,35 +174,29 @@ if (!$_POST['submit'] === "") {
                         }}
                         ?>
                         <option></option>
-                    </select></p>
-                </div>  
+                    </select><br>
+					
+				
+<!-- velden --> 
+<label class="hidden">probleem(korte omschrijving:)</label>
+                    <textarea id="probleem" class="hidden"></textarea>
 
-                <div class="a3"><p>Probleem (korte omschrijving)
-                    <textarea id="probleem"></textarea></p>
-                </div>
- <!--rij 5-->         
 
-                <div class="a1"><p>Nieuwe klant (Postcode)
-                    <input id="text1" type="text" name="klantPostc" disabled></p>
-                </div>
+<label class="hidden">commentaar:</label>
+                    <textarea id="nieuwComment" class="hidden"></textarea>
 
-                <div class="a2"><p> Commentaar
-                    <textarea id="nieuwComment"></textarea></p>
-                </div>
  
-                <div class="a3"><p> Potentiele oplossing
-                    <textarea id="oplossing"></textarea></p>
-                </div>    
-<!--rij 6-->          
-                <div class="a1"><p>Nieuwe klant (Woonplaats)</p>
-                    <input id="text1" type="text" name="klantStad" disabled>
-                </div>
-       
-                <div class="a3">
-                    <input type="submit" name="submit" value="invoeren">
-                </div>   
+<label class="hidden">potentieele oplossing:</label>
+                    <textarea id="oplossing" class="hidden"></textarea>
+    
+
+<!--datepicker-->
+<label class="hidden">streefdatum:</label>
+                    <input id="datum1" type="date" id="datepicker" class="hidden"/></p>       
+
+                    <input type="submit" name="submit" value="invoeren" class="hidden" />
+
             </form>
-        </div>
 
     </body>
 </html>
