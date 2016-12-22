@@ -1,24 +1,30 @@
 <?php
-
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     include_once 'header.php';
     include_once 'functies.php';
     $connectie = verbinddatabase();
     session_start();
 
 
-    if($uitkomst) {
+    
     // Maak HTML tabel!
-        $query= "SELECT * from ticket";
-        $uitkomst= mysqli_query($connectie, $query)
-            or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+               
+        $query ="SELECT klantAchterNaam FROM klant";
+        $query .="SELECT fstAccountNr FROM oplossing";
+        $query .="SELECT * from ticket";
+        $uitkomst = mysqli_multi_query($connectie, $query);
+        
+         if($uitkomst) { 
 
 
         echo '<table align="left"
             <td><td align="left"><strong>TicketID</strong></td>
-            <td><td align="left"><strong>Onderwerp</strong></td>
+            <td><td align="left"><strong>trefwoorden</strong></td>
             <td><td align="left"><strong>Klantnaam</strong></td>
             <td><td align="left"><strong>Lijn</strong></td>
-            <td><td align="left"><strong>Aannemer</strong></td>
+            <td><td align="left"><strong>Accountnummer</strong></td>
             <td><td align="left"><strong>Opgelosd</strong></td></tr>';
 
         while($rij = mysqli_fetch_array($uitkomst)){
@@ -26,7 +32,7 @@
             // meer in de uitkomst zit.
             echo '<tr><td align=left">' .
                     $rij[ticketId] . '<a href="acties/leesTicket.php?ticket='.$rij[ticketId].'></td><td align="left"></a>' . 
-                    $rij[onderwerp] . '<a href="acties/leesTicket.php?ticket='.$rij[onderwerp].'></td><td align="left"></a>' .
+                    $rij[trefwoorden] . '<a href="acties/leesTicket.php?ticket='.$rij[onderwerp].'></td><td align="left"></a>' .
                     $rij[klantAchterNaam] . '<a href="acties/leesTicket.php?ticket='.$rij[klantAchterNaam].'></td><td align="left"></a>' .
                     $rij[lijnNr] . '<a href="acties/leesTicket.php?ticket='.$rij[lijnNr].'></td><td align="left"></a>' .
                     $rij[fstAccountNr] . '<a href="acties/leesTicket.php?ticket='.$rij[fstAccountNr].'></td><td align="left"></a>' .
