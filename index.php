@@ -29,6 +29,6 @@ require_once 'header.php'; //Include de header.
         if(isset($_SESSION['gebruikersNaam'])) {
             echo "Welkom" . "" . ($_SESSION['gebruikersNaam']) . "</br>";
         }  else {
-            //header('Location: acties/inloggen.php'); 
+            header('Location: acties/inloggen.php'); 
 
         }   ?>
