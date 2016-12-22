@@ -26,11 +26,11 @@
             // meer in de uitkomst zit.
             echo '<tr><td align=left">' .
                     $rij[ticketId] . '<a href="acties/leesTicket.php?ticket='.$rij[ticketId].'></td><td align="left"></a>' . 
-                    $rij[onderwerp] . '</td><td align="left">' .
-                    $rij[klantAchterNaam] . '</td><td align="left">' .
-                    $rij[lijnNr] . '</td><td align="left">' .
-                    $rij[fstAccountNr] . '</td><td align="left">' .
-                    $rij[definitief] . '</td><td align="left">';
+                    $rij[onderwerp] . '<a href="acties/leesTicket.php?ticket='.$rij[onderwerp].'></td><td align="left"></a>' .
+                    $rij[klantAchterNaam] . '<a href="acties/leesTicket.php?ticket='.$rij[klantAchterNaam].'></td><td align="left"></a>' .
+                    $rij[lijnNr] . '<a href="acties/leesTicket.php?ticket='.$rij[lijnNr].'></td><td align="left"></a>' .
+                    $rij[fstAccountNr] . '<a href="acties/leesTicket.php?ticket='.$rij[fstAccountNr].'></td><td align="left"></a>' .
+                    $rij[definitief] . '<a href="acties/leesTicket.php?ticket='.$rij[definitief].'></td><td align="left"></a>';
 
             echo '</tr>';
         }
