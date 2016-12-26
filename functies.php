@@ -25,7 +25,6 @@ if ($connectie->connect_error) {
     die("Verbindingsfout!: " . $connectie->connect_error);
         
 } else {
-    echo "connectie gelukt";   
     return $connectie;
 }}
 
