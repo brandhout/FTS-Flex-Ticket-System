@@ -7,63 +7,64 @@
     $connectie = verbinddatabase();
     session_start();
 
-
     
     // Maak HTML tabel!
                
-        $query ="SELECT klantAchterNaam FROM klant";
-        $query .="SELECT fstAccountNr FROM oplossing";
-        $query .="SELECT * from ticket";
-        $uitkomst = mysqli_multi_query($connectie, $query);
-        
-         if($uitkomst) { 
+        $ticketQuery ="SELECT * FROM ticket;";
+            $ticketUitkomst = $connectie->query($ticketQuery);
+
+        echo '
+            <!DOCTYPE html>
+            <html>
+                <body>
+                    <form action="">
+                            <p> Geef weer: </p>
+                           <button name="welkTicket" type="submit" value="alle">Alle</button>
+                           <button name="welkTicket" type="submit" value="open">Open</button>
+                           <button name="welkTicket" type="submit" value="gesloten">Gesloten</button>
+                    </form> 
 
 
-        echo '<table align="left"
-            <td><td align="left"><strong>TicketID</strong></td>
-            <td><td align="left"><strong>trefwoorden</strong></td>
-            <td><td align="left"><strong>Klantnaam</strong></td>
-            <td><td align="left"><strong>Lijn</strong></td>
-            <td><td align="left"><strong>Accountnummer</strong></td>
-            <td><td align="left"><strong>Opgelosd</strong></td></tr>';
-
-        while($rij = mysqli_fetch_array($uitkomst)){
-            // Deze 'zolang' of 'terwijl' loop geeft een rij data, en herhaalt dit totdat er geen data
-            // meer in de uitkomst zit.
+                    <table align="left" cellspacing="5" cellpadding="8">
+                    <td align="left"><strong>TicketID</strong></td>
+                    <td align="left"><strong>trefwoorden</strong></td>
+                    <td align="left"><strong>Klantnaam</strong></td>
+                    <td align="left"><strong>Lijn</strong></td>
+                    <td align="left"><strong>Accountnummer</strong></td>
+                    <td align="left"><strong>Opgelosd</strong></td></tr>
+            ';
+        		
+        echo "Aantal tickets :".$ticketUitkomst->num_rows. "<br>";
+			
+	while($ticket = $ticketUitkomst->fetch_assoc()){
+                                                        
+            $klantId = $ticket['klantId'];
+                $klantQuery ="SELECT klantAchternaam FROM klant WHERE klantId = '$klantId'";
+                    $klantUitkomst = $connectie->query($klantQuery);
+                         
+            if(!$klant = $klantUitkomst->fetch_assoc()){
+                echo "Klant query mislukt..." . mysqli_error($connectie);
+            }
+                                    
+            if(!$ticket['oplossingId'] == TRUE) {
+                 $opgelost = "<strong>Nee</strong>";                                    
+            }
+                                                        
             echo '<tr><td align=left">' .
-                    $rij[ticketId] . '<a href="acties/leesTicket.php?ticket='.$rij[ticketId].'></td><td align="left"></a>' . 
-                    $rij[trefwoorden] . '<a href="acties/leesTicket.php?ticket='.$rij[onderwerp].'></td><td align="left"></a>' .
-                    $rij[klantAchterNaam] . '<a href="acties/leesTicket.php?ticket='.$rij[klantAchterNaam].'></td><td align="left"></a>' .
-                    $rij[lijnNr] . '<a href="acties/leesTicket.php?ticket='.$rij[lijnNr].'></td><td align="left"></a>' .
-                    $rij[fstAccountNr] . '<a href="acties/leesTicket.php?ticket='.$rij[fstAccountNr].'></td><td align="left"></a>' .
-                    $rij[definitief] . '<a href="acties/leesTicket.php?ticket='.$rij[definitief].'></td><td align="left"></a>';
-
+                $ticket['ticketId'] . '</td><td align="left"></a>' . 
+                $ticket['trefwoorden'] . '</td><td align="left"></a>' .
+                $klant['klantAchternaam'] . '</td><td align="left"></a>' .
+                $ticket['lijnNr'] . '</td><td align="left"></a>' .
+                $ticket['fstAccountNr'] . '</td><td align="left"></a>' .
+                $opgelost . '</td><td align="left"></a>';
             echo '</tr>';
-        }
-        echo '</table>';    
-    }
+	}
+	echo "</table>";
+    
  ?>
 
- <!DOCTYPE html>
- <html>
-  <body>
-      
-      <h2> Gevanceerd sorteren </h2>
-      <form name="filterfunctie" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-          Naam <br>
-          <input type="text" name="Titel" disabled><br>
-          Beschrijving <br>
-          <input type="text" name="Beschrijving" disabled><br>
-          <input type="submit" name="zoeken" value="zoeken" disabled><br>    
-      </form>
-      
-      <h2> Ga naar ticket: </h2>
-      <form name="openTicket" action="acties/leesTicket.php" method="POST">
-          Ticket ID: <br>
-          <input type="text" name="ticketId" disabled><br>
-          <input type="submit" name="zoeken" value="zoeken" disabled><br>    
-      </form>
-      
-      
+ 
+   
+    
   </body>
 </html>
