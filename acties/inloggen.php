@@ -20,7 +20,7 @@
 
             // Inloggen succes, hier moet een sessie aangemaakt worden
             session_start();
-            $_SESSION["gebruikersNaam"] = "gebruikersNaam";
+            $_SESSION["gebruikersNaam"] = $uitkomst['gebruikersNaam'];
             $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
             header('Location: ../index.php'); 
             
