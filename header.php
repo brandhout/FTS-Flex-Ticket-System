@@ -22,22 +22,6 @@
 <header>
   <img class="logo" src="fts.PNG">
 </header>
-<?php
-    session_start();
-    switch ($_SESSION['isAdmin']) { 
-                case "TRUE":
-                echo '<li><a href="adminDash.php"><i class="fa fa-unlock-alt"<</i>administrator</a></li>' ;
-                break;
-
-                case "FALSE":
-                break;
-
-                default:
-                break;
-            }
-
-?>
-
 <div id="cssmenu" class="align-right">
     <ul>
         <li class="active"><a href="uitloggen.php" target="_blank"><i class="fa fa-sign-out"></i> UITLOGGEN</a></li>
@@ -55,7 +39,22 @@
         <li><a href="tickets.php"><i class="fa fa-ticket"></i> Alle Tickets</a></li>
         <li><a href="acties/nieuwTicket.php"><i class="fa fa-plus-square"></i> nieuw ticket</a></li>
         <li><a href="index.php"><i class="fa fa-home"></i> DASHBOARD</a></li>
-	<li><a href="adminDash.php"><i class="fa fa-admin"></i> admin Dashboard</a></li> 	
+<?php
+    switch ($_SESSION['isAdmin']) { 
+                case "1":
+                echo '<li><a href="adminDash.php"><i class="fa fa-unlock"<</i>adminDash</a></li>' ;
+                break;
+
+                case "0":
+                break;
+
+                default:
+                break;
+            }
+
+?>
+
+
   </ul>
 </div>
  <br><br><br>
