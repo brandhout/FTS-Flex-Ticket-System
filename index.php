@@ -14,21 +14,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+session_start();
 require_once 'functies.php'; //Include de functies.
 require_once 'header.php'; //Include de header.
+echo '<!DOCTYPE html>
+      <html>
+      <body>
+      <h1> Dasboard </h1>
+      ';
+if(isset($_SESSION['gebruikersNaam'])) {
+    echo "Welkom" . "  " . ($_SESSION['gebruikersNaam']) . "</br>";
+    }  else {
+    header('Location: acties/inloggen.php'); 
+}   
+
 ?>
 
-<h1> Dasboard </h1>
-
-
-
-
-<?php session_start();
-
-        if(isset($_SESSION['gebruikersNaam'])) {
-            echo "Welkom" . "  " . ($_SESSION['gebruikersNaam']) . "</br>";
-        }  else {
-            header('Location: acties/inloggen.php'); 
-
-        }   ?>
+</body>
+</html>
