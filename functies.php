@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('Europe/Amsterdam');
 // Hier komen de globale functies, die in principe op elke pagina geimporteerd worden.
 function filtermail($email) {
 if(preg_match("~([a-zA-Z0-9!#$%&amp;'*+-/=?^_`{|}~])@([a-zA-Z0-9-]).([a-zA-Z0-9]{2,4})~",$email)) {
