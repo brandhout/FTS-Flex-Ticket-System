@@ -1,11 +1,11 @@
 <?php
+    session_start();
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     include_once 'header.php';
     include_once 'functies.php';
     $connectie = verbinddatabase();
-    session_start();
 
     
     // Maak HTML tabel!
@@ -50,7 +50,7 @@
                  $opgelost = "<strong>Nee</strong>";                                    
             }
                                                         
-            echo '<tr><td align=left">' .
+            echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
                 $ticket['ticketId'] . '</td><td align="left"></a>' . 
                 $ticket['trefwoorden'] . '</td><td align="left"></a>' .
                 $klant['klantAchternaam'] . '</td><td align="left"></a>' .
