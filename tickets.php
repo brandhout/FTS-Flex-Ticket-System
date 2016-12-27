@@ -32,6 +32,7 @@
                     <td align="left"><strong>Lijn</strong></td>
                     <td align="left"><strong>Accountnummer</strong></td>
                     <td align="left"><strong>Opgelosd</strong></td></tr>
+                    
             ';
         		
         echo "Aantal tickets :".$ticketUitkomst->num_rows. "<br>";
@@ -48,6 +49,8 @@
                                     
             if(!$ticket['oplossingId'] == TRUE) {
                  $opgelost = "<strong>Nee</strong>";                                    
+            } else {
+                $opgelost = "<strong>Ja</strong>";
             }
                                                         
             echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
@@ -59,6 +62,8 @@
                 $opgelost . '</td><td align="left"></a>';
             echo '</tr>';
 	}
+   
+	
 	echo "</table>";
     
  ?>
