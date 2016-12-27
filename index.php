@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 /* 
  * This program is free software: you can redistribute it and/or modify
@@ -17,6 +20,8 @@
 session_start();
 require_once 'functies.php'; //Include de functies.
 require_once 'header.php'; //Include de header.
+$connectie = verbinddatabase();
+
 echo '<!DOCTYPE html>
       <html>
       <body>
@@ -27,6 +32,47 @@ if(isset($_SESSION['gebruikersNaam'])) {
     }  else {
     header('Location: acties/inloggen.php'); 
 }   
+
+    // Maak HTML tabel!
+               
+        $ticketQuery ="SELECT * FROM ticket;";
+            $ticketUitkomst = $connectie->query($ticketQuery);
+
+        echo '
+                    <h3> Openstaande tickets: </h3>
+
+                    <table align="left" cellspacing="5" cellpadding="8">
+                    <td align="left"><strong>TicketID</strong></td>
+                    <td align="left"><strong>trefwoorden</strong></td>
+                    <td align="left"><strong>Klantnaam</strong></td>
+                    <td align="left"><strong>Lijn</strong></td>
+                    <td align="left"><strong>Accountnummer</strong></td>
+                    <td align="left"><strong>Opgelosd</strong></td></tr>
+                    
+            ';
+        		
+        echo "Aantal tickets :".$ticketUitkomst->num_rows. "<br>";
+			
+	while($ticket = $ticketUitkomst->fetch_assoc()){
+                                                        
+            $klantId = $ticket['klantId'];
+                $klantQuery ="SELECT klantAchternaam FROM klant WHERE klantId = '$klantId'";
+                    $klantUitkomst = $connectie->query($klantQuery);
+                         
+            if(!$klant = $klantUitkomst->fetch_assoc()){
+                echo "Klant query mislukt..." . mysqli_error($connectie);
+            }
+            if($ticket['oplossingId'] === "0") {
+                echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+                $ticket['ticketId'] . '</td><td align="left"></a>' . 
+                $ticket['trefwoorden'] . '</td><td align="left"></a>' .
+                $klant['klantAchternaam'] . '</td><td align="left"></a>' .
+                $ticket['lijnNr'] . '</td><td align="left"></a>' .
+                $ticket['fstAccountNr'] . '</td><td align="left"></a>
+                <strong>Nee</strong> </td><td align="left"></a>';
+            echo '</tr>';                            
+        }}
+	echo "</table>";
 
 ?>
 
