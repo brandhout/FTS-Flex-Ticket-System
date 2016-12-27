@@ -24,7 +24,7 @@
 </header>
 <div id="cssmenu" class="align-right">
     <ul>
-        <li class="active"><a href="../uitloggen.php" target="_blank"><i class="fa fa-sign-out"></i> UITLOGGEN</a></li>
+        <li class="active"><a href="uitloggen.php" target="_blank"><i class="fa fa-sign-out"></i> UITLOGGEN</a></li>
         <li class="has-sub"><a href="#"><i class="fa fa-fw fa-bars"></i>Ga Naar...</a>
             <ul>
                 <li class="has-sub"><a href="#">Menu 1</a>
