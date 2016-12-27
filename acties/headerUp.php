@@ -23,6 +23,7 @@
   <img class="logo" src="../fts.PNG">
 </header>
 <?php
+session_start();
 
 switch ($_SESSION["isAdmin"]) { 
             case "TRUE":
