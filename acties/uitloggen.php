@@ -3,7 +3,7 @@
     
     <body>
         <header>
-          <img class="logo2" src="fts.PNG">
+          <img class="logo2" src="../fts.PNG">
         </header>
 
     </body>
@@ -18,7 +18,7 @@ session_destroy();
 echo" u bent uitgelogd" . $uitkomst['gebruikersNaam'];
 //echo ($_POST['gebruikersNaam'] . "is uitgelogd");
 
-header("Refresh:2 ;  URL=acties/inloggen.php");
+header("Refresh:2 ;  URL=inloggen.php");
 
 ?>
 
