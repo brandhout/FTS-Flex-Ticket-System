@@ -2,12 +2,15 @@
 session_start();
 require_once 'headerUp.php'; //Include de header.
 require_once '../functies.php'; //Include de functies.
-//verbinddatabase();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+$connectie = verbinddatabase();
 
 
-$fstAccountNr= $_SESSION["accountNr"];
-$probleem= $_POST[probleem];
-$trefwoorden=$_POST[trefwoorden];
+$fstAccountNr= $_SESSION['gebruikersNaam'];
+$probleem= $_POST['probleem'];
+$trefwoorden=$_POST['trefwoorden'];
 $aantalXterug=NULL;
 $terugstuurLock=FALSE;
 $lijnNr=1;
