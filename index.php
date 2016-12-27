@@ -51,7 +51,6 @@ if(isset($_SESSION['gebruikersNaam'])) {
                     
             ';
         		
-        echo "Aantal tickets :".$ticketUitkomst->num_rows. "<br>";
 			
 	while($ticket = $ticketUitkomst->fetch_assoc()){
                                                         
