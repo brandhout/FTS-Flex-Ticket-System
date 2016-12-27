@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+require_once 'headerUp.php'; //Include de functies.
 require_once '../functies.php'; //Include de functies.
 require_once 'headerUp.php'; //Include de header. 
 //verbinddatabase();
