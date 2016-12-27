@@ -23,18 +23,18 @@
   <img class="logo" src="fts.PNG">
 </header>
 <?php
+    session_start();
+    switch ($_SESSION['isAdmin']) { 
+                case "TRUE":
+                echo '<li><a href="adminDash.php"><i class="fa fa-unlock-alt"<</i>administrator</a></li>' ;
+                break;
 
-//switch ($_SESSION['isAdmin']) { 
-//            case "TRUE":
-//            echo '<li><a href="adminDash.php"><i class="fa fa-unlock-alt"<</i>administrator</a></li>' ;
-//            break;
-//   
-//            case "FALSE":
-//            break;
-//    
-//            default:
-//            break;
-//        }
+                case "FALSE":
+                break;
+
+                default:
+                break;
+            }
 
 ?>
 
