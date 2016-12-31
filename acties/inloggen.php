@@ -25,7 +25,8 @@
             header('Location: ../index.php'); 
             
         } else {
-            return FALSE; 
+            echo "foute gegevens!";
+            return FALSE;
         }}
 ?>
 <html>    
