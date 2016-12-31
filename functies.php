@@ -23,6 +23,7 @@ $connectie = new mysqli($servernaam, $username, $password, $database);
 // Check connection
 if ($connectie->connect_error) {
     die("Verbindingsfout!: " . $connectie->connect_error);
+    echo "Pas op! Geen databaseconnectie!";
         
 } else {
     return $connectie;
