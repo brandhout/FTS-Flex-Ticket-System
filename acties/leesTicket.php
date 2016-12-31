@@ -1,12 +1,4 @@
 <?php
-    session_start();
-    require_once 'headerUp.php'; //Include de functies.
-    require_once '../functies.php'; //Include de functies.
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-    $connectie = verbinddatabase();
-
     /* 
      * This program is free software: you can redistribute it and/or modify
      * it under the terms of the GNU General Public License as published by
@@ -22,19 +14,42 @@
      * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
-    require_once '../functies.php'; //Include de functies.
+    session_start();
     require_once 'headerUp.php'; //Include de header.
-
+    require_once '../functies.php'; //Include de functies.
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    $connectie = verbinddatabase();
+    
     if (is_numeric($_GET['ticket'])) {
-        $ticketNr = $_GET['ticket'];
+        $ticketId = $_GET['ticket'];
     }
+    
+    $ticketQuery = "SELECT * FROM ticket WHERE ticketId = '$ticketId'";
+        $ticketUitkomst = $connectie->query($ticketQuery);
+        $ticket = $ticketUitkomst->fetch_assoc();
+        $klantId = $ticket['klantId'];
+        $klantQuery ="SELECT klantAchternaam FROM klant WHERE klantId = '$klantId'";
+        $klantUitkomst = $connectie->query($klantQuery);             
+        $klant = $klantUitkomst->fetch_assoc();
 
+    
     echo '
         <!DOCTYPE html>
         <html>
-        <h1> Ticketinfo </h1>
-        <h3> Ticketnummer: '. $ticketNr . ' </h3><br>
         <body>
+        <h1> Ticketinfo 
+         ticketnummer: '. $ticketId . ' </h1><br>
+        <h3> Probleem: </h3> '.$ticket['probleem'].'<br>
+        <h3> Trefwoorden: </h3> '.$ticket['trefwoorden'].'
+        <h3> Opgelosd: </h3> '.$ticket['oplossingId'].'
+        <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'
+            
+        <h2> Klant </h2>
+        <h3> Klant achternaam: </h3> '.$klant['klantAchternaam'].'
+        
+
         '
 ?>
 
@@ -43,14 +58,6 @@ Je kan hier ook nieuw commentaar aanmaken, en oplossingen aandragen. Door de eer
 worden. Er kan dus aan een ticket meerdere stukken commentaar en oplossingen hangen! Mocht de echte ticket aangepast worden
 wordt de gebruiker doorgestuurd naar wijzigTicket.php. Dit alleen als er bijvoorbeeld een fout gemaakt is.-->
 <form name="leesTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-    
-          trefwoorden (aan elkaar, door komma gescheiden) <br> <!-- Afwijkende gegevensfilter. Trefwoorden moeten in kommagescheiden Array -->
-          <input type="text" name="Beschrijving" disabled><br><br>
-          
-          Probleem (korte omschrijving) <br>
-          <textarea id="probleem" rows="10" cols="90" disabled></textarea><br><br>
-
-          <h3> Klant </h3>
                     
           klant (Achternaam) <br>
           <input type="text" name="klantAchterNaam" disabled><br><br>
