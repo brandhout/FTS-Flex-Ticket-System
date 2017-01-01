@@ -6,7 +6,6 @@
     include_once 'header.php';
     include_once 'functies.php';
     $connectie = verbinddatabase();
-
     
     // Maak HTML tabel!
                
@@ -38,6 +37,7 @@
         echo "Aantal tickets :".$ticketUitkomst->num_rows. "<br>";
 			
 	while($ticket = $ticketUitkomst->fetch_assoc()){
+            $opgelost = "Nee";
                                                         
             $klantId = $ticket['klantId'];
                 $klantQuery ="SELECT klantAchternaam FROM klant WHERE klantId = '$klantId'";
@@ -46,11 +46,17 @@
             if(!$klant = $klantUitkomst->fetch_assoc()){
                 echo "Klant query mislukt..." . mysqli_error($connectie);
             }
-                                    
-            if(!$ticket['oplossingId'] == TRUE) {
-                 $opgelost = "<strong>Nee</strong>";                                    
-            } else {
-                $opgelost = "<strong>Ja</strong>";
+            
+            $ticketId = $ticket['ticketId'];
+            $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
+                $oplossingUitkomst = $connectie->query($oplossingQuery);
+
+            
+            //Nieuw oplossing script
+            while($oplossing = $oplossingUitkomst->fetch_assoc()){
+                if($oplossing['definitief'] === "1"){
+                    $opgelost = "Ja";
+                }
             }
                                                         
             echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
