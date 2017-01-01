@@ -29,10 +29,14 @@
     $ticketQuery = "SELECT * FROM ticket WHERE ticketId = '$ticketId'";
         $ticketUitkomst = $connectie->query($ticketQuery);
         $ticket = $ticketUitkomst->fetch_assoc();
-        $klantId = $ticket['klantId'];
-        $klantQuery ="SELECT klantAchternaam FROM klant WHERE klantId = '$klantId'";
+        
+    $klantId = $ticket['klantId'];
+        $klantQuery ="SELECT * FROM klant WHERE klantId = '$klantId'";
         $klantUitkomst = $connectie->query($klantQuery);             
         $klant = $klantUitkomst->fetch_assoc();
+        
+    $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
+        $oplossingUitkomst = $connectie->query($oplossingQuery);
 
     
     echo '
@@ -47,7 +51,19 @@
         <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'
             
         <h2> Klant </h2>
-        <h3> Klant achternaam: </h3> '.$klant['klantAchternaam'].'
+        <h3> Achternaam: </h3> '.$klant['klantAchternaam'].'
+        <h3> Voornaam: </h3> '.$klant['klantNaam'].'
+        <h3> Telefoon: </h3> '.$klant['klantTel'].'
+        <h3> Adres: </h3> '.$klant['klantAdres'].'
+        <h3> Postcode: </h3> '.$klant['klantPostc'].'
+        <h3> Woonplaats: </h3> '.$klant['klantStad'].'
+        <h3> Emailadres: </h3> '.$klant['klantEmail'].'
+            
+        <h2> Oplossing </h2>
+
+
+
+            
         
 
         '
@@ -58,23 +74,7 @@ Je kan hier ook nieuw commentaar aanmaken, en oplossingen aandragen. Door de eer
 worden. Er kan dus aan een ticket meerdere stukken commentaar en oplossingen hangen! Mocht de echte ticket aangepast worden
 wordt de gebruiker doorgestuurd naar wijzigTicket.php. Dit alleen als er bijvoorbeeld een fout gemaakt is.-->
 <form name="leesTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                    
-          klant (Achternaam) <br>
-          <input type="text" name="klantAchterNaam" disabled><br><br>
-          
-          klant (Voornaam) <br>
-          <input type="text" name="klantNaam" disabled><br><br>
-
-          klant (Adres) <br>
-          <input type="text" name="klantAdres" disabled><br><br>
-          
-          klant (Postcode) <br>
-          <input type="text" name="klantPostc" disabled><br><br>
-
-          klant (Woonplaats) <br>
-          <input type="text" name="klantStad" disabled><br><br>
-
-          
+       
           <input type="checkbox" name="nogBellen" value="nogBellen" disabled>Klant moet nog gebeld worden<br><br>
           
           <h3> Categorieën </h3>
