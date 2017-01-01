@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 21 dec 2016 om 12:16
--- Serverversie: 10.1.19-MariaDB
+-- Gegenereerd op: 01 jan 2017 om 12:33
+-- Serverversie: 10.1.20-MariaDB
 -- PHP-versie: 7.0.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -46,7 +46,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`accountNr`, `lijnNr`, `isAdmin`, `schoolKlasId`, `naam`, `achterNaam`, `actief`, `magInloggen`, `vestigingId`, `gebruikersNaam`, `wachtwoord`, `klantId`) VALUES
-(1, 0, 0, '', 'Naomi', 'Berkelaar', 0, 0, 0, '', 'test123', 0);
+(1, 1, 0, '', 'Naomi', 'Berkelaar', 1, 1, 0, 'naomiberkelaar', 'test123', 0);
 
 -- --------------------------------------------------------
 
@@ -155,6 +155,14 @@ CREATE TABLE `klant` (
   `locatieId` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `klant`
+--
+
+INSERT INTO `klant` (`klantId`, `klantAchternaam`, `klantNaam`, `klantTel`, `klantAdres`, `klantPostc`, `klantStad`, `klantEmail`, `instantieId`, `locatieId`) VALUES
+(1, 'Mijnkipema', 'Jasper', '0620532107', 'vanderspekstraat 20', '1111 BB', 'Baarn', 'jaspermijnkipema@gmail.com', 0, 0),
+(2, 'Vanderspek', 'Djoey', '0620532107', 'gabberstraat 20', '1111 BB', 'Baarn', 'rainbowhighinthesky@gmail.com', 0, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -248,7 +256,6 @@ CREATE TABLE `ticket` (
   `datumAanmaak` date NOT NULL,
   `nogBellen` tinyint(1) NOT NULL,
   `log` text,
-  `verlopen` tinyint(1) NOT NULL,
   `streefdatum` date DEFAULT NULL,
   `klantTevreden` tinyint(1) NOT NULL,
   `fstAccountNr` int(10) NOT NULL,
@@ -263,6 +270,14 @@ CREATE TABLE `ticket` (
   `besturingssysteemId` int(10) NOT NULL,
   `doosluisKoppelingId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `ticket`
+--
+
+INSERT INTO `ticket` (`ticketId`, `inBehandeling`, `probleem`, `trefwoorden`, `prioriteit`, `aantalXterug`, `terugstuurLock`, `lijnNr`, `datumAanmaak`, `nogBellen`, `log`, `streefdatum`, `klantTevreden`, `fstAccountNr`, `aangewAccountNr`, `klantId`, `categorieId`, `commentaarId`, `oplossingId`, `binnenkomstId`, `vVLaptopMerkId`, `vVLaptopTypeId`, `besturingssysteemId`, `doosluisKoppelingId`) VALUES
+(1, 1, 'Grafwindows werkt voor geen ene meter', 'kut,windows', 1, 0, 0, 1, '2016-12-31', 0, '0', '2018-06-30', 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+(2, 1, 'Koffieautomaat werkt niet', 'koffie,kutzooi', 1, 0, 0, 1, '2017-01-01', 0, NULL, '2020-06-01', 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -458,7 +473,7 @@ ALTER TABLE `instantie`
 -- AUTO_INCREMENT voor een tabel `klant`
 --
 ALTER TABLE `klant`
-  MODIFY `klantId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `klantId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT voor een tabel `locatie`
 --
@@ -488,7 +503,7 @@ ALTER TABLE `terugsturing`
 -- AUTO_INCREMENT voor een tabel `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `ticketId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `ticketId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT voor een tabel `veelVoorkomendelaptopMerken`
 --
