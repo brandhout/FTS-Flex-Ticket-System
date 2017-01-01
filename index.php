@@ -37,17 +37,16 @@ if(isset($_SESSION['gebruikersNaam'])) {
                
         $ticketQuery ="SELECT * FROM ticket;";
             $ticketUitkomst = $connectie->query($ticketQuery);
-
+            
         echo '
-                    <h3> Openstaande tickets: </h3>
+                <h3> Openstaande tickets: </h3>
 
-                    <table align="left" cellspacing="5" cellpadding="8">
-                    <td align="left"><strong>TicketID</strong></td>
-                    <td align="left"><strong>trefwoorden</strong></td>
-                    <td align="left"><strong>Klantnaam</strong></td>
-                    <td align="left"><strong>Lijn</strong></td>
-                    <td align="left"><strong>Accountnummer</strong></td>
-                    <td align="left"><strong>Opgelosd</strong></td></tr>
+                <table align="left" cellspacing="5" cellpadding="8">
+                <td align="left"><strong>TicketID</strong></td>
+                <td align="left"><strong>trefwoorden</strong></td>
+                <td align="left"><strong>Klantnaam</strong></td>
+                <td align="left"><strong>Lijn</strong></td>
+                <td align="left"><strong>Accountnummer</strong></td></tr>
                     
             ';
         		
@@ -61,16 +60,39 @@ if(isset($_SESSION['gebruikersNaam'])) {
             if(!$klant = $klantUitkomst->fetch_assoc()){
                 echo "Klant query mislukt..." . mysqli_error($connectie);
             }
-            if($ticket['oplossingId'] === "0") {
-                echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
-                $ticket['ticketId'] . '</td><td align="left"></a>' . 
-                $ticket['trefwoorden'] . '</td><td align="left"></a>' .
-                $klant['klantAchternaam'] . '</td><td align="left"></a>' .
-                $ticket['lijnNr'] . '</td><td align="left"></a>' .
-                $ticket['fstAccountNr'] . '</td><td align="left"></a>
-                <strong>Nee</strong> </td><td align="left"></a>';
+            
+            $ticketId = $ticket['ticketId'];
+            
+            $td = '</td><td align="left"></a>';
+            
+            $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
+                $oplossingUitkomst = $connectie->query($oplossingQuery);
+                
+            while($oplossing = $oplossingUitkomst->fetch_assoc()){
+                if($oplossing['definitief'] === "1"){
+                    $ticket['ticketId'] = "" ;
+                    $ticket['trefwoorden'] = "";
+                    $klant['klantAchternaam'] = "";
+                    $ticket['lijnNr'] = "";
+                    $ticket['fstAccountNr'] = "";
+                    $td = "";
+                                        
+            }}
+            echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+                $ticket['ticketId'] . $td . 
+                $ticket['trefwoorden'] . $td .
+                $klant['klantAchternaam'] . $td .
+                $ticket['lijnNr'] . $td .
+                $ticket['fstAccountNr'] . $td;                                
+            
             echo '</tr>';                            
-        }}
+
+            
+        
+        }
+                   
+            
+        
 	echo "</table>";
 
 ?>
