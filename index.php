@@ -46,10 +46,9 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 <td align="left"><strong>trefwoorden</strong></td>
                 <td align="left"><strong>Klantnaam</strong></td>
                 <td align="left"><strong>Lijn</strong></td>
-                <td align="left"><strong>Accountnummer</strong></td></tr>
-                    
+                <td align="left"><strong>Accountnummer</strong></td>
             ';
-        		
+        // Moet functie gescreven worden voor streefdatum! Met date(), kan niet direct ingelezen worden.
 			
 	while($ticket = $ticketUitkomst->fetch_assoc()){
                                                         
@@ -80,8 +79,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 $ticket['trefwoorden'] . $td .
                 $klant['klantAchternaam'] . $td .
                 $ticket['lijnNr'] . $td .
-                $ticket['fstAccountNr'] . $td;                                
-            
+                $ticket['fstAccountNr'] . $td;            
                 echo '</tr>';                                      
             }
         }
