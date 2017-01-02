@@ -14,6 +14,13 @@
      * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
+     /*
+      * TODO:
+      * - Nieuw commentaar
+      * - Nieuwe oplossing
+      * - Oplossing definitief kunnen zetten (mits eerste behandelaar
+      */
+
     session_start();
     require_once 'headerUp.php'; //Include de header.
     require_once '../functies.php'; //Include de functies.
