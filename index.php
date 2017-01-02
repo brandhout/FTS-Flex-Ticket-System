@@ -17,6 +17,13 @@ error_reporting(E_ALL);
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+/*
+ * TODO:
+ * - Streefdatum weergeven
+ * - Meer data toevoegen
+ * - Opmaak
+ */
 session_start();
 require_once 'functies.php'; //Include de functies.
 require_once 'header.php'; //Include de header.
