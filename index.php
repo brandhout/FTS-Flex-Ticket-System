@@ -61,34 +61,29 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 echo "Klant query mislukt..." . mysqli_error($connectie);
             }
             
-            $ticketId = $ticket['ticketId'];
-            
+            $ticketId = $ticket['ticketId'];           
             $td = '</td><td align="left"></a>';
+            $def = FALSE;
             
             $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
                 $oplossingUitkomst = $connectie->query($oplossingQuery);
                 
             while($oplossing = $oplossingUitkomst->fetch_assoc()){
                 if($oplossing['definitief'] === "1"){
-                    $ticket['ticketId'] = "" ;
-                    $ticket['trefwoorden'] = "";
-                    $klant['klantAchternaam'] = "";
-                    $ticket['lijnNr'] = "";
-                    $ticket['fstAccountNr'] = "";
-                    $td = "";
+                    $def = TRUE;
                                         
             }}
-            echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+            
+            if($def === FALSE){
+                echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
                 $ticket['ticketId'] . $td . 
                 $ticket['trefwoorden'] . $td .
                 $klant['klantAchternaam'] . $td .
                 $ticket['lijnNr'] . $td .
                 $ticket['fstAccountNr'] . $td;                                
             
-            echo '</tr>';                            
-
-            
-        
+                echo '</tr>';                                      
+            }
         }
                    
             
