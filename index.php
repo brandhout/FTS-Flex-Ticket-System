@@ -54,6 +54,8 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 <td align="left"><strong>Klantnaam</strong></td>
                 <td align="left"><strong>Lijn</strong></td>
                 <td align="left"><strong>Accountnummer</strong></td>
+                <td align="left"><strong>Streefdatum</strong></td></tr>
+
             ';
         // Moet functie gescreven worden voor streefdatum! Met date(), kan niet direct ingelezen worden.
 			
@@ -86,7 +88,8 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 $ticket['trefwoorden'] . $td .
                 $klant['klantAchternaam'] . $td .
                 $ticket['lijnNr'] . $td .
-                $ticket['fstAccountNr'] . $td;            
+                $ticket['fstAccountNr'] . $td .
+                $ticket['streefdatum'] . $td;
                 echo '</tr>';                                      
             }
         }
