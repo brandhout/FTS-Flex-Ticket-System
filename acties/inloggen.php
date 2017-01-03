@@ -32,7 +32,7 @@
         $gebruikersNaam = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['gebruikersNaam'])));
         $wachtwoord = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['wachtwoord'])));
    
-        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, magInloggen FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
+        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, magInloggen, accountNr FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
         $uitkomst = mysqli_fetch_array($query);
         $teller = mysqli_num_rows($query);
 
@@ -41,6 +41,7 @@
             // Inloggen succes, hier moet een sessie aangemaakt worden
             session_start();
             $_SESSION["gebruikersNaam"] = $uitkomst['gebruikersNaam'];
+            $_SESSION["accountNr"] = $uitkomst['accountNr'];
             $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
             header('Location: ../index.php'); 
             
