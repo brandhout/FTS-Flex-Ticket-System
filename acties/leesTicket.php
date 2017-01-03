@@ -44,8 +44,7 @@
         
     $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
         $oplossingUitkomst = $connectie->query($oplossingQuery);
-
-    
+        
     echo '
         <!DOCTYPE html>
         <html>
@@ -54,9 +53,28 @@
          ticketnummer: '. $ticketId . ' </h1><br>
         <h3> Probleem: </h3> '.$ticket['probleem'].'<br>
         <h3> Trefwoorden: </h3> '.$ticket['trefwoorden'].'
-        <h3> Opgelosd: </h3> '.$ticket['oplossingId'].'
-        <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'
+        <h3> Opgelosd: </h3>
+        <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';  
             
+    if($_SESSION['accountNr'] === $ticket['fstAccountNr']){
+        echo '
+            <form action="">
+            <p><strong> Doorsturingssysteem: </strong></p>';
+
+        if($ticket['lijnNr'] > 1) {
+            echo '
+                <button name="lijnDwn" type="submit" value="lijnDwn">Lijnomlaag</button> ';
+            }
+            
+        if($ticket['lijnNr'] < 2) {
+            echo '
+                <button name="lijnUp" type="submit" value="lijnUp">Lijnomhoog</button> ';
+            }
+            echo'
+                </form>';
+            
+        }
+        echo '
         <h2> Klant </h2>
         <h3> Achternaam: </h3> '.$klant['klantAchternaam'].'
         <h3> Voornaam: </h3> '.$klant['klantNaam'].'
@@ -65,15 +83,23 @@
         <h3> Postcode: </h3> '.$klant['klantPostc'].'
         <h3> Woonplaats: </h3> '.$klant['klantStad'].'
         <h3> Emailadres: </h3> '.$klant['klantEmail'].'
-            
-        <h2> Oplossing </h2>
-
-
-
-            
+        ';
         
+        echo $ticket['fstAccountNr'];
+        //echo $_SESSION['accountNr'];
+    
 
-        '
+        if(isset($_POST['lijnUp'])){
+            // De query om de lijn omhoog te gooien
+            echo 'Lijnomhoog';
+        }
+        
+        if(isset($_POST['lijnDwn'])){
+            // De query om de lijn omlaag te werpen
+            echo 'Lijnomlaag';
+        }
+            
+      
 ?>
 
 <!-- Als je op tickets.php een ticket opent, komt de ticket op deze pagina te staan, met de informatie uit de database.
@@ -164,8 +190,9 @@ wordt de gebruiker doorgestuurd naar wijzigTicket.php. Dit alleen als er bijvoor
             <textarea id="nieuwComment" rows="10" cols="90"></textarea><br><br>
 
             <?php
+            
            if($_SESSION["accountNr"] == $uitkomst['accountNr']) {
-                echo '<input type="checkbox" name="lijnOmhoog" value="lijnOmhoog" disabled>Ticket moet naar volgende lijn<br><br>';
+                //echo '<input type="checkbox" name="lijnOmhoog" value="lijnOmhoog" disabled>Ticket moet naar volgende lijn<br><br>';
                 if($uitkomst['lijnNr'] > 1) {
                     echo '<input type="checkbox" name="lijnOmlaag" value="lijnOmlaag" disabled>Ticket moet naar vorige lijn<br><br>';
                 }
