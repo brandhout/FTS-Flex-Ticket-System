@@ -48,158 +48,151 @@ if (!$_POST['submit'] === "") {
      */
     
     $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
-    probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
-    aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
-    nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
-    log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
-    lokatie = $lokatie, klantTevreden = $klantTevreden"; 
-                
-    
-        if (isset($_POST['nieuweKlant'])) {
-            
-                /*
-                 * Als er een nieuwe klant is, hebben we eerst een query die de klant aanmaakt.
-                 * In de database word er een primary key gemaakt, die zien wij nog niet.
-                 * Vandaar de query eronder die op basis van de (net aangemaakte) klant 
-                 * email de primary key zoekt, van de klant die we zojuist hebben aangemaakt.
-                 */
-            
-                $nieuweKlantQuery = "insert into klant klantAchterNaam = $klantAchterNaam,
+        probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
+        aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+        nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
+        log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
+        lokatie = $lokatie, klantTevreden = $klantTevreden"; 
+    $nieuweKlantQuery = "insert into klant klantAchterNaam = $klantAchterNaam,
                 klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
                 klantStad = $klantStad, klantEmail = $klantEmail";
+}
                 
-                $klantIdQuery = "select klantId from klant where $klantEmail = klantEmail";
-                $klantId = mysqli_query($connectie, $klantIdQuery);
+               // $klantIdQuery = "select klantId from klant where $klantEmail = klantEmail";
+               // $klantId = mysqli_query($connectie, $klantIdQuery);
     
-        }
+      //  }
         
-        if (!$_POST['bestaandeKlant'] === "") {
+       // if (!$_POST['bestaandeKlant'] === "") {
             
                 /*
                  * Als er een bestaande klant is (niet leeg)
                  * dan gaan we de klantid ophalen vanuit de achternaam.
                  */
             
-                $klantIdQuery = "select klantId from klant where $klantAchterNaam = klantAchterNaam";
-                $klantId = mysqli_query($connectie, $klantIdQuery);
-        }
+               // $klantIdQuery = "select klantId from klant where $klantAchterNaam = klantAchterNaam";
+               // $klantId = mysqli_query($connectie, $klantIdQuery);
+        //}
 
             $uitkomst= mysqli_query($connectie, $ticketQuery);
-                //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
-
-        
-        
-
-    
-}  
+                //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());  
 
 ?>
+
+
 <!DOCTYPE html>
 <html>
 
     <body>
         <h1> Nieuw ticket </h1>
-<script>
-function testf(){
-		$(".hidden").toggle(300);
-}
-</script>	
+            <script>
+                function nieuwek(){
+                                $(".hidden").toggle(300);
+                }
+            </script>
 
-  <style>
-  .hidden {
-	display:none;
-}
-  </style>    
+            <script>
+                function bestaandek(){
+                                $(".hidden2").toggle(300);
+                }
+            </script>
+
+            <style>
+                .hidden {
+                    display:none;
+                }
+                .hidden2{
+                    display:none;
+                }
+            </style>    
 
      
             <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-      
-<!-- <p>Bestaande klant
-                    <select name="bestaandeKlant">
-                        php
-                        if ($klantenLijst){
-                            while($rij = mysqli_fetch_array($klantenlijst)) {
-                                echo '<option>' . $rij[klantAchterNaam] . '</option>';
-                        }}php
-                         -->
-                       
-<!--DIT WORD JAVASCRIPT-->
-<!-- Als nieuwe klant aangevinkt is dan kunnen NAW gegevens ingevuld worden -->
-						<button onclick="testf()" type="button" id="bk" >b k </button>
-						<button type="button" id="nk">Nieuwe klant</button><br>
-
-						
-    
-	
-<!--naw -->                
-<label class="hidden">naam:</label><input id="text1" type="text" name="klantNaam" class="hidden"/><br>
-<label class="hidden">achternaam:</label><input id="text1" type="text" name="klantAchterNaam" class="hidden"/><br>
-<label class="hidden">adres:</label><input id="text1" type="text" name="klantAdres" class="hidden"/><br>
-<label class="hidden">postcode:</label><input id="text1" type="text" name="klantPostc" class="hidden"/><br>			
-<label class="hidden">woonplaats:</label><input id="text1" type="text" name="klantStad" class="hidden"/><br>
-<label class="hidden">telefoonnummer:</label><input id="text1" type="text" name="klantTel" class="hidden"/><br>
-<label class="hidden">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" value="nogBellen" class="hidden"/><br>
+                <button onclick="nieuwek()" type="button" id="nk" >nieuwe klant </button>
+                           
+                    <label class="hidden">naam:</label><input id="text1" type="text" name="klantNaam" class="hidden"/><br>
+                    <label class="hidden">achternaam:</label><input id="text1" type="text" name="klantAchterNaam" class="hidden"/><br>
+                    <label class="hidden">adres:</label><input id="text1" type="text" name="klantAdres" class="hidden"/><br>
+                    <label class="hidden">postcode:</label><input id="text1" type="text" name="klantPostc" class="hidden"/><br>			
+                    <label class="hidden">woonplaats:</label><input id="text1" type="text" name="klantStad" class="hidden"/><br>
+                    <label class="hidden">telefoonnummer:</label><input id="text1" type="text" name="klantTel" class="hidden"/><br>
+                    <label class="hidden">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" value="nogBellen" class="hidden"/><br>
 					
-<label class="hidden">binnengekomen via:</label><select name="binnenkomstType" class="hidden"> <!-- Moet nog gescript worden! Data moet uit database komen -->
-                        <option>Telefoon</option>
-                        <option>E-mail</option>
-                    </select><br>
-<label class="hidden">locatie:</label><select name="locatie" class="hidden"> <!-- Disabled, gaan we nog niets mee doen-->
-                        <option>Hilversum Soestdijkerstraatweg</option>
-                        <option>uy</option>
-                    </select><br>
-					
-<!-- categorie probleem -->		
-<label class="hidden">trefwoorden (aan elkaar, door komma gescheiden)</label><input id="text1" type="text" name="trefwoorden" class="hidden"/></p>
+                    <label class="hidden">binnengekomen via:</label>
+                        <select name="binnenkomstType" class="hidden"> <!-- Moet nog gescript worden! Data moet uit database komen -->
+                            <option>Telefoon</option>
+                            <option>E-mail</option>
+                        </select><br>
+                    <label class="hidden">locatie:</label>
+                        <select name="locatie" class="hidden"> <!-- Disabled, gaan we nog niets mee doen-->
+                            <option>Hilversum Soestdijkerstraatweg</option>
+                            <option>uy</option>
+                        </select><br>
+                    <label class="hidden">trefwoorden (aan elkaar, door komma gescheiden)</label><input id="text1" type="text" name="trefwoorden" class="hidden"/></p>
 			
-<label class="hidden">categorie:</label><select name="categorie" class="hidden">
-                        <option>Software</option>
-                        <option>Hardware</option>
-                    </select><br>
-<label class="hidden">sub-categorie:</label>
-                    <select name="subCategorie" class="hidden">
-                        <option>Fedora Linux</option>
-                        <option></option>
-                    </select><br>
-<label class="hidden">merk:</label><select name="vVLaptopMerk" class="hidden">
-                        <option></option>
-                        <option></option>
-                    </select><br>
-<label class="hidden">type:</label><select name="vVLaptopType" class="hidden">
-                        <option></option>
-                        <option></option>
-                    </select><br>
-<label class="hidden">besturingsysteem:</label><select name="besturingssysteem" class="hidden">
-                        <?php
-                        if ($OSLijst){
-                            while($OSrij = mysqli_fetch_array($OSLijst)) {
-                                echo '<option>' . $OSrij[besturingssysteem] . '</option>';
-                        }}
-                        ?>
-                        <option></option>
-                    </select><br>
-					
-				
-<!-- velden --> 
-<label class="hidden">probleem(korte omschrijving:)</label>
-                    <textarea id="probleem" class="hidden"></textarea>
+                    <label class="hidden">categorie:</label>
+                        <select name="categorie" class="hidden">
+                            <option>Software</option>
+                            <option>Hardware</option>
+                        </select><br>
+                    <label class="hidden">sub-categorie:</label>
+                        <select name="subCategorie" class="hidden">
+                            <option>Fedora Linux</option>
+                            <option></option>
+                        </select><br>
+                    <label class="hidden">merk:</label>
+                        <select name="vVLaptopMerk" class="hidden">
+                            <option></option>
+                            <option></option>
+                        </select><br>
+                    <label class="hidden">type:</label>
+                        <select name="vVLaptopType" class="hidden">
+                            <option></option>
+                            <option></option>
+                        </select><br>
+                    <label class="hidden">besturingsysteem:</label>
+                        <select name="besturingssysteem" class="hidden">
+                            <?php
+                                if ($OSLijst){
+                                    while($OSrij = mysqli_fetch_array($OSLijst)) {
+                                        echo '<option>' . $OSrij[besturingssysteem] . '</option>';
+                                    }}
+                            ?>
+                            <option></option>
+                        </select><br>
 
-
-<label class="hidden">commentaar:</label>
-                    <textarea id="nieuwComment" class="hidden"></textarea>
-
- 
-<label class="hidden">potentieele oplossing:</label>
-                    <textarea id="oplossing" class="hidden"></textarea>
-    
-
-<!--datepicker-->
-<label class="hidden">streefdatum:</label>
-                    <input id="datum1" type="date" id="datepicker" class="hidden"/></p>       
-
-                    <input type="submit" name="submit" value="invoeren" class="hidden" />
-
+                    <label class="hidden">probleem(korte omschrijving:)</label>
+                        <textarea id="probleem" class="hidden"></textarea>
+                    <label class="hidden">commentaar:</label>
+                        <textarea id="nieuwComment" class="hidden"></textarea>
+                    <label class="hidden">potentieele oplossing:</label>
+                        <textarea id="oplossing" class="hidden"></textarea>
+                    <!--datepicker-->
+                    <label class="hidden">streefdatum:</label>
+                        <input id="datum1" type="date" id="datepicker" class="hidden"/></p>       
+                        <input type="submit" name="submit" value="invoeren" class="hidden" />
             </form>
-
+  
+  
+            <form name="nieuwTicket2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                <button type="button" onclick="bestaandek()" id="bk">bestaandeklant</button><br>
+                    <input id="zoek" type="text"class='hidden2'>
+                        <div id='result'> </div>
+                            <script>
+                                $("#search").on("input",function(){
+                                $search = $(search).val();
+                                if($search.length>0){
+                                $.get("nieuwTicket.php",{"search";$search},function($data){
+                                $("#result").html($data);
+                                })
+                                }
+                                });
+                            </script>
+            </form>
+            
+            
+            
+            
+            
     </body>
 </html>
