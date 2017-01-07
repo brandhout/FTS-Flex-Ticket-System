@@ -2,6 +2,7 @@
 session_start();
 require_once 'headerUp.php'; //Include de header.
 require_once '../functies.php'; //Include de functies.
+require_once 'zoek.php'; //Include de functies.
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -32,26 +33,6 @@ $factuurNr=NULL;
     $OSLijst= mysqli_query($connectie, $OSQuery);
         //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
     
-
-
-if (isset($_POST['zoekk'])) {
-    $searchq = $_POST['zoek'];
-    $searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
-    
-    $leesKlantQuery= mysqli_query($connectie,"SELECT * FROM klant WHERE klantAchternaam LIKE '%$searchq%';");
-    $count = mysqli_num_rows($leesKlantQuery);
-        if($count ==0){
-            $output = 'geen resultaten';
-        }else{
-            while($row= mysqli_fetch_array($leesKlantQuery)){
-                    $anaam= $row['klantAchternaam'];
-                    $vnaam=$row['klantNaam'];
-                    $kid=$row['klantId'];
-                    
-                    $output.='<div>'.$vnaam.' '.$anaam.' '.$kid.'</div>';
-            
-}}}
-
 if (!$_POST['submit1'] === "") {
     
     /*
@@ -95,7 +76,7 @@ if (!$_POST['submit1'] === "") {
 
             
             
-            
+  
             ?>
 
 
@@ -113,6 +94,13 @@ if (!$_POST['submit1'] === "") {
                 function bestaandek(){
                                 $(".hidden2").toggle(300);
                 }
+                
+                function zoekf(){
+                    var zoektxt = $("input[name='zoek']").val();
+                    $.post("zoek.php", {zoekval: zoektxt}, function(output){
+                        $("#output").html(output);
+                    });
+                }
             </script>
 
             <style>
@@ -123,7 +111,6 @@ if (!$_POST['submit1'] === "") {
                     display:none;
                 }
             </style>    
-<?php print("$output");?>
      
             <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <button onclick="nieuwek()" type="button" id="nk" >nieuwe klant </button>
@@ -196,11 +183,12 @@ if (!$_POST['submit1'] === "") {
             
             <form name="nieuwTicket2" action="nieuwTicket.php" method="POST">
                 <button type="button" onclick="bestaandek()" id="bk">bestaandeklant</button><br>
-                    <input name="zoek" type="text" placeholder="zoeken in Achternaam" class='hidden2'>
+                    <input name='zoek' type="text" placeholder="zoeken in Achternaam"  onkeydown="zoekf();" class='hidden2'/>
                     <input type="submit"value=">>" name="zoekk" class='hidden2' />
 
             </form>
-            
+            <div id="output" >    
+            </div>
             
             
             
