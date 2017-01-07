@@ -100,13 +100,12 @@ if (!$_POST['submit1'] === "") {
                     $.post("zoek.php", {zoekval: zoektxt}, function(output){
                         $("#output").text(output);
                     });
-                }
-                function zoekf(){
-                    var zoektxt = $("input[name='zoek']").val();
                     $.post("zoek.php", {zoekval: zoektxt}, function(output2){
                         $("#output2").text(output2);
                     });
+                    
                 }
+
             </script>
 
             <style>

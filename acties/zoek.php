@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_destroy();
 require_once '../functies.php'; //Include de functies.
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -17,18 +17,18 @@ if (isset($_POST['zoekval'])) {
     $count = mysqli_num_rows($leesKlantQuery);
         if($count ==0){
             $output = 'geen resultaten';
-            $output = 'geen resultaten';
+            $output2 = 'geen resultaten';
         }else{
             while($row= mysqli_fetch_array($leesKlantQuery)){
                     $anaam= $row['klantAchternaam'];
                     $vnaam=$row['klantNaam'];
                     $kid=$row['klantId'];
                     
-                    $output.=$kid.'';
+                    $output.=$kid.',';
                     $output2.=$vnaam.' '.$anaam.'';
             
 }}}
 echo($output);   
-echo ($output2)
+echo ($output2);
 
 ?>
