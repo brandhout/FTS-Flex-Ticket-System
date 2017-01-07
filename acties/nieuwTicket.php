@@ -207,10 +207,10 @@ else {
             <form name="nieuwTicket2" action="nieuwTicket.php" method="POST">
                 <button type="button" onclick="bestaandek()" id="bk">bestaandeklant</button><br>
                 <input name='zoek' type="text" placeholder="zoeken in Achternaam"  onkeydown="zoekf();" class='hidden2'/><br>
-                    <label class="hidden2">klant ID:</label><textfield  type="text" id="output" name="klantId" class="hidden2"></textfield><br>
+                <label class="hidden2">klant ID:</label><textfield  type="text" id="output" name="klantId" class="hidden2"/></textfield><br>
                     <label class="hidden2">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" value="nogBellen" class="hidden2"/><br>
                 
-                                    <label class="hidden2">binnengekomen via:</label>
+                     <label class="hidden2">binnengekomen via:</label>
                         <select name="binnenkomstType" class="hidden2"> <!-- Moet nog gescript worden! Data moet uit database komen -->
                             <option>Telefoon</option>
                             <option>E-mail</option>
@@ -261,20 +261,12 @@ else {
                         <textarea id="oplossing" class="hidden2"></textarea>
                     <!--datepicker-->
                     <label class="hidden2">streefdatum:</label>
-                        <inputtype="date" id="datepicker" class="hidden2"/></p>  
+                        <input type="date" id="datepicker" class="hidden2"/></p>  
                     
                     
                     
                     <input type="submit"value=">>" name="submit2" class='hidden2' />
                     
-          
-                  
-              
-
-            </form>
-            
-            
-            
-            
+                </form>
     </body>
 </html>

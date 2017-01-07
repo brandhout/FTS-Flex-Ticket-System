@@ -15,7 +15,6 @@ if (isset($_POST['zoekval'])) {
     $count = mysqli_num_rows($leesKlantQuery);
         if($count ==0){
             $output = 'geen resultaten';
-            $output2 = 'geen resultaten';
         }else{
             while($row= mysqli_fetch_array($leesKlantQuery)){
                     $anaam= $row['klantAchternaam'];
