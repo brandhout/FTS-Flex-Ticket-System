@@ -98,7 +98,13 @@ if (!$_POST['submit1'] === "") {
                 function zoekf(){
                     var zoektxt = $("input[name='zoek']").val();
                     $.post("zoek.php", {zoekval: zoektxt}, function(output){
-                        $("#output").html(output);
+                        $("#output").text(output);
+                    });
+                }
+                function zoekf(){
+                    var zoektxt = $("input[name='zoek']").val();
+                    $.post("zoek.php", {zoekval: zoektxt}, function(output2){
+                        $("#output2").text(output2);
                     });
                 }
             </script>
@@ -183,12 +189,25 @@ if (!$_POST['submit1'] === "") {
             
             <form name="nieuwTicket2" action="nieuwTicket.php" method="POST">
                 <button type="button" onclick="bestaandek()" id="bk">bestaandeklant</button><br>
-                    <input name='zoek' type="text" placeholder="zoeken in Achternaam"  onkeydown="zoekf();" class='hidden2'/>
+                <input name='zoek' type="text" placeholder="zoeken in Achternaam"  onkeydown="zoekf();" class='hidden2'/><br>
+                    <label class="hidden2">klant ID:</label><textfield  type="text" id="output" name="klantId" class="hidden2"></textfield><br>
+                    <label class="hidden2">naam:</label><textfield id="output2" type="text" name="klantnamen" class="hidden2"></textfield><br>
+                    <label class="hidden2">adres:</label><input id="text1" type="text" name="klantAdres" class="hidden2"/><br>
+                    <label class="hidden2">postcode:</label><input id="text1" type="text" name="klantPostc" class="hidden2"/><br>			
+                    <label class="hidden2">woonplaats:</label><input id="text1" type="text" name="klantStad" class="hidden2"/><br>
+                    <label class="hidden2">telefoonnummer:</label><input id="text1" type="text" name="klantTel" class="hidden2"/><br>
+                    <label class="hidden2">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" value="nogBellen" class="hidden2"/><br>
+                    
+                    
+                    
+                    
                     <input type="submit"value=">>" name="zoekk" class='hidden2' />
+                    
+          
+                  
+              
 
             </form>
-            <div id="output" >    
-            </div>
             
             
             
