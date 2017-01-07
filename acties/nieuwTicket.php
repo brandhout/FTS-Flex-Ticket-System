@@ -37,7 +37,7 @@ $factuurNr=NULL;
 
 
 
-if (!$_POST['submit'] === "") {
+if (!$_POST['submit1'] === "") {
     
     /*
      * Als submit niet leeg is wordt dit script uitgevoerd. Eerst word de ticketQuery
@@ -170,7 +170,7 @@ if (!$_POST['submit'] === "") {
                     <!--datepicker-->
                     <label class="hidden">streefdatum:</label>
                         <input id="datum1" type="date" id="datepicker" class="hidden"/></p>       
-                        <input type="submit" name="submit" value="invoeren" class="hidden" />
+                        <input type="submit" name="submit1" value="invoeren" class="hidden" />
             </form>
   
   
