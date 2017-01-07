@@ -52,11 +52,33 @@ if (!$_POST['submit1'] === "") {
     $nieuweKlantQuery = "insert into klant klantAchterNaam = $klantAchterNaam,
                 klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
                 klantStad = $klantStad, klantEmail = $klantEmail";
+    echo 'ticket aangemaakt en registratie gelukt!';
 }
-                
+else {
+    echo 'niet gelukt';
+}
+ if (!$_POST['submit2'] === "") {
+    
+    /*
+     * Als submit niet leeg is wordt dit script uitgevoerd. Eerst word de ticketQuery
+     * gedeclareerd. Daarna een if die uitgevoerd wordt als er een nieuwe klant is,
+     * daarna eentje als er een bestaande klant gekozen is (niet leeg).
+     * In beide statements wordt de klantId opgevraagd, of die nu van een bestaande
+     * klant of nieuwe klant is, deze is namelijk nodig in de ticket.
+     */
+    
+    $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+        probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
+        aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+        nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
+        log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
+        lokatie = $lokatie, klantTevreden = $klantTevreden";                
                // $klantIdQuery = "select klantId from klant where $klantEmail = klantEmail";
                // $klantId = mysqli_query($connectie, $klantIdQuery);
-    
+ echo 'gelukt';}
+ else {
+     echo 'niet gelukt';
+ }
       //  }
         
        // if (!$_POST['bestaandeKlant'] === "") {
@@ -102,7 +124,6 @@ if (!$_POST['submit1'] === "") {
                     });
                     
                 }
-
             </script>
 
             <style>
@@ -149,13 +170,13 @@ if (!$_POST['submit1'] === "") {
                         </select><br>
                     <label class="hidden">merk:</label>
                         <select name="vVLaptopMerk" class="hidden">
-                            <option></option>
-                            <option></option>
+                            <option>1</option>
+                            <option>2</option>
                         </select><br>
                     <label class="hidden">type:</label>
                         <select name="vVLaptopType" class="hidden">
-                            <option></option>
-                            <option></option>
+                            <option>2</option>
+                            <option>1</option>
                         </select><br>
                     <label class="hidden">besturingsysteem:</label>
                         <select name="besturingssysteem" class="hidden">
@@ -176,7 +197,7 @@ if (!$_POST['submit1'] === "") {
                         <textarea id="oplossing" class="hidden"></textarea>
                     <!--datepicker-->
                     <label class="hidden">streefdatum:</label>
-                        <input id="datum1" type="date" id="datepicker" class="hidden"/></p>       
+                        <input type="date" id="datepicker" class="hidden"/></p>       
                         <input type="submit" name="submit1" value="invoeren" class="hidden" />
             </form>
   
@@ -188,11 +209,63 @@ if (!$_POST['submit1'] === "") {
                 <input name='zoek' type="text" placeholder="zoeken in Achternaam"  onkeydown="zoekf();" class='hidden2'/><br>
                     <label class="hidden2">klant ID:</label><textfield  type="text" id="output" name="klantId" class="hidden2"></textfield><br>
                     <label class="hidden2">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" value="nogBellen" class="hidden2"/><br>
+                
+                                    <label class="hidden2">binnengekomen via:</label>
+                        <select name="binnenkomstType" class="hidden2"> <!-- Moet nog gescript worden! Data moet uit database komen -->
+                            <option>Telefoon</option>
+                            <option>E-mail</option>
+                        </select><br>
+                    <label class="hidden2">locatie:</label>
+                        <select name="locatie" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
+                            <option>Hilversum Soestdijkerstraatweg</option>
+                            <option>uy</option>
+                        </select><br>
+                    <label class="hidden2">trefwoorden (aan elkaar, door komma gescheiden)</label><input id="text1" type="text" name="trefwoorden" class="hidden2"/></p>
+			
+                    <label class="hidden2">categorie:</label>
+                        <select name="categorie" class="hidden2">
+                            <option>Software</option>
+                            <option>Hardware</option>
+                        </select><br>
+                    <label class="hidden2">sub-categorie:</label>
+                        <select name="subCategorie" class="hidden2">
+                            <option>Fedora Linux</option>
+                            <option></option>
+                        </select><br>
+                    <label class="hidden2">merk:</label>
+                        <select name="vVLaptopMerk" class="hidden2">
+                            <option>1</option>
+                            <option>2</option>
+                        </select><br>
+                    <label class="hidden2">type:</label>
+                        <select name="vVLaptopType" class="hidden2">
+                            <option>2</option>
+                            <option>1</option>
+                        </select><br>
+                    <label class="hidden2">besturingsysteem:</label>
+                        <select name="besturingssysteem" class="hidden2">
+                            <?php
+                                if ($OSLijst){
+                                    while($OSrij = mysqli_fetch_array($OSLijst)) {
+                                        echo '<option>' . $OSrij[besturingssysteem] . '</option>';
+                                    }}
+                            ?>
+                            <option></option>
+                        </select><br>
+
+                    <label class="hidden2">probleem(korte omschrijving:)</label>
+                        <textarea id="probleem" class="hidden2"></textarea>
+                    <label class="hidden2">commentaar:</label>
+                        <textarea id="nieuwComment" class="hidden2"></textarea>
+                    <label class="hidden2">potentieele oplossing:</label>
+                        <textarea id="oplossing" class="hidden2"></textarea>
+                    <!--datepicker-->
+                    <label class="hidden2">streefdatum:</label>
+                        <inputtype="date" id="datepicker" class="hidden2"/></p>  
                     
                     
                     
-                    
-                    <input type="submit"value=">>" name="zoekk" class='hidden2' />
+                    <input type="submit"value=">>" name="submit2" class='hidden2' />
                     
           
                   

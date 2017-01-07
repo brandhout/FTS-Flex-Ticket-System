@@ -339,7 +339,7 @@ body {
    
 }
 
-/*  nieuwe ticket   ------------------------------------------------------------------------------------------ */
+/*  nieuwe ticket   ------------------------------------------------------------------------------------------ 
 
 div.form1{
     width:95%;
@@ -382,10 +382,10 @@ textarea{
 select{
     width:40%;
     height:30px;
-}
+} 
 
-/* inloggen ------------------------------------*/
-/*
+ inloggen ------------------------------------
+*/
 #inlog1 {
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -414,7 +414,7 @@ div.inlogalgemeen1 {
     text-align:center;
     
 }
-*/
+
 img.logo2 {
   display: block;
   margin-left: auto;
