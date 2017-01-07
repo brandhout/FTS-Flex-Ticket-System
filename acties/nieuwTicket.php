@@ -6,6 +6,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $connectie = verbinddatabase();
+$output = '';
 
 
 $fstAccountNr= $_SESSION['gebruikersNaam'];
@@ -31,11 +32,25 @@ $factuurNr=NULL;
     $OSLijst= mysqli_query($connectie, $OSQuery);
         //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
     
-    $leesKlantQuery= 'select klantAchterNaam from klant';
-    $klantenLijst= mysqli_query($connectie, $leesKlantQuery);
-        //or die("Kan aangevraagde actie niet verwerken:" .mysql_error())
 
 
+if (isset($_POST['zoekk'])) {
+    $searchq = $_POST['zoek'];
+    $searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
+    
+    $leesKlantQuery= mysqli_query($connectie,"SELECT * FROM klant WHERE klantAchternaam LIKE '%$searchq%';");
+    $count = mysqli_num_rows($leesKlantQuery);
+        if($count ==0){
+            $output = 'geen resultaten';
+        }else{
+            while($row= mysqli_fetch_array($leesKlantQuery)){
+                    $anaam= $row['klantAchternaam'];
+                    $vnaam=$row['klantNaam'];
+                    $kid=$row['klantId'];
+                    
+                    $output.='<div>'.$vnaam.' '.$anaam.' '.$kid.'</div>';
+            
+}}}
 
 if (!$_POST['submit1'] === "") {
     
@@ -74,10 +89,14 @@ if (!$_POST['submit1'] === "") {
                // $klantId = mysqli_query($connectie, $klantIdQuery);
         //}
 
-            $uitkomst= mysqli_query($connectie, $ticketQuery);
+            //$uitkomst= mysqli_query($connectie, $ticketQuery);
                 //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());  
 
-?>
+
+            
+            
+            
+            ?>
 
 
 <!DOCTYPE html>
@@ -85,13 +104,12 @@ if (!$_POST['submit1'] === "") {
 
     <body>
         <h1> Nieuw ticket </h1>
+        
+        <!--  alle scripts  -->
             <script>
                 function nieuwek(){
                                 $(".hidden").toggle(300);
                 }
-            </script>
-
-            <script>
                 function bestaandek(){
                                 $(".hidden2").toggle(300);
                 }
@@ -105,7 +123,7 @@ if (!$_POST['submit1'] === "") {
                     display:none;
                 }
             </style>    
-
+<?php print("$output");?>
      
             <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <button onclick="nieuwek()" type="button" id="nk" >nieuwe klant </button>
@@ -174,20 +192,13 @@ if (!$_POST['submit1'] === "") {
             </form>
   
   
-            <form name="nieuwTicket2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+            
+            
+            <form name="nieuwTicket2" action="nieuwTicket.php" method="POST">
                 <button type="button" onclick="bestaandek()" id="bk">bestaandeklant</button><br>
-                    <input id="zoek" type="text"class='hidden2'>
-                        <div id='result'> </div>
-                            <script>
-                                $("#search").on("input",function(){
-                                $search = $(search).val();
-                                if($search.length>0){
-                                $.get("nieuwTicket.php",{"search";$search},function($data){
-                                $("#result").html($data);
-                                })
-                                }
-                                });
-                            </script>
+                    <input name="zoek" type="text" placeholder="zoeken in Achternaam" class='hidden2'>
+                    <input type="submit"value=">>" name="zoekk" class='hidden2' />
+
             </form>
             
             
