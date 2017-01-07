@@ -1,12 +1,10 @@
 <?php
-session_destroy();
 require_once '../functies.php'; //Include de functies.
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $connectie = verbinddatabase();
 $output = '';
-$output2 = '';
 
 
 if (isset($_POST['zoekval'])) {
@@ -23,12 +21,9 @@ if (isset($_POST['zoekval'])) {
                     $anaam= $row['klantAchternaam'];
                     $vnaam=$row['klantNaam'];
                     $kid=$row['klantId'];
-                    
-                    $output.=$kid.',';
-                    $output2.=$vnaam.' '.$anaam.'';
+                    $output.=$kid.'';
             
 }}}
-echo($output);   
-echo ($output2);
+echo($output);
 
 ?>
