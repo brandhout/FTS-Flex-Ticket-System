@@ -100,5 +100,4 @@ if(isset($_SESSION['gebruikersNaam'])) {
 
 ?>
 
-</body>
-</html>
+
