@@ -29,21 +29,17 @@ $vVlaptopType=NULL;
 $besturingssysteem="standaard";
 $factuurNr=NULL;
 
-    $OSQuery= 'select * from besturingssysteem';
-    $OSLijst= mysqli_query($connectie, $OSQuery);
-        //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+    $OSQuery= 'SELECT besturingssysteemOm FROM besturingssysteem';
+        $OSLijst= $connectie->query($OSQuery);
+            //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
+       
+    if(!$_POST['besturingssysteem'] === ""){
+        $besturingssysteemOm = $_POST['besturingssysteem'];
+        $OSQueryTerug= "SELECT besturingssysteemId FROM besturingssysteem WHERE besturingssysteemOm= '$besturingssysteemOm'";
+    }
     
 if (!$_POST['submit1'] === "") {
-    
-    /*
-     * Als submit niet leeg is wordt dit script uitgevoerd. Eerst word de ticketQuery
-     * gedeclareerd. Daarna een if die uitgevoerd wordt als er een nieuwe klant is,
-     * daarna eentje als er een bestaande klant gekozen is (niet leeg).
-     * In beide statements wordt de klantId opgevraagd, of die nu van een bestaande
-     * klant of nieuwe klant is, deze is namelijk nodig in de ticket.
-     */
-    
-    $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+        $ticketQuery = "INSERT INTO ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
         probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
         aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
         nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
@@ -52,54 +48,29 @@ if (!$_POST['submit1'] === "") {
     $nieuweKlantQuery = "insert into klant klantAchterNaam = $klantAchterNaam,
                 klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
                 klantStad = $klantStad, klantEmail = $klantEmail";
-    echo 'ticket aangemaakt en registratie gelukt!';
-}
-else {
-    echo 'niet gelukt';
-}
- if (!$_POST['submit2'] === "") {
     
-    /*
-     * Als submit niet leeg is wordt dit script uitgevoerd. Eerst word de ticketQuery
-     * gedeclareerd. Daarna een if die uitgevoerd wordt als er een nieuwe klant is,
-     * daarna eentje als er een bestaande klant gekozen is (niet leeg).
-     * In beide statements wordt de klantId opgevraagd, of die nu van een bestaande
-     * klant of nieuwe klant is, deze is namelijk nodig in de ticket.
-     */
+    if(!$connectie->query($ticketQuery)){
+        echo "Ticket query mislukt..." . $connectie->error();
+    }
     
-    $ticketQuery = "insert into ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+    if(!$connectie->query($nieuweKlantQuery)){
+        echo "Nieuwe Klant query mislukt..." . $connectie->error();
+    }
+}
+        
+ if (!$_POST['submit2'] === "") {  
+    $ticketQuery = "INSERT INTO ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
         probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
         aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
         nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
         log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
-        lokatie = $lokatie, klantTevreden = $klantTevreden";                
-               // $klantIdQuery = "select klantId from klant where $klantEmail = klantEmail";
-               // $klantId = mysqli_query($connectie, $klantIdQuery);
- echo 'gelukt';}
- else {
-     echo 'niet gelukt';
+        lokatie = $lokatie, klantTevreden = $klantTevreden";
+    
+        if(!$connectie->query($ticketQuery)){
+            echo "Ticket query mislukt..." . $connectie->error();
+        }
  }
-      //  }
-        
-       // if (!$_POST['bestaandeKlant'] === "") {
-            
-                /*
-                 * Als er een bestaande klant is (niet leeg)
-                 * dan gaan we de klantid ophalen vanuit de achternaam.
-                 */
-            
-               // $klantIdQuery = "select klantId from klant where $klantAchterNaam = klantAchterNaam";
-               // $klantId = mysqli_query($connectie, $klantIdQuery);
-        //}
-
-            //$uitkomst= mysqli_query($connectie, $ticketQuery);
-                //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());  
-
-
-            
-            
-  
-            ?>
+?>
 
 
 <!DOCTYPE html>
@@ -181,10 +152,9 @@ else {
                     <label class="hidden">besturingsysteem:</label>
                         <select name="besturingssysteem" class="hidden">
                             <?php
-                                if ($OSLijst){
-                                    while($OSrij = mysqli_fetch_array($OSLijst)) {
-                                        echo '<option>' . $OSrij[besturingssysteem] . '</option>';
-                                    }}
+                                while($OSrij = $OSLijst->fetch_assoc()) {
+                                    echo '<option>' . $OSrij[besturingssysteemOm] . '</option>';
+                                }
                             ?>
                             <option></option>
                         </select><br>
@@ -245,10 +215,9 @@ else {
                     <label class="hidden2">besturingsysteem:</label>
                         <select name="besturingssysteem" class="hidden2">
                             <?php
-                                if ($OSLijst){
-                                    while($OSrij = mysqli_fetch_array($OSLijst)) {
-                                        echo '<option>' . $OSrij[besturingssysteem] . '</option>';
-                                    }}
+                                while($OSrij = $OSLijst->fetch_assoc()) {
+                                    echo '<option>' . $OSrij[besturingssysteemOm] . '</option>';
+                                }
                             ?>
                             <option></option>
                         </select><br>
