@@ -8,9 +8,8 @@ $output = '';
 
 
 if (isset($_POST['zoekval'])) {
-    $searchq = $_POST['zoekval'];
-    $searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
-    
+    $searchq = preg_replace("#[^0-9a-z]#i","",$_POST['zoekval']);
+    // Dit moet uitgebreider met realescapestring e.d
     $leesKlantQuery= mysqli_query($connectie,"SELECT * FROM klant WHERE klantAchternaam LIKE '%$searchq%';");
     $count = mysqli_num_rows($leesKlantQuery);
         if($count ==0){
