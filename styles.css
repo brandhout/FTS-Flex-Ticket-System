@@ -424,3 +424,26 @@ img.logo2 {
 .result{
     
 }
+
+.admindash{
+
+    float: left;
+    font-family: Geneva, Arial;
+}
+
+.admindash ul {
+
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+
+}
+
+.admindash li a {
+    display: block;
+    padding: 6px;
+    width: 180px;
+    color: black;
+    background-color: #D0DBF0;
+    text-decoration: none;
+}
