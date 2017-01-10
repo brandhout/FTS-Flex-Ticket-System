@@ -31,6 +31,8 @@ $connectie = verbinddatabase();
 
 echo '<!DOCTYPE html>
       <html>
+      <head>
+          <meta http-equiv="Refresh" content="15">
       <body>
       <h1> Dasboard </h1>
       ';
