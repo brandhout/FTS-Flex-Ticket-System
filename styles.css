@@ -452,7 +452,33 @@ img.logo2 {
 /* nieuwe ticket */
                 .hidden {
                     display:none;
+                        border: 2px solid #ccc;
+    border-radius: 4px;
+        width: 15%;
+    padding: 10px 25px;
+    margin: 8px 0;
+    box-sizing: border-box;
                 }
                 .hidden2{
                     display:none;
+                        border: 2px solid #ccc;
+    border-radius: 4px;
+        width: 15%;
+    padding: 10px 25px;
+    margin: 8px 0;
+    box-sizing: border-box;
                 }
+                .hidden:focus {
+    border: 3px solid #555;
+}
+
+.hidden:focus {
+    border: 3px solid #555;
+}
+.hidden01 {
+    display:none;
+}
+
+.hidden02 {
+    display:none;
+}
