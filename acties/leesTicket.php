@@ -45,6 +45,8 @@
     $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
         $oplossingUitkomst = $connectie->query($oplossingQuery);
         
+    $accountNr = $_SESSION["accountNr"]; 
+       
     echo '
         <!DOCTYPE html>
         <html>
@@ -86,18 +88,25 @@
         <h3> Emailadres: </h3> '.$klant['klantEmail'].'
         ';
         
-        echo $ticket['fstAccountNr'];
-        //echo $_SESSION['accountNr'];
-    
 
         if(isset($_POST['lijnUp'])){
             // De query om de lijn omhoog te gooien
-            echo 'Lijnomhoog';
+            $lijnUpQuery = "INSERT INTO doorsturing (vanLijn = $vanLijn, accountNr = $accountNr
+                datum = CURRENT_DATE, naarLijn = $naarLijn, ticketId = $ticketId";
+            
+            if(!$connectie->query($lijnUpQuery)){
+                echo "LijnUP query mislukt..." . $connectie->error();
+            }
         }
         
         if(isset($_POST['lijnDwn'])){
             // De query om de lijn omlaag te werpen
-            echo 'Lijnomlaag';
+            $lijnDwnQuery = "INSERT INTO terugsturing (vanLijn = $vanLijn, accountNr = $accountNr
+                datum = CURRENT_DATE, naarLijn = $naarLijn, ticketId = $ticketId";
+         
+            if(!$connectie->query($lijnDwnQuery)){
+                echo "LijnDwn query mislukt..." . $connectie->error();
+            }           
         }
         
         echo '<form action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
