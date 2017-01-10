@@ -97,15 +97,6 @@ if (!$_POST['submit1'] === "") {
                 }
             </script>
 
-            <style>
-                .hidden {
-                    display:none;
-                }
-                .hidden2{
-                    display:none;
-                }
-            </style>    
-     
             <form name="nieuwTicket" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <button onclick="nieuwek()" type="button" id="nk" >nieuwe klant </button>
                            

@@ -447,3 +447,12 @@ img.logo2 {
     background-color: #D0DBF0;
     text-decoration: none;
 }
+
+
+/* nieuwe ticket */
+                .hidden {
+                    display:none;
+                }
+                .hidden2{
+                    display:none;
+                }
