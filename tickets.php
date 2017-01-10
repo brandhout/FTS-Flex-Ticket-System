@@ -27,15 +27,32 @@
     include_once 'header.php';
     include_once 'functies.php';
     $connectie = verbinddatabase();
+  
+    $alleenOpen = FALSE;
+    $alleenGesloten = FALSE;
     
     // Maak HTML tabel!
                
         $ticketQuery ="SELECT * FROM ticket;";
             $ticketUitkomst = $connectie->query($ticketQuery);
+            
+        if(isset($_GET['welkTicket'])){   
+            
+            if($_GET['welkTicket'] === "open"){
+                $alleenOpen = TRUE;
+            }       
+            
+            if($_GET['welkTicket'] === "gesloten"){
+                $alleenGesloten = TRUE;
+            }       
+        }
 
         echo '
             <!DOCTYPE html>
             <html>
+                <head>
+                    <meta http-equiv="Refresh" content="15">
+                </head>
                 <body>
                     <form action="">
                             <p> Geef weer: </p>
@@ -59,8 +76,9 @@
         echo "Aantal tickets :".$ticketUitkomst->num_rows. "<br>";
 			
 	while($ticket = $ticketUitkomst->fetch_assoc()){
-            $opgelost = "Nee";
-                                                        
+            $opgelost = "Nee";            
+            $uitzondering = FALSE;
+                                            
             $klantId = $ticket['klantId'];
                 $klantQuery ="SELECT klantAchternaam FROM klant WHERE klantId = '$klantId'";
                     $klantUitkomst = $connectie->query($klantQuery);
@@ -80,16 +98,26 @@
                     $opgelost = "Ja";
                 }
             }
-                                                        
-            echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
-                $ticket['ticketId'] . '</td><td align="left"></a>' . 
-                $ticket['trefwoorden'] . '</td><td align="left"></a>' .
-                $klant['klantAchternaam'] . '</td><td align="left"></a>' .
-                $ticket['lijnNr'] . '</td><td align="left"></a>' .
-                $ticket['fstAccountNr'] . '</td><td align="left"></a>' .
-                $ticket['streefdatum'] . '</td><td align="left"></a>' .
-                $opgelost . '</td><td align="left"></a>';
-            echo '</tr>';
+            
+            if($opgelost === "Ja" && $alleenOpen === TRUE){
+                $uitzondering = TRUE;
+            }
+            
+            if($opgelost === "Nee" && $alleenGesloten === TRUE){
+                $uitzondering = TRUE;
+            }
+                
+            if(!$uitzondering){                                            
+                echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+                    $ticket['ticketId'] . '</td><td align="left"></a>' . 
+                    $ticket['trefwoorden'] . '</td><td align="left"></a>' .
+                    $klant['klantAchternaam'] . '</td><td align="left"></a>' .
+                    $ticket['lijnNr'] . '</td><td align="left"></a>' .
+                    $ticket['fstAccountNr'] . '</td><td align="left"></a>' .
+                    $ticket['streefdatum'] . '</td><td align="left"></a>' .
+                    $opgelost . '</td><td align="left"></a>';
+                echo '</tr>';
+            }
 	}
    
 	
