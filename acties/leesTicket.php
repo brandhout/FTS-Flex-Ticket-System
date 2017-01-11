@@ -111,24 +111,18 @@
         ';
         
 
-        if(isset($_POST['lijnUp'])){
-            // De query om de lijn omhoog te gooien
-            $lijnUpQuery = "INSERT INTO doorsturing (vanLijn = $vanLijn, accountNr = $accountNr
-                datum = CURRENT_DATE, naarLijn = $naarLijn, ticketId = $ticketId";
-            
-            if(!$connectie->query($lijnUpQuery)){
-                echo "LijnUP query mislukt..." . $connectie->error();
-            }
+        if($_POST['lijnUp'] === "lijnUp" && $ticket['lijnNr'] <= 3 ){
+            $vanLijn = $ticket['lijnNr'];
+            $naarLijn = $vanLijn+1;           
+            updateLijn($vanLijn, $naarLijn, $ticketId, $accountNr);                    
+            header("Location: ../index.php");
         }
         
         if(isset($_POST['lijnDwn'])){
-            // De query om de lijn omlaag te werpen
-            $lijnDwnQuery = "INSERT INTO terugsturing (vanLijn = $vanLijn, accountNr = $accountNr
-                datum = CURRENT_DATE, naarLijn = $naarLijn, ticketId = $ticketId";
-         
-            if(!$connectie->query($lijnDwnQuery)){
-                echo "LijnDwn query mislukt..." . $connectie->error();
-            }           
+            $vanLijn = $ticket['lijnNr'];
+            $naarLijn = $vanLijn-1;
+            updateLijn($vanLijn, $naarLijn, $ticketId, $accountNr);
+            header("Location: ../index.php");
         }
         
         if(isset($_POST['nogBellen'])){
