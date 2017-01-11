@@ -71,3 +71,13 @@ function updateLijn($vanLijn,$naarLijn,$ticketId,$accountNr){
     
     
 }
+
+function leesAccountAchterNaam($accountNr){
+    $connectie = verbinddatabase();
+    
+    $leesAccountQuery = "SELECT achterNaam FROM account WHERE accountNr = '$accountNr'";
+        $leesAccountUitkomst = $connectie->query($leesAccountQuery);
+    
+   $account = $leesAccountUitkomst->fetch_assoc();
+   return $account['achterNaam'];
+}
