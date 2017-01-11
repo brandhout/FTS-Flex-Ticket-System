@@ -12,8 +12,8 @@
     </header>
     <body>
         <nav class= "" style="width:100%">
-            <a href="accounts.php">Accounts</a><br><br>
-            <a href="invoerAparaten.php">Aparaten invoer</a><br><br>
+            <a href="admin/accounts.php">Accounts</a><br><br>
+            <a href="admin/invoerAparaten.php">Aparaten invoer</a><br><br>
             
         </nav>
 
