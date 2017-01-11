@@ -11,16 +11,12 @@ $output = '';
 
 
 $fstAccountNr= $_SESSION['gebruikersNaam'];
-$probleem= $_POST['probleem'];
-$trefwoorden=$_POST['trefwoorden'];
 $aantalXterug=NULL;
 $terugstuurLock=FALSE;
 $lijnNr=1;
 $datumAanmaak= mysqldatum();
-$nogBellen=FALSE;
 $log=NULL;
 $verlopen=FALSE;
-$streefdatum=FALSE;
 $binnenkomstType="tel";
 $lokatie="standaard";
 $klantTevreden=NULL;
@@ -28,6 +24,34 @@ $vVLaptopMerk=NULL;
 $vVlaptopType=NULL;
 $besturingssysteem="standaard";
 $factuurNr=NULL;
+$typeCommentaar=NULL;
+$aangewAccountNr=NULL;
+//variablen forms
+
+$klantAchternaam = $_POST["klantAchternaam"]; 
+$klantNaam = $_POST["klantNaam"]; 
+$klantTel = $_POST["klantTel"]; 
+$klantAdres = $_POST["klantAdres"]; 
+$klantPostc = $_POST["klantPostc"]; 
+$klantStad = $_POST["klantStad"]; 
+$klantEmail = $_POST["klantEmail"]; 
+
+$probleem = $_POST["probleem"]; 
+$trefwoorden = $_POST["trefwoorden"]; 
+$klantid = $_POST["klantid"]; 
+$prioriteit = $_POST["prioriteit"]; 
+$datumAanmaak = $_POST["datumAanmaak"]; 
+$NogBellen = $_POST["NogBellen"]; 
+$categorieNaam = $_POST["categorieNaam"]; 
+$factuurNr = $_POST["factuurNr"]; 
+$verlopen = $_POST["verlopen"]; 
+$streefdatum = $_POST["streefdatum"];
+$lokatie = $_POST["lokatie"]; 
+$klantTevreden = $_POST["klantTevreden"]; 
+
+$nieuwComment = $_POST["nieuwComment"];
+
+
 
     $OSQuery= 'SELECT besturingssysteemOm FROM besturingssysteem';
         $OSLijst= $connectie->query($OSQuery);
@@ -39,15 +63,54 @@ $factuurNr=NULL;
     }
     
 if (!$_POST['submit1'] === "") {
-        $ticketQuery = "INSERT INTO ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
-        probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
-        aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
-        nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
-        log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
-        lokatie = $lokatie, klantTevreden = $klantTevreden"; 
-    $nieuweKlantQuery = "insert into klant klantAchterNaam = $klantAchterNaam,
+        $nieuweKlantQuery =mysqli($connectie, "insert into klant klantAchternaam = $klantAchternaam,
                 klantNaam = $klantNaam, klantTel = $klantTel, klantAdres = $klantAdres, klantPostc = $klantPostc,
-                klantStad = $klantStad, klantEmail = $klantEmail";
+                klantStad = $klantStad, klantEmail = $klantEmail");   
+        $ophaalKlantQuery =mysqli($connectie, "SELECT klantId, klantNaam FROM klant WHERE klantNaam='$klantNaam'");     
+            $result=mysqli_fetch_array($ophaalKlantQuery);
+            $teller = mysqli_num_rows($ophaalKlantQuery);
+                if ($teller == 1 && $result['klantnaam'] === $klantNaam ){
+                    $_SESSION["klantId"] = $result['klantId'];
+                    $klantId= $_SESSION["klantId"];
+                }
+                
+        $ticketQuery = mysqli($connectie, "INSERT INTO ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+            probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
+            aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+            nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
+            log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
+            lokatie = $lokatie, klantTevreden = $klantTevreden, commentaarId=$commentaarId, oplossingId=$oplossingId ");
+        $ophaalticketQuery =mysqli($connectie, "SELECT ticketId, klantId FROM ticket WHERE klantid='$klantId'");     
+            $result0=mysqli_fetch_array($ophaalticketQuery);
+            $teller0 = mysqli_num_rows($ophaalticketQuery);
+                if ($teller0 == 1 && $result0['klantId'] === $klantId ){
+                    $_SESSION["ticketId"] = $result0['ticketId'];
+                    $ticketId= $_SESSION["ticketId"];
+                }                
+                
+        $CommentaarQuery = mysqli($connectie, "insert into commentaar commOmscrijving = $nieuwComment, typeCommentaar=$typeCommentaar, datum =$datumAanmaak, accountNr=$fstAccountNr,
+            ticketId= $ticketId");
+        $ophaalCommentaarQuery =mysqli($connectie, "SELECT commentaarId, ticketId FROM commentaar WHERE ticketId='$tickerId'");
+            $result1= mysqli_fetch_array($ophaalCommentaarQuery);
+            $teller1= mysqli_num_rows($ophaalCommentaarQuery);
+                if (teller1 == 1 && $result1['ticketId'] === $ticketId){
+                    $_SESSION["commentaarId"] =$result1['commentaarId'];
+                    $commentaarID=$_SESSION['commentaarId'];
+                }
+        
+        $oplossingQuery= mysqli($connectie, "INSERT INTO oplossingen definitief=$definitief, oplossOmschrijving=$oplossOmschrijving,
+            datumFIX=$datumFIX, accountNr=$ftsAccountNr, ticketId=$ticketId");
+        $ophaalOplossingQuery=mysli($connectie, "SELECT oplossingId, ticketId FROM oplossingen WHERE ticketId='$ticketId'");
+            $result2= mysqli_fetch_array($ophaalOplossingQuery);
+            $teller2= mysqli_num_rows($ophaalOplossingQuery);
+                if (teller2 == 1 && $result1['ticketId'] === $ticketId){
+                    $_SESSION["oplossingId"] =$result2['oplossingId'];
+                    $oplossingId=$_SESSION['oplossingId'];
+                }            
+
+                
+                
+
     
     if(!$connectie->query($ticketQuery)){
         echo "Ticket query mislukt..." . $connectie->error();
@@ -59,12 +122,12 @@ if (!$_POST['submit1'] === "") {
 }
         
  if (!$_POST['submit2'] === "") {  
-    $ticketQuery = "INSERT INTO ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+    $ticketQuery = mysqli($connectie, "INSERT INTO ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
         probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
         aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
         nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
         log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
-        lokatie = $lokatie, klantTevreden = $klantTevreden";
+        lokatie = $lokatie, klantTevreden = $klantTevreden");
     
         if(!$connectie->query($ticketQuery)){
             echo "Ticket query mislukt..." . $connectie->error();
@@ -103,7 +166,7 @@ if (!$_POST['submit1'] === "") {
                 <button onclick="nieuwek()" type="button" id="nk" >nieuwe klant </button>
                            
                     <label class="hidden01">naam:</label><input id="text1" type="text" name="klantNaam" class="hidden"/><br>
-                    <label class="hidden01">achternaam:</label><input id="text1" type="text" name="klantAchterNaam" class="hidden"/><br>
+                    <label class="hidden01">achternaam:</label><input id="text1" type="text" name="klantAchternaam" class="hidden"/><br>
                     <label class="hidden01">adres:</label><input id="text1" type="text" name="klantAdres" class="hidden"/><br>
                     <label class="hidden01">postcode:</label><input id="text1" type="text" name="klantPostc" class="hidden"/><br>			
                     <label class="hidden01">woonplaats:</label><input id="text1" type="text" name="klantStad" class="hidden"/><br>
@@ -167,10 +230,10 @@ if (!$_POST['submit1'] === "") {
   
             
             
-            <form name="nieuwTicket2" action="nieuwTicket.php" method="POST">
+            <form name="nieuwTicket2" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <button type="button" onclick="bestaandek()" id="bk">bestaandeklant</button><br>
                 <input name='zoek' type="text" placeholder="zoeken in Achternaam"  onkeydown="zoekf();" class='hidden2'/><br>
-                <label class="hidden02">klant ID:</label><textfield  type="text" id="output" name="klantId" class="hidden2"/></textfield><br>
+                <label class="hidden02">klant ID:</label><textfield  type="text" id="output" name="fstAccountNr" class="hidden2"/></textfield><br>
                     <label class="hidden02">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" value="nogBellen" class="hidden2"/><br>
                 
                      <label class="hidden02">binnengekomen via:</label>
