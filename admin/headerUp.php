@@ -37,7 +37,7 @@
             </ul>
         </li>
         <li><a href="../tickets.php"><i class="fa fa-ticket"></i> Alle Tickets</a></li>
-        <li><a href="nieuwTicket.php"><i class="fa fa-plus-square"></i> nieuw ticket</a></li>
+        <li><a href="../nieuwTicket.php"><i class="fa fa-plus-square"></i> nieuw ticket</a></li>
         <li><a href="../index.php"><i class="fa fa-home"></i> DASHBOARD</a></li>
 <?php
     switch ($_SESSION['isAdmin']) { 
