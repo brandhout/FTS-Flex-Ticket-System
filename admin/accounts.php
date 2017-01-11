@@ -19,7 +19,7 @@
     echo '
         <html>
             <head>
-                <h1>Acountlijst</h1>
+                <h1>Accountlijst</h1>
             </head>
             <body>         
                     <table align="left" cellspacing="5" cellpadding="8">
