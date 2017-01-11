@@ -38,6 +38,9 @@
         $ticketUitkomst = $connectie->query($ticketQuery);
         $ticket = $ticketUitkomst->fetch_assoc();
         
+    $doorstuurLogQuery = "SELECT * FROM doorsturing WHERE ticketId = '$ticketId'";
+        $doorstuurLogUitkomst = $connectie->query($doorstuurLogQuery);
+        
     $klantId = $ticket['klantId'];
         $klantQuery ="SELECT * FROM klant WHERE klantId = '$klantId'";
         $klantUitkomst = $connectie->query($klantQuery);             
@@ -68,14 +71,14 @@
     if($_SESSION['accountNr'] === $ticket['fstAccountNr']){
         echo '
             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
-            <p><strong> Doorsturingssysteem: </strong></p>';
+            <p><h3> Lijn '.$ticket['lijnNr'].' </h3></p>';
 
-        if($ticket['lijnNr'] > 1) {
+        if($ticket['lijnNr'] > 1 && $ticket['lijnNr'] <= 3) {
             echo '
                 <button name="lijnDwn" type="submit" value="lijnDwn">Lijnomlaag</button> ';
             }
             
-        if($ticket['lijnNr'] < 2) {
+        if($ticket['lijnNr'] < 3) {
             echo '
                 <button name="lijnUp" type="submit" value="lijnUp">Lijnomhoog</button> ';
             }            
@@ -98,7 +101,7 @@
 
         } else {
             echo '
-                Klant <strong>hoeft niet</strong> gebeld te worden
+                Klant <strong>hoeft niet</strong> gebeld te worden <br>
                 <button name="nogBellen" type="submit" value="1">Klant moet gebeld worden</button>
                 </form>
                 ';
@@ -108,7 +111,17 @@
         <h3> Postcode: </h3> '.$klant['klantPostc'].'
         <h3> Woonplaats: </h3> '.$klant['klantStad'].'
         <h3> Emailadres: </h3> '.$klant['klantEmail'].'
-        ';
+        <h2> Logboek: </h2>';
+        
+        while($doorstuurLog = $doorstuurLogUitkomst->fetch_assoc()){
+            echo '- Ticket is op <strong>'.$doorstuurLog['datum'].'</strong> doorgestuurd
+                    van Lijn <strong>'.$doorstuurLog['vanLijn'].'</strong>
+                    naar Lijn <strong>'.$doorstuurLog['naarLijn'].'</strong>
+                    door <strong>'.leesAccountAchterNaam($doorstuurLog['accountNr']).'</strong>
+                    met <strong>accountnr: '.$doorstuurLog['accountNr'].'
+                    </strong><br><br>';
+                
+        }
         
 
         if($_POST['lijnUp'] === "lijnUp" && $ticket['lijnNr'] <= 3 ){
@@ -118,7 +131,7 @@
             header("Location: ../index.php");
         }
         
-        if(isset($_POST['lijnDwn'])){
+        if($_POST['lijnDwn'] === "lijnDwn" && $ticket['lijnNr'] >1){
             $vanLijn = $ticket['lijnNr'];
             $naarLijn = $vanLijn-1;
             updateLijn($vanLijn, $naarLijn, $ticketId, $accountNr);
@@ -132,7 +145,7 @@
             if($_POST['nogBellen'] === "1"){
                 updateNogBellen("1",$ticketId);
             }            
-               header("Refresh:0");
+            header("Location: ../index.php");
         }               
         
         echo '<form name="leesTicket" action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
