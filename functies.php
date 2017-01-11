@@ -34,3 +34,19 @@ $datum = date("Y-m-d H:i:s");
 //Levert een datum aan die in het SQL variabeltype 'DATE' past.
 return $datum;    
 }
+
+function updateNogBellen($in,$ticketId){
+    $connectie = verbinddatabase();
+    if($in === "0"){
+        $nogBellenQuery = "UPDATE ticket SET nogBellen=0 WHERE ticketId = $ticketId";
+    }
+    if($in === "1"){
+        $nogBellenQuery = "UPDATE ticket SET nogBellen=1 WHERE ticketId = $ticketId";
+    }
+    if(isset($nogBellenQuery)){
+        if(!$connectie->query($nogBellenQuery)){
+            echo "nogBellen query mislukt..." . $connectie->error();
+            return FALSE;
+        }
+    }
+}
