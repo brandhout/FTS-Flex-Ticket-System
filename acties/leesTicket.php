@@ -28,6 +28,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     $connectie = verbinddatabase();
+    $opgelost = "Nee";
     
     if (is_numeric($_GET['ticket'])) {
         $ticketId = $_GET['ticket'];
@@ -44,6 +45,12 @@
         
     $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
         $oplossingUitkomst = $connectie->query($oplossingQuery);
+            while($oplossing = $oplossingUitkomst->fetch_assoc()){
+                if($oplossing['definitief'] === "1"){
+                    $opgelost = "Ja";
+                }
+            }
+
         
     $accountNr = $_SESSION["accountNr"]; 
        
@@ -55,7 +62,7 @@
          ticketnummer: '. $ticketId . ' </h1><br>
         <h3> Probleem: </h3> '.$ticket['probleem'].'<br>
         <h3> Trefwoorden: </h3> '.$ticket['trefwoorden'].'
-        <h3> Opgelosd: </h3>
+        <h3> Opgelosd: </h3> '.$opgelost.'
         <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';  
             
     if($_SESSION['accountNr'] === $ticket['fstAccountNr']){
@@ -81,7 +88,22 @@
         <h2> Klant </h2>
         <h3> Achternaam: </h3> '.$klant['klantAchternaam'].'
         <h3> Voornaam: </h3> '.$klant['klantNaam'].'
-        <h3> Telefoon: </h3> '.$klant['klantTel'].'
+        <h3> Telefoon: </h3> '.$klant['klantTel'].'';
+        
+        echo '<form action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
+        
+        if($ticket['nogBellen'] === "1"){
+            echo '<br>Klant <strong>moet nog</strong> gebeld worden! <br>
+                <button name="nogBellen" type="submit" value="0">Klant is gebeld</button>';
+
+        } else {
+            echo '
+                Klant <strong>hoeft niet</strong> gebeld te worden
+                <button name="nogBellen" type="submit" value="1">Klant moet gebeld worden</button>
+                </form>
+                ';
+        }
+        echo'
         <h3> Adres: </h3> '.$klant['klantAdres'].'
         <h3> Postcode: </h3> '.$klant['klantPostc'].'
         <h3> Woonplaats: </h3> '.$klant['klantStad'].'
@@ -109,18 +131,15 @@
             }           
         }
         
-        echo '<form action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
-        
-        if($ticket['nogBellen'] === 1){
-            echo 'Klant moet nog gebeld worden!
-                <button name="nogBellen" type="submit" value="nogBellen">Klant is gebeld</button>';
-
-        } else {
-            echo '
-                <button name="nogBellen" type="submit" value="nogBellen">Klant moet gebeld worden</button>
-                </form>
-                ';
-        }
+        if(isset($_POST['nogBellen'])){
+            if($_POST['nogBellen'] === "0"){
+                updateNogBellen("0",$ticketId);
+            }
+            if($_POST['nogBellen'] === "1"){
+                updateNogBellen("1",$ticketId);
+            }            
+               header("Refresh:0");
+        }               
         
         echo '<form name="leesTicket" action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
       
@@ -162,5 +181,5 @@ wordt de gebruiker doorgestuurd naar wijzigTicket.php. Dit alleen als er bijvoor
            <h3> Nieuw Commentaar </h3>
             <textarea id="nieuwComment" rows="10" cols="90"></textarea><br><br>
              
-          <input type="submit" name="nieuwCommentaar" value="nieuwCommentaar"><br>    
+          <input type="submit" name="submit" value="submit">Doorvoeren<br>    
 </form></body></html>
