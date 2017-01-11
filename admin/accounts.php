@@ -47,7 +47,7 @@
             if($account['isAdmin'] === "1"){
                 $isAdmin = "Ja";
             }
-            echo '<tr><td align=left"><a href=wijzigAccount.php?account='. $account['accountNr'] .' >' .
+            echo '<tr><td align=left">' .
                 $account['accountNr'] . $td .
                 $account['gebruikersNaam'] . $td .
                 $account['naam'] . $td .
@@ -56,8 +56,12 @@
                 $isAdmin . $td .
                 $account['actief'] . $td .
                 $account['magInloggen'] . $td .
-                $account['lijnNr'] . $td;
-                echo '<tr>';
+                $account['lijnNr'] . $td ;            
+            echo '
+                <form action="wijzigAccount.php">
+                    <button name="accountActie" type="submit" value="Wijzig'. $account['accountNr'] .'">Wijzigen</button>
+                    <button name="accountActie" type="submit" value="Verwijder'. $account['accountNr'] .'">Verwijderen</button>
+                <tr>';
         }
     }       
 ?>
