@@ -76,7 +76,7 @@ if (!$_POST['submit1'] === "") {
                 
         $ticketQuery = mysqli($connectie, "INSERT INTO ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
             probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
-            aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+            aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = CURRENT_DATE,
             nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
             log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
             lokatie = $lokatie, klantTevreden = $klantTevreden, commentaarId=$commentaarId, oplossingId=$oplossingId ");
@@ -122,16 +122,39 @@ if (!$_POST['submit1'] === "") {
 }
         
  if (!$_POST['submit2'] === "") {  
-    $ticketQuery = mysqli($connectie, "INSERT INTO ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
-        probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
-        aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
-        nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
-        log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
-        lokatie = $lokatie, klantTevreden = $klantTevreden");
-    
-        if(!$connectie->query($ticketQuery)){
-            echo "Ticket query mislukt..." . $connectie->error();
-        }
+        $ticketQuery = mysqli($connectie, "INSERT INTO ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
+            probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
+            aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+            nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
+            log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
+            lokatie = $lokatie, klantTevreden = $klantTevreden, commentaarId=$commentaarId, oplossingId=$oplossingId ");
+        $ophaalticketQuery =mysqli($connectie, "SELECT ticketId, klantId FROM ticket WHERE klantid='$klantId'");     
+            $result0=mysqli_fetch_array($ophaalticketQuery);
+            $teller0 = mysqli_num_rows($ophaalticketQuery);
+                if ($teller0 == 1 && $result0['klantId'] === $klantId ){
+                    $_SESSION["ticketId"] = $result0['ticketId'];
+                    $ticketId= $_SESSION["ticketId"];
+                }                
+                
+        $CommentaarQuery = mysqli($connectie, "insert into commentaar commOmscrijving = $nieuwComment, typeCommentaar=$typeCommentaar, datum =$datumAanmaak, accountNr=$fstAccountNr,
+            ticketId= $ticketId");
+        $ophaalCommentaarQuery =mysqli($connectie, "SELECT commentaarId, ticketId FROM commentaar WHERE ticketId='$tickerId'");
+            $result1= mysqli_fetch_array($ophaalCommentaarQuery);
+            $teller1= mysqli_num_rows($ophaalCommentaarQuery);
+                if (teller1 == 1 && $result1['ticketId'] === $ticketId){
+                    $_SESSION["commentaarId"] =$result1['commentaarId'];
+                    $commentaarID=$_SESSION['commentaarId'];
+                }
+        
+        $oplossingQuery= mysqli($connectie, "INSERT INTO oplossingen definitief=$definitief, oplossOmschrijving=$oplossOmschrijving,
+            datumFIX=$datumFIX, accountNr=$ftsAccountNr, ticketId=$ticketId");
+        $ophaalOplossingQuery=mysli($connectie, "SELECT oplossingId, ticketId FROM oplossingen WHERE ticketId='$ticketId'");
+            $result2= mysqli_fetch_array($ophaalOplossingQuery);
+            $teller2= mysqli_num_rows($ophaalOplossingQuery);
+                if (teller2 == 1 && $result1['ticketId'] === $ticketId){
+                    $_SESSION["oplossingId"] =$result2['oplossingId'];
+                    $oplossingId=$_SESSION['oplossingId'];
+                }     
  }
 ?>
 
