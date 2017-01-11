@@ -2,7 +2,6 @@
 session_start();
 require_once 'headerUp.php'; //Include de header.
 require_once '../functies.php'; //Include de functies.
-require_once 'AJAX/zoekKlant.php'; //Include de functies.
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -163,7 +162,7 @@ if (!$_POST['submit1'] === "") {
                 
                 function zoekf(){
                     var zoektxt = $("input[name='zoek']").val();
-                    $.post("zoek.php", {zoekval: zoektxt}, function(output){
+                    $.post("AJAX/zoekKlant.php", {zoekval: zoektxt}, function(output){
                         $("#output").text(output);
                     });
                     
