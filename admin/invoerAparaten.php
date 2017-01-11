@@ -27,7 +27,7 @@
             Besturingssysteem <br>
             <input type="text" name="besturingssysteem"><br><br>
 
-          <input type="submit" name="toevoegen" value="toevoegen"><br>    
+          <input type="submit" name="invoeren" value="invoeren"><br>    
         </form>
     </body>  
 </html>   
