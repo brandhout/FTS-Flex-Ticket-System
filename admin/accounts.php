@@ -34,18 +34,26 @@
     ';
     if($accountUitkomst){
         while($account = $accountUitkomst->fetch_assoc()){
-            
-            $schoolKlasId = $account['schoolKlasId'];
-            
-            $schoolKlasQuery = "SELECT * FROM schoolKlassen WHERE schoolKlasId = $schoolKlasId"
-            
+            $schoolKlas['schoolKlasCode'] = "NVT";
+            $isAdmin = "Nee";
+            if($account['schoolKlasId'] > 0){
+                $schoolKlasId = $account['schoolKlasId'];            
+                    $schoolKlasQuery = "SELECT schoolKlasCode FROM schoolKlassen WHERE schoolKlasId = $schoolKlasId";
+                    $schoolKlasUitkomst = $connectie->query($schoolKlasQuery);
+                    if(!$schoolKlas = $schoolKlasUitkomst->fetch_assoc()){
+                        echo "Schoolklas query mislukt..." . mysqli_error($connectie);
+                    }
+            }
+            if($account['isAdmin'] === "1"){
+                $isAdmin = "Ja";
+            }
             echo '<tr><td align=left"><a href=wijzigAccount.php?account='. $account['accountNr'] .' >' .
                 $account['accountNr'] . $td .
                 $account['gebruikersNaam'] . $td .
                 $account['naam'] . $td .
                 $account['achterNaam'] . $td .
-                $account['schoolKlasId'] . $td .
-                $account['isAdmin'] . $td .
+                $schoolKlas['schoolKlasCode'] . $td .
+                $isAdmin . $td .
                 $account['actief'] . $td .
                 $account['magInloggen'] . $td .
                 $account['lijnNr'] . $td;
