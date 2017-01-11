@@ -13,7 +13,7 @@
     <body>
         <nav class= "" style="width:100%">
             <a href="admin/accounts.php">Accounts</a><br><br>
-            <a href="admin/invoerAparaten.php">Aparaten invoer</a><br><br>
+            <a href="admin/invoerAparaten.php">Apparaten invoer</a><br><br>
             
         </nav>
 
