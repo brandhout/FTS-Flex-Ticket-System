@@ -1,10 +1,14 @@
 <?php
-require_once '../functies.php'; //Include de functies.
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-$connectie = verbinddatabase();
+    //MYSQL
+    $servernaam = "localhost";
+    $username = "root";
+    $password = "Admin01!";
+    $database = "ftsPrimair";
+
+    $connectie = new mysqli($servernaam, $username, $password, $database);    
+
 $output = '';
+
 if (isset($_POST['zoekval'])) {
     $searchq = preg_replace("#[^0-9a-z]#i","",$_POST['zoekval']);
     // Dit moet uitgebreider met realescapestring e.d
