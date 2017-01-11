@@ -41,7 +41,7 @@
             Wachtwoord <br>
             <input type="text" name="wachtwoord"><br><br>
 
-          <input type="submit" name="toevoegen" value="toevoegen"><br>    
+          <input type="submit" name="opslaan" value="opslaan"><br>    
         </form>
     </body>  
 </html>    
