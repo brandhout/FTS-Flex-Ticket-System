@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.5.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 10 jan 2017 om 10:56
--- Serverversie: 10.1.19-MariaDB
--- PHP-versie: 7.0.13
+-- Generation Time: Jan 11, 2017 at 11:46 AM
+-- Server version: 10.1.20-MariaDB
+-- PHP Version: 7.0.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `account`
+-- Table structure for table `account`
 --
 
 CREATE TABLE `account` (
@@ -42,7 +42,7 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `account`
+-- Dumping data for table `account`
 --
 
 INSERT INTO `account` (`accountNr`, `lijnNr`, `isAdmin`, `schoolKlasId`, `naam`, `achterNaam`, `actief`, `magInloggen`, `vestigingId`, `gebruikersNaam`, `wachtwoord`, `klantId`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `account` (`accountNr`, `lijnNr`, `isAdmin`, `schoolKlasId`, `naam`,
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `besturingssysteem`
+-- Table structure for table `besturingssysteem`
 --
 
 CREATE TABLE `besturingssysteem` (
@@ -63,7 +63,7 @@ CREATE TABLE `besturingssysteem` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `binnenkomstType`
+-- Table structure for table `binnenkomstType`
 --
 
 CREATE TABLE `binnenkomstType` (
@@ -74,7 +74,7 @@ CREATE TABLE `binnenkomstType` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `categorie`
+-- Table structure for table `categorie`
 --
 
 CREATE TABLE `categorie` (
@@ -86,7 +86,7 @@ CREATE TABLE `categorie` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `commentaar`
+-- Table structure for table `commentaar`
 --
 
 CREATE TABLE `commentaar` (
@@ -101,7 +101,7 @@ CREATE TABLE `commentaar` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `doorsturing`
+-- Table structure for table `doorsturing`
 --
 
 CREATE TABLE `doorsturing` (
@@ -117,7 +117,7 @@ CREATE TABLE `doorsturing` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `instantie`
+-- Table structure for table `instantie`
 --
 
 CREATE TABLE `instantie` (
@@ -129,7 +129,7 @@ CREATE TABLE `instantie` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `klant`
+-- Table structure for table `klant`
 --
 
 CREATE TABLE `klant` (
@@ -146,7 +146,7 @@ CREATE TABLE `klant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `klant`
+-- Dumping data for table `klant`
 --
 
 INSERT INTO `klant` (`klantId`, `klantAchternaam`, `klantNaam`, `klantTel`, `klantAdres`, `klantPostc`, `klantStad`, `klantEmail`, `instantieId`, `locatieId`) VALUES
@@ -156,7 +156,7 @@ INSERT INTO `klant` (`klantId`, `klantAchternaam`, `klantNaam`, `klantTel`, `kla
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `locatie`
+-- Table structure for table `locatie`
 --
 
 CREATE TABLE `locatie` (
@@ -168,7 +168,7 @@ CREATE TABLE `locatie` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `oplossingen`
+-- Table structure for table `oplossingen`
 --
 
 CREATE TABLE `oplossingen` (
@@ -180,10 +180,17 @@ CREATE TABLE `oplossingen` (
   `ticketId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `oplossingen`
+--
+
+INSERT INTO `oplossingen` (`oplossingId`, `definitief`, `oplossOmschrijving`, `datumFix`, `accountNr`, `ticketId`) VALUES
+(1, 1, '...', '2017-01-11', 1, 1);
+
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `protocolSettings`
+-- Table structure for table `protocolSettings`
 --
 
 CREATE TABLE `protocolSettings` (
@@ -195,18 +202,18 @@ CREATE TABLE `protocolSettings` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `schoolKlassen`
+-- Table structure for table `schoolKlassen`
 --
 
 CREATE TABLE `schoolKlassen` (
   `schoolKlasId` int(11) NOT NULL,
-  `schoolKlasOmschrijvnig` varchar(30) NOT NULL
+  `schoolKlasCode` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `subCategorie`
+-- Table structure for table `subCategorie`
 --
 
 CREATE TABLE `subCategorie` (
@@ -217,7 +224,7 @@ CREATE TABLE `subCategorie` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `terugsturing`
+-- Table structure for table `terugsturing`
 --
 
 CREATE TABLE `terugsturing` (
@@ -233,7 +240,7 @@ CREATE TABLE `terugsturing` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `ticket`
+-- Table structure for table `ticket`
 --
 
 CREATE TABLE `ticket` (
@@ -260,7 +267,7 @@ CREATE TABLE `ticket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Gegevens worden geëxporteerd voor tabel `ticket`
+-- Dumping data for table `ticket`
 --
 
 INSERT INTO `ticket` (`ticketId`, `inBehandeling`, `probleem`, `trefwoorden`, `prioriteit`, `aantalXterug`, `terugstuurLock`, `lijnNr`, `datumAanmaak`, `nogBellen`, `log`, `streefdatum`, `klantTevreden`, `fstAccountNr`, `aangewAccountNr`, `klantId`, `categorieId`, `binnenkomstId`, `vVLaptopTypeId`, `besturingssysteemId`) VALUES
@@ -270,7 +277,7 @@ INSERT INTO `ticket` (`ticketId`, `inBehandeling`, `probleem`, `trefwoorden`, `p
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `veelVoorkomendelaptopMerken`
+-- Table structure for table `veelVoorkomendelaptopMerken`
 --
 
 CREATE TABLE `veelVoorkomendelaptopMerken` (
@@ -281,7 +288,7 @@ CREATE TABLE `veelVoorkomendelaptopMerken` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `veelVoorkomendeLaptopTypes`
+-- Table structure for table `veelVoorkomendeLaptopTypes`
 --
 
 CREATE TABLE `veelVoorkomendeLaptopTypes` (
@@ -293,7 +300,7 @@ CREATE TABLE `veelVoorkomendeLaptopTypes` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `vestigingen`
+-- Table structure for table `vestigingen`
 --
 
 CREATE TABLE `vestigingen` (
@@ -303,197 +310,197 @@ CREATE TABLE `vestigingen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexen voor geëxporteerde tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `account`
+-- Indexes for table `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`accountNr`);
 
 --
--- Indexen voor tabel `besturingssysteem`
+-- Indexes for table `besturingssysteem`
 --
 ALTER TABLE `besturingssysteem`
   ADD PRIMARY KEY (`besturingssysteemId`);
 
 --
--- Indexen voor tabel `binnenkomstType`
+-- Indexes for table `binnenkomstType`
 --
 ALTER TABLE `binnenkomstType`
   ADD PRIMARY KEY (`binnenkomstId`);
 
 --
--- Indexen voor tabel `categorie`
+-- Indexes for table `categorie`
 --
 ALTER TABLE `categorie`
   ADD PRIMARY KEY (`categorieId`);
 
 --
--- Indexen voor tabel `commentaar`
+-- Indexes for table `commentaar`
 --
 ALTER TABLE `commentaar`
   ADD PRIMARY KEY (`commentaarId`);
 
 --
--- Indexen voor tabel `doorsturing`
+-- Indexes for table `doorsturing`
 --
 ALTER TABLE `doorsturing`
   ADD PRIMARY KEY (`doorstuurId`);
 
 --
--- Indexen voor tabel `instantie`
+-- Indexes for table `instantie`
 --
 ALTER TABLE `instantie`
   ADD PRIMARY KEY (`instantieId`);
 
 --
--- Indexen voor tabel `klant`
+-- Indexes for table `klant`
 --
 ALTER TABLE `klant`
   ADD PRIMARY KEY (`klantId`);
 
 --
--- Indexen voor tabel `locatie`
+-- Indexes for table `locatie`
 --
 ALTER TABLE `locatie`
   ADD PRIMARY KEY (`locatieId`);
 
 --
--- Indexen voor tabel `oplossingen`
+-- Indexes for table `oplossingen`
 --
 ALTER TABLE `oplossingen`
   ADD PRIMARY KEY (`oplossingId`);
 
 --
--- Indexen voor tabel `schoolKlassen`
+-- Indexes for table `schoolKlassen`
 --
 ALTER TABLE `schoolKlassen`
   ADD PRIMARY KEY (`schoolKlasId`);
 
 --
--- Indexen voor tabel `subCategorie`
+-- Indexes for table `subCategorie`
 --
 ALTER TABLE `subCategorie`
   ADD PRIMARY KEY (`subCategorieId`);
 
 --
--- Indexen voor tabel `terugsturing`
+-- Indexes for table `terugsturing`
 --
 ALTER TABLE `terugsturing`
   ADD PRIMARY KEY (`terugstuurId`);
 
 --
--- Indexen voor tabel `ticket`
+-- Indexes for table `ticket`
 --
 ALTER TABLE `ticket`
   ADD PRIMARY KEY (`ticketId`);
 
 --
--- Indexen voor tabel `veelVoorkomendelaptopMerken`
+-- Indexes for table `veelVoorkomendelaptopMerken`
 --
 ALTER TABLE `veelVoorkomendelaptopMerken`
   ADD PRIMARY KEY (`vVLaptopMerkId`);
 
 --
--- Indexen voor tabel `veelVoorkomendeLaptopTypes`
+-- Indexes for table `veelVoorkomendeLaptopTypes`
 --
 ALTER TABLE `veelVoorkomendeLaptopTypes`
   ADD PRIMARY KEY (`vVLaptopTypeId`);
 
 --
--- Indexen voor tabel `vestigingen`
+-- Indexes for table `vestigingen`
 --
 ALTER TABLE `vestigingen`
   ADD PRIMARY KEY (`vestigingId`);
 
 --
--- AUTO_INCREMENT voor geëxporteerde tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT voor een tabel `account`
+-- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
   MODIFY `accountNr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT voor een tabel `besturingssysteem`
+-- AUTO_INCREMENT for table `besturingssysteem`
 --
 ALTER TABLE `besturingssysteem`
   MODIFY `besturingssysteemId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `binnenkomstType`
+-- AUTO_INCREMENT for table `binnenkomstType`
 --
 ALTER TABLE `binnenkomstType`
   MODIFY `binnenkomstId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `categorie`
+-- AUTO_INCREMENT for table `categorie`
 --
 ALTER TABLE `categorie`
   MODIFY `categorieId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `commentaar`
+-- AUTO_INCREMENT for table `commentaar`
 --
 ALTER TABLE `commentaar`
   MODIFY `commentaarId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `doorsturing`
+-- AUTO_INCREMENT for table `doorsturing`
 --
 ALTER TABLE `doorsturing`
   MODIFY `doorstuurId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `instantie`
+-- AUTO_INCREMENT for table `instantie`
 --
 ALTER TABLE `instantie`
   MODIFY `instantieId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `klant`
+-- AUTO_INCREMENT for table `klant`
 --
 ALTER TABLE `klant`
   MODIFY `klantId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT voor een tabel `locatie`
+-- AUTO_INCREMENT for table `locatie`
 --
 ALTER TABLE `locatie`
   MODIFY `locatieId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `oplossingen`
+-- AUTO_INCREMENT for table `oplossingen`
 --
 ALTER TABLE `oplossingen`
-  MODIFY `oplossingId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `oplossingId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT voor een tabel `schoolKlassen`
+-- AUTO_INCREMENT for table `schoolKlassen`
 --
 ALTER TABLE `schoolKlassen`
   MODIFY `schoolKlasId` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `subCategorie`
+-- AUTO_INCREMENT for table `subCategorie`
 --
 ALTER TABLE `subCategorie`
   MODIFY `subCategorieId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `terugsturing`
+-- AUTO_INCREMENT for table `terugsturing`
 --
 ALTER TABLE `terugsturing`
   MODIFY `terugstuurId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `ticket`
+-- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
   MODIFY `ticketId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT voor een tabel `veelVoorkomendelaptopMerken`
+-- AUTO_INCREMENT for table `veelVoorkomendelaptopMerken`
 --
 ALTER TABLE `veelVoorkomendelaptopMerken`
   MODIFY `vVLaptopMerkId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `veelVoorkomendeLaptopTypes`
+-- AUTO_INCREMENT for table `veelVoorkomendeLaptopTypes`
 --
 ALTER TABLE `veelVoorkomendeLaptopTypes`
   MODIFY `vVLaptopTypeId` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT voor een tabel `vestigingen`
+-- AUTO_INCREMENT for table `vestigingen`
 --
 ALTER TABLE `vestigingen`
   MODIFY `vestigingId` int(10) NOT NULL AUTO_INCREMENT;
