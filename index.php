@@ -37,7 +37,8 @@ echo '<!DOCTYPE html>
       <h1> Dasboard </h1>
       ';
 if(isset($_SESSION['gebruikersNaam'])) {
-    echo "Welkom" . "  " . ($_SESSION['gebruikersNaam']) . "</br>";
+    $achterNaam = leesAccountAchterNaam($_SESSION['accountNr']);
+    echo "Welkom," . "  " . ($achterNaam) . "!</br>";
     }  else {
     header('Location: acties/inloggen.php'); 
 }   
