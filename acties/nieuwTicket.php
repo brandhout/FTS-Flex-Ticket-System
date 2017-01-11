@@ -8,8 +8,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $connectie = verbinddatabase();
 $output = '';
-
-
 $fstAccountNr= $_SESSION['gebruikersNaam'];
 $aantalXterug=NULL;
 $terugstuurLock=FALSE;
@@ -27,7 +25,6 @@ $factuurNr=NULL;
 $typeCommentaar=NULL;
 $aangewAccountNr=NULL;
 //variablen forms
-
 $klantAchternaam = $_POST["klantAchternaam"]; 
 $klantNaam = $_POST["klantNaam"]; 
 $klantTel = $_POST["klantTel"]; 
@@ -35,24 +32,14 @@ $klantAdres = $_POST["klantAdres"];
 $klantPostc = $_POST["klantPostc"]; 
 $klantStad = $_POST["klantStad"]; 
 $klantEmail = $_POST["klantEmail"]; 
-
 $probleem = $_POST["probleem"]; 
 $trefwoorden = $_POST["trefwoorden"]; 
 $klantid = $_POST["klantid"]; 
 $prioriteit = $_POST["prioriteit"]; 
-$datumAanmaak = $_POST["datumAanmaak"]; 
 $NogBellen = $_POST["NogBellen"]; 
 $categorieNaam = $_POST["categorieNaam"]; 
-$factuurNr = $_POST["factuurNr"]; 
-$verlopen = $_POST["verlopen"]; 
 $streefdatum = $_POST["streefdatum"];
-$lokatie = $_POST["lokatie"]; 
-$klantTevreden = $_POST["klantTevreden"]; 
-
 $nieuwComment = $_POST["nieuwComment"];
-
-
-
     $OSQuery= 'SELECT besturingssysteemOm FROM besturingssysteem';
         $OSLijst= $connectie->query($OSQuery);
             //or die("Kan aangevraagde actie niet verwerken:" .mysql_error());
@@ -93,7 +80,7 @@ if (!$_POST['submit1'] === "") {
         $ophaalCommentaarQuery =mysqli($connectie, "SELECT commentaarId, ticketId FROM commentaar WHERE ticketId='$tickerId'");
             $result1= mysqli_fetch_array($ophaalCommentaarQuery);
             $teller1= mysqli_num_rows($ophaalCommentaarQuery);
-                if (teller1 == 1 && $result1['ticketId'] === $ticketId){
+                if ($teller1 == 1 && $result1['ticketId'] === $ticketId){
                     $_SESSION["commentaarId"] =$result1['commentaarId'];
                     $commentaarID=$_SESSION['commentaarId'];
                 }
@@ -103,14 +90,12 @@ if (!$_POST['submit1'] === "") {
         $ophaalOplossingQuery=mysli($connectie, "SELECT oplossingId, ticketId FROM oplossingen WHERE ticketId='$ticketId'");
             $result2= mysqli_fetch_array($ophaalOplossingQuery);
             $teller2= mysqli_num_rows($ophaalOplossingQuery);
-                if (teller2 == 1 && $result1['ticketId'] === $ticketId){
+                if ($teller2 == 1 && $result1['ticketId'] === $ticketId){
                     $_SESSION["oplossingId"] =$result2['oplossingId'];
                     $oplossingId=$_SESSION['oplossingId'];
                 }            
-
                 
                 
-
     
     if(!$connectie->query($ticketQuery)){
         echo "Ticket query mislukt..." . $connectie->error();
@@ -124,7 +109,7 @@ if (!$_POST['submit1'] === "") {
  if (!$_POST['submit2'] === "") {  
         $ticketQuery = mysqli($connectie, "INSERT INTO ticket (fstAccountNr = $fstAccountNr, inBehandeling = TRUE, 
             probleem = $probleem, trefwoorden = $trefwoorden, klantId = $klantId, prioriteit = $prioriteit,
-            aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = $datumAanmaak,
+            aantalXterug = NULL terugstuurLock = FALSE, lijnNr = $lijnNr, datumAanmaak = CURRENT_DATE,
             nogBellen = $nogBellen, categorieNaam = $categorieNaam, factuurNr = $factuurNr,
             log = $log, verlopen = $verlopen, streefdatum = $streefdatum,
             lokatie = $lokatie, klantTevreden = $klantTevreden, commentaarId=$commentaarId, oplossingId=$oplossingId ");
@@ -141,7 +126,7 @@ if (!$_POST['submit1'] === "") {
         $ophaalCommentaarQuery =mysqli($connectie, "SELECT commentaarId, ticketId FROM commentaar WHERE ticketId='$tickerId'");
             $result1= mysqli_fetch_array($ophaalCommentaarQuery);
             $teller1= mysqli_num_rows($ophaalCommentaarQuery);
-                if (teller1 == 1 && $result1['ticketId'] === $ticketId){
+                if ($teller1 == 1 && $result1['ticketId'] === $ticketId){
                     $_SESSION["commentaarId"] =$result1['commentaarId'];
                     $commentaarID=$_SESSION['commentaarId'];
                 }
@@ -151,7 +136,7 @@ if (!$_POST['submit1'] === "") {
         $ophaalOplossingQuery=mysli($connectie, "SELECT oplossingId, ticketId FROM oplossingen WHERE ticketId='$ticketId'");
             $result2= mysqli_fetch_array($ophaalOplossingQuery);
             $teller2= mysqli_num_rows($ophaalOplossingQuery);
-                if (teller2 == 1 && $result1['ticketId'] === $ticketId){
+                if ($teller2 == 1 && $result1['ticketId'] === $ticketId){
                     $_SESSION["oplossingId"] =$result2['oplossingId'];
                     $oplossingId=$_SESSION['oplossingId'];
                 }     
