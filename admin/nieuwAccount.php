@@ -19,8 +19,7 @@
         <form name="nieuwaccount" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
             
             <h2><strong>Nieuwe accounts</strong></h2>
-            <input type="submit" name="wijzigen" value="Wijzigen">   
-            <input type="submit" name="verwijderen" value="Verwijderen"><br>   
+            
             <input type="checkbox" name="isLeerling" value="isLeerling" />Is een leerling
             <br><br>
             Voornaamaam <br>
