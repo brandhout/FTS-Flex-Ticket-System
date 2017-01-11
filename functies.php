@@ -50,3 +50,23 @@ function updateNogBellen($in,$ticketId){
         }
     }
 }
+
+function updateLijn($vanLijn,$naarLijn,$ticketId,$accountNr){
+    $connectie = verbinddatabase();
+    if($vanLijn < $naarLijn){
+        $doorstuurUpQuery = "INSERT INTO doorsturing (doorstuurId, vanLijn, naarLijn,
+            opmerking, accountNr,
+            datum, ticketId) VALUES (NULL,'$vanLijn', '$naarLijn',''
+            ,'$accountNr', CURRENT_DATE,
+            '$ticketId')";
+        $ticketLijnUpQuery = "UPDATE ticket SET lijnNr='$naarLijn' WHERE ticketId= $ticketId";
+            
+        if(!$connectie->query($doorstuurUpQuery)){
+            echo "Lijnup query mislukt..." . mysqli_error($connectie);
+        }
+            
+        if(!$connectie->query($ticketLijnUpQuery)){
+            echo "Lijnup ticket query mislukt..." . mysqli_error($connectie);
+        }
+    }
+}
