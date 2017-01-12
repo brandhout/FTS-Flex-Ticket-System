@@ -12,7 +12,7 @@
  
 <html>
     <header>
-        <title> </title>
+        <title>Nieuw account</title>
     </header>
     <body>
          
