@@ -83,6 +83,7 @@ function leesAccountAchterNaam($accountNr){
 }
 
 function sqlbuster($in){
+    $connectie = verbinddatabase();
     $uit = mysqli_real_escape_string($connectie, stripcslashes(trim($in)));
     return $uit;
 }
