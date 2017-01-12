@@ -33,6 +33,7 @@ echo '<!DOCTYPE html>
       <html>
       <head>
           <meta http-equiv="Refresh" content="15">
+          <title>Flex Ticket System</title>
       <body>
       <h1> Dasboard </h1>
       ';
@@ -86,7 +87,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
             }}
             
             if($def === FALSE){
-                echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+                echo '<tr><td align=left><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
                 $ticket['ticketId'] . $td . 
                 $ticket['trefwoorden'] . $td .
                 $klant['klantAchternaam'] . $td .
