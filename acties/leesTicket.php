@@ -48,11 +48,15 @@
         
     $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
         $oplossingUitkomst = $connectie->query($oplossingQuery);
-            while($oplossing = $oplossingUitkomst->fetch_assoc()){
-                if($oplossing['definitief'] === "1"){
-                    $opgelost = "Ja";
-                }
-            }
+            //while($oplossing = $oplossingUitkomst->fetch_assoc()){
+            //    if($oplossing['definitief'] === "1"){
+            //        $opgelost = "Ja";
+            //    }
+            //}
+        
+    if(checkDefinitief($ticketId)){
+        $opgelost = "Ja";
+    }
 
         
     $accountNr = $_SESSION["accountNr"]; 
@@ -118,10 +122,32 @@
             echo '- Ticket is op <strong>'.$doorstuurLog['datum'].'</strong> doorgestuurd
                     van Lijn <strong>'.$doorstuurLog['vanLijn'].'</strong>
                     naar Lijn <strong>'.$doorstuurLog['naarLijn'].'</strong>
-                    door <strong>'.leesAccountAchterNaam($doorstuurLog['accountNr']).'</strong>
+                    door <strong>'.leesAccountAchterNaam($doorstuurLog['accountNr']).'</strong><br>
                     met <strong>accountnr: '.$doorstuurLog['accountNr'].'
                     </strong><br><br>';
                 
+        }
+        
+        echo '<h3> Oplossingen </h3>';
+        
+        while($oplossingen = $oplossingUitkomst->fetch_array()){
+            echo '
+                - Er is op <strong>'.$oplossingen['datumFix'].'</strong>
+                een oplossing aangedragen
+                door <strong>'.leesAccountAchterNaam($oplossingen['accountNr']).'</strong>
+                <br>met <strong>accountnr: '.$oplossingen['accountNr'].'
+                </strong><br><br>
+                De oplossing luidt:<br><i>
+                '.$oplossingen['oplossOmschrijving'].'
+                </i><br>';
+            
+                if($oplossingen['definitief'] === "1"){
+                    echo 'Deze oplossing is <strong>definitief</strong>,
+                     de ticket is afgesloten<br>-------<br>';                 
+                } else {
+                    echo 'Deze oplossing is <strong>niet</strong> definitief<br>-------<br>';                  
+                }
+
         }
         
 
