@@ -71,7 +71,7 @@ if (isset($_POST['submit1'])) {
         if (mysqli_num_rows($result) ==0){
             echo "klant niet gevonden";
         }
-            while($row= mysqli_fetch_array($result)) {
+            while($row= $result->fetch_assoc()) {
                 if ($row['klantNaam'] === $naam ){
                     echo $row['klantNaam'];
                     $klantID= $row['klantId'];
@@ -79,6 +79,7 @@ if (isset($_POST['submit1'])) {
                 }
             }
 
+    $insertTicket = $connectie->prepare("INSERT INTO ticket (");
 }
 
 ?>
