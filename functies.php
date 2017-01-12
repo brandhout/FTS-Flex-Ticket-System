@@ -87,3 +87,14 @@ function sqlbuster($in){
     $uit = mysqli_real_escape_string($connectie, stripcslashes(trim($in)));
     return $uit;
 }
+
+function checkDefinitief($ticketId){
+    $connectie = verbinddatabase();    
+    $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
+    $oplossingUitkomst = $connectie->query($oplossingQuery);
+    while($oplossing = $oplossingUitkomst->fetch_assoc()){
+        if($oplossing['definitief'] === "1"){
+            return TRUE;
+        }
+    }
+}
