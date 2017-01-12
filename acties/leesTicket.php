@@ -111,7 +111,8 @@
         <h3> Postcode: </h3> '.$klant['klantPostc'].'
         <h3> Woonplaats: </h3> '.$klant['klantStad'].'
         <h3> Emailadres: </h3> '.$klant['klantEmail'].'
-        <h2> Logboek: </h2>';
+        <h2> Logboek: </h2>
+        <h3> Doorsturingen </h3>';
         
         while($doorstuurLog = $doorstuurLogUitkomst->fetch_assoc()){
             echo '- Ticket is op <strong>'.$doorstuurLog['datum'].'</strong> doorgestuurd
