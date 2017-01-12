@@ -67,7 +67,7 @@
                     <td align="left"><strong>trefwoorden</strong></td>
                     <td align="left"><strong>Klantnaam</strong></td>
                     <td align="left"><strong>Lijn</strong></td>
-                    <td align="left"><strong>Accountnummer</strong></td>
+                    <td align="left"><strong>Behandelaar</strong></td>
                     <td align="left"><strong>Streefdatum</strong></td>
                     <td align="left"><strong>Opgelosd</strong></td></tr>
                     
@@ -113,7 +113,7 @@
                     $ticket['trefwoorden'] . '</td><td align="left"></a>' .
                     $klant['klantAchternaam'] . '</td><td align="left"></a>' .
                     $ticket['lijnNr'] . '</td><td align="left"></a>' .
-                    $ticket['fstAccountNr'] . '</td><td align="left"></a>' .
+                    leesAccountAchterNaam($ticket['fstAccountNr']) . '</td><td align="left"></a>' .
                     $ticket['streefdatum'] . '</td><td align="left"></a>' .
                     $opgelost . '</td><td align="left"></a>';
                 echo '</tr>';
