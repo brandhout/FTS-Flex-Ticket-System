@@ -81,3 +81,9 @@ function leesAccountAchterNaam($accountNr){
    $account = $leesAccountUitkomst->fetch_assoc();
    return $account['achterNaam'];
 }
+
+function sqlbuster($in){
+    $connectie = verbinddatabase();
+    $uit = mysqli_real_escape_string($connectie, stripcslashes(trim($in)));
+    return $uit;
+}
