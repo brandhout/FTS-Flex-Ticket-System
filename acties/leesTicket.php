@@ -29,6 +29,7 @@
     error_reporting(E_ALL);
     $connectie = verbinddatabase();
     $opgelost = "Nee";
+    $fstAccount = FALSE;
     
     if (is_numeric($_GET['ticket'])) {
         $ticketId = $_GET['ticket'];
@@ -48,17 +49,14 @@
         
     $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
         $oplossingUitkomst = $connectie->query($oplossingQuery);
-            //while($oplossing = $oplossingUitkomst->fetch_assoc()){
-            //    if($oplossing['definitief'] === "1"){
-            //        $opgelost = "Ja";
-            //    }
-            //}
+        
+    $commentaarQuery = "SELECT * FROM commentaar WHERE ticketId = '$ticketId'";
+        $commentaarUitkomst = $connectie->query($commentaarQuery);
         
     if(checkDefinitief($ticketId)){
         $opgelost = "Ja";
-    }
-
-        
+    }  
+   
     $accountNr = $_SESSION["accountNr"]; 
        
     echo '
@@ -73,9 +71,11 @@
         <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';  
             
     if($_SESSION['accountNr'] === $ticket['fstAccountNr']){
+        $fstAccount = TRUE;
         echo '
+            <h3> Behandelaarsopties: </h3>
             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
-            <p><h3> Lijn '.$ticket['lijnNr'].' </h3></p>';
+            <p><strong> Lijn '.$ticket['lijnNr'].' </strong></p>';
 
         if($ticket['lijnNr'] > 1 && $ticket['lijnNr'] <= 3) {
             echo '
@@ -86,11 +86,16 @@
             echo '
                 <button name="lijnUp" type="submit" value="lijnUp">Lijnomhoog</button> ';
             }            
-
             echo'
-                </form>';
-            
-        }
+                </form>';            
+    } else {
+        echo '
+        <h3> Behandelaar </h3><strong>
+        '.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><br>
+        Accountnummer <strong>'.$ticket['fstAccountNr'].'</strong>';
+        
+    }
+        
         echo '
         <h2> Klant </h2>
         <h3> Achternaam: </h3> '.$klant['klantAchternaam'].'
@@ -114,8 +119,9 @@
         <h3> Adres: </h3> '.$klant['klantAdres'].'
         <h3> Postcode: </h3> '.$klant['klantPostc'].'
         <h3> Woonplaats: </h3> '.$klant['klantStad'].'
-        <h3> Emailadres: </h3> '.$klant['klantEmail'].'
+        <h3> Emailadres: </h3> '.$klant['klantEmail'].'<br><br>
         <h2> Logboek: </h2>
+        Ticket is op <strong>'.$ticket['datumAanmaak'].'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong>
         <h3> Doorsturingen </h3>';
         
         while($doorstuurLog = $doorstuurLogUitkomst->fetch_assoc()){
@@ -143,11 +149,29 @@
             
                 if($oplossingen['definitief'] === "1"){
                     echo 'Deze oplossing is <strong>definitief</strong>,
-                     de ticket is afgesloten<br>-------<br>';                 
+                     de ticket is afgesloten<br>';                 
                 } else {
-                    echo 'Deze oplossing is <strong>niet</strong> definitief<br>-------<br>';                  
+                    echo 'Deze oplossing is <strong>niet</strong> definitief.<br>';
+                    if($fstAccount){
+                        echo '
+                            <p>
+                            <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
+                                <button type="submit" value="def">Definitief</button></p><br>                           
+                        ';
+                    }
                 }
 
+        }
+        
+        while($commentaar = $commentaarUitkomst->fetch_assoc()){
+            echo'
+                <h3> Commentaar </h3>
+                - Er is op <strong>'.$commentaar['datum'].'</strong>
+                commentaar aangeleverd door <strong>'.leesAccountAchterNaam($commentaar['accountNr']).'<br></strong>
+                met <strong>accountnr: '.$commentaar['accountNr'].'</strong><br><br>
+                Het commentaar luidt:<br><i>'.$commentaar['commOmschrijving'].'
+                </i></strong><br>    
+                ';
         }
         
 
