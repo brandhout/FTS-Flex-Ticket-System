@@ -55,32 +55,30 @@ $aangewAccountNr=NULL;
 
     
 if (isset($_POST['submit1'])) {
-	
-        $insertklant = $connectie->prepare("INSERT INTO klant (klantId, klantAchternaam, klantNaam, klantTel,
-                klantAdres, klantPostc, klantStad, klantEmail, instantieId, locatieId)
-                VALUES ('',?,?,?,?,?,?,?,'$lok','$lok1')");      
-		
-		if ($insertklant){
-		$insertklant->bind_param('sssssss', $achternaam, $naam, $tel, $adres, $postcode, $stad, $email);
-
-		if($insertklant->execute()) {
-			echo 'gelukt!';
-		}
-		}
-
-
-        $ophaalKlantQuery = "SELECT * FROM klant WHERE klantNaam='$naam'";
-                $result= $connectie->query($ophaalKlantQuery);
-                if (mysqli_num_rows($result) ==0){
-                    echo "klant niet gevonden";
+// nieuwe klant	
+    $insertklant = $connectie->prepare("INSERT INTO klant (klantId, klantAchternaam, klantNaam, klantTel,
+    klantAdres, klantPostc, klantStad, klantEmail, instantieId, locatieId)
+    VALUES ('',?,?,?,?,?,?,?,'$lok','$lok1')");      
+	if ($insertklant){
+            $insertklant->bind_param('sssssss', $achternaam, $naam, $tel, $adres, $postcode, $stad, $email);
+            if($insertklant->execute()) {
+		echo 'gelukt!';
+            }
+	}
+// ophalen klant ID
+    $ophaalKlantQuery = "SELECT * FROM klant WHERE klantNaam='$naam'";
+    $result= $connectie->query($ophaalKlantQuery);
+        if (mysqli_num_rows($result) ==0){
+            echo "klant niet gevonden";
+        }
+            while($row= mysqli_fetch_array($result)) {
+                if ($row['klantNaam'] === $naam ){
+                    echo $row['klantNaam'];
+                    $klantID= $row['klantId'];
+                    echo $klantID;
                 }
-                while($row= mysqli_fetch_array($result)) {
-                    if ($row['klantNaam'] === $naam ){
-                            
-			
-            echo $row['klantNaam'];
-}
-                }
+            }
+
 }
 
 ?>
