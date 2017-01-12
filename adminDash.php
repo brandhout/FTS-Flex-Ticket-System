@@ -12,7 +12,8 @@
     </header>
     <body>
         <nav class= "" style="width:100%">
-            <a href="admin/accounts.php">Accounts</a><br><br>
+            <a href="admin/accounts.php">Bestaande accounts</a><br><br>
+            <a href="admin/nieuwAccounts.php">Nieuwe accounts</a><br><br>
             <a href="admin/invoerAparaten.php">Apparaten invoer</a><br><br>
             
         </nav>
