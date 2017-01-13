@@ -39,11 +39,15 @@ echo '<!DOCTYPE html>
       ';
 if(isset($_SESSION['gebruikersNaam'])) {
     $achterNaam = leesAccountAchterNaam($_SESSION['accountNr']);
-    echo "Welkom," . "  " . ($achterNaam) . "!</br>
+    echo "Welkom," . "  " . ($achterNaam) . "!</br>";
+        if($_SESSION['isAdmin'] === "1"){
+            echo 'U bent een administrator.';
+        } else {
+        echo "
         U bent een ".$_SESSION['lijnNr']."e lijns medewerker,
         en de aannemer van .. tickets.
-        ";
-    }  else {
+        ";}
+    } else {
     header('Location: acties/inloggen.php'); 
 }   
 
