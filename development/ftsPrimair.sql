@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 13 jan 2017 om 20:21
+-- Gegenereerd op: 13 jan 2017 om 23:22
 -- Serverversie: 10.1.20-MariaDB
 -- PHP-versie: 7.0.14
 
@@ -48,6 +48,24 @@ CREATE TABLE `account` (
 INSERT INTO `account` (`accountNr`, `lijnNr`, `isAdmin`, `schoolKlasId`, `naam`, `achterNaam`, `actief`, `magInloggen`, `vestigingId`, `gebruikersNaam`, `wachtwoord`, `klantId`) VALUES
 (1, 1, 0, '', 'Naomi', 'Berkelaar', 1, 1, 0, 'naomiberkelaar', 'test123', 0),
 (2, 2, 1, '0', 'Jan', 'Modaal', 1, 1, 0, 'janmodaal', 'test124', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `bedrijf`
+--
+
+CREATE TABLE `bedrijf` (
+  `bedrijfsId` int(10) NOT NULL,
+  `naam` varchar(20) NOT NULL,
+  `website` text NOT NULL,
+  `kvkNr` int(20) NOT NULL,
+  `btwNr` int(20) NOT NULL,
+  `adres` varchar(50) NOT NULL,
+  `stad` varchar(30) NOT NULL,
+  `postC` varchar(10) NOT NULL,
+  `tel` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -127,7 +145,8 @@ CREATE TABLE `doorsturing` (
 INSERT INTO `doorsturing` (`doorstuurId`, `vanLijn`, `naarLijn`, `opmerking`, `accountNr`, `datum`, `ticketId`) VALUES
 (10, 1, 2, 'Kan geen oplossing gevonden worden', 1, '2017-01-13', 2),
 (11, 1, 2, 'Ticket kan op lijn 1 niet opgelosd worden', 1, '2017-01-13', 1),
-(12, 2, 1, 'Gewoon een herinstallatie, geen lijn 2 taak.', 2, '2017-01-13', 1);
+(12, 2, 1, 'Gewoon een herinstallatie, geen lijn 2 taak.', 2, '2017-01-13', 1),
+(13, 1, 2, 'Toch te lastig, hanglul!', 1, '2017-01-13', 1);
 
 -- --------------------------------------------------------
 
@@ -157,28 +176,17 @@ CREATE TABLE `klant` (
   `klantStad` varchar(30) NOT NULL,
   `klantEmail` varchar(50) NOT NULL,
   `instantieId` int(10) NOT NULL,
-  `locatieId` int(10) DEFAULT NULL
+  `locatieId` int(10) DEFAULT NULL,
+  `bedrijfsId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `klant`
 --
 
-INSERT INTO `klant` (`klantId`, `klantAchternaam`, `klantNaam`, `klantTel`, `klantAdres`, `klantPostc`, `klantStad`, `klantEmail`, `instantieId`, `locatieId`) VALUES
-(1, 'Mijnkipema', 'Jasper', '0620532107', 'vanderspekstraat 20', '1111 BB', 'Baarn', 'jaspermijnkipema@gmail.com', 0, 0),
-(2, 'Vanderspek', 'Djoey', '0620532107', 'gabberstraat 20', '1111 BB', 'Baarn', 'rainbowhighinthesky@gmail.com', 0, NULL);
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `locatie`
---
-
-CREATE TABLE `locatie` (
-  `locatieId` int(10) NOT NULL,
-  `locOmschrijving` varchar(30) NOT NULL,
-  `vestigingId` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `klant` (`klantId`, `klantAchternaam`, `klantNaam`, `klantTel`, `klantAdres`, `klantPostc`, `klantStad`, `klantEmail`, `instantieId`, `locatieId`, `bedrijfsId`) VALUES
+(1, 'Mijnkipema', 'Jasper', '0620532107', 'vanderspekstraat 20', '1111 BB', 'Hilversum', 'jaspermijnkipema@gmail.com', 0, 0, 0),
+(2, 'Vanderspek', 'Djoey', '0620532107', 'gabberstraat 20', '1111 BB', 'Baarn', 'rainbowhighinthesky@gmail.com', 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -271,7 +279,7 @@ CREATE TABLE `ticket` (
   `lijnNr` int(10) NOT NULL,
   `datumAanmaak` date NOT NULL,
   `nogBellen` tinyint(1) NOT NULL,
-  `log` text,
+  `instantieId` int(10) DEFAULT NULL,
   `streefdatum` date DEFAULT NULL,
   `redenTeLaat` text,
   `klantTevreden` tinyint(1) NOT NULL,
@@ -288,8 +296,8 @@ CREATE TABLE `ticket` (
 -- Gegevens worden geëxporteerd voor tabel `ticket`
 --
 
-INSERT INTO `ticket` (`ticketId`, `inBehandeling`, `probleem`, `trefwoorden`, `prioriteit`, `aantalXterug`, `terugstuurLock`, `lijnNr`, `datumAanmaak`, `nogBellen`, `log`, `streefdatum`, `redenTeLaat`, `klantTevreden`, `fstAccountNr`, `aangewAccountNr`, `klantId`, `subCategorieId`, `binnenkomstId`, `vVLaptopTypeId`, `besturingssysteemId`) VALUES
-(1, 1, 'Grafwindows werkt voor geen ene meter', 'kut,windows', 1, 0, 0, 1, '2016-12-31', 0, '0', '2015-06-30', 'Te weinig tijd op de afdeling', 0, 1, 0, 1, 0, 0, 0, 0),
+INSERT INTO `ticket` (`ticketId`, `inBehandeling`, `probleem`, `trefwoorden`, `prioriteit`, `aantalXterug`, `terugstuurLock`, `lijnNr`, `datumAanmaak`, `nogBellen`, `instantieId`, `streefdatum`, `redenTeLaat`, `klantTevreden`, `fstAccountNr`, `aangewAccountNr`, `klantId`, `subCategorieId`, `binnenkomstId`, `vVLaptopTypeId`, `besturingssysteemId`) VALUES
+(1, 1, 'Grafwindows werkt voor geen ene meter', 'kut,windows', 1, 0, 0, 2, '2016-12-31', 1, 0, '2015-06-30', 'Te weinig tijd op de afdeling', 0, 1, 0, 1, 0, 0, 0, 0),
 (2, 1, 'Koffieautomaat werkt niet', 'koffie,kutzooi', 1, 0, 0, 1, '2017-01-01', 0, NULL, '2020-06-01', NULL, 0, 2, 0, 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -338,6 +346,12 @@ ALTER TABLE `account`
   ADD PRIMARY KEY (`accountNr`);
 
 --
+-- Indexen voor tabel `bedrijf`
+--
+ALTER TABLE `bedrijf`
+  ADD PRIMARY KEY (`bedrijfsId`);
+
+--
 -- Indexen voor tabel `besturingssysteem`
 --
 ALTER TABLE `besturingssysteem`
@@ -378,12 +392,6 @@ ALTER TABLE `instantie`
 --
 ALTER TABLE `klant`
   ADD PRIMARY KEY (`klantId`);
-
---
--- Indexen voor tabel `locatie`
---
-ALTER TABLE `locatie`
-  ADD PRIMARY KEY (`locatieId`);
 
 --
 -- Indexen voor tabel `oplossingen`
@@ -443,6 +451,11 @@ ALTER TABLE `vestigingen`
 ALTER TABLE `account`
   MODIFY `accountNr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT voor een tabel `bedrijf`
+--
+ALTER TABLE `bedrijf`
+  MODIFY `bedrijfsId` int(10) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT voor een tabel `besturingssysteem`
 --
 ALTER TABLE `besturingssysteem`
@@ -466,7 +479,7 @@ ALTER TABLE `commentaar`
 -- AUTO_INCREMENT voor een tabel `doorsturing`
 --
 ALTER TABLE `doorsturing`
-  MODIFY `doorstuurId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `doorstuurId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT voor een tabel `instantie`
 --
@@ -477,11 +490,6 @@ ALTER TABLE `instantie`
 --
 ALTER TABLE `klant`
   MODIFY `klantId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT voor een tabel `locatie`
---
-ALTER TABLE `locatie`
-  MODIFY `locatieId` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT voor een tabel `oplossingen`
 --
