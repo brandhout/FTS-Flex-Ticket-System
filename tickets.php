@@ -69,14 +69,15 @@
                     <td align="left"><strong>Lijn</strong></td>
                     <td align="left"><strong>Aannemer</strong></td>
                     <td align="left"><strong>Streefdatum</strong></td>
-                    <td align="left"><strong>Opgelosd</strong></td></tr>
+                    <td align="left"><strong>Status</strong></td></tr>
                     
             ';
         		
         echo "Aantal tickets :".$ticketUitkomst->num_rows. "<br>";
 			
 	while($ticket = $ticketUitkomst->fetch_assoc()){
-            $opgelost = "Nee";            
+            $status = "Open";
+            $opgelost = FALSE;
             $uitzondering = FALSE;
                                             
             $klantId = $ticket['klantId'];
@@ -95,15 +96,16 @@
             //Nieuw oplossing script
             while($oplossing = $oplossingUitkomst->fetch_assoc()){
                 if($oplossing['definitief'] === "1"){
-                    $opgelost = "Ja";
+                    $status = "Gesloten";
+                    $opgelost = TRUE;
                 }
             }
             
-            if($opgelost === "Ja" && $alleenOpen === TRUE){
+            if($opgelost === TRUE && $alleenOpen === TRUE){
                 $uitzondering = TRUE;
             }
             
-            if($opgelost === "Nee" && $alleenGesloten === TRUE){
+            if($opgelost === FALSE && $alleenGesloten === TRUE){
                 $uitzondering = TRUE;
             }
                 
@@ -115,7 +117,7 @@
                     $ticket['lijnNr'] . '</td><td align="left"></a>' .
                     leesAccountAchterNaam($ticket['fstAccountNr']) . '</td><td align="left"></a>' .
                     $ticket['streefdatum'] . '</td><td align="left"></a>' .
-                    $opgelost . '</td><td align="left"></a>';
+                    $status . '</td><td align="left"></a>';
                 echo '</tr>';
             }
 	}
