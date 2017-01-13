@@ -70,12 +70,14 @@
         <h3> Opgelosd: </h3> '.$opgelost.'
         <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';  
             
-    if($_SESSION['accountNr'] === $ticket['fstAccountNr']){
-        $fstAccount = TRUE;
+    if($ticket['lijnNr'] === $_SESSION['lijnNr']){
         echo '
-            <h3> Behandelaarsopties: </h3>
+            <h3> Doorsturing: </h3>
             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
-            <p><strong> Lijn '.$ticket['lijnNr'].' </strong></p>';
+            <p><strong> Lijn '.$ticket['lijnNr'].' </strong></p>
+            <input type="text" value="Reden doorsturing">     
+
+            ';
 
         if($ticket['lijnNr'] > 1 && $ticket['lijnNr'] <= 3) {
             echo '
@@ -152,7 +154,7 @@
                      de ticket is afgesloten<br>';                 
                 } else {
                     echo 'Deze oplossing is <strong>niet</strong> definitief.<br>';
-                    if($fstAccount){
+                    if($_SESSION['accountNr'] === $ticket['fstAccountNr']){
                         echo '
                             <p>
                             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
