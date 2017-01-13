@@ -77,6 +77,40 @@
     }
    
     $accountNr = $_SESSION["accountNr"]; 
+    
+        if($_POST['lijnUp'] === "lijnUp" && $ticket['lijnNr'] <= 3 ){
+            $opmerking = $_POST['opmerking'];
+            $vanLijn = $ticket['lijnNr'];
+            $naarLijn = $vanLijn+1;           
+            updateLijn($vanLijn, $naarLijn, $opmerking, $ticketId, $accountNr);                               
+        }
+        
+        if($_POST['lijnDwn'] === "lijnDwn" && $ticket['lijnNr'] >1){
+            $opmerking = $_POST['opmerking'];
+            $vanLijn = $ticket['lijnNr'];
+            $naarLijn = $vanLijn-1;
+            updateLijn($vanLijn, $naarLijn, $opmerking, $ticketId, $accountNr);
+        }
+        
+        if(isset($_POST['nogBellen'])){
+            if($_POST['nogBellen'] === "0"){
+                updateNogBellen("0",$ticketId);
+            }
+            if($_POST['nogBellen'] === "1"){
+                updateNogBellen("1",$ticketId);
+            }            
+            header("Location: ../index.php");
+        }
+        
+        if(isset($_POST['redenTekst'])){
+            $ticketId = $ticket['ticketId'];
+            $redenTekst = $_POST['redenTekst'];
+            $teLaatRedenQuery = "UPDATE ticket SET redenTeLaat = '$redenTekst' WHERE ticketId = '$ticketId'";
+            if(!$connectie->query($teLaatRedenQuery)){
+                echo "teLaatReden query mislukt..." . mysqli_error($connectie);
+            }
+            header("Location: ../tickets.php");
+        }
            
     echo '
         <!DOCTYPE html>
@@ -208,42 +242,7 @@
                 </i></strong><br>    
                 ';
         }
-        
-
-        if($_POST['lijnUp'] === "lijnUp" && $ticket['lijnNr'] <= 3 ){
-            $opmerking = $_POST['opmerking'];
-            $vanLijn = $ticket['lijnNr'];
-            $naarLijn = $vanLijn+1;           
-            updateLijn($vanLijn, $naarLijn, $opmerking, $ticketId, $accountNr);                               
-        }
-        
-        if($_POST['lijnDwn'] === "lijnDwn" && $ticket['lijnNr'] >1){
-            $opmerking = $_POST['opmerking'];
-            $vanLijn = $ticket['lijnNr'];
-            $naarLijn = $vanLijn-1;
-            updateLijn($vanLijn, $naarLijn, $opmerking, $ticketId, $accountNr);
-        }
-        
-        if(isset($_POST['nogBellen'])){
-            if($_POST['nogBellen'] === "0"){
-                updateNogBellen("0",$ticketId);
-            }
-            if($_POST['nogBellen'] === "1"){
-                updateNogBellen("1",$ticketId);
-            }            
-            header("Location: ../index.php");
-        }
-        
-        if(isset($_POST['redenTekst'])){
-            $ticketId = $ticket['ticketId'];
-            $redenTekst = $_POST['redenTekst'];
-            $teLaatRedenQuery = "UPDATE ticket SET redenTeLaat = '$redenTekst' WHERE ticketId = '$ticketId'";
-            if(!$connectie->query($teLaatRedenQuery)){
-                echo "teLaatReden query mislukt..." . mysqli_error($connectie);
-            }
-            header("Location: ../tickets.php");
-        }
-        
+      
         echo '<form name="leesTicket" action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
       
 ?>
