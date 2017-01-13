@@ -16,7 +16,6 @@
 
 /*
  * TODO:
- * - Streefdatum weergeven
  * - Meer data toevoegen  (aanmaakdatum etc. etc.)
  * - Opmaak
  */
