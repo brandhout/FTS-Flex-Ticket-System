@@ -70,7 +70,7 @@
         <h3> Opgelosd: </h3> '.$opgelost.'
         <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';  
             
-    if($ticket['lijnNr'] === $_SESSION['lijnNr']){
+    if($ticket['lijnNr'] === $_SESSION['lijnNr'] or $_SESSION['isAdmin'] === "1"){
         echo '
             <h3> Doorsturing: </h3>
             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
