@@ -105,7 +105,7 @@ function datumOmzet($datum){
 }
 
 function overDatum($eindDatum){
-    $datum = datumOmzet(date("Y-m-d"));
+    $datum = date("Y-m-d");
     if(strtotime($datum) > strtotime($eindDatum)){
             return TRUE;
         } else {
