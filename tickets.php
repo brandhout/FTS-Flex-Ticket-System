@@ -67,7 +67,7 @@
                     <td align="left"><strong>trefwoorden</strong></td>
                     <td align="left"><strong>Klantnaam</strong></td>
                     <td align="left"><strong>Lijn</strong></td>
-                    <td align="left"><strong>Behandelaar</strong></td>
+                    <td align="left"><strong>Aannemer</strong></td>
                     <td align="left"><strong>Streefdatum</strong></td>
                     <td align="left"><strong>Opgelosd</strong></td></tr>
                     
