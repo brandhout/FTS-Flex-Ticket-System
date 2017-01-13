@@ -42,11 +42,14 @@ if(isset($_SESSION['gebruikersNaam'])) {
     echo "Welkom," . "  " . ($achterNaam) . "!</br>";
         if($_SESSION['isAdmin'] === "1"){
             echo 'U bent een administrator.';
+            $lijnNr = "*";
         } else {
         echo "
         U bent een ".$_SESSION['lijnNr']."e lijns medewerker,
         en de aannemer van .. tickets.
-        ";}
+        ";
+        $lijnNr = $_SESSION["lijnNr"];
+        }
     } else {
     header('Location: acties/inloggen.php'); 
 }   
@@ -57,7 +60,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
             $ticketUitkomst = $connectie->query($ticketQuery);
             
         echo '
-                <h3> Openstaande tickets lijn '.$_SESSION["lijnNr"].': </h3>
+                <h3> Openstaande tickets lijn '.$lijnNr.': </h3>
 
                 <table align="left" cellspacing="5" cellpadding="8">
                 <td align="left"><strong>TicketID</strong></td>
@@ -93,10 +96,12 @@ if(isset($_SESSION['gebruikersNaam'])) {
                                         
             }}
             
-            if($ticket['lijnNr'] != $_SESSION['lijnNr']){
+            if($_SESSION['isAdmin'] != "1"){
+                if($ticket['lijnNr'] != $_SESSION['lijnNr']){
                 $uitzondering = TRUE;
+                }
             }
-            
+                            
             if($uitzondering === FALSE){
                 echo '<tr><td align=left><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
                 $ticket['ticketId'] . $td . 
