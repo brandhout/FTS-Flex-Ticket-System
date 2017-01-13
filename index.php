@@ -39,7 +39,10 @@ echo '<!DOCTYPE html>
       ';
 if(isset($_SESSION['gebruikersNaam'])) {
     $achterNaam = leesAccountAchterNaam($_SESSION['accountNr']);
-    echo "Welkom," . "  " . ($achterNaam) . "!</br>";
+    echo "Welkom," . "  " . ($achterNaam) . "!</br>
+        U bent een ".$_SESSION['lijnNr']."e lijns medewerker,
+        en de aannemer van .. tickets.
+        ";
     }  else {
     header('Location: acties/inloggen.php'); 
 }   
@@ -50,14 +53,14 @@ if(isset($_SESSION['gebruikersNaam'])) {
             $ticketUitkomst = $connectie->query($ticketQuery);
             
         echo '
-                <h3> Openstaande tickets: </h3>
+                <h3> Openstaande tickets lijn '.$_SESSION["lijnNr"].': </h3>
 
                 <table align="left" cellspacing="5" cellpadding="8">
                 <td align="left"><strong>TicketID</strong></td>
                 <td align="left"><strong>trefwoorden</strong></td>
                 <td align="left"><strong>Klantnaam</strong></td>
                 <td align="left"><strong>Lijn</strong></td>
-                <td align="left"><strong>Behandelaar</strong></td>
+                <td align="left"><strong>Aannemer</strong></td>
                 <td align="left"><strong>Streefdatum</strong></td></tr>
 
             ';
@@ -75,18 +78,22 @@ if(isset($_SESSION['gebruikersNaam'])) {
             
             $ticketId = $ticket['ticketId'];           
             $td = '</td><td align="left"></a>';
-            $def = FALSE;
+            $uitzondering = FALSE;
             
             $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
                 $oplossingUitkomst = $connectie->query($oplossingQuery);
                 
             while($oplossing = $oplossingUitkomst->fetch_assoc()){
                 if($oplossing['definitief'] === "1"){
-                    $def = TRUE;
+                    $uitzondering = TRUE;
                                         
             }}
             
-            if($def === FALSE){
+            if($ticket['lijnNr'] != $_SESSION['lijnNr']){
+                $uitzondering = TRUE;
+            }
+            
+            if($uitzondering === FALSE){
                 echo '<tr><td align=left><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
                 $ticket['ticketId'] . $td . 
                 $ticket['trefwoorden'] . $td .
