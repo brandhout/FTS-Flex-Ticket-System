@@ -58,7 +58,7 @@
     }  
    
     $accountNr = $_SESSION["accountNr"]; 
-       
+           
     echo '
         <!DOCTYPE html>
         <html>
@@ -75,8 +75,7 @@
             <h3> Doorsturing: </h3>
             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
             <p><strong> Lijn '.$ticket['lijnNr'].' </strong></p>
-            <input type="text" value="Reden doorsturing">     
-
+            <input type="text" name="opmerking" value="Reden doorsturing" maxlength="70" required>     
             ';
 
         if($ticket['lijnNr'] > 1 && $ticket['lijnNr'] <= 3) {
@@ -131,8 +130,8 @@
                     van Lijn <strong>'.$doorstuurLog['vanLijn'].'</strong>
                     naar Lijn <strong>'.$doorstuurLog['naarLijn'].'</strong>
                     door <strong>'.leesAccountAchterNaam($doorstuurLog['accountNr']).'</strong><br>
-                    met <strong>accountnr: '.$doorstuurLog['accountNr'].'
-                    </strong><br><br>';
+                    met <strong>accountnr: '.$doorstuurLog['accountNr'].'</strong> reden: <i>'.$doorstuurLog["opmerking"].'
+                    </i><br><br>';
                 
         }
         
@@ -178,17 +177,17 @@
         
 
         if($_POST['lijnUp'] === "lijnUp" && $ticket['lijnNr'] <= 3 ){
+            $opmerking = $_POST['opmerking'];
             $vanLijn = $ticket['lijnNr'];
             $naarLijn = $vanLijn+1;           
-            updateLijn($vanLijn, $naarLijn, $ticketId, $accountNr);                    
-            header("Location: ../index.php");
+            updateLijn($vanLijn, $naarLijn, $opmerking, $ticketId, $accountNr);                               
         }
         
         if($_POST['lijnDwn'] === "lijnDwn" && $ticket['lijnNr'] >1){
+            $opmerking = $_POST['opmerking'];
             $vanLijn = $ticket['lijnNr'];
             $naarLijn = $vanLijn-1;
-            updateLijn($vanLijn, $naarLijn, $ticketId, $accountNr);
-            header("Location: ../index.php");
+            updateLijn($vanLijn, $naarLijn, $opmerking, $ticketId, $accountNr);
         }
         
         if(isset($_POST['nogBellen'])){
