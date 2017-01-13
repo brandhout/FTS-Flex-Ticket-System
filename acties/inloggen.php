@@ -32,7 +32,7 @@
         $gebruikersNaam = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['gebruikersNaam'])));
         $wachtwoord = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['wachtwoord'])));
    
-        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, magInloggen, accountNr FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
+        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, magInloggen, accountNr, lijnNr FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
         $uitkomst = mysqli_fetch_array($query);
         $teller = mysqli_num_rows($query);
 
@@ -43,6 +43,7 @@
             $_SESSION["gebruikersNaam"] = $uitkomst['gebruikersNaam'];
             $_SESSION["accountNr"] = $uitkomst['accountNr'];
             $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
+            $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
             header('Location: ../index.php'); 
             
         } else {
