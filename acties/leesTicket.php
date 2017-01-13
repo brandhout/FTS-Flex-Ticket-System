@@ -218,9 +218,9 @@
             
                 if($oplossingen['definitief'] === "1"){
                     echo 'Deze oplossing is <strong>definitief</strong>,
-                     de ticket is afgesloten<br>';                 
+                     de ticket is afgesloten<br><br>';                 
                 } else {
-                    echo 'Deze oplossing is <strong>niet</strong> definitief.<br>';
+                    echo 'Deze oplossing is <strong>niet</strong> definitief.<br><br>';
                     if($_SESSION['accountNr'] === $ticket['fstAccountNr']){
                         echo '
                             <p>
