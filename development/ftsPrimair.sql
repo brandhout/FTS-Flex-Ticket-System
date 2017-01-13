@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 13 jan 2017 om 14:45
+-- Gegenereerd op: 13 jan 2017 om 16:20
 -- Serverversie: 10.1.20-MariaDB
 -- PHP-versie: 5.6.29
 
@@ -79,8 +79,7 @@ CREATE TABLE `binnenkomstType` (
 
 CREATE TABLE `categorie` (
   `categorieId` int(10) NOT NULL,
-  `catOmschrijving` text NOT NULL,
-  `subCategorieId` int(10) NOT NULL
+  `catOmschrijving` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -201,7 +200,8 @@ CREATE TABLE `oplossingen` (
 --
 
 INSERT INTO `oplossingen` (`oplossingId`, `definitief`, `oplossOmschrijving`, `datumFix`, `accountNr`, `ticketId`) VALUES
-(1, 0, 'Oplossingstekst', '2017-01-11', 1, 2);
+(1, 0, 'Oplossingstekst', '2017-01-11', 1, 2),
+(2, 0, 'Tweede oplossing', '2017-01-13', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -234,7 +234,8 @@ CREATE TABLE `schoolKlassen` (
 
 CREATE TABLE `subCategorie` (
   `subCategorieId` int(10) NOT NULL,
-  `subCatomschrijving` text NOT NULL
+  `subCatomschrijving` text NOT NULL,
+  `categorieId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -288,7 +289,7 @@ CREATE TABLE `ticket` (
 --
 
 INSERT INTO `ticket` (`ticketId`, `inBehandeling`, `probleem`, `trefwoorden`, `prioriteit`, `aantalXterug`, `terugstuurLock`, `lijnNr`, `datumAanmaak`, `nogBellen`, `log`, `streefdatum`, `redenTeLaat`, `klantTevreden`, `fstAccountNr`, `aangewAccountNr`, `klantId`, `categorieId`, `binnenkomstId`, `vVLaptopTypeId`, `besturingssysteemId`) VALUES
-(1, 1, 'Grafwindows werkt voor geen ene meter', 'kut,windows', 1, 0, 0, 1, '2016-12-31', 0, '0', '2015-06-30', NULL, 0, 1, 0, 1, 0, 0, 0, 0),
+(1, 1, 'Grafwindows werkt voor geen ene meter', 'kut,windows', 1, 0, 0, 1, '2016-12-31', 0, '0', '2015-06-30', 'Te weinig tijd op de afdeling', 0, 1, 0, 1, 0, 0, 0, 0),
 (2, 1, 'Koffieautomaat werkt niet', 'koffie,kutzooi', 1, 0, 0, 1, '2017-01-01', 0, NULL, '2020-06-01', NULL, 0, 2, 0, 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -485,7 +486,7 @@ ALTER TABLE `locatie`
 -- AUTO_INCREMENT voor een tabel `oplossingen`
 --
 ALTER TABLE `oplossingen`
-  MODIFY `oplossingId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `oplossingId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT voor een tabel `schoolKlassen`
 --
