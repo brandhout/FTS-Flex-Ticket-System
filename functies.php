@@ -98,3 +98,18 @@ function checkDefinitief($ticketId){
         }
     }
 }
+
+function datumOmzet($datum){
+    $DateTime = new DateTime($datum);
+    return $DateTime->format('d-m-Y');
+}
+
+function overDatum($eindDatum){
+    $datum = date("Y-m-d");
+    if(strtotime($datum) > strtotime($eindDatum)){
+            return TRUE;
+        } else {
+            return FALSE;          
+        }
+    
+}

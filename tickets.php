@@ -16,7 +16,6 @@
 
 /*
  * TODO:
- * - Streefdatum weergeven
  * - Meer data toevoegen  (aanmaakdatum etc. etc.)
  * - Opmaak
  */
@@ -69,16 +68,17 @@
                     <td align="left"><strong>Lijn</strong></td>
                     <td align="left"><strong>Aannemer</strong></td>
                     <td align="left"><strong>Streefdatum</strong></td>
-                    <td align="left"><strong>Opgelosd</strong></td></tr>
+                    <td align="left"><strong>Status</strong></td></tr>
                     
             ';
         		
         echo "Aantal tickets :".$ticketUitkomst->num_rows. "<br>";
 			
 	while($ticket = $ticketUitkomst->fetch_assoc()){
-            $opgelost = "Nee";            
+            $status = "Open";
+            $opgelost = FALSE;
             $uitzondering = FALSE;
-                                            
+                                           
             $klantId = $ticket['klantId'];
                 $klantQuery ="SELECT klantAchternaam FROM klant WHERE klantId = '$klantId'";
                     $klantUitkomst = $connectie->query($klantQuery);
@@ -95,15 +95,26 @@
             //Nieuw oplossing script
             while($oplossing = $oplossingUitkomst->fetch_assoc()){
                 if($oplossing['definitief'] === "1"){
-                    $opgelost = "Ja";
+                    $status = "Gesloten";
+                    $opgelost = TRUE;
+                } 
+            }
+            
+            if(overDatum($ticket['streefdatum'])){
+                $status = '<p style="color:red">
+                    Te laat,';
+                if (!$opgelost){
+                $status .= '<br>Open</p>';
+                } else {
+                    $status .= '<br>Gesloten</p>';
                 }
             }
             
-            if($opgelost === "Ja" && $alleenOpen === TRUE){
+            if($opgelost === TRUE && $alleenOpen === TRUE){
                 $uitzondering = TRUE;
             }
             
-            if($opgelost === "Nee" && $alleenGesloten === TRUE){
+            if($opgelost === FALSE && $alleenGesloten === TRUE){
                 $uitzondering = TRUE;
             }
                 
@@ -114,15 +125,15 @@
                     $klant['klantAchternaam'] . '</td><td align="left"></a>' .
                     $ticket['lijnNr'] . '</td><td align="left"></a>' .
                     leesAccountAchterNaam($ticket['fstAccountNr']) . '</td><td align="left"></a>' .
-                    $ticket['streefdatum'] . '</td><td align="left"></a>' .
-                    $opgelost . '</td><td align="left"></a>';
+                    datumOmzet($ticket['streefdatum']) . '</td><td align="left"></a>' .
+                    $status . '</td><td align="left"></a>';
                 echo '</tr>';
             }
 	}
    
 	
 	echo "</table>";
-    
+        
  ?>
 
  

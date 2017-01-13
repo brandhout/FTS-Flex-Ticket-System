@@ -18,18 +18,19 @@
       * TODO:
       * - Nieuw commentaar
       * - Nieuwe oplossing
-      * - Oplossing definitief kunnen zetten (mits eerste behandelaar
+      * - Oplossing definitief kunnen zetten (mits eerste behandelaar)
       */
 
     session_start();
     require_once 'headerUp.php'; //Include de header.
     require_once '../functies.php'; //Include de functies.
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+    //ini_set('display_errors', 1);
+    //ini_set('display_startup_errors', 1);
+    //error_reporting(E_ALL);
     $connectie = verbinddatabase();
-    $opgelost = "Nee";
+    $opgelost = FALSE;
     $fstAccount = FALSE;
+    $status = "Open";
     
     if (is_numeric($_GET['ticket'])) {
         $ticketId = $_GET['ticket'];
@@ -54,20 +55,40 @@
         $commentaarUitkomst = $connectie->query($commentaarQuery);
         
     if(checkDefinitief($ticketId)){
-        $opgelost = "Ja";
-    }  
+        $opgelost = TRUE;
+        $status = "Gesloten";
+    }
+    
+    if(overDatum($ticket['streefdatum'])){
+        $overDatum = TRUE;
+        $status = '<p style="color:red">
+                    Te laat,';
+        if (!$opgelost){
+            $status .= 'Open</p>';
+        } else {
+            $status .= 'Gesloten</p>';
+        }
+        if ($ticket['redenTeLaat'] === NULL){
+            $status .= '
+                        <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
+                            <input type="text" name="redenTekst" value="Reden ticket te laat" maxlength="70" required>
+                            <button name="reden" type="redenSubmit" value="lijnDwn">Bevestig</button>';
+        }
+    }
    
     $accountNr = $_SESSION["accountNr"]; 
            
     echo '
         <!DOCTYPE html>
         <html>
+        <head>
+        <title>Ticket Informatie FTS</title>
         <body>
         <h1> Ticketinfo 
          ticketnummer: '. $ticketId . ' </h1><br>
         <h3> Probleem: </h3> '.$ticket['probleem'].'<br>
         <h3> Trefwoorden: </h3> '.$ticket['trefwoorden'].'
-        <h3> Opgelosd: </h3> '.$opgelost.'
+        <h3> Status: </h3> '.$status.'
         <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';  
             
     if($ticket['lijnNr'] === $_SESSION['lijnNr'] or $_SESSION['isAdmin'] === "1"){
@@ -122,8 +143,21 @@
         <h3> Woonplaats: </h3> '.$klant['klantStad'].'
         <h3> Emailadres: </h3> '.$klant['klantEmail'].'<br><br>
         <h2> Logboek: </h2>
-        Ticket is op <strong>'.$ticket['datumAanmaak'].'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong>
-        <h3> Doorsturingen </h3>';
+        Ticket is op <strong>'.$ticket['datumAanmaak'].'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><br><br>';
+        
+        if($overDatum){
+            echo'
+                Sinds <strong>'.$ticket['streefdatum'].'</strong> is deze ticket te laat,';
+            if($ticket['redenTeLaat'] === NULL){
+                echo '
+                    reden nog niet ingevuld<br>';
+            } else {
+                echo '<br>reden: <i> '.$ticket['redenTeLaat'].'</i><br>';
+            }
+        }
+       
+        
+        echo '<h3> Doorsturingen </h3>';
         
         while($doorstuurLog = $doorstuurLogUitkomst->fetch_assoc()){
             echo '- Ticket is op <strong>'.$doorstuurLog['datum'].'</strong> doorgestuurd
@@ -198,47 +232,18 @@
                 updateNogBellen("1",$ticketId);
             }            
             header("Location: ../index.php");
-        }               
+        }
+        
+        if(isset($_POST['redenTekst'])){
+            $ticketId = $ticket['ticketId'];
+            $redenTekst = $_POST['redenTekst'];
+            $teLaatRedenQuery = "UPDATE ticket SET redenTeLaat = '$redenTekst' WHERE ticketId = '$ticketId'";
+            if(!$connectie->query($teLaatRedenQuery)){
+                echo "teLaatReden query mislukt..." . mysqli_error($connectie);
+            }
+            header("Location: ../tickets.php");
+        }
         
         echo '<form name="leesTicket" action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
       
 ?>
-
-<!-- Als je op tickets.php een ticket opent, komt de ticket op deze pagina te staan, met de informatie uit de database.
-Je kan hier ook nieuw commentaar aanmaken, en oplossingen aandragen. Door de eerste behandelaar kan die definitief verklaard
-worden. Er kan dus aan een ticket meerdere stukken commentaar en oplossingen hangen! Mocht de echte ticket aangepast worden
-wordt de gebruiker doorgestuurd naar wijzigTicket.php. Dit alleen als er bijvoorbeeld een fout gemaakt is.-->
-
-                 
-          <h3>Veelvoorkomende laptop:</h3><br> <!-- Disabled, weinig tijd -->
-          Merk
-          <select name="vVLaptopMerk" disabled>
-              <option></option>
-              <option></option>
-          </select><br><br>
-          
-          Type
-          <select name="vVLaptopType" disabled>
-              <option></option>
-              <option></option>
-          </select><br><br>
-          
-          
-          <h3> Potentiele oplossing </h3>
-            <textarea id="oplossing" rows="10" cols="90" ></textarea><br><br>
-            
-            <input type="checkbox" name="definitief" value="definitief">Oplossing is definitief<br><br>
-        
-            <h3> Eerder commentaar </h3>
-            <p><strong> Bert Bartsen commenteerd op (datum):</strong><br>
-                    Mevrouw van der berg heeft waarschijnlijk geen stroom in huis. </p>
-            
-              <p><strong> Jasper Mijnkipema commenteerd op (datum):</strong><br>
-                      Doorsturen naar energie?? </p>
-
-            
-           <h3> Nieuw Commentaar </h3>
-            <textarea id="nieuwComment" rows="10" cols="90"></textarea><br><br>
-             
-          <input type="submit" name="submit" value="submit">Doorvoeren<br>    
-</form></body></html>

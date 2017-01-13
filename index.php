@@ -2,7 +2,6 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 /* 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +27,8 @@ session_start();
 require_once 'functies.php'; //Include de functies.
 require_once 'header.php'; //Include de header.
 $connectie = verbinddatabase();
+
+$datum = new DateTime();
 
 echo '<!DOCTYPE html>
       <html>
@@ -68,7 +69,8 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 <td align="left"><strong>Klantnaam</strong></td>
                 <td align="left"><strong>Lijn</strong></td>
                 <td align="left"><strong>Aannemer</strong></td>
-                <td align="left"><strong>Streefdatum</strong></td></tr>
+                <td align="left"><strong>Streefdatum</strong></td>
+                <td align="left"><strong>Resterende tijd</strong></td></tr>
 
             ';
         // Moet functie gescreven worden voor streefdatum! Met date(), kan niet direct ingelezen worden.
@@ -103,13 +105,30 @@ if(isset($_SESSION['gebruikersNaam'])) {
             }
                             
             if($uitzondering === FALSE){
+                $streefdatum = new DateTime($ticket['streefdatum']);
                 echo '<tr><td align=left><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
                 $ticket['ticketId'] . $td . 
                 $ticket['trefwoorden'] . $td .
                 $klant['klantAchternaam'] . $td .
                 $ticket['lijnNr'] . $td .
                 leesAccountAchterNaam($ticket['fstAccountNr']) . $td .
-                $ticket['streefdatum'] . $td;
+                $streefdatum->format('d-m-Y') . $td;
+                
+                $interval = $datum->diff($streefdatum);
+                if(strpos($interval->format('%R%a dagen'),'-') !== FALSE ){
+                    echo '
+                        <p style="color:red">
+                        '.$interval->format('%R%a dagen').'
+                        </p>   
+                          ';  
+                } else {
+                    echo '
+                        <p style="color:green">
+                        '.$interval->format('%R%a dagen').'
+                        </p>   
+                    ';
+                    }
+
                 echo '</tr>';                                      
             }
         }
