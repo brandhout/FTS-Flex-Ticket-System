@@ -79,7 +79,7 @@
             $status = "Open";
             $opgelost = FALSE;
             $uitzondering = FALSE;
-                                            
+                                           
             $klantId = $ticket['klantId'];
                 $klantQuery ="SELECT klantAchternaam FROM klant WHERE klantId = '$klantId'";
                     $klantUitkomst = $connectie->query($klantQuery);
@@ -98,6 +98,16 @@
                 if($oplossing['definitief'] === "1"){
                     $status = "Gesloten";
                     $opgelost = TRUE;
+                } 
+            }
+            
+            if(overDatum($ticket['streefdatum'])){
+                $status = '<p style="color:red">
+                    Te laat,';
+                if (!$opgelost){
+                $status .= '<br>Open</p>';
+                } else {
+                    $status .= '<br>Gesloten</p>';
                 }
             }
             
@@ -116,7 +126,7 @@
                     $klant['klantAchternaam'] . '</td><td align="left"></a>' .
                     $ticket['lijnNr'] . '</td><td align="left"></a>' .
                     leesAccountAchterNaam($ticket['fstAccountNr']) . '</td><td align="left"></a>' .
-                    $ticket['streefdatum'] . '</td><td align="left"></a>' .
+                    datumOmzet($ticket['streefdatum']) . '</td><td align="left"></a>' .
                     $status . '</td><td align="left"></a>';
                 echo '</tr>';
             }
@@ -124,7 +134,7 @@
    
 	
 	echo "</table>";
-    
+        
  ?>
 
  
