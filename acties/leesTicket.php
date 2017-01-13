@@ -18,7 +18,7 @@
       * TODO:
       * - Nieuw commentaar
       * - Nieuwe oplossing
-      * - Oplossing definitief kunnen zetten (mits eerste behandelaar
+      * - Oplossing definitief kunnen zetten (mits eerste behandelaar)
       */
 
     session_start();
