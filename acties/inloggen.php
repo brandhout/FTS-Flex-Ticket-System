@@ -107,25 +107,39 @@
       }
       
      img.logo2 {
-          display: inline-block;
-            margin-top: 10px;
-            margin-bottom:10px;
-            margin-left:625px;
+  display: inline-block;
+
+
         }
      img.roc1 {
           display: inline-block;
-            margin-top: 10px;
-            margin-bottom:10px;
-            margin-left:20px;
-            
-                                 width:250px;
+          width:250px;
           height:125px;
+            width: 250px;
+  height: 125px;
+  position: absolute;
+  top: 0;
+  left: 0;
         }
  
         header{
-            background-color: rgba(255,0,0,0.7);
+  background-color: rgba(255, 0, 0, 0.6);
+  position: relative;
+  text-align: center;
+  height: 128px;
 
-        }     
+        }
+        footer{
+            background-color: rgba(255,0,0,0.6);
+            text-align:right;
+              position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  color:#fff;
+      
+        }
   </style>
     </head>
     <header>
@@ -150,5 +164,8 @@
         </div>
         
     </body>
+    <footer>
+        <p>this website was made with: html/php/css/bootstrap/ajax/mysqli/javascript made by: Naomi M, Rick H, Robby M. </p>
+    </footer>
 </html>
 

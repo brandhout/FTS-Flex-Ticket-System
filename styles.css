@@ -331,10 +331,25 @@
 
 /*main site ----------------------------------------------------------------------------------------------------*/
 
+            header{
+  background-color: rgba(179,18,23,1);
+
+        }
+footer{
+            background-color: rgba(255,0,0,1);
+            text-align:right;
+              position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  color:#fff;
+      
+        }
 
 
 body {
-    background: #e6f9ff;
+    background: #fff;
     width: 100%;
    
 }
