@@ -153,7 +153,7 @@
             <img src="../styles/login.png"><br><br>
            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                <div class="inlog"><i class="fa fa-user" aria-hidden="true">
-                    <input type="text" name="gebruikersNaam" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
+                    <input type="text" name="gebruikersNaam" autocomplete="off" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
                     </i></div>
                <div class="inlog"><i class="fa fa-lock" aria-hidden="true">
                     <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
