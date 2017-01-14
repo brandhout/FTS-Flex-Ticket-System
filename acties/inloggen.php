@@ -107,16 +107,29 @@
       }
       
      img.logo2 {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+          display: inline-block;
+            margin-top: 10px;
+            margin-bottom:10px;
+            margin-left:625px;
+        }
+     img.roc1 {
+          display: inline-block;
+            margin-top: 10px;
+            margin-bottom:10px;
+            margin-left:20px;
+            
+                                 width:250px;
+          height:125px;
         }
  
-      
+        header{
+            background-color: rgba(255,0,0,0.7);
+
+        }     
   </style>
     </head>
     <header>
-        <img src="../fts.PNG" class="logo2">
+        <img src="../styles/roc.png" class="roc1"><img src="../fts.PNG" class="logo2">
     </header>
     
     <body>
@@ -133,6 +146,7 @@
                     </i></div>
                 <input type="submit" value="inloggen"name="submit"class="btn-login">                  
             </form>
+            
         </div>
         
     </body>
