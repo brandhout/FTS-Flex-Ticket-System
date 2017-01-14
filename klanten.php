@@ -50,7 +50,7 @@ while($klant = $klantenUitkomst->fetch_assoc()){
     echo '
         <form action="acties/wijzigKlant.php">
             <button name="klantActie" type="submit" value="Wijzig'. $klant['klantId'] .'">Wijzigen</button>
-            <button name="klantActie" type="submit" value="Verwijder'. $klant['klantId'] .'">Verwijderen</button>
+            <button name="klantActie" type="submit" value="Verwijder'. $klant['klantId'] .'" disabled>Verwijderen</button>
         </form><tr>';
 }
 

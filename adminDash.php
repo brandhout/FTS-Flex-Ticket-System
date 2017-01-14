@@ -14,7 +14,7 @@
         <nav class= "" style="width:100%">
             <a href="admin/accounts.php">Bestaande accounts</a><br><br>
             <a href="admin/nieuwAccount.php">Nieuwe accounts</a><br><br>
-            <a href="admin/invoerAparaten.php">Apparaten invoer</a><br><br>
+            <a href="admin/invoerApparaten.php">Apparaten invoer</a><br><br>
             
         </nav>
 
