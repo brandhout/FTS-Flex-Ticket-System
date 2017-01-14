@@ -55,12 +55,65 @@
     <head>
         <meta charset="UTF-8">
         <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'>
-        <link rel="stylesheet" href="../styles.css" type="text/css"> <!-- Tijdelijke oplossing voor het includen van de style in hogere mappen -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         
             <!--bootstrap--> 
   <link rel="stylesheet" type="text/css" href="../styles/css/bootstrap.css">
   <script src="../styles/js/bootstrap.min.js"></script>
+  
+  <style>
+      body{
+          margin: 0 auto;
+          background-image: url("../styles/inlogroc.jpg");
+          background-repeat: no-repeat;
+          background-size: 100%;
+          
+      }
+      
+      .container{
+          width:400px;
+          height:200px;
+          text-align: center;
+          background-color: rgba(255,250,250,0.7);
+          border-radius:4px;
+          margin:0px auto;
+          margin-top:150px;
+      }
+      
+      .container img{
+          width:102px;
+          height:120px;
+          margin-top:-90px;
+          display: inline-block;
+      }
+      
+      inlog[type="text"],inlog[type="password"]{
+          width:300px;
+          height:45px;
+          font-size:18px;
+          margin-bottom:30px;
+          background-color: #fff;
+          padding-left:30px;
+          
+      }
+      .btn-login{
+          margin-top:5px;
+          padding:10px 20px;
+          color: #fff;
+          border:none;
+          border-radius: 4px;
+          background-color:#2ECC71;
+          
+      }
+      
+     img.logo2 {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+ 
+      
+  </style>
     </head>
     <header>
         <img src="../fts.PNG" class="logo2">
@@ -69,11 +122,16 @@
     <body>
         <br><br><br>    
         
-        <div class="inlogalgemeen1">
+        <div class="container">
+            <img src="../styles/login.png"><br><br>
            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                <input id="inlog1" type="text" name="gebruikersNaam" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
-                <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
-                <input type="submit" value="Submit">                  
+               <div class="inlog"><i class="fa fa-user" aria-hidden="true">
+                    <input type="text" name="gebruikersNaam" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
+                    </i></div>
+               <div class="inlog"><i class="fa fa-lock" aria-hidden="true">
+                    <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
+                    </i></div>
+                <input type="submit" value="inloggen"name="submit"class="btn-login">                  
             </form>
         </div>
         

@@ -386,6 +386,7 @@ select{
 
  inloggen ------------------------------------
 */
+/* 
 #inlog1 {
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -414,12 +415,8 @@ div.inlogalgemeen1 {
     text-align:center;
     
 }
+*/
 
-img.logo2 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .result{
     
