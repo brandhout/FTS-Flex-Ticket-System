@@ -57,6 +57,10 @@
         <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'>
         <link rel="stylesheet" href="../styles.css" type="text/css"> <!-- Tijdelijke oplossing voor het includen van de style in hogere mappen -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        
+            <!--bootstrap--> 
+  <link rel="stylesheet" type="text/css" href="../styles/css/bootstrap.css">
+  <script src="../styles/js/bootstrap.min.js"></script>
     </head>
     <header>
         <img src="../fts.PNG" class="logo2">

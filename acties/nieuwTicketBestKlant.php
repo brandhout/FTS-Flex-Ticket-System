@@ -1,5 +1,5 @@
 <?php
-
+require_once 'AJAX/zoekKlant.php';
 require_once 'headerUp.php'; //Include de header.
 require_once '../functies.php'; //Include de functies.
 ini_set('display_erors', 1);
@@ -7,8 +7,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $connectie = verbinddatabase(); // connectie database
-
-$output = ''; //laat bestaande klant zien
 
 $ftsAccountNr = $_SESSION["accountNr"]; //sessie gebruiker
 //ticket id
