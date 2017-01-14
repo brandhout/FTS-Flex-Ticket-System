@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once 'headerUp.php'; //Include de header.
 require_once '../functies.php'; //Include de functies.
 ini_set('display_erors', 1);
@@ -8,9 +8,7 @@ error_reporting(E_ALL);
 
 $connectie = verbinddatabase(); // connectie database
 
-$output = ''; //laat bestaande klant zien
-
-$fstAccountNr = $_SESSION['gebruikersNaam']; //sessie gebruiker
+$ftsAccountNr = $_SESSION["accountNr"]; //sessie gebruiker
 //naw
 $naam = $_POST["klantNaam"];
 $achternaam = $_POST["klantAchternaam"];
@@ -19,31 +17,33 @@ $adres = $_POST["klantAdres"];
 $postcode = $_POST["klantPostc"];
 $stad = $_POST["klantStad"];
 $email = $_POST["klantEmail"];
-$locatie = $_POST["locatie"];
-$vestiging = $_POST["vestiging"];
+$instantie = $_POST["instantie"];
+$bedrijf = $_POST["bedrijf"];
 
 //ticket
-$btype = $_POST["binnenkomstType"];
 $trefwoorden = $_POST["trefwoorden"];
 $prioriteit = $_POST["prioriteit"];
 $nogbellen = $_POST["NogBellen"];
 $categorie = $_POST["categorie"];
+
 $streefdatum = $_POST["datepicker"];
+$sdate = date('Y-m-d', strtotime(str_replace('-', '/', $streefdatum)));
+
 $commentaar = $_POST["nieuwComment"];
 $probleem = $_POST["probleem"];
 $oplossing = $_POST["oplossing"];
-$merklaptop = NULL;
-$merktype = NULL;
-$scategorie = NULL;
-$besturingsysteem = NULL;
+$merklaptop = $_POST["vVLaptopMerk"];
+$merktype = $_POST["vVLaptopType"];
+$scategorie = $_POST["subCategorie"];
+$besturingsysteem = $_POST["besturingssysteem"];
+$binnenkomstT = $_POST["binnenkomstType"];
+$check = (isset($_POST['nogBellen'])) ? 1 : 0;
 
-
-//bullshit denk ik
+//overig
 $aantalXterug = NULL;
-$terugstuurLock = FALSE;
+$terugstuurLock = NULL;
 $lijnNr = 1;
 $datumAanmaak = mysqldatum();
-$log = NULL;
 $verlopen = FALSE;
 $klantTevreden = NULL;
 $factuurNr = NULL;
@@ -51,22 +51,29 @@ $typeCommentaar = NULL;
 $aangewAccountNr = NULL;
 $redentelaat = NULL;
 $inbehandeling = 1;
+$tcom=NULL;
+$def=NULL;
+
+
 
 
 if (isset($_POST['submit1'])) {
+
+
 // nieuwe klant	
     $insertklant = $connectie->prepare("INSERT INTO klant (klantId, klantAchternaam, klantNaam, klantTel,
-    klantAdres, klantPostc, klantStad, klantEmail, instantieId, locatieId)
+    klantAdres, klantPostc, klantStad, klantEmail, instantieId, bedrijfsId)
     VALUES ('',?,?,?,?,?,?,?,?,?)");
     if ($insertklant) {
-        $insertklant->bind_param('sssssssii', $achternaam, $naam, $tel, $adres, $postcode, $stad, $email, $locatie, $vestiging);
+        $insertklant->bind_param('sssssssii', $achternaam, $naam, $tel, $adres, $postcode, $stad, $email, $instantie, $bedrijf);
         if ($insertklant->execute()) {
             echo ' klant gemaakt!';
         }
     }
     
+//ticket maken    
 // ophalen klant ID
-    $ophaalKlantQuery = "SELECT * FROM klant WHERE klantNaam='$naam'";
+$ophaalKlantQuery = "SELECT * FROM klant WHERE klantNaam='$naam'";
     $result = $connectie->query($ophaalKlantQuery);
     if (mysqli_num_rows($result) == 0) {
         echo "klant niet gevonden";
@@ -75,30 +82,62 @@ if (isset($_POST['submit1'])) {
         if ($row['klantNaam'] === $naam) {
             echo $row['klantNaam'];
             $klantID = $row['klantId'];
-
-
-
-
-
-
-            $insertticket = $connectie->prepare("INSERT INTO ticket (ticketId, inBehandeling, probleem, trefwoorden, prioriteit, aantalXterug,
-                        terugstuurLock, lijnNr, datumAanmaak, nogBellen, log, streefdatum, redenTeLaat, klantTevreden, ftsAccountNr, aangewAccountNr, klantId, categorieId, 
-                        binnenkomstId, vVLaptopTypeId, besturingssysteemId)
-                        VALUES ('','$inbehandeling',?,?,?, '$aantalXterug','$terugstuurLock',?,'$datumAanmaak',?,'$log',?,'$redentelaat','$klanttevreden','$fstAccountNr',
-                        '$aangewAccountNr','$klantID','$cID','$bID','$vID','$bID')");
-            if ($insertticket) {
-                $insertticket->bind_param('ssiiis', $probleem, $trefwoorden, $prioriteit, $lijnNr, $nogbellen, $streefdatum);
-                if ($insertticket->execute()) {
-                    echo 'ticket aangemaakt';
-                    header("Refresh:5; url=../index.php", true, 303);
-                }
-            }
         }
     }
+$insertticket = $connectie->prepare("INSERT INTO ticket (ticketId, inBehandeling, probleem, trefwoorden, prioriteit, aantalXterug,
+                        terugstuurLock, lijnNr, datumAanmaak, nogBellen, instantieId, streefdatum, redenTeLaat, klantTevreden, fstAccountNr, aangewAccountNr, klantId, subCategorieId, 
+                        binnenkomstId, vVLaptopTypeId, besturingssysteemId)
+                        VALUES ('','$inbehandeling',?,?,?, '$aantalXterug','$terugstuurLock','$lijnNr','$datumAanmaak','$check','$instantie',?,'$redentelaat','$klanttevreden','$ftsAccountNr',
+                        '$aangewAccountNr','$klantID',?,?,?,?)");
+            if ($insertticket) {
+                $insertticket->bind_param('ssisiiii', $probleem, $trefwoorden, $prioriteit, $sdate, $scategorie, $binnenkomstT, $merktype, $besturingsysteem);
+                if ($insertticket->execute()) {
+                    echo 'ticket aangemaakt';
+                    //header("Refresh:5; url=../index.php", true, 303);
+                }else {echo "Error : " . mysqli_error($connectie);}
+            }else {echo "Error : " . mysqli_error($connectie);}
 
-    $insertTicket = $connectie->prepare("INSERT INTO ticket (");
+//ophalen tickedID
+$ophaalticket = "SELECT * FROM ticket WHERE klantId='$klantID'";
+    $resultticket = $connectie->query($ophaalticket);
+    if (mysqli_num_rows($resultticket) == 0) {
+        echo "ticketid niet gevonden";
+    }
+    while ($rowt = $resultticket->fetch_assoc()) {
+        if ($rowt['klantId'] === $klantID) {
+            echo 'ticketID:' . $rowt['ticketId'];
+            $ticketID = $rowt['ticketId'];
+           
 
+
+        }
+    }
+    $insertcomment= $connectie->prepare("INSERT INTO commentaar(commentaarID, commOmschrijving, typeCommentaar, datum, accountNr, ticketId)
+            VALUES ('',?,'$tcom','$datumAanmaak','$ftsAccountNr','$ticketID'  )");
+            if ($insertcomment){
+                $insertcomment->bind_param('s',$commentaar);
+                if ($insertcomment->execute()){
+                    echo 'alles is gelukt';
+                    //header("Refresh:5; url=../index.php", true, 303);
+                }else {echo "Error : " . mysqli_error($connectie);}
+            }else {echo "Error : " . mysqli_error($connectie);} 
+            
+            
+if (!empty($oplossing)) {
+
+$insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, definitief, oplossOmschrijving, datumFix, accountNr, ticketId)
+        VALUES ('','$def', ?,'$datumAanmaak','$ftsAccountNr','$ticketID')");
+        if($insertoplossing){
+            $insertoplossing->bind_param('s', $oplossing);
+            if ($insertoplossing->execute()){
+                echo '!';
+            }else{echo "Error : " . mysqli_error($connectie);}
+        }else{echo "Error : " . mysqli_error($connectie);}
+} 
+//header("Refresh:5; url=../index.php", true, 303);  
 }
+           
+
 ?>
 <html>
     <h1> Nieuw ticket </h1>
@@ -114,35 +153,42 @@ if (isset($_POST['submit1'])) {
             <label class="hidden01">telefoonnummer:</label><input type="text" name="klantTel" class="hidden"/><br>
             <label class="hidden01">email:</label><input type="text" name="klantEmail" class="hidden"/><br>
             
-            <label class="hidden02">locatie:</label>
-                        <select name="locatie" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
+            <label class="hidden02">instantie</label>
+                        <select name="instantie" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
             <option value = "">---Select---</option>
 <?php
-$ophaall = "SELECT * FROM locatie ";
-$resultl = mysqli_query($connectie, $ophaall);
-while ($l = mysqli_fetch_assoc($resultl)) {
-    echo "<option value='" . $l['locatieId'] . "'>" . $l['locatieId'] . " " . $l['locOmschrijving'] . "</option>";
+$ophaali = "SELECT * FROM instantie ";
+$resulti = mysqli_query($connectie, $ophaali);
+while ($l = mysqli_fetch_assoc($resulti)) {
+    echo "<option value='" . $l['instantieId'] . "'>" . $l['instantieNaam'] . "</option>";
 }
 ?> 
                         </select><br>
-            <label class="hidden02">vestiging:</label>
-                        <select name="vestiging" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
+            <label class="hidden02">bedrijf:</label>
+                        <select name="bedrijf" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
             <option value = "">---Select---</option>
 <?php
-$ophaalv = "SELECT * FROM vestigingen ";
+$ophaalv = "SELECT * FROM bedrijf ";
 $resultv = mysqli_query($connectie, $ophaalv);
 while ($v = mysqli_fetch_assoc($resultv)) {
-    echo "<option value='" . $v['vestigingId'] . "'>" . $v['vestigingId'] . " " . $v['vesOmschrijving'] . "</option>";
+    echo "<option value='" . $v['bedrijfsId'] . "'> " . $v['naam'] . "</option>";
 }
 ?> 
                         </select><br>
 
-            <label class="hidden01">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" value="nogBellen" class="hidden"/><br>
+            <label class="hidden01">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" class="hidden"/><br>
 
             <label class="hidden01">binnengekomen via:</label>
             <select name="binnenkomstType" class="hidden"> <!-- Moet nog gescript worden! Data moet uit database komen -->
-                <option>Telefoon</option>
-                <option>E-mail</option>
+            <option value = "">---Select---</option>
+<?php
+$ophaalb = "SELECT * FROM binnenkomstType ";
+$resultb = mysqli_query($connectie, $ophaalb);
+while ($bt = mysqli_fetch_assoc($resultb)) {
+    echo "<option value='" . $bt['binnenkomstId '] . "'>" . $bt['binnenkomstTypeOm'] . "</option>";
+}
+?> 
+                
             </select><br>
 
             <label class="hidden01">trefwoorden (aan elkaar, door komma gescheiden)</label><input id="text1" type="text" name="trefwoorden" class="hidden"/></p>
@@ -210,14 +256,23 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
         </select><br>
 
         <label class="hidden01">probleem(korte omschrijving:)</label><br>
-        <textarea id="probleem" class="hidden"></textarea><br>
+        <textarea name="probleem" class="hidden"></textarea><br>
         <label class="hidden01">commentaar:</label><br>
-        <textarea id="nieuwComment" class="hidden"></textarea><br>
+        <textarea name="nieuwComment" class="hidden"></textarea><br>
         <label class="hidden01">potentieele oplossing:</label><br>
-        <textarea id="oplossing" class="hidden"></textarea><br>
+        <textarea name="oplossing" class="hidden"></textarea><br>
+        
+                    <label class="hidden02">priorteit:</label>
+                        <select name="prioriteit" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
+            <option value = "">---Select---</option>
+            <option value = "1">laag</option>
+            <option value = "2">middel</option>
+            <option value = "3">hoog</option>
+
+                        </select><br>
         <!--datepicker-->
         <label class="hidden01">streefdatum:</label>
-        <input type="date" id="datepicker" class="hidden"/></p>       
+        <input type="date" name="datepicker" id="datepicker" class="hidden"/></p>       
     <input type="submit" name="submit1" value="invoeren" class="hidden" />
 </form>
 
