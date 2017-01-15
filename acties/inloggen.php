@@ -182,7 +182,7 @@ border:none;
             $_SESSION["accountNr"] = $uitkomst['accountNr'];
             $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
             $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
-            header("refresh:5;url= ../index.php");
+            header("refresh:3;url= ../index.php");
             echo ' <div class="gekkeshit"></div>
             <br><p>Welkom bij FTS!<br>systeem wordt opgestart.<br>Thema wordt opgehaald!<p>'
             ;
