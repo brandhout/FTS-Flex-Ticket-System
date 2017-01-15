@@ -60,9 +60,15 @@
                 $account['lijnNr'] . $td ;            
             echo '
                 <form action="wijzigAccount.php">
-                    <button name="accountActie" type="submit" value="Wijzig'. $account['accountNr'] .'">Wijzigen</button>
-                    <button name="accountActie" type="submit" value="Verwijder'. $account['accountNr'] .'">Verwijderen</button>
-                <tr>';
+                    <button name="accountActie" type="submit" value="Wijzig'. $account['accountNr'] .'">Wijzigen</button>' . 
+                    //<button name="accountActie" type="submit" value="Verwijder'. $account['accountNr'] .'">Verwijderen</button>
+                '</form>';
+            
+            echo '<td>    
+                <form action="verwijderAccount.php">
+                    <button name="verwijderActie" type="submit" value="Verwijder'. $account['accountNr'] .'">Verwijderen</button>' .
+                '<tr>
+                </form>';
         }
     }       
 ?>
