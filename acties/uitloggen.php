@@ -3,7 +3,7 @@
     
     <body>
         <header>
-          <img class="logo2" src="../fts.PNG">
+          <img class="logo2" src="../fts.png">
         </header>
 
     </body>

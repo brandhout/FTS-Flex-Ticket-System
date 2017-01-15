@@ -27,29 +27,7 @@
     $connectie = verbinddatabase();
      
 
-    if(isset($_POST['gebruikersNaam']) && isset($_POST['wachtwoord'])){
-        //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
-        $gebruikersNaam = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['gebruikersNaam'])));
-        $wachtwoord = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['wachtwoord'])));
-   
-        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, magInloggen, accountNr, lijnNr FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
-        $uitkomst = mysqli_fetch_array($query);
-        $teller = mysqli_num_rows($query);
 
-        if ($teller == 1 && $uitkomst['wachtwoord'] == $wachtwoord && $uitkomst['magInloggen'] == 1){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
-
-            // Inloggen succes, hier moet een sessie aangemaakt worden
-            session_start();
-            $_SESSION["gebruikersNaam"] = $uitkomst['gebruikersNaam'];
-            $_SESSION["accountNr"] = $uitkomst['accountNr'];
-            $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
-            $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
-            header('Location: ../index.php'); 
-            
-        } else {
-            echo "foute gegevens!";
-            return FALSE;
-        }}
 ?>
 <html>    
     <head>
@@ -72,7 +50,7 @@
       
       .container{
           width:400px;
-          height:200px;
+          height:300px;
           text-align: center;
           background-color: rgba(255,250,250,0.7);
           border-radius:4px;
@@ -81,7 +59,7 @@
       }
       
       .container img{
-          width:102px;
+          width:120px;
           height:120px;
           margin-top:-90px;
           display: inline-block;
@@ -96,18 +74,28 @@
           padding-left:30px;
           
       }
+
       .btn-login{
-          margin-top:5px;
+
+  background-color: #c06014;
+            margin-top:5px;
           padding:10px 20px;
           color: #fff;
           border:none;
-          border-radius: 4px;
-          background-color:#2ECC71;
-          
-      }
+          border-radius: 2px;
+}
+.btn-login:hover {
+
+  background-color: #1a2930;
+          color: #fff;
+border:none;
+          border-radius: 2px;
+
+}
       
      img.logo2 {
   display: inline-block;
+            height:125px;
 
 
         }
@@ -140,17 +128,32 @@
   color:#fff;
       
         }
+         .gekkeshit {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #c06014; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+  display: inline-block;
+
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
   </style>
     </head>
     <header>
-        <img src="../styles/roc.png" class="roc1"><img src="../fts.PNG" class="logo2">
+        <img src="../styles/roc.png" class="roc1"><img src="../fts.png" class="logo2">
     </header>
     
     <body>
         <br><br><br>    
         
         <div class="container">
-            <img src="../styles/login.png"><br><br>
+            <img src="../PNG.png"><br><br>
            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                <div class="inlog"><i class="fa fa-user" aria-hidden="true">
                     <input type="text" name="gebruikersNaam" autocomplete="off" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
@@ -160,6 +163,36 @@
                     </i></div>
                 <input type="submit" value="inloggen"name="submit"class="btn-login">                  
             </form>
+            <?php
+            
+     if(isset($_POST['gebruikersNaam']) && isset($_POST['wachtwoord'])){
+        //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
+        $gebruikersNaam = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['gebruikersNaam'])));
+        $wachtwoord = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['wachtwoord'])));
+   
+        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, magInloggen, accountNr, lijnNr FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
+        $uitkomst = mysqli_fetch_array($query);
+        $teller = mysqli_num_rows($query);
+
+        if ($teller == 1 && $uitkomst['wachtwoord'] == $wachtwoord && $uitkomst['magInloggen'] == 1){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
+
+            // Inloggen succes, hier moet een sessie aangemaakt worden
+            session_start();
+            $_SESSION["gebruikersNaam"] = $uitkomst['gebruikersNaam'];
+            $_SESSION["accountNr"] = $uitkomst['accountNr'];
+            $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
+            $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
+            header("refresh:3;url= ../index.php");
+            echo ' <div class="gekkeshit"></div>
+            <br><p>Welkom bij FTS!<br>systeem wordt opgestart.<br>Thema wordt opgehaald!<p>'
+            ;
+            
+        } else {
+            echo "foute gegevens!";
+            return FALSE;
+        }}           
+            
+            ?>
             
         </div>
         
