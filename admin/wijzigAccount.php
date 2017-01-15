@@ -16,7 +16,7 @@
             if(strpos($_GET['accountActie'],'Wijzig') !== FALSE){
                 $wijzigen = TRUE;
             }
-            if(strpos($_GET['accountActie'],'Verwijder') !== FALSE){
+           if(strpos($_GET['accountActie'],'Verwijder') !== FALSE){
                 $verwijderen = TRUE;
             }
             $accountNr = filter_var($_GET['accountActie'], FILTER_SANITIZE_NUMBER_INT);
@@ -26,7 +26,7 @@
         $wAccountUitkomst = $connectie->query($wAccountQuery);
         if( $wAccountUitkomst ){
             while($account = $wAccountUitkomst->fetch_assoc()){
-
+                echo '<h2><strong>Wijzig accounts</strong></h2>';
                 echo '<form name="wijzigaccount" action="';
                 echo htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST"';
                 //echo 'wijzigAccount.php' . '" method="POST"';
@@ -92,22 +92,8 @@
                     header("Refresh:5; url=accounts.php", true, 303);
                 }
            }
-        //echo 'er is gepost.';
-        //echo $_POST['accountNr'];
+        
     }
-    //}
-    /*echo '<tr><td align=left">' .
-                $account['accountNr'] . $td .
-                $account['gebruikersNaam'] . $td .
-                $account['naam'] . $td .
-                $account['achterNaam'] . $td .
-                $schoolKlas['schoolKlasCode'] . $td .
-                $isAdmin . $td .
-                $account['actief'] . $td .
-                $account['magInloggen'] . $td .
-                $account['lijnNr'] . $td;
-                echo '<tr>';
-    }   */ 
     
     
 ?>
