@@ -32,8 +32,13 @@ $sdate = date('Y-m-d', strtotime(str_replace('-', '/', $streefdatum)));
 $commentaar = $_POST["nieuwComment"];
 $probleem = $_POST["probleem"];
 $oplossing = $_POST["oplossing"];
-$merklaptop = $_POST["vVLaptopMerk"];
-$merktype = $_POST["vVLaptopType"];
+if(isset($_POST['laptopType'])){
+    $merktype = leesLaptopTypeId($_POST['laptopType']);
+    $merklaptop = leesLaptopMerkId($merktype);
+} else {
+    $merktype = 0;
+    $merklaptop = 0;
+}
 $scategorie = $_POST["subCategorie"];
 $besturingsysteem = $_POST["besturingssysteem"];
 $binnenkomstT = $_POST["binnenkomstType"];
@@ -141,6 +146,14 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
 ?>
 <html>
     <h1> Nieuw ticket </h1>
+    <script>
+            function laptop(){
+                var zoektxt = $("input[name='laptopType']").val();
+                $.post("AJAX/getLaptopMerkId.php", {zoekval: zoektxt}, function(laptop){
+                $("#laptop").text(laptop);
+                });                 
+            }
+    </script>
     <body>
 
         <form name="nieuwTicket" action="nieuwTicketNieuwKlant.php" method="POST">
@@ -215,33 +228,9 @@ while ($s = mysqli_fetch_assoc($resultscat)) {
 }
 ?>
         </select><br>
-        <label class="hidden01">merk:</label>
-        <select name="vVLaptopMerk" class="hidden">
-            <option value = "">---Select---</option>
-<?php
-$ophaalmerk = "SELECT * FROM veelVoorkomendelaptopMerken ";
-$resultmerk = mysqli_query($connectie, $ophaalmerk);
-while ($rm = mysqli_fetch_assoc($resultmerk)) {
-    echo "<option value='" . $rm['vVLaptopMerkId'] . "'>" . $rm['vVLaptopMerkId'] . " " . $rm['vVLaptopMerkOm'] . "</option>";
-}
-?>                         
-
-
-        </select><br>
-        <label class="hidden01">type:</label>
-        <select name="vVLaptopType" class="hidden">
-            <option value = "">---Select---</option>
-
-                            <?php
-    $ophaaltype = "SELECT * FROM veelVoorkomendeLaptopTypes ";
-    $resulttype = mysqli_query($connectie, $ophaaltype);
-while ( $rt=mysqli_fetch_assoc($resulttype)) {
-  echo "<option value='".$rt['vVLaptopTypeId']."'>".$rt['vVLaptopTypeId']." ".$rt['vVLaptopTypeOm']."</option>";
-}
-    ?>
-
-
-        </select><br>
+        <label class="hidden01">Zoek laptoptype:</label>
+            <input name='laptopType' type="text" placeholder="Voer laptoptype in"  onblur="laptop();" class='hidden2'/><br>
+            <label class="hidden02">Laptop: </label><textfield type="text" id="laptop" name="laptop" class="hidden2"/></textfield><br>
         <label class="hidden01">besturingsysteem:</label>
         <select name="besturingssysteem" class="hidden">
             <option value = "">---Select---</option>
@@ -259,10 +248,10 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
         <textarea name="probleem" class="hidden"></textarea><br>
         <label class="hidden01">commentaar:</label><br>
         <textarea name="nieuwComment" class="hidden"></textarea><br>
-        <label class="hidden01">potentieele oplossing:</label><br>
+        <label class="hidden01">potentiele oplossing:</label><br>
         <textarea name="oplossing" class="hidden"></textarea><br>
         
-                    <label class="hidden02">priorteit:</label>
+                    <label class="hidden02">prioriteit:</label>
                         <select name="prioriteit" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
             <option value = "">---Select---</option>
             <option value = "1">laag</option>
