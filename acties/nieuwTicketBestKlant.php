@@ -200,7 +200,7 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
         <label class="hidden01">potentieele oplossing:</label><br>
         <textarea name="oplossing" class="hidden"></textarea><br>
         
-                    <label class="hidden02">priorteit:</label>
+                    <label class="hidden02">prioriteit:</label>
                         <select name="prioriteit" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
             <option value = "">---Select---</option>
             <option value = "1">laag</option>
