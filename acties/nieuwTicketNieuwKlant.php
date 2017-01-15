@@ -34,11 +34,10 @@ $probleem = $_POST["probleem"];
 $oplossing = $_POST["oplossing"];
 if(isset($_POST['laptopType'])){
     $merktype = leesLaptopTypeId($_POST['laptopType']);
-    $merklaptop = leesLaptopMerkId($merktype);
 } else {
-    $merktype = 0;
     $merklaptop = 0;
 }
+
 $scategorie = $_POST["subCategorie"];
 $besturingsysteem = $_POST["besturingssysteem"];
 $binnenkomstT = $_POST["binnenkomstType"];
