@@ -59,7 +59,7 @@
       }
       
       .container img{
-          width:102px;
+          width:120px;
           height:120px;
           margin-top:-90px;
           display: inline-block;
@@ -95,6 +95,7 @@ border:none;
       
      img.logo2 {
   display: inline-block;
+            height:125px;
 
 
         }
@@ -145,14 +146,14 @@ border:none;
   </style>
     </head>
     <header>
-        <img src="../styles/roc.png" class="roc1"><img src="../fts.PNG" class="logo2">
+        <img src="../styles/roc.png" class="roc1"><img src="../fts.png" class="logo2">
     </header>
     
     <body>
         <br><br><br>    
         
         <div class="container">
-            <img src="../styles/login.png"><br><br>
+            <img src="../PNG.png"><br><br>
            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                <div class="inlog"><i class="fa fa-user" aria-hidden="true">
                     <input type="text" name="gebruikersNaam" autocomplete="off" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>

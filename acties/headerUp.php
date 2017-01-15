@@ -23,7 +23,7 @@
 </head>
 <body>
 <header>
-  <img class="logo" src="../fts.PNG">
+  <img class="logo" src="../fts.png">
 </header>
 <div id="cssmenu" class="align-right">
   <ul>
