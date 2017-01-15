@@ -127,7 +127,7 @@ border:none;
   color:#fff;
       
         }
-         .loader {
+         .gekkeshit {
     border: 8px solid #f3f3f3; /* Light grey */
     border-top: 8px solid #c06014; /* Blue */
     border-radius: 50%;
@@ -182,7 +182,7 @@ border:none;
             $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
             $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
             header("refresh:5;url= ../index.php");
-            echo ' <div class="loader"></div>
+            echo ' <div class="gekkeshit"></div>
             <br><p>Welkom bij FTS!<br>systeem wordt opgestart.<br>Thema wordt opgehaald!<p>'
             ;
             
