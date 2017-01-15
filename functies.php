@@ -113,3 +113,14 @@ function overDatum($eindDatum){
         }
     
 }
+
+function leesLaptopTypeId($typeOm){
+    $connectie = verbinddatabase();
+    
+    $typeQuery = "SELECT vVLaptopTypeId FROM veelVoorkomendeLaptopTypes WHERE vVLaptopTypeOm = '$typeOm'";
+    $typeUitkomst = $connectie->query($typeQuery);
+    $type = $typeUitkomst->fetch_assoc();
+    
+    return $type['vVLaptopTypeId'];
+    
+}
