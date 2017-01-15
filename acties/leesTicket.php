@@ -22,6 +22,10 @@
       */
 
     session_start();
+    ini_set('display_erors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     require_once 'headerUp.php'; //Include de header.
     require_once '../functies.php'; //Include de functies.
     //ini_set('display_errors', 1);
@@ -123,7 +127,29 @@
         <h3> Probleem: </h3> '.$ticket['probleem'].'<br>
         <h3> Trefwoorden: </h3> '.$ticket['trefwoorden'].'
         <h3> Status: </h3> '.$status.'
-        <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';  
+        <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';
+    
+    if($ticket['vVLaptopTypeId'] !== 0){
+        $typeId = $ticket['vVLaptopTypeId'];
+        $typeQuery = "SELECT * FROM veelVoorkomendeLaptopTypes WHERE vVLaptopTypeId = '$typeId'";
+        if(!$typeUitkomst = $connectie->query($typeQuery)){
+            echo "Type query mislukt..." . mysqli_error($connectie);
+        }
+        $type = $typeUitkomst->fetch_assoc();
+        $merkId = $type['vVLaptopMerkId'];
+        $typeOm = $type['vVLaptopTypeOm'];
+        
+        $merkQuery = "SELECT vVLaptopMerkOm FROM veelVoorkomendelaptopMerken WHERE vVLaptopMerkId = '$merkId'";
+        if(!$merkUitkomst = $connectie->query($merkQuery)){
+            echo "Merk query mislukt..." . mysqli_error($connectie);
+        }
+        $merk = $merkUitkomst->fetch_assoc();
+        $merkOm = $merk['vVLaptopMerkOm'];
+        echo '
+            <h3> Laptop: </h3>
+            Merk: <strong><i>'.$merkOm.'</strong></i><br>
+            Type: <strong><i>'.$typeOm.'</strong></i><br>';
+    }
             
     if($ticket['lijnNr'] === $_SESSION['lijnNr'] or $_SESSION['isAdmin'] === "1"){
         echo '
