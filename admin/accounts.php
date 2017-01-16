@@ -72,7 +72,7 @@
                 $schoolKlas['schoolKlasCode'] . $td .
                 $isAdmin . $td .
                 $actief . $td .
-                $account['magInloggen'] . $td .
+                $magInloggen . $td .
                 datumOmzet($account['laasteKeerIngelogd']) . $td .
                 $account['lijnNr'] . $td ;            
             echo '
