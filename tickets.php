@@ -31,10 +31,7 @@
     $alleenGesloten = FALSE;
     
     // Maak HTML tabel!
-               
-        $ticketQuery ="SELECT * FROM ticket;";
-            $ticketUitkomst = $connectie->query($ticketQuery);
-            
+                          
         if(isset($_GET['welkTicket'])){   
             
             if($_GET['welkTicket'] === "open"){
@@ -45,12 +42,24 @@
                 $alleenGesloten = TRUE;
             }       
         }
+        
+        if(isset($_GET['kipquery'])){
+            $searchq = $connectie->real_escape_string($_GET['kipquery']);
+            $zoekTicketQuery = "SELECT * FROM ticket WHERE probleem LIKE '%$searchq%';";           
+            if(!$ticketUitkomst = $connectie->query($zoekTicketQuery)){
+                echo $connectie->error;
+            }
+        } else {
+            $ticketQuery ="SELECT * FROM ticket;";
+            $ticketUitkomst = $connectie->query($ticketQuery);
+        }
 
         echo '
             <!DOCTYPE html>
             <html>
                 <head>
                     <meta http-equiv="Refresh" content="15">
+                    <title> FTS Ticketlijst </title>
                 </head>
                 <body>
                     <form action="">
@@ -58,7 +67,13 @@
                            <button name="welkTicket" type="submit" value="alle">Alle</button>
                            <button name="welkTicket" type="submit" value="open">Open</button>
                            <button name="welkTicket" type="submit" value="gesloten">Gesloten</button>
-                    </form> 
+                    </form>
+                    
+                    <form action="">
+                    <p> Zoek in beschrijving </p>
+                    <input type="text" name="kipquery" required>
+                    <button name="submit" type="submit">Zoek</button><br>
+                    
 
 
                     <table align="left" cellspacing="5" cellpadding="8">
@@ -72,7 +87,7 @@
                     
             ';
         		
-        echo "Aantal tickets :".$ticketUitkomst->num_rows. "<br>";
+        echo "<br><h3>Aantal tickets :<strong>".$ticketUitkomst->num_rows. "</strong><br><br></h3>";
 			
 	while($ticket = $ticketUitkomst->fetch_assoc()){
             $status = "Open";
