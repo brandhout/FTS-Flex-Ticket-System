@@ -1,4 +1,5 @@
 <?php
+
     
    session_start();
     ini_set('display_errors', 1);
@@ -7,6 +8,8 @@
     include_once 'headerUp.php';
     include_once '../functies.php';
     $connectie = verbinddatabase();
+    
+    $datum = mysqldatum();
         
    if (empty($_POST)){
        echo ' <html>
@@ -53,7 +56,9 @@
                         }
                         echo '</select><br><br>';
                                                                        
-                        echo 'Gebruikersnaam: <br>
+                        echo 'Admin: <br>
+                            <input type="checkbox" name="isAdmin" value=1 ><br>
+                            Gebruikersnaam: <br>
                             <input type="text" name="gebruikersNaam"><br><br>
                             Wachtwoord: <br>
                             <input type="password" name="wachtwoord"><br><br>
@@ -64,16 +69,25 @@
      </html> ';   
 
     }
-    if ( !empty($_POST)){ 
-        $insertAccount = $connectie->prepare('INSERT INTO account (accountNr, lijnNr, naam, achterNaam, laasteKeerIngelogd, actief, magInloggen, vestigingId, gebruikersNaam, wachtwoord)
-                                 VALUES (0, "'  . $_POST["lijnNr"] . '","' . $_POST["naam"] . '","' . $_POST["achterNaam"] . '","' . mysqldatum() . '","' . "1" . '","' . "1" . '","' . $_POST["vestigingId"] . '","' .  $_POST["gebruikersNaam"] . '","' . $_POST["wachtwoord"] . '")');
+    if ( !empty($_POST) ){ 
+        if ( $_POST["isAdmin"] == 1 ) {
+            $admin = 1;
+        } else { 
+            $admin = 0;
+        }
+            
+        $insertAccount = $connectie->prepare('INSERT INTO account (accountNr, lijnNr, isAdmin, naam, achterNaam, laasteKeerIngelogd, actief, magInloggen, vestigingId, gebruikersNaam, wachtwoord)
+                                 VALUES (0, "'  . $_POST["lijnNr"] . '","' . $admin . '","' . $_POST["naam"] . '","' . $_POST["achterNaam"] . '","' . $datum . '","' . "1" . '","' . "1" . '","' . $_POST["vestigingId"] . '","' .  $_POST["gebruikersNaam"] . '","' . $_POST["wachtwoord"] . '")');
                                 if ($insertAccount) {
                                     if ($insertAccount->execute()) {
                                          header("Refresh:1; url=accounts.php", true, 303);
                                     }
                                 }
         
+        
+        
         echo 'submit uitgevoerd';
+       
     }
     ?>
 
