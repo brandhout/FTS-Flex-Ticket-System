@@ -124,3 +124,14 @@ function leesLaptopTypeId($typeOm){
     return $type['vVLaptopTypeId'];
     
 }
+
+function prioriteitOmzet ($prioriteitINT){
+    switch($prioriteitINT){
+        case "1":
+            return "Laag";
+        case "2":
+            return "Middel";
+        case "3":
+            return "Hoog";
+    }
+}
