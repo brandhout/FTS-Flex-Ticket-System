@@ -7,10 +7,7 @@
     include_once 'headerUp.php';
     include_once '../functies.php';
     $connectie = verbinddatabase();
-    
-    $datumArray = new DateTime('now');
-    $datum = $datumArray->format('d-m-Y');
-    
+        
    if (empty($_POST)){
        echo ' <html>
                 <header>
@@ -33,7 +30,7 @@
                         }
                         echo '</select><br><br>';
                         
-                    echo 'Voornaamaam: <br>
+                    echo 'Voornaam: <br>
                         <input type="text" name="naam"><br><br>
                         Achternaam: <br><br>
                         <input type="text" name="achterNaam"><br><br>
@@ -59,7 +56,7 @@
                         echo 'Gebruikersnaam: <br>
                             <input type="text" name="gebruikersNaam"><br><br>
                             Wachtwoord: <br>
-                            <input type="text" name="wachtwoord"><br><br>
+                            <input type="password" name="wachtwoord"><br><br>
                             
                             <input type="submit" name="opslaan" value="opslaan"><br> 
                     </form>
@@ -68,12 +65,11 @@
 
     }
     if ( !empty($_POST)){ 
-        $insertAccount = $connectie->prepare('INSERT INTO account (accountNr, lijnNr, naam, achterNaam, actief, magInloggen, vestigingId, gebruikersNaam, wachtwoord)
-                                 VALUES (0, "'  . $_POST["lijnNr"] . '","' . $_POST["naam"] . '","' . $_POST["achterNaam"] . '","' . "1" . '","' . "1" . '","' . $_POST["vestigingId"] . '","' .  $_POST["gebruikersNaam"] . '","' . $_POST["wachtwoord"] . '")');
+        $insertAccount = $connectie->prepare('INSERT INTO account (accountNr, lijnNr, naam, achterNaam, laasteKeerIngelogd, actief, magInloggen, vestigingId, gebruikersNaam, wachtwoord)
+                                 VALUES (0, "'  . $_POST["lijnNr"] . '","' . $_POST["naam"] . '","' . $_POST["achterNaam"] . '","' . mysqldatum() . '","' . "1" . '","' . "1" . '","' . $_POST["vestigingId"] . '","' .  $_POST["gebruikersNaam"] . '","' . $_POST["wachtwoord"] . '")');
                                 if ($insertAccount) {
                                     if ($insertAccount->execute()) {
-                                        echo ' klant gemaakt!';
-                                         header("Refresh:5; url=accounts.php", true, 303);
+                                         header("Refresh:1; url=accounts.php", true, 303);
                                     }
                                 }
         
