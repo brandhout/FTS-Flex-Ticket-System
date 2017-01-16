@@ -180,11 +180,14 @@ border:none;
             session_start();
             $_SESSION["gebruikersNaam"] = $uitkomst['gebruikersNaam'];
             $_SESSION["accountNr"] = $uitkomst['accountNr'];
+            $accountNr = $uitkomst['accountNr'];
             $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
             $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
+            $datum_query= "UPDATE account SET laasteKeerIngelogd = CURRENT_DATE WHERE accountNr = $accountNr";
+            $connectie->query($datum_query);
             header("refresh:3;url= ../index.php");
             echo ' <div class="gekkeshit"></div>
-            <br><p>Welkom bij FTS!<br>systeem wordt opgestart.<br>Thema wordt opgehaald!<p>'
+            <br><p>Welkom bij FTS!<br>systeem wordt opgestart.<p>'
             ;
             
         } else {
