@@ -8,7 +8,9 @@
     include_once '../functies.php';
     $connectie = verbinddatabase();
     
-       $wijzigen = FALSE;
+    
+    
+    $wijzigen = FALSE;
     $verwijderen = FALSE;
 
     if (empty($_POST)){
@@ -63,18 +65,18 @@
                 }
                 echo '</select><br><br>';
                 
-                echo 'Admin <br><input type="checkbox" name="isAdmin"value="';
+                echo 'Admin: <input type="checkbox" name="isAdmin" value="';
                 if($account["isAdmin"] == 1){
                     echo htmlspecialchars($account["isAdmin"]) . '" checked /><br><br>';
                 } else {
-                    echo htmlspecialchars($account["isAdmin"]) . '"/><br><br>';
+                    echo htmlspecialchars($account["isAdmin"]) . '" /><br><br>';
                 }
 
-                echo 'Gebruikersnaam <br><input type="text" name="gebruikersNaam"value="';
+                echo 'Gebruikersnaam <br><input type="text" name="gebruikersNaam" value="';
                 echo htmlspecialchars($account["gebruikersNaam"]) . '"/><br><br>';
 
-                echo 'Wachtwoord <br><input type="text" name="wachtwoord"value="';
-                echo htmlspecialchars($account["wachtwoord"]) . '"/><br><br>';
+                echo 'Wachtwoord <br><input type="password" name="wachtwoord" value="';
+                echo '"/><br><br>';
 
                 echo'<input type="submit" name="accountActie" value="Opslaan"><br>';
                 //<button name="accountActie" type="submit" value="Wijzig'. $account['accountNr'] .'">Wijzigen</button>
@@ -83,15 +85,20 @@
         }
     }
     if ( !empty($_POST)){
-        if ( !empty($_POST) ){ 
-            if ( $_POST["isAdmin"] == 1 ) {
+            //echo $_POST["isAdmin"];
+            if ( isset($_POST["isAdmin"]))  {
                 $admin = 1;
             } else { 
                 $admin = 0;
             }
+            if(!empty($_POST["wachtwoord"])){
+                $hashin = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
+                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}', wachtwoord='$hashin' WHERE accountNr='{$_POST['accountNr']}' ";
+            } else {
+                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}' WHERE accountNr='{$_POST['accountNr']}' ";
+                
+            }     
         
-        $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', '$admin', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}', wachtwoord='{$_POST['wachtwoord']}' WHERE accountNr='{$_POST['accountNr']}' ";
-        //$updateAccount = "UPDATE account SET accountNr={$_POST['accountNr']}, lijnNr={$_POST['lijnNr']}, naam={$_POST['naam']}, achterNaam={$_POST['achterNaam']}, vestigingId={$_POST['vestigingId']}, gebruikersNaam={$_POST['gebruikersNaam']}, wachtwoord={$_POST['wachtwoord']} ";
         echo $updateAccount;
         $prep = $connectie->prepare($updateAccount);
             if ($prep) {
@@ -102,7 +109,7 @@
            }
         }
         
-    }
+    
     
     
 ?>

@@ -10,6 +10,7 @@
     $connectie = verbinddatabase();
     
     $datum = mysqldatum();
+    
         
    if (empty($_POST)){
        echo ' <html>
@@ -18,11 +19,11 @@
                 </header>
                 <body>';
                     echo '<h2><strong>Nieuwe accounts</strong></h2>
-                        <br><br>';
+                        <br>';
                     echo '<form name="wijzigaccount" action="';
                     echo htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST"<br>';
 
-                    echo 'Indien leerling: Klassencode <br><br> 
+                    echo 'Indien leerling: Klassencode <br>
                         <select name="klassencode">
                         <option value ="">---Select---</option>';
 
@@ -33,19 +34,19 @@
                         }
                         echo '</select><br><br>';
                         
-                    echo 'Voornaam: <br>
+                    echo 'Voornaam <br>
                         <input type="text" name="naam"><br><br>
-                        Achternaam: <br><br>
+                        Achternaam <br>
                         <input type="text" name="achterNaam"><br><br>
 
-                        Lijnnummer: <br>
+                        Lijnnummer <br>
                         <select name="lijnNr">
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
                           </select><br><br>
 
-                        Vestiging: <br>
+                        Vestiging <br>
                         <select name="vestigingId">
                         <option value = "">---Select---</option>';
 
@@ -56,11 +57,10 @@
                         }
                         echo '</select><br><br>';
                                                                        
-                        echo 'Admin: <br>
-                            <input type="checkbox" name="isAdmin" value=1 ><br>
-                            Gebruikersnaam: <br>
+                        echo 'Admin: <input type="checkbox" name="isAdmin" value=1 ><br><br>
+                            Gebruikersnaam <br>
                             <input type="text" name="gebruikersNaam"><br><br>
-                            Wachtwoord: <br>
+                            Wachtwoord <br>
                             <input type="password" name="wachtwoord"><br><br>
                             
                             <input type="submit" name="opslaan" value="opslaan"><br> 
@@ -69,13 +69,15 @@
      </html> ';   
 
     }
-    if ( !empty($_POST) ){ 
+    if ( !empty($_POST) ){
         if ( $_POST["isAdmin"] == 1 ) {
             $admin = 1;
         } else { 
             $admin = 0;
         }
             
+        $hashin = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
+        
         $insertAccount = $connectie->prepare('INSERT INTO account (accountNr, lijnNr, isAdmin, naam, achterNaam, laasteKeerIngelogd, actief, magInloggen, vestigingId, gebruikersNaam, wachtwoord)
                                  VALUES (0, "'  . $_POST["lijnNr"] . '","' . $admin . '","' . $_POST["naam"] . '","' . $_POST["achterNaam"] . '","' . $datum . '","' . "1" . '","' . "1" . '","' . $_POST["vestigingId"] . '","' .  $_POST["gebruikersNaam"] . '","' . $_POST["wachtwoord"] . '")');
                                 if ($insertAccount) {
