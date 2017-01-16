@@ -1,3 +1,4 @@
+
 <?php
 require_once 'AJAX/zoekKlant.php';
 require_once 'headerUp.php'; //Include de header.
@@ -110,6 +111,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
 <html>
 
     <body>
+        <div class="containert">
         <h1> Nieuw ticket </h1>
         
         <!--  alle scripts  -->
@@ -211,6 +213,6 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
         <label class="hidden01">streefdatum:</label>
         <input type="date" name="datepicker" id="datepicker" class="hidden"/></p>       
     <input type="submit" name="submit0" value="invoeren" class="hidden" />
-</form>
+</form></div>
     </body>
 </html>

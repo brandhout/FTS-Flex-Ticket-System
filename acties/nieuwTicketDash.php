@@ -19,7 +19,7 @@ require_once '../functies.php'; //Include de functies.
             <input type="submit" name="but2" class="but" value="bestaande klant">
         </form></div></div>
         
-        <div class="containert">
+        
 <?php
 
 
@@ -37,6 +37,6 @@ if (isset($_POST['but2'])) {
 
 
 ?>
-        </div>
+
     </body>
 </html>

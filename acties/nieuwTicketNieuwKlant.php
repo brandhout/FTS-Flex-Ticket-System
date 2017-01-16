@@ -143,7 +143,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
            
 
 ?>
-<html>
+<html><body>
     <h1> Nieuw ticket </h1>
     <script>
             function laptop(){
@@ -153,7 +153,8 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                 });                 
             }
     </script>
-    <body>
+
+        <div class="containert">
 
         <form name="nieuwTicket" action="nieuwTicketNieuwKlant.php" method="POST">
 
@@ -264,7 +265,7 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
     <input type="submit" name="submit1" value="invoeren" class="hidden" />
 </form>
 
-
+</div>
 </body>
 
 
