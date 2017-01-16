@@ -383,10 +383,9 @@
       }
 
 img.logo{
-    height:125px;
+    height:90px;
 }
             header{
-  background-color: #0a1612;
       width: 100%;
         position: relative;
   text-align: center;
@@ -438,6 +437,30 @@ border:none;
 #rechts
 {
             display: inline-block;
+}
+
+/* Carousel Styling */
+.slide1{
+  background-image: url('styles/3.jpg');
+  height: 110px;
+  width:100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide2{
+  background-image: url('styles/2.jpg');
+  height: 110px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slide3{
+  background-image: url('styles/1.png');
+  height: 110px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 /*  nieuwe ticket   ------------------------------------------------------------------------------------------ 
 
