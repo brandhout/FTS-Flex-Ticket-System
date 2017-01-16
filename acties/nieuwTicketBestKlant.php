@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 require_once 'AJAX/zoekKlant.php';
 require_once 'headerUp.php'; //Include de header.
 require_once '../functies.php'; //Include de functies.
