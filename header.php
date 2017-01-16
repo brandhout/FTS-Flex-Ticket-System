@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="styles/js/bootstrap.min.js"></script>
   <script>
   $( function() {
     $( "#datepicker" ).datepicker();
@@ -23,7 +25,48 @@
 </head>
 <body>
 <header>
-  <img class="logo" src="fts.png">
+  
+  
+  <div id="theCarousel" class="carousel slide" data-ride="carousel">
+        <img class="logo" src="fts.png">
+  
+      <ol class="carousel-indicators">
+          <li data-target="#theCarousel" data-slide-to="0" class="active">
+              
+          </li>
+          <li data-target="#theCarousel" data-slide-to="1">
+              
+          </li>
+          <li data-target="#theCarousel" data-slide-to="2">
+              
+          </li>          
+      </ol>
+      <div class="carousel-inner">
+          <div class="item active">
+              <div class="slide1">
+                  <div class="carousel-caption">
+                  </div>
+          </div>
+      </div>
+ <div class="item">
+              <div class="slide2">
+                  <div class="carousel-caption">
+                  </div>
+          </div>
+      </div>   
+ <div class="item">
+              <div class="slide3">
+                  <div class="carousel-caption">
+                  </div>
+          </div>
+ </div></div>
+          
+          <a class="left carousel-control" href="#theCarousel"  data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"> </span></a>
+          
+          <a class="right carousel-control" href="#theCarousel"  data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"> </span> </a>         
+  </div>
 </header>
 <div id="cssmenu" class="align-right">
   <ul>
