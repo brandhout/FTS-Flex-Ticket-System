@@ -8,6 +8,7 @@
     $connectie = new mysqli($servernaam, $username, $password, $database);    
 
 $output = '';
+session_start();
 
 if (isset($_POST['zoekval'])) {
     $searchq = preg_replace("#[^0-9a-z]#i","",$_POST['zoekval']);
@@ -20,6 +21,7 @@ if (isset($_POST['zoekval'])) {
             while($row= mysqli_fetch_array($leesKlantQuery)){
                     $anaam= $row['klantAchternaam'];
                     $vnaam=$row['klantNaam'];
+                    $_SESSION['klantId']=$row['klantId'];
                     $kid=$row['klantId'];
                     $output.=$kid.'';
             
