@@ -372,6 +372,16 @@
 
 
 /*main site ----------------------------------------------------------------------------------------------------*/
+      .containert{
+          width:95%;
+          height:90%;
+          text-align: center;
+          background-color: rgba(255,250,250,0.7);
+          border-radius:4px;
+          margin:0px auto;
+          margin-top:150px;
+      }
+
 img.logo{
     height:125px;
 }
