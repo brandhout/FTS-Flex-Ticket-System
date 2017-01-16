@@ -24,7 +24,7 @@
 </header>
 <div id="cssmenu" class="align-right">
     <ul>
-        <li class="active"><a href="uitloggen.php" target="_blank"><i class="fa fa-sign-out"></i> UITLOGGEN</a></li>
+        <li class="active"><a href="../uitloggen.php" target="_blank"><i class="fa fa-sign-out"></i> UITLOGGEN</a></li>
         <li><a href="../klanten.php"><i class="fa fa-fw fa-bars"></i>Klanten</a>
         <li><a href="../tickets.php"><i class="fa fa-ticket"></i> Alle Tickets</a></li>
         <li><a href="../nieuwTicket.php"><i class="fa fa-plus-square"></i> nieuw ticket</a></li>
