@@ -198,7 +198,7 @@ border:none;
         
     </body>
     <footer>
-        <p>this website was made with: html/php/css/bootstrap/ajax/mysqli/javascript made by: Naomi M, Rick H, Robby M. </p>
+        <p>this website was made with: html/php/css/bootstrap/ajax/mysqli/javascript made by: Naomi B, Rick H, Robby M. </p>
     </footer>
 </html>
 
