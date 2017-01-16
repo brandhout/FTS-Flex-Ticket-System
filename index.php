@@ -70,6 +70,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 <td align="left"><strong>Klantnaam</strong></td>
                 <td align="left"><strong>Lijn</strong></td>
                 <td align="left"><strong>Aannemer</strong></td>
+                <td align="left"><strong>Prioriteit</strong></td>
                 <td align="left"><strong>Streefdatum</strong></td>
                 <td align="left"><strong>Resterende tijd</strong></td></tr>
 
@@ -83,7 +84,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
                     $klantUitkomst = $connectie->query($klantQuery);
                          
             if(!$klant = $klantUitkomst->fetch_assoc()){
-                echo "Klant query mislukt..." . mysqli_error($connectie);
+                echo "Klant query mislukt, een of meerdere tickets zijn corrupt<br>" . mysqli_error($connectie);
             }
             
             $ticketId = $ticket['ticketId'];           
@@ -113,6 +114,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 $klant['klantAchternaam'] . $td .
                 $ticket['lijnNr'] . $td .
                 leesAccountAchterNaam($ticket['fstAccountNr']) . $td .
+                prioriteitOmzet($ticket['prioriteit']) . $td .
                 $streefdatum->format('d-m-Y') . $td;
                 
                 $interval = $datum->diff($streefdatum);
