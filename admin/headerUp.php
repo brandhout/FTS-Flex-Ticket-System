@@ -23,16 +23,11 @@
   <img class="logo" src="../fts.PNG">
 </header>
 <div id="cssmenu" class="align-right">
-    <ul>
-        <li class="active"><a href="../uitloggen.php" target="_blank"><i class="fa fa-sign-out"></i> UITLOGGEN</a></li>
-        <li><a href="../klanten.php"><i class="fa fa-fw fa-bars"></i>Klanten</a>
-        <li><a href="../tickets.php"><i class="fa fa-ticket"></i> Alle Tickets</a></li>
-        <li><a href="../nieuwTicket.php"><i class="fa fa-plus-square"></i> nieuw ticket</a></li>
-        <li><a href="../index.php"><i class="fa fa-home"></i> DASHBOARD</a></li>
-<?php
+  <ul>
+  <?php
     switch ($_SESSION['isAdmin']) { 
                 case "1":
-                echo '<li><a href="../adminDash.php"><i class="fa fa-unlock"<</i>adminDash</a></li>' ;
+                echo '<li><a href="../adminDash.php"><span>AdminDash</span><i class="fa fa-unlock">9</i></a></li>' ;
                 break;
 
                 case "0":
@@ -43,8 +38,11 @@
             }
 
 ?>
-
-
+     <li><a href="../index.php"><span>DASHBOARD</span><i class="fa fa-home"></i></a></li>
+     <li><a href="nieuwTicketDash.php"><span><i class="fa fa-ticket"></i> NIEUW TICKET</span></a></li>
+     <li><a href="../tickets.php"><span>ALLE TICKETS</span></a></li>
+     <li><a href="../klanten.php"><span></i> KLANTEN</span></a></li>
+     <li class="active"><a href="uitloggen.php"><span><i class="fa fa-sign-out"></i>UITLOGGEN</span></a></li>
   </ul>
 </div>
  <br><br><br>

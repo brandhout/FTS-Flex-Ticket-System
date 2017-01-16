@@ -127,6 +127,7 @@
         <h3> Probleem: </h3> '.$ticket['probleem'].'<br>
         <h3> Trefwoorden: </h3> '.$ticket['trefwoorden'].'
         <h3> Status: </h3> '.$status.'
+        <h3> Prioriteit: </h3> '.prioriteitOmzet($ticket['prioriteit']).'
         <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';
     
     if($ticket['vVLaptopTypeId'] !== 0){
