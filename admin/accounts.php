@@ -31,6 +31,7 @@
                         <td align="left"><strong>Admin</strong></td>
                         <td align="left"><strong>Actief</strong></td>
                         <td align="left"><strong>Mag inloggen</strong></td>
+                        <td align="left"><strong>Laatste inlogdatum</strong></td>
                         <td align="left"><strong>Lijn nr</strong></td></tr>
     ';
     if($accountUitkomst){
@@ -47,7 +48,22 @@
             }
             if($account['isAdmin'] === "1"){
                 $isAdmin = "Ja";
+            } else {
+                $isAdmin = "Nee";
             }
+            
+            if($account['actief'] === '1'){
+                $actief = "Ja";
+            } else {
+                $actief = "Nee!";
+            }
+            
+            if($account['magInloggen'] === '1'){
+                $magInloggen = "Ja";
+            } else {
+                $magInloggen = "Nee";
+            }
+            
             echo '<tr><td align=left">' .
                 $account['accountNr'] . $td .
                 $account['gebruikersNaam'] . $td .
@@ -55,8 +71,9 @@
                 $account['achterNaam'] . $td .
                 $schoolKlas['schoolKlasCode'] . $td .
                 $isAdmin . $td .
-                $account['actief'] . $td .
+                $actief . $td .
                 $account['magInloggen'] . $td .
+                datumOmzet($account['laasteKeerIngelogd']) . $td .
                 $account['lijnNr'] . $td ;            
             echo '
                 <form action="wijzigAccount.php">
