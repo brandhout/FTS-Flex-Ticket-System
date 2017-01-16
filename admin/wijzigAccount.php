@@ -85,11 +85,8 @@
     if ( !empty($_POST)){
         if ( !empty($_POST) ){ 
             if ( $_POST["isAdmin"] == 1 ) {
-            
                 $admin = 1;
-            
             } else { 
-            
                 $admin = 0;
             }
         
