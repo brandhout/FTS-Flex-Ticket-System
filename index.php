@@ -35,6 +35,7 @@ echo '<!DOCTYPE html>
       <head>
           <meta http-equiv="Refresh" content="15">
           <title>Flex Ticket System</title>
+      </head>
       <body>
       <h1> Dasboard </h1>
       ';
