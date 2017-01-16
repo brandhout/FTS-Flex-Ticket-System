@@ -173,8 +173,10 @@ border:none;
         $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, magInloggen, accountNr, lijnNr FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
         $uitkomst = mysqli_fetch_array($query);
         $teller = mysqli_num_rows($query);
+        
+        $hashdb = $uitkomst['wachtwoord'] ;
 
-        if ($teller == 1 && $uitkomst['wachtwoord'] == $wachtwoord && $uitkomst['magInloggen'] == 1){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
+        if ($teller == 1 && password_verify($wachtwoord, $hashdb) && $uitkomst['magInloggen'] == 1){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
 
             // Inloggen succes, hier moet een sessie aangemaakt worden
             session_start();
