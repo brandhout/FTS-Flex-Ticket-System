@@ -30,7 +30,7 @@
   <?php
     switch ($_SESSION['isAdmin']) { 
                 case "1":
-                echo '<li><a href="adminDash.php"><i class="fa fa-unlock"<</i>adminDash</a></li>' ;
+                echo '<li><a href="adminDash.php"><span>AdminDash</span><i class="fa fa-unlock"></i></a></li>' ;
                 break;
 
                 case "0":
