@@ -12,7 +12,7 @@ $connectie = verbinddatabase(); // connectie database
 
 $ftsAccountNr = $_SESSION["accountNr"]; //sessie gebruiker
 //ticket id
-$klantID = $_POST["klantID"];
+$klantID = $_SESSION['klantId'];
 
 //ticket
 $trefwoorden = $_POST["trefwoorden"];
@@ -134,7 +134,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                 }
             </script>
 
-<form name="nieuwTicket1" action="nieuwTicketBestKlant.php" method="POST">
+<form name="nieuwTicket1" action="nieuwTicketBestKlant.php" method="POST" enctype="multipart/form-data">
                 <input name='zoek' type="text" placeholder="zoeken in Achternaam"  onkeydown="zoekf();" class='hidden2'/><br>
                 <label class="hidden02">klant ID:</label><textfield  type="text" id="output" name="klantID" class="hidden2"/></textfield><br>
             <label class="hidden01">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" class="hidden"/><br>
@@ -199,7 +199,7 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
         <textarea name="probleem" class="hidden"></textarea><br>
         <label class="hidden01">commentaar:</label><br>
         <textarea name="nieuwComment" class="hidden"></textarea><br>
-        <label class="hidden01">potentieele oplossing:</label><br>
+        <label class="hidden01">potentiele oplossing:</label><br>
         <textarea name="oplossing" class="hidden"></textarea><br>
         
                     <label class="hidden02">prioriteit:</label>
