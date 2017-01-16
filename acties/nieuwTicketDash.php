@@ -2,9 +2,6 @@
 session_start();
 require_once 'headerUp.php'; //Include de header.
 require_once '../functies.php'; //Include de functies.
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 ?>
 
@@ -21,6 +18,8 @@ error_reporting(E_ALL);
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             <input type="submit" name="but2" class="but" value="bestaande klant">
         </form></div></div>
+        
+        <div class="containert">
 <?php
 
 
@@ -38,6 +37,6 @@ if (isset($_POST['but2'])) {
 
 
 ?>
-
+        </div>
     </body>
 </html>
