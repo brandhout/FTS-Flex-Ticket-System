@@ -83,6 +83,7 @@
                     <td align="left"><strong>Lijn</strong></td>
                     <td align="left"><strong>Aannemer</strong></td>
                     <td align="left"><strong>Streefdatum</strong></td>
+                    <td align="left"><strong>Prioriteit</strong></td>
                     <td align="left"><strong>Status</strong></td></tr>
                     
             ';
@@ -141,6 +142,7 @@
                     $ticket['lijnNr'] . '</td><td align="left"></a>' .
                     leesAccountAchterNaam($ticket['fstAccountNr']) . '</td><td align="left"></a>' .
                     datumOmzet($ticket['streefdatum']) . '</td><td align="left"></a>' .
+                    prioriteitOmzet($ticket['prioriteit']) . '</td><td align="left"></a>' .
                     $status . '</td><td align="left"></a>';
                 echo '</tr>';
             }
