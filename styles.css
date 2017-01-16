@@ -382,8 +382,15 @@
           margin-top:150px;
       }
 
-img.logo{
-    height:90px;
+img.logo {
+  height: 100px;
+  position: absolute;
+  margin: auto;
+  display: block;
+  top: 0px;
+  left: 0;
+  right: 0;
+  z-index:1;
 }
             header{
       width: 100%;
@@ -395,7 +402,7 @@ img.logo{
 footer{
             background-color: rgba(255,0,0,1);
             text-align:right;
-              position: absolute;
+              position: relative;
   right: 0;
   bottom: 0;
   left: 0;
@@ -440,27 +447,24 @@ border:none;
 }
 
 /* Carousel Styling */
-.slide1{
-  background-image: url('styles/3.jpg');
-  height: 110px;
-  width:100%;
+.carousel div[class^=slide] {
+  height: 145px;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  position: relative;
+  z-index: -1
+}
+
+.slide1{
+  background-image: url('styles/3.jpg');
 }
 .slide2{
   background-image: url('styles/2.jpg');
-  height: 110px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 .slide3{
   background-image: url('styles/1.png');
-  height: 110px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 /*  nieuwe ticket   ------------------------------------------------------------------------------------------ 
 
