@@ -62,6 +62,13 @@
                     echo "<option value='" . $v['vestigingId'] . "'>" . $v['vestigingId'] . " " . $v['vesOmschrijving'] . "</option>";
                 }
                 echo '</select><br><br>';
+                
+                echo 'Admin <br><input type="checkbox" name="isAdmin"value="';
+                if($account["isAdmin"] == 1){
+                    echo htmlspecialchars($account["isAdmin"]) . '" checked /><br><br>';
+                } else {
+                    echo htmlspecialchars($account["isAdmin"]) . '"/><br><br>';
+                }
 
                 echo 'Gebruikersnaam <br><input type="text" name="gebruikersNaam"value="';
                 echo htmlspecialchars($account["gebruikersNaam"]) . '"/><br><br>';
@@ -76,13 +83,17 @@
         }
     }
     if ( !empty($_POST)){
-        //$updateAccount = $connectie->prepare('UPDATE account (accountNr, lijnNr, naam, achterNaam, vestigingId, gebruikersNaam, wachtwoord)
-        //               VALUES ("' . filter($_POST["accountNr"]) . '","' . filter($_POST["lijnNr"]) . '","' . filter($_POST["naam"]) . 
-        //                        '","' . filter($_POST["achterNaam"]) . '","' . filter($_POST["vestigingId"]) . 
-        //                        '","' . filter($_POST["gebruikersNaam"]) . '","' . filter($_POST["wachtwoord"]) . '")');
-        echo 'er is gepost.';
+        if ( !empty($_POST) ){ 
+            if ( $_POST["isAdmin"] == 1 ) {
+            
+                $admin = 1;
+            
+            } else { 
+            
+                $admin = 0;
+            }
         
-        $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}', wachtwoord='{$_POST['wachtwoord']}' WHERE accountNr='{$_POST['accountNr']}' ";
+        $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', '$admin', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}', wachtwoord='{$_POST['wachtwoord']}' WHERE accountNr='{$_POST['accountNr']}' ";
         //$updateAccount = "UPDATE account SET accountNr={$_POST['accountNr']}, lijnNr={$_POST['lijnNr']}, naam={$_POST['naam']}, achterNaam={$_POST['achterNaam']}, vestigingId={$_POST['vestigingId']}, gebruikersNaam={$_POST['gebruikersNaam']}, wachtwoord={$_POST['wachtwoord']} ";
         echo $updateAccount;
         $prep = $connectie->prepare($updateAccount);
@@ -92,6 +103,7 @@
                     header("Refresh:5; url=accounts.php", true, 303);
                 }
            }
+        }
         
     }
     
