@@ -112,8 +112,6 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
 <html>
 
     <body>
-        <h1> Nieuw ticket </h1>
-        
         <!--  alle scripts  -->
             <script>
                 function zoekf(){
@@ -154,8 +152,8 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                         </td>
                         <td>
                             <!--datepicker-->
-                            <p><label>streefdatum:</label>
-                            <input type="date" name="datepicker" id="datepicker1"/></p>  
+                            <label>streefdatum:</label>
+                            <input type="date" name="datepicker" id="datepicker1"/>
                         </td>
                     </tr>
                     <tr>
@@ -225,7 +223,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                     </tr>
                     <tr>
                         <td>
-                            <label>trefwoorden (aan elkaar, door komma gescheiden)</label><input id="text1" type="text" name="trefwoorden"/></p>
+                            <input id="text1" type="text" placeholder="trefwoorden (schijten met,)" name="trefwoorden"/></p>
                         </td>
                         <td>
                             <label>besturingsysteem:</label>
@@ -252,7 +250,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                     </tr>
                     <tr>
                         <td>
-                            <label>probleem(korte omschrijving:)</label><br>
+                            <label>probleem(korte omschrijving):</label><br>
                             <textarea class="texta" name="probleem"></textarea>
                         </td>
                         <td>
