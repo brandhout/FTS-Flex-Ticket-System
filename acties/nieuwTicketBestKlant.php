@@ -212,7 +212,7 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
                         </select><br>
         <!--datepicker-->
         <label class="hidden01">streefdatum:</label>
-        <input type="date" name="datepicker" id="datepicker" class="hidden"/></p>       
+        <input type="date" name="datepicker" id="datepicker1" class="hidden"/></p>       
     <input type="submit" name="submit0" value="invoeren" class="hidden" />
 </form></div>
     </body>
