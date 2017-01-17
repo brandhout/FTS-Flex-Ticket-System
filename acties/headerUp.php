@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
   <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'>
   <link rel="stylesheet" href="../styles.css" type="text/css">
-  <script src="../navbar.js"></script>
+  <script src="navbar.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!--bootstrap
+    <!--bootstrap--> 
   <link rel="stylesheet" type="text/css" href="../styles/css/bootstrap.css">
-  <script src="../styles/js/bootstrap.min.js"></script> -->
+  <script src="../styles/js/bootstrap.min.js"></script>
    <!--datepicker -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="../styles/js/bootstrap.min.js"></script>
+  <script>
   <script>
   $( function() {
     $( "#datepicker" ).datepicker();
@@ -23,7 +26,48 @@
 </head>
 <body>
 <header>
-  <img class="logo" src="../fts.png">
+  
+  
+  <div id="theCarousel-1" class="carousel slide" data-ride="carousel">
+        <img class="logo" src="../fts.png">
+  
+      <ol class="carousel-indicators">
+          <li data-target="#theCarousel" data-slide-to="0" class="active">
+              
+          </li>
+          <li data-target="#theCarousel" data-slide-to="1">
+              
+          </li>
+          <li data-target="#theCarousel" data-slide-to="2">
+              
+          </li>          
+      </ol>
+      <div class="carousel-inner">
+          <div class="item active">
+              <div class="slide1">
+                  <div class="carousel-caption">
+                  </div>
+          </div>
+      </div>
+ <div class="item">
+              <div class="slide2">
+                  <div class="carousel-caption">
+                  </div>
+          </div>
+      </div>   
+ <div class="item">
+              <div class="slide3">
+                  <div class="carousel-caption">
+                  </div>
+          </div>
+ </div></div>
+          
+          <a class="left carousel-control" href="#theCarousel-1"  data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"> </span></a>
+          
+          <a class="right carousel-control" href="#theCarousel-1"  data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"> </span> </a>         
+  </div>
 </header>
 <div id="cssmenu" class="align-right">
   <ul>
