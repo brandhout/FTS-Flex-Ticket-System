@@ -12,13 +12,19 @@
 <?php
 
 session_start();
+if (isset($_SESSION["uitlogReden"])){
+    $uitlogReden = $_SESSION["uitlogReden"];
+    $refresh = "refresh:9";
+} else {
+    $refresh = "refresh:2";
+}
 unset ($_SESSION['gebruikersNaam']);
 
 session_destroy();
-echo" u bent uitgelogd" . $uitkomst['gebruikersNaam'];
+echo "u bent uitgelogd<br><strong><p style='color:red'>" . $uitlogReden . "</strong><p>";
 //echo ($_POST['gebruikersNaam'] . "is uitgelogd");
 
-header("Refresh:2 ;  URL=inloggen.php");
+header("$refresh ;  URL=inloggen.php");
 
 ?>
 
