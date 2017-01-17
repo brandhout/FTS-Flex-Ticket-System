@@ -250,7 +250,7 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
         <td><!--datepicker-->
         <label>streefdatum:</label>
         <input type="text" name="datepicker" id="datepicker"></td></tr>
-                <tr><td colspan="3">tekstvelden          (potentieele oplossing niet verplicht</td></tr>
+                <tr><td colspan="3">tekstvelden          (potentiele oplossing, commentaar niet verplicht)</td></tr>
 		<tr><td><label class="textl1">probleem(korte omschrijving:)</label><br>
         <textarea name="probleem" class="texta"></textarea></td>
 		<td>        <label class="textl2">commentaar:</label><br>
