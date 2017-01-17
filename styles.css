@@ -405,7 +405,7 @@ footer{
 
 
 body {
-    background-color: #cdcdcd;
+    background-image: url('back.jpg');
     width: 100%;
               margin: 0 auto;
               height:100%
@@ -554,19 +554,22 @@ body{    font-family: "Lato", sans-serif;
 }
 /* nieuwe ticket */
 .containert{
-          width:80%;
+          width:60%;
           height:60%;
           text-align: center;
-          background-color: #e8e8e8;
+          background-color: rgba(27, 42, 50, 0.87);
           border-radius:4px;
           margin:0px auto;
                   position: relative;
+
       }
-      
+      label{
+                            color:white;
+      }      
 table {
     border: none;
     height: 50%;
-width:70%;
+width:90%;
 text-align:right;
 display: center;
 margin: auto;

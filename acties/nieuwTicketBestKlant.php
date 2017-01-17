@@ -153,6 +153,9 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                             </select>
                         </td>
                         <td>
+                            <!--datepicker-->
+                            <p><label>streefdatum:</label>
+                            <input type="date" name="datepicker" id="datepicker1"/></p>  
                         </td>
                     </tr>
                     <tr>
@@ -195,9 +198,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                             </select>
                         </td>
                         <td>
-                            <!--datepicker-->
-                            <p><label>streefdatum:</label>
-                            <input type="date" name="datepicker" id="datepicker1"/></p>  
+
                         </td>
                     </tr>
                     <tr>
