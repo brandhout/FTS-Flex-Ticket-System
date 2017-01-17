@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 15 jan 2017 om 21:01
+-- Gegenereerd op: 16 jan 2017 om 23:41
 -- Serverversie: 10.1.19-MariaDB
 -- PHP-versie: 7.0.13
 
@@ -34,11 +34,11 @@ CREATE TABLE `account` (
   `naam` varchar(30) NOT NULL,
   `achterNaam` varchar(30) NOT NULL,
   `actief` tinyint(1) NOT NULL,
-  `laasteKeerIngelogd` date NOT NULL,
+  `laasteKeerIngelogd` datetime NOT NULL,
   `magInloggen` tinyint(1) NOT NULL,
   `vestigingId` int(10) NOT NULL,
   `gebruikersNaam` varchar(50) NOT NULL,
-  `wachtwoord` varchar(50) NOT NULL,
+  `wachtwoord` varchar(60) NOT NULL,
   `klantId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -47,8 +47,9 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`accountNr`, `lijnNr`, `isAdmin`, `schoolKlasId`, `naam`, `achterNaam`, `actief`, `laasteKeerIngelogd`, `magInloggen`, `vestigingId`, `gebruikersNaam`, `wachtwoord`, `klantId`) VALUES
-(1, 1, 0, '', 'Naomi', 'Berkelaar', 1, '0000-00-00', 1, 0, 'naomiberkelaar', 'test123', 0),
-(2, 2, 1, '0', 'Jan', 'Modaal', 1, '0000-00-00', 1, 0, 'janmodaal', 'test124', 0);
+(1, 1, 0, '', 'Naomi', 'Berkelaar', 1, '0000-00-00 00:00:00', 1, 0, 'naomiberkelaar', '$2y$10$BYpuuXiS4a6/tg5FAspTve9Bss1ujvALfc7wotnchzCjLrtLl88QG', 0),
+(2, 1, 1, '0', 'Jan', 'Modaal', 1, '2017-01-16 00:00:00', 1, 0, 'janmodaal', '$2y$10$cpKVIkOa4UjaM6VovP/VF.yiWhR02SGK/CZmd8ClxqoI1YNuZIcja', 0),
+(4, 1, 1, '', 'p', 'b', 1, '2017-01-16 00:00:00', 1, 0, 'pb', '$2y$10$yMqxIMoF9G6s7KtfQH067et05DY/I242LEemuKmkL9s2NoMF7TtDG', 0);
 
 -- --------------------------------------------------------
 
@@ -449,7 +450,7 @@ ALTER TABLE `vestigingen`
 -- AUTO_INCREMENT voor een tabel `account`
 --
 ALTER TABLE `account`
-  MODIFY `accountNr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `accountNr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT voor een tabel `bedrijf`
 --
