@@ -22,6 +22,15 @@
     $( "#datepicker" ).datepicker();
   } );
   </script>
+     <script>
+function openNav() {
+    document.getElementById("mySidenav2").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav2").style.width = "0";
+}
+</script> 
 
 </head>
 <body>
@@ -68,6 +77,7 @@
           <a class="right carousel-control" href="#theCarousel-1"  data-slide="next">
               <span class="glyphicon glyphicon-chevron-right"> </span> </a>         
   </div>
+<span onclick="openNav()"><i class="fa fa-bars toggle_menu"></i></span>
 </header>
 <div id="cssmenu" class="align-right">
   <ul>
@@ -91,6 +101,14 @@
      <li><a href="../klanten.php"><span></i> KLANTEN</span></a></li>
      <li class="active"><a href="uitloggen.php"><span><i class="fa fa-sign-out"></i>UITLOGGEN</span></a></li>
   </ul>
+</div>
+         
+         <div id="mySidenav2" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times"></i></a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
 </div>
  <br><br><br>
 </body>
