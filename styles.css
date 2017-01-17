@@ -408,6 +408,7 @@ body {
     background-color: #cdcdcd;
     width: 100%;
               margin: 0 auto;
+              height:100%
    
 }
 
@@ -555,16 +556,79 @@ body{    font-family: "Lato", sans-serif;
 }
 /* nieuwe ticket */
 .containert{
-          width:95%;
-          height:90%;
+          width:60%;
+          height:40%;
           text-align: center;
           background-color: rgba(255,250,250,0.7);
           border-radius:4px;
           margin:0px auto;
           margin-top:150px;
+                  position: relative;
       }
       
-containert.naw{
+.naw{
+    margin-top: 50px;
+    margin-left:5px;
         float:left;
         width:20%;
+          display: inline-block;
+          
+}
+
+.midden{
+        margin-top: 50px;
+        display: center;
+        text-align:right;
+        width:30%;
+          display: inline-block;
+}
+.rechts{
+        margin-top: 50px;
+            float:right;
+        text-align:left;
+        width:30%;
+          margin-right:50px;
+          display: inline-block;
+}
+fieldset, input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+fieldset {
+    margin:0;
+}
+
+.containery{
+              width:60%;
+          height:40%;
+          text-align: center;
+          background-color: rgba(255,250,250,0.7);
+          border-radius:4px;
+          margin:0px auto;
+          margin-top:150px;
+                  position: relative;
+}
+
+.textl1{
+        margin-top: 10px;
+    margin-left:5px;
+        float:left;
+        width:20%;
+          display: inline-block;
+          text-align:center;
+}
+.textl2{
+            margin-top: 10px;
+        text-align:right;
+        width:30%;
+          display: inline-block;
+}
+.textl3{
+            margin-top: 10px;
+            float:right;
+        text-align:left;
+        width:30%;
+          margin-right:50px;
+          display: inline-block;
 }

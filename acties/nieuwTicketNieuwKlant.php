@@ -156,7 +156,6 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
     </script>
 
         <div class="containert">
-
         <form name="nieuwTicket" action="nieuwTicketNieuwKlant.php" method="POST">
             <fieldset class='naw'>
             <input type="text" required placeholder="voornaam" name="klantNaam"/><br>
@@ -167,6 +166,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
             <input type="text" placeholder="telefoonnummer" name="klantTel"/><br>
             <input type="text" required placeholder="e-mail" name="klantEmail"/><br>
             </fieldset>
+            <fieldset class='midden'>
             
             <label class="drop">instantie</label>
                         <select name="instantie"> <!-- Disabled, gaan we nog niets mee doen-->
@@ -203,12 +203,13 @@ while ($bt = mysqli_fetch_assoc($resultb)) {
     echo "<option value='" . $bt['binnenkomstId '] . "'>" . $bt['binnenkomstTypeOm'] . "</option>";
 }
 ?> 
-                
-            </select><br>
-
+              
+            </select>
+            </fieldset>
+            <fieldset class='rechts'>
             <input id="text1"  type="text" required placeholder="trefwoorden (scheiden met , )" name="trefwoorden" class="hidden"/></p>
 
-        <label class="drop">categorie:</label>
+       
         <select name="categorie">
             <option value = "">---Select---</option>
 <?php
@@ -218,8 +219,8 @@ while ($c = mysqli_fetch_assoc($resultcat)) {
     echo "<option value='" . $c['categorieId'] . "'>" . $c['categorieId'] . " " . $c['catOmschrijving'] . "</option>";
 }
 ?>
-        </select><br>
-        <label class="drop">sub-categorie:</label>
+        </select><label class="drop">categorie:</label><br>
+        
         <select name="subCategorie">
             <option value = "">---Select---</option>
 <?php
@@ -229,11 +230,11 @@ while ($s = mysqli_fetch_assoc($resultscat)) {
     echo "<option value='" . $s['subCategorieId'] . "'>" . $s['subCategorieId'] . " " . $s['subCatomschrijving'] . "</option>";
 }
 ?>
-        </select><br>
-        <label class="zoekveld">Zoek laptoptype:</label>
-            <input name='laptopType' type="text" placeholder="Voer laptoptype in"  onblur="laptop();"/><br>
+        </select><label class="drop">sub-categorie:</label><br>
+        
+            <input name='laptopType' type="text" placeholder="Voer laptoptype in"  onblur="laptop();"/><br><label class="zoekveld">Zoek laptoptype:</label>
             <label class="textfieldc">Laptop: </label><textfield type="text" id="laptop" name="laptop" /></textfield><br>
-        <label class="drop">besturingsysteem:</label>
+
         <select name="besturingssysteem">
             <option value = "">---Select---</option>
                              <?php
@@ -244,26 +245,29 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
 }
     ?>           
             
-        </select><br>
-
-        <label class="textl">probleem(korte omschrijving:)</label><br>
-        <textarea name="probleem" class="texta"></textarea><br>
-        <label class="textl">commentaar:</label><br>
-        <textarea name="nieuwComment" class="texta"></textarea><br>
-        <label class="textl">potentiele oplossing:</label><br>
-        <textarea name="oplossing" class="texta"></textarea><br>
-        
-                    <label class="drop">prioriteit:</label>
+        </select><label class="drop">besturingsysteem:</label></fielset><br>
+                   
                         <select name="prioriteit"> <!-- Disabled, gaan we nog niets mee doen-->
             <option value = "">---Select---</option>
             <option value = "1">laag</option>
             <option value = "2">middel</option>
             <option value = "3">hoog</option>
 
-                        </select><br>
+                        </select>   <label class="drop">prioriteit</label><br>
         <!--datepicker-->
-        <label class="streef">streefdatum:</label>
-        <input type="date" name="datepicker" id="datepicker"/></p>       
+        
+        <input type="date" name="datepicker" id="datepicker"/><label class="streef">streefdatum</label><br>
+        
+        <div class="containery">        
+
+        <label class="textl1">probleem(korte omschrijving:)</label><br>
+        <textarea name="probleem" class="texta"></textarea>
+        <label class="textl2">commentaar:</label><br>
+        <textarea name="nieuwComment" class="texta"></textarea>
+        <label class="textl3">potentiele oplossing:</label><br>
+        <textarea name="oplossing" class="texta"></textarea><br>
+        
+        </div> 
     <input type="submit" name="submit1" value="invoeren"/>
 </form>
 
