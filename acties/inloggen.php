@@ -166,34 +166,45 @@ border:none;
             <?php
             
      if(isset($_POST['gebruikersNaam']) && isset($_POST['wachtwoord'])){
-        //verkrijg de variabele uit het forum hieronder, de functies voorkommen SQL injectie
+        //verkrijg de variabele uit het forum hieronder, de functies voorkomen SQL injectie
         $gebruikersNaam = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['gebruikersNaam'])));
         $wachtwoord = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['wachtwoord'])));
    
-        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, magInloggen, accountNr, lijnNr FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
+        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, magInloggen, accountNr, lijnNr, laasteKeerIngelogd FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
         $uitkomst = mysqli_fetch_array($query);
         $teller = mysqli_num_rows($query);
         
         $hashdb = $uitkomst['wachtwoord'] ;
 
         if ($teller == 1 && password_verify($wachtwoord, $hashdb) && $uitkomst['magInloggen'] == 1){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
-
-            // Inloggen succes, hier moet een sessie aangemaakt worden
-            session_start();
-            $_SESSION["gebruikersNaam"] = $uitkomst['gebruikersNaam'];
-            $_SESSION["accountNr"] = $uitkomst['accountNr'];
-            $accountNr = $uitkomst['accountNr'];
-            $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
-            $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
-            $datum_query= "UPDATE account SET laasteKeerIngelogd = CURRENT_DATE WHERE accountNr = $accountNr";
-            $connectie->query($datum_query);
-            header("refresh:3;url= ../index.php");
-            echo ' <div class="gekkeshit"></div>
-            <br><p>Welkom bij FTS!<br>systeem wordt opgestart.<p>'
-            ;
+            $laatsteKeerIngelogd = strtotime($uitkomst['laasteKeerIngelogd']);
             
+            session_start();
+            $accountNr = $uitkomst['accountNr'];
+           
+            if($laatsteKeerIngelogd < strtotime('-30 days')){
+                $_SESSION["uitlogReden"] = "Om misbruik te voorkomen,<br> heeft FTS uw account op non-actief gezet, u heeft te lang niet ingelogd. Raadpleeg uw beheerder.";
+                $nonActiefQuery = "UPDATE account SET actief = 0 WHERE accountNr = $accountNr";
+                $connectie->query($nonActiefQuery);
+                header("refresh:2;url= uitloggen.php");
+                echo ' <div class="gekkeshit"></div>
+                <br><p>Welkom bij FTS!<br>Data wordt ingelezen<p>';
+            } else {
+
+                // Inloggen succes, hier moet een sessie aangemaakt worden
+                $_SESSION["gebruikersNaam"] = $uitkomst['gebruikersNaam'];
+                $_SESSION["accountNr"] = $uitkomst['accountNr'];
+                $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
+                $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
+                $datum_query= "UPDATE account SET laasteKeerIngelogd = CURRENT_DATE WHERE accountNr = $accountNr";
+                $connectie->query($datum_query);
+                header("refresh:2;url= ../index.php");
+                echo ' <div class="gekkeshit"></div>
+                <br><p>Welkom bij FTS!<br>systeem wordt gestart</p>';
+            
+            }
         } else {
-            echo "foute gegevens!";
+            echo "FTS heeft uw account niet gevonden, kloppen uw gegevens?";
             return FALSE;
         }}           
             
