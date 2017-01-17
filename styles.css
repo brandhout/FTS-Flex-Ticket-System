@@ -632,3 +632,9 @@ fieldset {
           margin-right:50px;
           display: inline-block;
 }
+table {border: none;}
+
+.texta{
+      width: 300px;
+  height: 150px;
+}

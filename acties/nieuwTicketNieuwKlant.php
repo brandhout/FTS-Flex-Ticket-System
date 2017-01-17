@@ -157,7 +157,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
 
         <div class="containert">
         <form name="nieuwTicket" action="nieuwTicketNieuwKlant.php" method="POST">
-            <table cellspacing="0" cellpading="2" border=1 bordercolor=black width:90%>
+            <table cellspacing="0" cellpading="5"width="90%">
 			<tr>
 			<td>
 			naw gegevens</td><td colspan="2"> ticketgegevens</td></tr>
@@ -251,13 +251,13 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
         <label class="streef">streefdatum</label>
         <input type="date" name="datepicker" id="datepicker"/></td></tr>
                 <tr><td colspan="3">tekstvelden          (potentieele oplossing niet verplicht</td></tr>
-		<tr><td>        <label class="textl1">probleem(korte omschrijving:)</label><br>
+		<tr><td><label class="textl1">probleem(korte omschrijving:)</label><br>
         <textarea name="probleem" class="texta"></textarea></td>
 		<td>        <label class="textl2">commentaar:</label><br>
         <textarea name="nieuwComment" class="texta"></textarea></td>
 		<td>        <label class="textl3">potentiele oplossing:</label><br>
         <textarea name="oplossing" class="texta"></textarea><br></td></tr>
-		<tr><td>    <input type="submit" name="submit1" value="invoeren"/></td></tr><table> 
+		<tr><td>    <input type="submit" name="submit1" value="invoeren"/></td></tr></table> 
 </form>
 
 </div>
