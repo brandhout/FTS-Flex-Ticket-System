@@ -170,7 +170,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                     </td>
                     <td>
                         <label>instantie</label>
-                        <select name="instantie"> <!-- Disabled, gaan we nog niets mee doen-->
+                        <select name="instantie">
                         <option value = "">---Select---</option>
                             <?php
                             $ophaali = "SELECT * FROM instantie ";
@@ -191,7 +191,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                     </td>
                     <td>
                         <label>bedrijf:</label>
-                        <select class="drop" name="bedrijf"> <!-- Disabled, gaan we nog niets mee doen-->
+                        <select class="drop" name="bedrijf">
                         <option value = "">---Select---</option>
                             <?php
                             $ophaalv = "SELECT * FROM bedrijf ";
@@ -243,7 +243,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                     </td>
                     <td>
                         <label>binnengekomen via:</label>
-                        <select class="drop" name="binnenkomstType" > <!-- Moet nog gescript worden! Data moet uit database komen -->
+                        <select class="drop" name="binnenkomstType" >
                         <option value = "">---Select---</option>
                             <?php
                             $ophaalb = "SELECT * FROM binnenkomstType ";
@@ -292,7 +292,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                     </td>
                     <td>
 			<label>prioriteit</label>	
-                        <select class="drop"name="prioriteit"> <!-- Disabled, gaan we nog niets mee doen-->
+                        <select class="drop"name="prioriteit">
                             <option value = "">---Select---</option>
                             <option value = "1">laag</option>
                             <option value = "2">middel</option>

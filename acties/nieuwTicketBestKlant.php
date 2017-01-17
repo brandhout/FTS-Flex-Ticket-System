@@ -131,7 +131,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                 }
             </script>
         <div class="containert">
-<form name="nieuwTicket1" action="nieuwTicketBestKlant.php" method="POST" enctype="multipart/form-data">
+            <form name="nieuwTicket1" action="nieuwTicketBestKlant.php" method="POST" enctype="multipart/form-data">
                 <table cellspacing="0" cellpading="5"width="90%">
                     <tr>
                         <td>
@@ -202,7 +202,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                     <tr>
                         <td>
                             <label>binnengekomen via:</label>
-                            <select name="binnenkomstType"> <!-- Moet nog gescript worden! Data moet uit database komen -->
+                            <select name="binnenkomstType">
                             <option value = "">---Select---</option>
                                 <?php
                                 $ophaalb = "SELECT * FROM binnenkomstType ";
@@ -215,7 +215,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                         </td>
                         <td>
                             <label>Zoek laptoptype:</label>
-            <input name='laptopType' type="text" placeholder="Voer laptoptype in"  onblur="laptop();"/>
+                            <input name='laptopType' type="text" placeholder="Voer laptoptype in"  onblur="laptop();"/>
                         </td>
                         <td>
                             <label>Laptop: </label><textfield type="text" id="laptop" name="laptop"/></textfield><br>
@@ -240,7 +240,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                         </td>
                         <td>
                             <label>prioriteit:</label>
-                            <select name="prioriteit"> <!-- Disabled, gaan we nog niets mee doen-->
+                            <select name="prioriteit">
                             <option value = "">---Select---</option>
                             <option value = "1">laag</option>
                             <option value = "2">middel</option>
@@ -268,6 +268,9 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                         </td>
                     </tr>
                 </table>
-</form></div>
+            </form>
+        </div>
+            
+            
     </body>
 </html>
