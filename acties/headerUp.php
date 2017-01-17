@@ -84,7 +84,7 @@ function closeNav() {
   <?php
     switch ($_SESSION['isAdmin']) { 
                 case "1":
-                echo '<li><a href="../adminDash.php"><span>AdminDash</span><i class="fa fa-unlock">9</i></a></li>' ;
+                echo '<li><a href="../admin/adminDash.php"><span>AdminDash</span><i class="fa fa-unlock"></i></a></li>' ;
                 break;
 
                 case "0":
@@ -97,9 +97,9 @@ function closeNav() {
 ?>
      <li><a href="../index.php"><span>DASHBOARD</span><i class="fa fa-home"></i></a></li>
      <li><a href="nieuwTicketDash.php"><span><i class="fa fa-ticket"></i> NIEUW TICKET</span></a></li>
-     <li><a href="../tickets.php"><span>ALLE TICKETS</span></a></li>
+     <li><a href="../acties/tickets.php"><span>ALLE TICKETS</span></a></li>
      <li><a href="../klanten.php"><span></i> KLANTEN</span></a></li>
-     <li class="active"><a href="uitloggen.php"><span><i class="fa fa-sign-out"></i>UITLOGGEN</span></a></li>
+     <li class="active"><a href="../acties/uitloggen.php"><span><i class="fa fa-sign-out"></i>UITLOGGEN</span></a></li>
   </ul>
 </div>
          

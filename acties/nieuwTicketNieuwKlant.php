@@ -158,17 +158,18 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
         <div class="containert">
 
         <form name="nieuwTicket" action="nieuwTicketNieuwKlant.php" method="POST">
-
-            <label class="hidden01">naam:</label><input type="text" name="klantNaam" class="hidden"/><br>
-            <label class="hidden01">achternaam:</label><input type="text" name="klantAchternaam" class="hidden"/><br>
-            <label class="hidden01">adres:</label><input type="text" name="klantAdres" class="hidden"/><br>
-            <label class="hidden01">postcode:</label><input type="text" name="klantPostc" class="hidden"/><br>			
-            <label class="hidden01">woonplaats:</label><input type="text" name="klantStad" class="hidden"/><br>
-            <label class="hidden01">telefoonnummer:</label><input type="text" name="klantTel" class="hidden"/><br>
-            <label class="hidden01">email:</label><input type="text" name="klantEmail" class="hidden"/><br>
+            <fieldset class='naw'>
+            <input type="text" required placeholder="voornaam" name="klantNaam"/><br>
+            <input type="text" required placeholder="tussenv & achternaam" name="klantAchternaam"/><br>
+            <input type="text" required placeholder="adres" name="klantAdres"/><br>
+            <input type="text" required placeholder="postcode" name="klantPostc"/><br>			
+            <input type="text" required placeholder="woonplaats" name="klantStad"/><br>
+            <input type="text" placeholder="telefoonnummer" name="klantTel"/><br>
+            <input type="text" required placeholder="e-mail" name="klantEmail"/><br>
+            </fieldset>
             
-            <label class="hidden02">instantie</label>
-                        <select name="instantie" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
+            <label class="drop">instantie</label>
+                        <select name="instantie"> <!-- Disabled, gaan we nog niets mee doen-->
             <option value = "">---Select---</option>
 <?php
 $ophaali = "SELECT * FROM instantie ";
@@ -178,8 +179,8 @@ while ($l = mysqli_fetch_assoc($resulti)) {
 }
 ?> 
                         </select><br>
-            <label class="hidden02">bedrijf:</label>
-                        <select name="bedrijf" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
+            <label class="drop">bedrijf:</label>
+                        <select name="bedrijf"> <!-- Disabled, gaan we nog niets mee doen-->
             <option value = "">---Select---</option>
 <?php
 $ophaalv = "SELECT * FROM bedrijf ";
@@ -190,10 +191,10 @@ while ($v = mysqli_fetch_assoc($resultv)) {
 ?> 
                         </select><br>
 
-            <label class="hidden01">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen" class="hidden"/><br>
+            <label class="check">klant moet gebeld worden:</label><input type="checkbox" name="nogBellen"/><br>
 
-            <label class="hidden01">binnengekomen via:</label>
-            <select name="binnenkomstType" class="hidden"> <!-- Moet nog gescript worden! Data moet uit database komen -->
+            <label class="drop">binnengekomen via:</label>
+            <select name="binnenkomstType" > <!-- Moet nog gescript worden! Data moet uit database komen -->
             <option value = "">---Select---</option>
 <?php
 $ophaalb = "SELECT * FROM binnenkomstType ";
@@ -205,10 +206,10 @@ while ($bt = mysqli_fetch_assoc($resultb)) {
                 
             </select><br>
 
-            <label class="hidden01">trefwoorden (aan elkaar, door komma gescheiden)</label><input id="text1" type="text" name="trefwoorden" class="hidden"/></p>
+            <input id="text1"  type="text" required placeholder="trefwoorden (scheiden met , )" name="trefwoorden" class="hidden"/></p>
 
-        <label class="hidden01">categorie:</label>
-        <select name="categorie" class="hidden">
+        <label class="drop">categorie:</label>
+        <select name="categorie">
             <option value = "">---Select---</option>
 <?php
 $ophaalcat = "SELECT * FROM categorie ";
@@ -218,8 +219,8 @@ while ($c = mysqli_fetch_assoc($resultcat)) {
 }
 ?>
         </select><br>
-        <label class="hidden01">sub-categorie:</label>
-        <select name="subCategorie" class="hidden">
+        <label class="drop">sub-categorie:</label>
+        <select name="subCategorie">
             <option value = "">---Select---</option>
 <?php
 $ophaalscat = "SELECT * FROM subCategorie ";
@@ -229,11 +230,11 @@ while ($s = mysqli_fetch_assoc($resultscat)) {
 }
 ?>
         </select><br>
-        <label class="hidden01">Zoek laptoptype:</label>
-            <input name='laptopType' type="text" placeholder="Voer laptoptype in"  onblur="laptop();" class='hidden2'/><br>
-            <label class="hidden02">Laptop: </label><textfield type="text" id="laptop" name="laptop" class="hidden2"/></textfield><br>
-        <label class="hidden01">besturingsysteem:</label>
-        <select name="besturingssysteem" class="hidden">
+        <label class="zoekveld">Zoek laptoptype:</label>
+            <input name='laptopType' type="text" placeholder="Voer laptoptype in"  onblur="laptop();"/><br>
+            <label class="textfieldc">Laptop: </label><textfield type="text" id="laptop" name="laptop" /></textfield><br>
+        <label class="drop">besturingsysteem:</label>
+        <select name="besturingssysteem">
             <option value = "">---Select---</option>
                              <?php
     $ophaalbs = "SELECT * FROM besturingssysteem ";
@@ -245,15 +246,15 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
             
         </select><br>
 
-        <label class="hidden01">probleem(korte omschrijving:)</label><br>
-        <textarea name="probleem" class="hidden"></textarea><br>
-        <label class="hidden01">commentaar:</label><br>
-        <textarea name="nieuwComment" class="hidden"></textarea><br>
-        <label class="hidden01">potentiele oplossing:</label><br>
-        <textarea name="oplossing" class="hidden"></textarea><br>
+        <label class="textl">probleem(korte omschrijving:)</label><br>
+        <textarea name="probleem" class="texta"></textarea><br>
+        <label class="textl">commentaar:</label><br>
+        <textarea name="nieuwComment" class="texta"></textarea><br>
+        <label class="textl">potentiele oplossing:</label><br>
+        <textarea name="oplossing" class="texta"></textarea><br>
         
-                    <label class="hidden02">prioriteit:</label>
-                        <select name="prioriteit" class="hidden2"> <!-- Disabled, gaan we nog niets mee doen-->
+                    <label class="drop">prioriteit:</label>
+                        <select name="prioriteit"> <!-- Disabled, gaan we nog niets mee doen-->
             <option value = "">---Select---</option>
             <option value = "1">laag</option>
             <option value = "2">middel</option>
@@ -261,9 +262,9 @@ while ( $bs=mysqli_fetch_assoc($resultbs)) {
 
                         </select><br>
         <!--datepicker-->
-        <label class="hidden01">streefdatum:</label>
-        <input type="date" name="datepicker" id="datepicker" class="hidden"/></p>       
-    <input type="submit" name="submit1" value="invoeren" class="hidden" />
+        <label class="streef">streefdatum:</label>
+        <input type="date" name="datepicker" id="datepicker"/></p>       
+    <input type="submit" name="submit1" value="invoeren"/>
 </form>
 
 </div>

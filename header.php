@@ -84,7 +84,7 @@ function closeNav() {
   <?php
     switch ($_SESSION['isAdmin']) { 
                 case "1":
-                echo '<li><a href="adminDash.php"><i class="fa fa-unlock"></i><span>AdminDash</span></a></li>' ;
+                echo '<li><a href="admin/adminDash.php"><i class="fa fa-unlock"></i><span>AdminDash</span></a></li>' ;
                 break;
 
                 case "0":
