@@ -36,7 +36,7 @@ function closeNav() {
 <header>
   
   
-  <div id="theCarousel" class="carousel slide" data-ride="carousel">
+    <div id="theCarousel" class="carousel slide" data-interval="false">
         <img class="logo" src="fts.png">
   
       <ol class="carousel-indicators">
