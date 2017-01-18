@@ -37,7 +37,7 @@ function closeNav() {
   
   
   <div id="theCarousel-2" class="carousel slide" data-interval="false">
-        <img class="logo" src="fts.png">
+        <img class="logo" src="../fts.png">
   
       <ol class="carousel-indicators">
           <li data-target="#theCarousel" data-slide-to="0" class="active">
@@ -95,7 +95,7 @@ function closeNav() {
 
 ?>
      <li><a href="../index.php"><span>DASHBOARD</span><i class="fa fa-home"></i></a></li>
-     <li><a href="nieuwTicketDash.php"><span><i class="fa fa-ticket"></i> NIEUW TICKET</span></a></li>
+     <li><a href="../acties/nieuwTicketDash.php"><span><i class="fa fa-ticket"></i> NIEUW TICKET</span></a></li>
      <li><a href="../tickets.php"><span>ALLE TICKETS</span></a></li>
      <li><a href="../klanten.php"><span></i> KLANTEN</span></a></li>
      <li class="active"><a href="uitloggen.php"><span><i class="fa fa-sign-out"></i>UITLOGGEN</span></a></li>

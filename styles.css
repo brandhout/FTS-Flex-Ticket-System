@@ -405,7 +405,7 @@ footer{
 
 
 body {
-    background-color: #cdcdcd;
+    background-image: url('back.jpg');
     width: 100%;
               margin: 0 auto;
               height:100%
@@ -462,6 +462,7 @@ border:none;
 
 /* menu 2 */
 body{    font-family: "Lato", sans-serif;
+         background-color:#f7fse6;
 }
 
 .sidenav {
@@ -528,9 +529,6 @@ body{    font-family: "Lato", sans-serif;
 }
 /*  nieuwe ticket   ------------------------------------------------------------------------------------------ */
 
-.result{
-    
-}
 
 .admindash{
 
@@ -557,84 +555,50 @@ body{    font-family: "Lato", sans-serif;
 /* nieuwe ticket */
 .containert{
           width:60%;
-          height:40%;
+          height:60%;
           text-align: center;
-          background-color: rgba(255,250,250,0.7);
+          background-color: rgba(27, 42, 50, 0.87);
           border-radius:4px;
           margin:0px auto;
-          margin-top:150px;
                   position: relative;
+
       }
-      
-.naw{
-    margin-top: 50px;
-    margin-left:5px;
-        float:left;
-        width:20%;
-          display: inline-block;
-          
-}
+      label{
+                            color:white;
+      }      
+table {
+    border: none;
+    height: 50%;
+width:90%;
+text-align:right;
+display: center;
+margin: auto;
 
-.midden{
-        margin-top: 50px;
-        display: center;
-        text-align:right;
-        width:30%;
-          display: inline-block;
 }
-.rechts{
-        margin-top: 50px;
-            float:right;
-        text-align:left;
-        width:30%;
-          margin-right:50px;
-          display: inline-block;
-}
-fieldset, input {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-fieldset {
-    margin:0;
-}
-
-.containery{
-              width:60%;
-          height:40%;
-          text-align: center;
-          background-color: rgba(255,250,250,0.7);
-          border-radius:4px;
-          margin:0px auto;
-          margin-top:150px;
-                  position: relative;
-}
-
-.textl1{
-        margin-top: 10px;
-    margin-left:5px;
-        float:left;
-        width:20%;
-          display: inline-block;
-          text-align:center;
-}
-.textl2{
-            margin-top: 10px;
-        text-align:right;
-        width:30%;
-          display: inline-block;
-}
-.textl3{
-            margin-top: 10px;
-            float:right;
-        text-align:left;
-        width:30%;
-          margin-right:50px;
-          display: inline-block;
-}
-table {border: none;}
 
 .texta{
-      width: 300px;
+      width: 90%;
   height: 150px;
+}
+
+.sub{
+float: right;
+}
+
+.sub{
+  width: 30%;
+  background-color: #c06014;
+            margin-top:5px;
+          padding:10px 20px;
+          color: #fff;
+          border:none;
+          border-radius: 2px;
+}
+.sub:hover {
+  width: 30%;
+  background-color: #1a2930;
+          color: #fff;
+border:none;
+          border-radius: 2px;
+
 }
