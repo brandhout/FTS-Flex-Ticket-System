@@ -71,7 +71,20 @@ function closeNav() {
           <a class="right carousel-control" href="#theCarousel-1"  data-slide="next">
               <span class="glyphicon glyphicon-chevron-right"> </span> </a>         
   </div>
-    <span onclick="openNav()"><i class="fa fa-bars toggle_menu"></i></span>
+      <?php
+    switch ($_SESSION['isAdmin']) { 
+                case "1":
+                echo '<span onclick="openNav()"><i class="fa fa-bars toggle_menu"></i></span>' ;
+                break;
+
+                case "0":
+                break;
+
+                default:
+                break;
+            }
+
+?>
 </header>
 <div id="cssmenu" class="align-right">
   <ul>
