@@ -563,16 +563,28 @@ body{    font-family: "Lato", sans-serif;
                   position: relative;
 
       }
+      .containert1{
+          width:80%;
+          height:80%;
+          text-align: center;
+          background-color: rgba(27, 42, 50, 0.87);
+          border-radius:4px;
+          margin:0px auto;
+                  position: relative;
+
+      }
       label{
                             color:white;
       }      
 table {
     border: none;
-    height: 50%;
+    height: 5%;
 width:90%;
 text-align:right;
 display: center;
 margin: auto;
+color:white;
+padding:0;
 
 }
 
@@ -601,4 +613,17 @@ float: right;
 border:none;
           border-radius: 2px;
 
+}
+
+p{
+    color:white;
+}
+
+
+.containert1 h3{
+    color:white;
+}
+
+.containert a {
+    
 }

@@ -62,13 +62,14 @@
                     <title> FTS Ticketlijst </title>
                 </head>
                 <body>
+                
                     <form action="">
                             <p> Geef weer: </p>
-                           <button name="welkTicket" type="submit" value="alle">Alle</button>
-                           <button name="welkTicket" type="submit" value="open">Open</button>
-                           <button name="welkTicket" type="submit" value="gesloten">Gesloten</button>
+                           <button class="sub2" name="welkTicket" type="submit" value="alle">Alle</button>
+                           <button class="sub2" name="welkTicket" type="submit" value="open">Open</button>
+                           <button class="sub2" name="welkTicket" type="submit" value="gesloten">Gesloten</button>
                     </form>
-                    
+                    <div class="containert1">
                     <form action="">
                     <p> Zoek in beschrijving </p>
                     <input type="text" name="kipquery" required>
@@ -76,7 +77,7 @@
                     
 
 
-                    <table align="left" cellspacing="5" cellpadding="8">
+                    <table align="left" border="solid red">
                     <td align="left"><strong>TicketID</strong></td>
                     <td align="left"><strong>trefwoorden</strong></td>
                     <td align="left"><strong>Klantnaam</strong></td>
@@ -137,24 +138,23 @@
             if(!$uitzondering){                                            
                 echo '<tr><td align="left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
                     $ticket['ticketId'] . '</td><td align="left"></a>' . 
-                    $ticket['trefwoorden'] . '</td><td align="left"></a>' .
-                    $klant['klantAchternaam'] . '</td><td align="left"></a>' .
-                    $ticket['lijnNr'] . '</td><td align="left"></a>' .
-                    leesAccountAchterNaam($ticket['fstAccountNr']) . '</td><td align="left"></a>' .
-                    datumOmzet($ticket['streefdatum']) . '</td><td align="left"></a>' .
-                    prioriteitOmzet($ticket['prioriteit']) . '</td><td align="left"></a>' .
-                    $status . '</td><td align="left"></a>';
+                    $ticket['trefwoorden'] . '</td><td align="left">' .
+                    $klant['klantAchternaam'] . '</td><td align="left">' .
+                    $ticket['lijnNr'] . '</td><td align="left">' .
+                    leesAccountAchterNaam($ticket['fstAccountNr']) . '</td><td align="left">' .
+                    datumOmzet($ticket['streefdatum']) . '</td><td align="left">' .
+                    prioriteitOmzet($ticket['prioriteit']) . '</td><td align="left">' .
+                    $status . '</td>';
                 echo '</tr>';
             }
 	}
    
 	
 	echo "</table>";
-        
+        echo "</div>";
  ?>
 
  
    
-    
   </body>
 </html>
