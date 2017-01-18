@@ -28,66 +28,119 @@
   </script>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+    <!--menu--> 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>   
+  
 <script>
-function openNav() {
-    document.getElementById("mySidenav2").style.width = "250px";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav2").style.width = "0";
-}
-</script> 
+$(document).ready(function(){
+    $(".dropdown").hover(            
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+            $(this).toggleClass('open');        
+        },
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+            $(this).toggleClass('open');       
+        }
+    );
+});
+</script>
 
 </head>
 <body>
 <header>
   
   
-  <div id="theCarousel-2" class="carousel slide" data-interval="false">
-        <img class="logo" src="../fts.png">
-  
-      <ol class="carousel-indicators">
-          <li data-target="#theCarousel-2" data-slide-to="0" class="active">
-              
-          </li>
-          <li data-target="#theCarousel-2" data-slide-to="1">
-              
-          </li>
-          <li data-target="#theCarousel-2" data-slide-to="2">
-              
-          </li>          
-      </ol>
-      <div class="carousel-inner">
-          <div class="item active">
-              <div class="slide1">
-                  <div class="carousel-caption">
-                  </div>
-          </div>
-      </div>
- <div class="item">
-              <div class="slide2">
-                  <div class="carousel-caption">
-                  </div>
-          </div>
-      </div>   
- <div class="item">
-              <div class="slide3">
-                  <div class="carousel-caption">
-                  </div>
-          </div>
- </div></div>
-          
-          <a class="left carousel-control" href="#theCarousel-2"  data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left"> </span></a>
-          
-          <a class="right carousel-control" href="#theCarousel-2"  data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right"> </span> </a>         
-  </div>
-      <?php
+<div class="container">
+  <nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+    	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">FTS</a>
+	</div>
+	
+	<div class="collapse navbar-collapse js-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li class="dropdown mega-dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Groot menu <span class="caret"></span></a>				
+				<ul class="dropdown-menu mega-dropdown-menu">
+					<li class="col-sm-3">
+						<ul>
+							<li class="dropdown-header">afbeeldingen</li>                            
+                            <div id="menCollection" class="carousel slide" data-ride="carousel">
+                              <div class="carousel-inner">
+                                <div class="item active">
+                                    <a href="#"><img src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 1"></a>
+                                    <h4><small>voorbeeld</small></h4>                                        
+                                    <button class="btn btn-primary" type="button">#</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span>#</button>       
+                                </div><!-- End Item -->
+                                <div class="item">
+                                    <a href="#"><img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 2"></a>
+                                    <h4><small>voorbeeld</small></h4>                                        
+                                    <button class="btn btn-primary" type="button">#</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span>#</button>        
+                                </div><!-- End Item -->
+                                <div class="item">
+                                    <a href="#"><img src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 3"></a>
+                                    <h4><small>voorbeeld</small></h4>                                        
+                                    <button class="btn btn-primary" type="button">#</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span>#</button>      
+                                </div><!-- End Item -->                                
+                              </div><!-- End Carousel Inner -->
+                              <!-- Controls -->
+                              <a class="left carousel-control" href="#menCollection" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="right carousel-control" href="#menCollection" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div><!-- /.carousel -->
+                            <li class="divider"></li>
+                            <li><a href="#">ga naar.... <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+						</ul>
+					</li>
+					<li class="col-sm-3">
+						<ul>
+							<li class="dropdown-header">Features</li>
+							<li><a href="#">Auto Carousel</a></li>
+                            <li><a href="#">Carousel Control</a></li>
+                            <li><a href="#">Left & Right Navigation</a></li>
+							<li><a href="#">Four Columns Grid</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Fonts</li>
+                            <li><a href="#">Glyphicon</a></li>
+							<li><a href="#">Google Fonts</a></li>
+						</ul>
+					</li>
+					<li class="col-sm-3">
+						<ul>
+							<li class="dropdown-header">Plus</li>
+							<li><a href="#">Navbar Inverse</a></li>
+							<li><a href="#">Pull Right Elements</a></li>
+							<li><a href="#">Coloured Headers</a></li>                            
+							<li><a href="#">Primary Buttons & Default</a></li>							
+						</ul>
+					</li>
+					  <?php
     switch ($_SESSION['isAdmin']) { 
                 case "1":
-                echo '<span onclick="openNav()"><i class="fa fa-bars toggle_menu"></i></span>' ;
+                echo '<li class="col-sm-3">
+						<ul>
+                                                        <li class="dropdown-header">Admin-menu</li>
+							<li><a href="../admin/adminDash.php">AdminDash</a></li>
+							<li><a href="../admin/accounts.php">accountbeheer</a></li>
+                                                        <li><a href="../admin/nieuwAccount.php">nieuw account aanmaken</a></li>
+							<li><a href="../admin/invoerApparaten.php">invoeren apparaten</a></li>
+							<li><a href="#">...</a></li>
+							<li><a href="#">...</a></li>
+						</ul>
+					</li>
+				' ;
                 break;
 
                 case "0":
@@ -98,13 +151,16 @@ function closeNav() {
             }
 
 ?>
-</header>
-<div id="cssmenu" class="align-right">
-  <ul>
+
+				</ul>				
+			</li>
+            <li class="">
+    			<a href="../index.php">dashboard<i class="fa fa-home"></i>	</a>			
+			</li>
   <?php
     switch ($_SESSION['isAdmin']) { 
                 case "1":
-                echo '<li><a href="../admin/adminDash.php"><span>AdminDash</span><i class="fa fa-unlock"></i></a></li>' ;
+                echo '<li><a href="../admin/adminDash.php">Admin Dashboard<i class="fa fa-unlock"></i></a></li>' ;
                 break;
 
                 case "0":
@@ -115,25 +171,25 @@ function closeNav() {
             }
 
 ?>
-     <li><a href="../index.php"><span>DASHBOARD</span><i class="fa fa-home"></i></a></li>
-     <li><a href="nieuwTicketDash.php"><span><i class="fa fa-ticket"></i> NIEUW TICKET</span></a></li>
-     <li><a href="../tickets.php"><span>ALLE TICKETS</span></a></li>
-     <li><a href="../klanten.php"><span></i> KLANTEN</span></a></li>
-     <li class="active"><a href="uitloggen.php"><span><i class="fa fa-sign-out"></i>UITLOGGEN</span></a></li>
-  </ul>
-</div>
-
-<div id="mySidenav2" class="sidenav">
-    
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times"></i></a>
-
-  <a href="../admin/accounts.php">Bestaande accounts</a>
-  <a href="../admin/nieuwAccount.php">Nieuwe accounts</a>
-  <a href="../admin/invoerApparaten.php">Aparaten invoer</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+		</ul>
+        <ul class="nav navbar-nav navbar-right">
+                        <li>
+                <a href="nieuwTicketDash.php">nieuw ticket <i class="fa fa-ticket"></i></a>
+            </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">navigeer naar <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="../tickets.php">tickets</a></li>
+            <li><a href="../klanten.php">klanten</a></li>
+            <li><a href="nieuwTicketDash.php">nieuwe ticket</a></li>
+            <li class="divider"></li>
+            <li><a href="#">komt nog meer aan!</a></li>
+          </ul>
+        </li>
+        <li><a href="uitloggen.php">uitloggen <i class="fa fa-sign-out"></i></a></li>
+      </ul>
+	</div><!-- /.nav-collapse -->
+  </nav>
 </div>
  <br><br><br>
 </body>

@@ -1,416 +1,64 @@
-/*-Head -------------------------------------------------------------------------------------------------------- */
-@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700);
-#cssmenu {
-  background: #1a2930;
-  margin: 0;
-  width: auto;
-  padding: 0;
-  line-height: 1;
-  display: block;
-  position: relative;
-  font-family: 'PT Sans', sans-serif;
-  box-sizing: content-box;
-        border-bottom-left-radius: 1em;
+/* -----------------------------------------menu----------------------------------------------- */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+body {
+    font-family: 'Open Sans', 'sans-serif';
+    width: 100%;
+    height:100%
 }
-#cssmenu ul {
+.mega-dropdown {
+  position: static !important;
+}
+.mega-dropdown-menu {
+    padding: 20px 0px;
+    width: 100%;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.mega-dropdown-menu > li > ul {
+  padding: 0;
+  margin: 0;
+}
+.mega-dropdown-menu > li > ul > li {
   list-style: none;
-  margin: 0;
-  padding: 0;
-  display: block;
 }
-#cssmenu ul:after,
-#cssmenu:after {
-  content: " ";
+.mega-dropdown-menu > li > ul > li > a {
   display: block;
-  font-size: 0;
-  height: 0;
-  clear: both;
-  visibility: hidden;
+  color: #222;
+  padding: 3px 5px;
 }
-#cssmenu ul li {
-  margin: 0;
-  padding: 0;
-  display: block;
-  position: relative;
-}
-#cssmenu ul li a {
+.mega-dropdown-menu > li ul > li > a:hover,
+.mega-dropdown-menu > li ul > li > a:focus {
   text-decoration: none;
-  display: block;
-  margin: 0;
-  -webkit-transition: color .2s ease;
-  -moz-transition: color .2s ease;
-  -ms-transition: color .2s ease;
-  -o-transition: color .2s ease;
-  transition: color .2s ease;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
 }
-#cssmenu ul li ul {
-  position: absolute;
-  left: -9999px;
-  top: auto;
-  z-index: 999;
-}
-#cssmenu ul li ul li {
-  max-height: 0;
-  position: absolute;
-  -webkit-transition: max-height 0.4s ease-out;
-  -moz-transition: max-height 0.4s ease-out;
-  -ms-transition: max-height 0.4s ease-out;
-  -o-transition: max-height 0.4s ease-out;
-  transition: max-height 0.4s ease-out;
-  background: #fff;
-}
-#cssmenu ul li ul li.has-sub:after {
-  display: block;
-  position: absolute;
-  content: "";
-  height: 10px;
-  width: 10px;
-  border-radius: 5px;
-  background: #000;
-  z-index: 1;
-  top: 13px;
-  right: 15px;
-}
-#cssmenu.align-right ul li ul li.has-sub:after {
-  right: auto;
-  left: 15px;
-}
-#cssmenu ul li ul li.has-sub:before {
-  display: block;
-  position: absolute;
-  content: "";
-  height: 0;
-  width: 0;
-  border: 3px solid transparent;
-  border-left-color: #fff;
-  z-index: 2;
-  top: 15px;
-  right: 15px;
-}
-#cssmenu.align-right ul li ul li.has-sub:before {
-  right: auto;
-  left: 15px;
-  border-left-color: transparent;
-  border-right-color: #fff;
-}
-#cssmenu ul li ul li a {
-  font-size: 14px;
-  font-weight: 400;
-  text-transform: none;
-  color: #000;
-  letter-spacing: 0;
-  display: block;
-  width: 170px;
-  padding: 11px 10px 11px 20px;
-}
-#cssmenu ul li ul li:hover > a,
-#cssmenu ul li ul li.active > a {
-  color: #4cb6ea;
-}
-#cssmenu ul li ul li:hover:after,
-#cssmenu ul li ul li.active:after {
-  background: #4cb6ea;
-}
-#cssmenu ul li ul li:hover > ul {
-  left: 100%;
-  top: 0;
-}
-#cssmenu ul li ul li:hover > ul > li {
-  max-height: 72px;
-  position: relative;
-}
-#cssmenu > ul > li {
-  float: left;
-}
-#cssmenu.align-center > ul > li {
-  float: none;
-  display: inline-block;
-}
-#cssmenu.align-center > ul {
-  text-align: center;
-  font-size: 0;
-}
-#cssmenu.align-center ul ul {
-  text-align: left;
-}
-#cssmenu.align-right > ul {
-  float: right;
-}
-#cssmenu.align-right > ul > li:hover > ul {
-  left: auto;
-  right: 0;
-}
-#cssmenu.align-right ul ul li:hover > ul {
-  right: 100%;
-  left: auto;
-}
-#cssmenu.align-right ul ul li a {
-  text-align: right;
-}
-#cssmenu > ul > li:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 0;
-  top: 0;
-  z-index: 0;
-  background: #c06014;/* hover kleur */
-  -webkit-transition: height .2s;
-  -moz-transition: height .2s;
-  -ms-transition: height .2s;
-  -o-transition: height .2s;
-  transition: height .2s;
-}
-#cssmenu > ul > li.has-sub > a {
-  padding-right: 40px;
-}
-#cssmenu > ul > li.has-sub > a:after {
-  display: block;
-  content: "";
-  background: #f3f3f3;
-  height: 12px;
-  width: 12px;
-  position: absolute;
-  border-radius: 13px;
-  right: 14px;
-  top: 16px;
-}
-#cssmenu > ul > li.has-sub > a:before {
-  display: block;
-  content: "";
-  border: 4px solid transparent;
-  border-top-color: #52658f;
-  z-index: 2;
-  height: 0;
-  width: 0;
-  position: absolute;
-  right: 16px;
-  top: 21px;
-}
-#cssmenu > ul > li > a {
-  color: #f3f3f3;
-  padding: 15px 20px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 14px;
-  z-index: 2;
-  position: relative;
-}
-#cssmenu > ul > li:hover:after,
-#cssmenu > ul > li.active:after {
-  height: 100%;
-}
-#cssmenu > ul > li:hover > a,
-#cssmenu > ul > li.active > a {
-  color: #f3f3f3;
-}
-#cssmenu > ul > li:hover > a:after,
-#cssmenu > ul > li.active > a:after {
-  background: #f3f3f3;
-}
-#cssmenu > ul > li:hover > a:before,
-#cssmenu > ul > li.active > a:before {
-  border-top-color: #fff;
-}
-#cssmenu > ul > li:hover > ul {
-  left: 0;
-}
-#cssmenu > ul > li:hover > ul > li {
-  max-height: 72px;
-  position: relative;
-}
-#cssmenu #menu-button {
-  display: none;
-}
-#cssmenu > ul > li > a {
-  display: block;
-}
-#cssmenu > ul > li {
-  width: auto;
-}
-#cssmenu > ul > li > ul {
-  width: 170px;
-  display: block;
-}
-#cssmenu > ul > li > ul > li {
-  width: 170px;
-  display: block;
-}
-@media all and (max-width: 800px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
-  #cssmenu > ul {
-    max-height: 0;
-    overflow: hidden;
-    -webkit-transition: max-height 0.35s ease-out;
-    -moz-transition: max-height 0.35s ease-out;
-    -ms-transition: max-height 0.35s ease-out;
-    -o-transition: max-height 0.35s ease-out;
-    transition: max-height 0.35s ease-out;
-  }
-  #cssmenu > ul > li > ul {
-    width: 100%;
-    display: block;
-  }
-  #cssmenu.align-right ul li a {
-    text-align: left;
-  }
-  #cssmenu > ul > li > ul > li {
-    width: 100%;
-    display: block;
-  }
-  #cssmenu.align-right ul ul li a {
-    text-align: left;
-  }
-  #cssmenu > ul > li > ul > li > a {
-    width: 100%;
-    display: block;
-  }
-  #cssmenu ul li ul li a {
-    width: 100%;
-  }
-  #cssmenu.align-center > ul {
-    text-align: left;
-  }
-  #cssmenu.align-center > ul > li {
-    display: block;
-  }
-  #cssmenu > ul.open {
-    max-height: 1000px;
-    border-top: 1px solid rgba(110, 110, 110, 0.25);
-  }
-  #cssmenu ul {
-    width: 100%;
-  }
-  #cssmenu ul > li {
-    float: none;
-    width: 100%;
-  }
-  #cssmenu ul li a {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 12px 20px;
-  }
-  #cssmenu ul > li:after {
-    display: none;
-  }
-  #cssmenu ul li.has-sub > a:after,
-  #cssmenu ul li.has-sub > a:before,
-  #cssmenu ul li ul li.has-sub:after,
-  #cssmenu ul li ul li.has-sub:before {
-    display: none;
-  }
-  #cssmenu ul li ul,
-  #cssmenu ul li ul li ul,
-  #cssmenu ul li ul li:hover > ul,
-  #cssmenu.align-right ul li ul,
-  #cssmenu.align-right ul li ul li ul,
-  #cssmenu.align-right ul li ul li:hover > ul {
-    left: 0;
-    position: relative;
-    right: auto;
-  }
-  #cssmenu ul li ul li,
-  #cssmenu ul li:hover > ul > li {
-    max-height: 999px;
-    position: relative;
-    background: none;
-  }
-  #cssmenu ul li ul li a {
-    padding: 8px 20px 8px 35px;
-    color: #f3f3f3;
-  }
-  #cssmenu ul li ul ul li a {
-    padding: 8px 20px 8px 50px;
-  }
-  #cssmenu ul li ul li:hover > a {
-    color: #f3f3f3;
-  }
-  #cssmenu #menu-button {
-    display: block;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 15px 20px;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    color: #f3f3f3;
-    cursor: pointer;
-  }
-  #cssmenu #menu-button:after {
-    display: block;
-    content: '';
-    position: absolute;
-    height: 3px;
-    width: 22px;
-    border-top: 2px solid #f3f3f3;
-    border-bottom: 2px solid #f3f3f3;
-    right: 20px;
-    top: 16px;
-    box-sizing: content-box;
-  }
-  #cssmenu #menu-button:before {
-    display: block;
-    content: '';
-    position: absolute;
-    height: 3px;
-    width: 22px;
-    border-top: 2px solid #f3f3f3;
-    right: 20px;
-    top: 26px;
-    box-sizing: content-box;
-  }
+.mega-dropdown-menu .dropdown-header {
+  font-size: 18px;
+  color: #ff3546;
+  padding: 5px 60px 5px 5px;
+  line-height: 30px;
 }
 
+.carousel-control {
+  width: 30px;
+  height: 30px;
+  top: -35px;
+
+}
+.left.carousel-control {
+  right: 30px;
+  left: inherit;
+}
+.carousel-control .glyphicon-chevron-left, 
+.carousel-control .glyphicon-chevron-right {
+  font-size: 12px;
+  background-color: #fff;
+  line-height: 30px;
+  text-shadow: none;
+  color: #333;
+  border: 1px solid #ddd;
+}
 
 /*main site ----------------------------------------------------------------------------------------------------*/
 
-
-img.logo {
-  height: 100px;
-  position: absolute;
-  margin: auto;
-  display: block;
-  top: 0px;
-  left: 0;
-  right: 0;
-  z-index:1;
-}
-            header{
-      width: 100%;
-        position: relative;
-  text-align: center;
-
-
-        }
-footer{
-            background-color: rgba(255,0,0,1);
-            text-align:right;
-              position: relative;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  color:#fff;
-      
-        }
-
-
-body {
-    background-image: url('back.jpg');
-    width: 100%;
-              margin: 0 auto;
-              height:100%
-   
-}
 
 
 #links
@@ -438,126 +86,14 @@ border:none;
 {
             display: inline-block;
 }
-
-/* Carousel Styling */
-.carousel div[class^=slide] {
-  height: 145px;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  z-index: -1
-}
-
-.slide1{
-  background-image: url('styles/3.jpg');
-}
-.slide2{
-  background-image: url('styles/2.jpg');
-}
-.slide3{
-  background-image: url('styles/1.png');
-}
-
-/* menu 2 */
-body{    font-family: "Lato", sans-serif;
-         background-color:#f7fse6;
-}
-
-.sidenav {
-    height:100vh;
-    max-height:100vh;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: all 0.3s ease-in-out;
-            border-bottom-left-radius: 1em;
-                opacity:0.9;
-                        border-top-right-radius: 1em;
-                                border-bottom-right-radius: 1em;
-    
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: all 0.3s ease-in-out;
-}
-
-.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-}
-
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-.fa-times{
-    right:5px;
-    top:5px;
-    opacity:0.7;
-    cursor: pointer;
-    position:absolute;
-    color:white;
-    transition: all 0.3s ease-in-out;
-    height:45px;
-        font-size:5em;
-}
-.fa-times:hover{
-    opacity:1;
-}
-
-.fa-bars{
-    margin-top: 69px;
-    color:white;
-    cursor: pointer;
-     background-color: #c06014;
-     height:45px;
-    font-size:5em;
- padding: 15px 20px 15px 15px;
-   position: absolute;
-  top: 76px;
-  left: 0;
-      z-index: 1;
-}
 /*  nieuwe ticket   ------------------------------------------------------------------------------------------ */
 
-
-.admindash{
-
-    float: left;
-    font-family: Geneva, Arial;
-}
-
-.admindash ul {
-
-    margin: 0px;
-    padding: 0px;
-    list-style-type: none;
-
-}
-
-.admindash li a {
-    display: block;
-    padding: 6px;
-    width: 180px;
-    color: black;
-    background-color: #D0DBF0;
-    text-decoration: none;
-}
 /* nieuwe ticket */
 .containert{
           width:90%;
           height:90%;
           text-align: center;
-          background-color: rgba(27, 42, 50, 0.87);
+          background-color: rgba(249, 249, 249, 0.87);
           border-radius:4px;
           margin:0px auto;
                   position: relative;
@@ -567,7 +103,7 @@ body{    font-family: "Lato", sans-serif;
           width:80%;
           height:80%;
           text-align: center;
-          background-color: rgba(27, 42, 50, 0.87);
+          background-color: rgba(249, 249, 249, 0.87);
           border-radius:4px;
           margin:0px auto;
                   position: relative;
@@ -581,7 +117,7 @@ width:90%;
 text-align:right;
 display: center;
 margin: auto;
-color:white;
+color:black;
 padding:0;
 
 }
