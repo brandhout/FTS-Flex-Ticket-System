@@ -170,13 +170,13 @@ border:none;
         $gebruikersNaam = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['gebruikersNaam'])));
         $wachtwoord = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['wachtwoord'])));
    
-        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, magInloggen, accountNr, lijnNr, laasteKeerIngelogd FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
+        $query = mysqli_query($connectie, "SELECT gebruikersNaam, wachtwoord, isAdmin, actief, accountNr, lijnNr, laasteKeerIngelogd FROM account WHERE gebruikersNaam = '$gebruikersNaam'");
         $uitkomst = mysqli_fetch_array($query);
         $teller = mysqli_num_rows($query);
         
         $hashdb = $uitkomst['wachtwoord'] ;
 
-        if ($teller == 1 && password_verify($wachtwoord, $hashdb) && $uitkomst['magInloggen'] == 1){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
+        if ($teller == 1 && password_verify($wachtwoord, $hashdb) && $uitkomst['actief'] == 1){ //Als gegevens in de database gelijk zijn aan ingevulde gegevens
             $laatsteKeerIngelogd = strtotime($uitkomst['laasteKeerIngelogd']);
             
             session_start();
