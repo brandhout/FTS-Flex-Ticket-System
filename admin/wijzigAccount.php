@@ -78,12 +78,12 @@
                 echo 'Wachtwoord <br><input type="password" name="wachtwoord" value="';
                 echo '"/><br><br>';
                 
-                if($account['actief'] == 0){
+                if($account['actief'] === 0){
                     echo '<button name="actief" type="submit" value="">Account op actief zetten</button>';
                 }    
                                        
                  
-                 if($account['magInloggen'] == 1){
+                 if($account['magInloggen'] === 1){
                     echo '<button name="magInloggen" type="submit" value="">Account op non actief zetten </button><br><br>';
                 }    
                 
