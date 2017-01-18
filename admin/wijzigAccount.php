@@ -77,10 +77,19 @@
 
                 echo 'Wachtwoord <br><input type="password" name="wachtwoord" value="';
                 echo '"/><br><br>';
-
-                echo'<input type="submit" name="accountActie" value="Opslaan"><br>';
-                //<button name="accountActie" type="submit" value="Wijzig'. $account['accountNr'] .'">Wijzigen</button>
-                echo'</form>';
+                
+                if($account['actief'] == 0){
+                    echo '<button name="actief" type="submit" value="">Account op actief zetten</button>';
+                }    
+                                       
+                 
+                 if($account['magInloggen'] == 1){
+                    echo '<button name="magInloggen" type="submit" value="">Account op non actief zetten </button><br><br>';
+                }    
+                
+                echo' <input type="submit" name="accountActie" value="Opslaan">
+                        
+                    </form>';
             }
         }
     }
@@ -91,15 +100,22 @@
             } else { 
                 $admin = 0;
             }
+            if(isset($_POST['actief'])){
+                $wActief = 1;
+            }    
+            if(isset($_POST['magInloggen'])){
+                $wMagInloggen = 0;
+            }
+            
             if(!empty($_POST["wachtwoord"])){
                 $hashin = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
-                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}', wachtwoord='$hashin' WHERE accountNr='{$_POST['accountNr']}' ";
+                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', actief='$wActief', magInloggen='$wMagInloggen', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}', wachtwoord='$hashin' WHERE accountNr='{$_POST['accountNr']}' ";
             } else {
-                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}' WHERE accountNr='{$_POST['accountNr']}' ";
+                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', actief='$wActief', magInloggen='$wMagInloggen', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}' WHERE accountNr='{$_POST['accountNr']}' ";
                 
             }     
         
-        echo $updateAccount;
+        //echo $updateAccount;
         $prep = $connectie->prepare($updateAccount);
             if ($prep) {
                 if ($prep->execute()) {
