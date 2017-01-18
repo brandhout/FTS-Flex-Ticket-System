@@ -35,13 +35,13 @@ function closeNav() {
         <img class="logo" src="../fts.png">
   
       <ol class="carousel-indicators">
-          <li data-target="#theCarousel" data-slide-to="0" class="active">
+          <li data-target="#theCarousel-1" data-slide-to="0" class="active">
               
           </li>
-          <li data-target="#theCarousel" data-slide-to="1">
+          <li data-target="#theCarousel-1" data-slide-to="1">
               
           </li>
-          <li data-target="#theCarousel" data-slide-to="2">
+          <li data-target="#theCarousel-1" data-slide-to="2">
               
           </li>          
       </ol>
@@ -98,6 +98,22 @@ function closeNav() {
 </div>
 <div id="mySidenav1" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times"></i></a>
+      <?php
+    switch ($_SESSION['isAdmin']) { 
+                case "1":
+                echo '<a href="accounts.php">Bestaande accounts</a>'
+                    . '<a href="nieuwAccount.php">Nieuwe accounts</a>'
+                        . '<a href="invoerApparaten.php">Aparaten invoer</a>' ;
+                break;
+
+                case "0":
+                break;
+
+                default:
+                break;
+            }
+
+?>
   <a href="#">About</a>
   <a href="#">Services</a>
   <a href="#">Clients</a>

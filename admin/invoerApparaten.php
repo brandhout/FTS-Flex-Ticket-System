@@ -31,7 +31,7 @@
         <title>Admin Invoer FTS</title>
     </header>
     <body>
-         
+         <div class="containert1">
         <form name="merk" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
             
             <h2><strong>Laptop merk invoer</strong></h2>
@@ -57,6 +57,6 @@
             
 
           <br><input type="submit" name="submitType" value="invoeren"><br>    
-        </form>
+        </form></div>
     </body>  
 </html>   

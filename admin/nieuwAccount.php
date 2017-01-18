@@ -20,7 +20,8 @@
                 <body>';
                     echo '<h2><strong>Nieuwe accounts</strong></h2>
                         <br>';
-                    echo '<form name="wijzigaccount" action="';
+                    echo '<div class="containert1">'
+                    . '<form name="wijzigaccount" action="';
                     echo htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST"<br>';
 
                     echo 'Indien leerling: Klassencode <br>
@@ -64,7 +65,7 @@
                             <input type="password" name="wachtwoord"><br><br>
                             
                             <input type="submit" name="opslaan" value="opslaan"><br> 
-                    </form>
+                    </form></div>
             </body>  
      </html> ';   
 

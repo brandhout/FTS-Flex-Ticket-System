@@ -21,7 +21,7 @@ echo '
         <h1>Klantenlijst</h1>
     </head>
     <body>
-
+<div class="containert1">
     <table align="left" cellspacing="5" cellpadding="8">
     <td align="left"><strong>KlantID</strong></td>
     <td align="left"><strong>Achternaam</strong></td>
@@ -51,7 +51,7 @@ while($klant = $klantenUitkomst->fetch_assoc()){
         <form action="acties/wijzigKlant.php">
             <button name="klantActie" type="submit" value="Wijzig'. $klant['klantId'] .'">Wijzigen</button>
             <button name="klantActie" type="submit" value="Verwijder'. $klant['klantId'] .'" disabled>Verwijderen</button>
-        </form><tr>';
+        </form><tr></div>';
 }
 
 ?>

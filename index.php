@@ -61,7 +61,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
         $ticketQuery ="SELECT * FROM ticket;";
             $ticketUitkomst = $connectie->query($ticketQuery);
             
-        echo '
+        echo '<div class="containert1">
                 <h3> Openstaande tickets lijn '.$lijnNr.': </h3>
 
                 <table align="left" cellspacing="5" cellpadding="8">
@@ -138,7 +138,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
                    
             
         
-	echo "</table>";
+	echo "</table></div>";
 
 ?>
 
