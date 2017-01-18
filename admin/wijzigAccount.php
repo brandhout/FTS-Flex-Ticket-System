@@ -83,8 +83,8 @@
                 }    
                                        
                  
-                 if($account['magInloggen'] == 1){
-                    echo '<button name="magInloggen" type="submit" value="">Account op non actief zetten </button><br><br>';
+                 if($account['actief'] == 1){
+                    echo '<button name="nonActief" type="submit" value="">Account op on-actief zetten</button><br><br>';
                 }    
                 
                 echo' <input type="submit" name="accountActie" value="Opslaan">
@@ -109,9 +109,9 @@
             
             if(!empty($_POST["wachtwoord"])){
                 $hashin = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
-                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', actief='$wActief', magInloggen='$wMagInloggen', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}', wachtwoord='$hashin' WHERE accountNr='{$_POST['accountNr']}' ";
+                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', actief='$wActief', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}', wachtwoord='$hashin' WHERE accountNr='{$_POST['accountNr']}' ";
             } else {
-                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', actief='$wActief', magInloggen='$wMagInloggen', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}' WHERE accountNr='{$_POST['accountNr']}' ";
+                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', actief='$wActief', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}' WHERE accountNr='{$_POST['accountNr']}' ";
                 
             }     
         
