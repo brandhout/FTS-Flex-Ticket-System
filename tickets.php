@@ -83,6 +83,7 @@
                     <td align="left"><strong>Klantnaam</strong></td>
                     <td align="left"><strong>Lijn</strong></td>
                     <td align="left"><strong>Aannemer</strong></td>
+                    <td align="left"><strong>Aangewezen</strong></td>
                     <td align="left"><strong>Streefdatum</strong></td>
                     <td align="left"><strong>Prioriteit</strong></td>
                     <td align="left"><strong>Status</strong></td></tr>
@@ -102,6 +103,12 @@
                          
             if(!$klant = $klantUitkomst->fetch_assoc()){
                 echo "Klant query mislukt..." . mysqli_error($connectie);
+            }
+            
+            if($ticket['aangewAccountNr'] > 0){
+                $aangewAccountNr = $ticket['aangewAccountNr'];
+            } else {
+                $aangewAccountNr = $ticket['fstAccountNr'];
             }
             
             $ticketId = $ticket['ticketId'];
@@ -142,6 +149,7 @@
                     $klant['klantAchternaam'] . '</td><td align="left">' .
                     $ticket['lijnNr'] . '</td><td align="left">' .
                     leesAccountAchterNaam($ticket['fstAccountNr']) . '</td><td align="left">' .
+                    leesAccountAchterNaam($aangewAccountNr) . '</td><td align="left">' .
                     datumOmzet($ticket['streefdatum']) . '</td><td align="left">' .
                     prioriteitOmzet($ticket['prioriteit']) . '</td><td align="left">' .
                     $status . '</td>';
