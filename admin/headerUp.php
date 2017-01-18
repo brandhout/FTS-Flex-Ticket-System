@@ -93,7 +93,7 @@ function closeNav() {
      <li><a href="../acties/nieuwTicketDash.php"><span><i class="fa fa-ticket"></i> NIEUW TICKET</span></a></li>
      <li><a href="../tickets.php"><span>ALLE TICKETS</span></a></li>
      <li><a href="../klanten.php"><span></i> KLANTEN</span></a></li>
-     <li class="active"><a href="uitloggen.php"><span><i class="fa fa-sign-out"></i>UITLOGGEN</span></a></li>
+     <li class="active"><a href="../acties/uitloggen.php"><span><i class="fa fa-sign-out"></i>UITLOGGEN</span></a></li>
   </ul>
 </div>
 
