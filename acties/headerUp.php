@@ -110,6 +110,22 @@ function closeNav() {
          
          <div id="mySidenav2" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times"></i></a>
+      <?php
+    switch ($_SESSION['isAdmin']) { 
+                case "1":
+                echo '<a href="../admin/accounts.php">Bestaande accounts</a>'
+                    . '<a href="../admin/nieuwAccount.php">Nieuwe accounts</a>'
+                        . '<a href="../admin/invoerApparaten.php">Aparaten invoer</a>' ;
+                break;
+
+                case "0":
+                break;
+
+                default:
+                break;
+            }
+
+?>
   <a href="#">About</a>
   <a href="#">Services</a>
   <a href="#">Clients</a>

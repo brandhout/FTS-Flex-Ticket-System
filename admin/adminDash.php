@@ -7,15 +7,10 @@
 
 
 <html>
+    <body>
     <header>
         <title> </title>
     </header>
-    <body>
-        <nav class= "" style="width:25%">
-            <a href="accounts.php">Bestaande accounts</a><br><br>
-            <a href="nieuwAccount.php">Nieuwe accounts</a><br><br>
-            <a href="invoerApparaten.php">Aparaten invoer</a><br><br>
-        </nav>
 
-        </body>  
+    </body>
 </html>    
