@@ -116,24 +116,48 @@
             header("Location: ../tickets.php");
         }
         
+        if(isset($_POST['commentaar'])){
+            $commentaar = $_POST['commentaar'];
+            $tcom = 0;
+            $fstAccountNr = $_SESSION["accountNr"];
+            $datumAanmaak = mysqldatum();
+            
+            $insertcomment= $connectie->prepare("INSERT INTO commentaar(commentaarID, commOmschrijving, typeCommentaar, datum, accountNr, ticketId)
+            VALUES ('',?,'$tcom','$datumAanmaak','$fstAccountNr','$ticketId'  )");
+            if ($insertcomment){
+                $insertcomment->bind_param('s',$commentaar);
+                if ($insertcomment->execute()){
+                    header("Location: ../tickets.php");
+                } else {
+                    echo "Error : " . mysqli_error($connectie);               
+                }
+            } else {
+                echo "Error : " . mysqli_error($connectie);               
+            } 
+        }
+        
     if (isset($_POST['oplossing'])){
         $oplossing = $_POST['oplossing'];
         $def = '0';
         $datumAanmaak = mysqldatum();
-        $ftsAccountNr = $_SESSION["accountNr"];
+        $fstAccountNr = $_SESSION["accountNr"];
         
         if(isset($_POST['definitief'])){
             $def = '1';
         }
         
         $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, definitief, oplossOmschrijving, datumFix, accountNr, ticketId)
-        VALUES ('','$def', ?,'$datumAanmaak','$ftsAccountNr','$ticketId')");
+        VALUES ('','$def', ?,'$datumAanmaak','$fstAccountNr','$ticketId')");
         if($insertoplossing){
             $insertoplossing->bind_param('s', $oplossing);
             if ($insertoplossing->execute()){
                 header("Location: ../tickets.php");               
-            }else{echo "Error : " . mysqli_error($connectie);}
-        }else{echo "Error : " . mysqli_error($connectie);}
+            } else {
+                echo "Error : " . mysqli_error($connectie);   
+            }
+        } else {
+            echo "Error : " . mysqli_error($connectie);
+        }
     }
            
            
@@ -200,9 +224,14 @@
         Accountnummer <strong>'.$ticket['fstAccountNr'].'</strong>';
         
     }
+    
+    echo '<h2> Klant </h2>';
+    
+    if($klant[bedrijfsId] > 0){
+        echo '<h3> Bedrijfsnaam </h3>'.leesBedrijfsNaam($klant[bedrijfsId]).'';
+    }
         
         echo '
-        <h2> Klant </h2>
         <h3> Achternaam: </h3> '.$klant['klantAchternaam'].'
         <h3> Voornaam: </h3> '.$klant['klantNaam'].'
         <h3> Telefoon: </h3> '.$klant['klantTel'].'';
@@ -251,9 +280,11 @@
                     </i><br><br>';
                 
         }
+        
+        echo '<h3> Oplossingen </h3>';
                 
         while($oplossingen = $oplossingUitkomst->fetch_array()){
-            echo ' <h3> Oplossingen </h3>
+            echo ' 
                 - Er is op <strong>'.$oplossingen['datumFix'].'</strong>
                 een oplossing aangedragen
                 door <strong>'.leesAccountAchterNaam($oplossingen['accountNr']).'</strong>
@@ -280,14 +311,15 @@
 
         }
         
+        echo '<h3> Commentaar </h3>';
+        
         while($commentaar = $commentaarUitkomst->fetch_assoc()){
             echo'
-                <h3> Commentaar </h3>
                 - Er is op <strong>'.$commentaar['datum'].'</strong>
                 commentaar aangeleverd door <strong>'.leesAccountAchterNaam($commentaar['accountNr']).'<br></strong>
                 met <strong>accountnr: '.$commentaar['accountNr'].'</strong><br><br>
                 Het commentaar luidt:<br><i>'.$commentaar['commOmschrijving'].'
-                </i></strong><br>    
+                </i></strong><br><br>    
                 ';
         }
       
