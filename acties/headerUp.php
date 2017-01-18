@@ -41,7 +41,7 @@ function closeNav() {
 <header>
   
   
-  <div id="theCarousel-1" class="carousel slide" data-interval="false">
+  <div id="theCarousel-2" class="carousel slide" data-interval="false">
         <img class="logo" src="../fts.png">
   
       <ol class="carousel-indicators">
@@ -75,10 +75,10 @@ function closeNav() {
           </div>
  </div></div>
           
-          <a class="left carousel-control" href="#theCarousel-1"  data-slide="prev">
+          <a class="left carousel-control" href="#theCarousel-2"  data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left"> </span></a>
           
-          <a class="right carousel-control" href="#theCarousel-1"  data-slide="next">
+          <a class="right carousel-control" href="#theCarousel-2"  data-slide="next">
               <span class="glyphicon glyphicon-chevron-right"> </span> </a>         
   </div>
 <span onclick="openNav()"><i class="fa fa-bars toggle_menu"></i></span>
