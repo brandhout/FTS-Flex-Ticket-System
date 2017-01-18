@@ -78,13 +78,14 @@
                 echo 'Wachtwoord <br><input type="password" name="wachtwoord" value="';
                 echo '"/><br><br>';
                 
-                if($account['actief'] == 0){
+                if($account['actief'] === 0){
                     echo '<button name="actief" type="submit" value="">Account op actief zetten</button>';
                 }    
                                        
-                 
+                                
                  if($account['actief'] == 1){
                     echo '<button name="nonActief" type="submit" value="">Account op on-actief zetten</button><br><br>';
+
                 }    
                 
                 echo' <input type="submit" name="accountActie" value="Opslaan">
