@@ -135,7 +135,7 @@
             }
                 
             if(!$uitzondering){                                            
-                echo '<tr><td align=left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+                echo '<tr><td align="left"><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
                     $ticket['ticketId'] . '</td><td align="left"></a>' . 
                     $ticket['trefwoorden'] . '</td><td align="left"></a>' .
                     $klant['klantAchternaam'] . '</td><td align="left"></a>' .

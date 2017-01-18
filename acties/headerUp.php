@@ -7,27 +7,26 @@
   <script src="navbar.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!--bootstrap--> 
-      <script src="../styles/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="../styles/css/bootstrap.css">
   
   <script src="../styles/js/bootstrap.min.js"></script>
    <!--datepicker -->
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
-<script>
-      $( function() {
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
     $( "#datepicker" ).datepicker();
   } );
-  $( function() {
+    $( function() {
     $( "#datepicker1" ).datepicker();
   } );
   </script>
-</script>
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-     <script>
+<script>
 function openNav() {
     document.getElementById("mySidenav2").style.width = "250px";
 }
@@ -46,13 +45,13 @@ function closeNav() {
         <img class="logo" src="../fts.png">
   
       <ol class="carousel-indicators">
-          <li data-target="#theCarousel" data-slide-to="0" class="active">
+          <li data-target="#theCarousel-2" data-slide-to="0" class="active">
               
           </li>
-          <li data-target="#theCarousel" data-slide-to="1">
+          <li data-target="#theCarousel-2" data-slide-to="1">
               
           </li>
-          <li data-target="#theCarousel" data-slide-to="2">
+          <li data-target="#theCarousel-2" data-slide-to="2">
               
           </li>          
       </ol>

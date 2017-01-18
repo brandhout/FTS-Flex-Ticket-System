@@ -35,13 +35,13 @@ function closeNav() {
         <img class="logo" src="../fts.png">
   
       <ol class="carousel-indicators">
-          <li data-target="#theCarousel" data-slide-to="0" class="active">
+          <li data-target="#theCarousel-1" data-slide-to="0" class="active">
               
           </li>
-          <li data-target="#theCarousel" data-slide-to="1">
+          <li data-target="#theCarousel-1" data-slide-to="1">
               
           </li>
-          <li data-target="#theCarousel" data-slide-to="2">
+          <li data-target="#theCarousel-1" data-slide-to="2">
               
           </li>          
       </ol>
