@@ -1,5 +1,8 @@
 /* -----------------------------------------menu----------------------------------------------- */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+.container{
+    z-index: 1;
+}
 body {
     font-family: 'Open Sans', 'sans-serif';
     width: 100%;
@@ -7,6 +10,7 @@ body {
 }
 .mega-dropdown {
   position: static !important;
+
 }
 .mega-dropdown-menu {
     padding: 20px 0px;
@@ -285,7 +289,6 @@ center{
 }
 input {
     position: relative;
-    z-index: 9999;
 }
 
 /* checkbox */
