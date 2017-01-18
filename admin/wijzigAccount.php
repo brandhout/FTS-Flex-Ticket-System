@@ -103,8 +103,8 @@
             if(isset($_POST['actief'])){
                 $wActief = 1;
             }    
-            if(isset($_POST['magInloggen'])){
-                $wMagInloggen = 0;
+            if(isset($_POST['nonActief'])){
+                $wActief = 0;
             }
             
             if(!empty($_POST["wachtwoord"])){
