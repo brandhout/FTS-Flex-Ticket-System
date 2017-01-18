@@ -6,7 +6,9 @@
   <link rel="stylesheet" href="../styles.css" type="text/css">
   <script src="navbar.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!--bootstrap--> 
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" type="text/css" href="../styles/css/bootstrap.css">
   <script src="../styles/js/bootstrap.min.js"></script>
    <!--datepicker -->
