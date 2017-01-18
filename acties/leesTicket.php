@@ -115,6 +115,27 @@
             }
             header("Location: ../tickets.php");
         }
+        
+    if (isset($_POST['oplossing'])){
+        $oplossing = $_POST['oplossing'];
+        $def = '0';
+        $datumAanmaak = mysqldatum();
+        $ftsAccountNr = $_SESSION["accountNr"];
+        
+        if(isset($_POST['definitief'])){
+            $def = '1';
+        }
+        
+        $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, definitief, oplossOmschrijving, datumFix, accountNr, ticketId)
+        VALUES ('','$def', ?,'$datumAanmaak','$ftsAccountNr','$ticketId')");
+        if($insertoplossing){
+            $insertoplossing->bind_param('s', $oplossing);
+            if ($insertoplossing->execute()){
+                header("Location: ../tickets.php");               
+            }else{echo "Error : " . mysqli_error($connectie);}
+        }else{echo "Error : " . mysqli_error($connectie);}
+    }
+           
            
     echo '
         <!DOCTYPE html>
@@ -151,7 +172,8 @@
             Merk: <strong><i>'.$merkOm.'</strong></i><br>
             Type: <strong><i>'.$typeOm.'</strong></i><br>';
     }
-            
+    
+ 
     if($ticket['lijnNr'] === $_SESSION['lijnNr'] or $_SESSION['isAdmin'] === "1"){
         echo '
             <h3> Doorsturing: </h3>
@@ -229,11 +251,9 @@
                     </i><br><br>';
                 
         }
-        
-        echo '<h3> Oplossingen </h3>';
-        
+                
         while($oplossingen = $oplossingUitkomst->fetch_array()){
-            echo '
+            echo ' <h3> Oplossingen </h3>
                 - Er is op <strong>'.$oplossingen['datumFix'].'</strong>
                 een oplossing aangedragen
                 door <strong>'.leesAccountAchterNaam($oplossingen['accountNr']).'</strong>
@@ -244,6 +264,7 @@
                 </i><br>';
             
                 if($oplossingen['definitief'] === "1"){
+                    $definitief = TRUE;
                     echo 'Deze oplossing is <strong>definitief</strong>,
                      de ticket is afgesloten<br><br>';                 
                 } else {
@@ -271,5 +292,19 @@
         }
       
         echo '<form name="leesTicket" action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
+        
+        if(!$definitief && $ticket['lijnNr'] === $_SESSION['lijnNr']){
+            echo '<h2> Nieuwe oplossing </h2>
+                <form action ="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
+                    <input type ="text" name="oplossing"><br>
+                    <input type ="checkbox" name="definitief" value="1">Definitief<br>
+                    <button name="submitOplossing" type="submit" value="1">Verstuur</button>
+                </form><br>
+                <h2> Nieuw commentaar </h2>
+                <form action ="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
+                    <input type ="text" name="commentaar"><br><br>
+                    <button name="submitCommentaar" type="submit" value="1">Verstuur</button>
+                ';
+        }
       
 ?>
