@@ -38,131 +38,60 @@
             <!--bootstrap--> 
   <link rel="stylesheet" type="text/css" href="../styles/css/bootstrap.css">
   <script src="../styles/js/bootstrap.min.js"></script>
-  
-  <style>
-      body{
-          margin: 0 auto;
-          background-image: url("../styles/inlogroc.jpg");
-          background-repeat: no-repeat;
-          background-size: 100%;
-          
-      }
-      
-      .container{
-          width:400px;
-          height:300px;
-          text-align: center;
-          background-color: rgba(255,250,250,0.7);
-          border-radius:4px;
-          margin:0px auto;
-          margin-top:150px;
-      }
-      
-      .container img{
-          width:120px;
-          height:120px;
-          margin-top:-90px;
-          display: inline-block;
-      }
-      
-      inlog[type="text"],inlog[type="password"]{
-          width:300px;
-          height:45px;
-          font-size:18px;
-          margin-bottom:30px;
-          background-color: #fff;
-          padding-left:30px;
-          
-      }
-
-      .btn-login{
-
-  background-color: #c06014;
-            margin-top:5px;
-          padding:10px 20px;
-          color: #fff;
-          border:none;
-          border-radius: 2px;
-}
-.btn-login:hover {
-
-  background-color: #1a2930;
-          color: #fff;
-border:none;
-          border-radius: 2px;
-
-}
-      
-     img.logo2 {
-  display: inline-block;
-            height:125px;
-
-
-        }
-     img.roc1 {
-          display: inline-block;
-          width:250px;
-          height:125px;
-            width: 250px;
-  height: 125px;
-  position: absolute;
-  top: 0;
-  left: 0;
-        }
- 
-        header{
-  background-color: rgba(255, 0, 0, 0.6);
-  position: relative;
-  text-align: center;
-  height: 128px;
-
-        }
-        footer{
-            background-color: rgba(255,0,0,0.6);
-            text-align:right;
-              position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  color:#fff;
-      
-        }
-         .gekkeshit {
-    border: 8px solid #f3f3f3; /* Light grey */
-    border-top: 8px solid #c06014; /* Blue */
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 2s linear infinite;
-  display: inline-block;
-
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-  </style>
+  <!-- inloggen -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="../styles.css">
     </head>
-    <header>
-        <img src="../styles/roc.png" class="roc1"><img src="../fts.png" class="logo2">
-    </header>
     
     <body>
-        <br><br><br>    
+        <div class='inlogg'>   
         
         <div class="container">
-            <img src="../PNG.png"><br><br>
-           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-               <div class="inlog"><i class="fa fa-user" aria-hidden="true">
-                    <input type="text" name="gebruikersNaam" autocomplete="off" required placeholder="Vul hier uw gebruikersnaam in*"><span id="message1" ></span><br>
-                    </i></div>
-               <div class="inlog"><i class="fa fa-lock" aria-hidden="true">
-                    <input type="password" name="wachtwoord" required placeholder="Vul hier uw wachtwoord in*"><span id="message2" ></span><br>
-                    </i></div>
-                <input type="submit" value="inloggen"name="submit"class="btn-login">                  
-            </form>
+        <div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+
+							<div class="col-lg-12">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="gebruikersNaam" autocomplete="off" id="username" tabindex="1" class="form-control" placeholder="vul uw gebruikersnaam in"><span id="message1" ></span>
+									</div>
+									<div class="form-group">
+										<input type="password" name="wachtwoord" id="password" tabindex="2" class="form-control" placeholder="vul uw wachtwoord in"><span id="message2" ></span>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="inloggen">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
             <?php
             
      if(isset($_POST['gebruikersNaam']) && isset($_POST['wachtwoord'])){
@@ -187,7 +116,7 @@ border:none;
                 $nonActiefQuery = "UPDATE account SET actief = 0 WHERE accountNr = $accountNr";
                 $connectie->query($nonActiefQuery);
                 header("refresh:2;url= uitloggen.php");
-                echo ' <div class="gekkeshit"></div>
+                echo '
                 <br><p>Welkom bij FTS!<br>Data wordt ingelezen<p>';
             } else {
 
@@ -199,7 +128,7 @@ border:none;
                 $datum_query= "UPDATE account SET laasteKeerIngelogd = CURRENT_DATE WHERE accountNr = $accountNr";
                 $connectie->query($datum_query);
                 header("refresh:2;url= ../index.php");
-                echo ' <div class="gekkeshit"></div>
+                echo '
                 <br><p>Welkom bij FTS!<br>systeem wordt gestart</p>';
             
             }
@@ -210,7 +139,7 @@ border:none;
             
             ?>
             
-        </div>
+        </div></div>
         
     </body>
     <footer>
