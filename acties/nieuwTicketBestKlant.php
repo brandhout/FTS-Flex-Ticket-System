@@ -254,7 +254,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
                             <!-- Send Button -->
-                            <button type="submit" id="submit1" name="submit1" class="form-btn semibold">invoeren</button> 
+                            <button type="submit" id="submit0" name="submit0" class="form-btn semibold">invoeren</button> 
                         </div><!-- End Bottom Submit -->
                         <!-- Clear -->
                         <div class="clear"></div></div></div>
