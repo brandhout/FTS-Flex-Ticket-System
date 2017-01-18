@@ -16,4 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+    session_start();
+    require_once '../functies.php'; //Include de functies.
+    require_once 'headerUp.php'; // Zet de header bovenaan deze pagina.
+?>
 
+
+<html>
+    <header>
+        <title>Admin Invoer FTS</title>
+    </header>
+    <body> <strong>
+             <form name="instantie" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                Instantie <br>
