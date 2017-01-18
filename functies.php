@@ -135,3 +135,13 @@ function prioriteitOmzet ($prioriteitINT){
             return "Hoog";
     }
 }
+
+function leesBedrijfsNaam($bedrijfsId){
+    $connectie = verbinddatabase();
+    
+    $bedrijfsQuery = "SELECT naam FROM bedrijf WHERE bedrijfsId = '$bedrijfsId'";
+    $bedrijfsUitkomst = $connectie->query($bedrijfsQuery);
+    $bedrijf = $bedrijfsUitkomst->fetch_assoc();
+    
+    return $bedrijf['naam'];
+}
