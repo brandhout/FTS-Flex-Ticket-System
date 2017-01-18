@@ -111,12 +111,6 @@ function closeNav() {
 </div>
 
 
-
-      <?php
-    switch ($_SESSION['isAdmin']) { 
-                case "1":
-                echo '
-
 <div id="mySidenav1" class="sidenav">
     
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times"></i></a>
@@ -128,17 +122,6 @@ function closeNav() {
   <a href="#">Services</a>
   <a href="#">Clients</a>
   <a href="#">Contact</a>
-</div>';
-
-                break;
-
-                case "0":
-                break;
-
-                default:
-                break;
-            }
-
-?>
+</div>
  <br><br><br>
   </html>
