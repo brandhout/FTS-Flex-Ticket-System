@@ -21,7 +21,8 @@
             <head>
                 <h1>Accountlijst</h1>
             </head>
-            <body>         
+            <body>
+            <div class="containert1">
                     <table align="left" cellspacing="5" cellpadding="8">
                         <td align="left"><strong>Account nr</strong></td>
                         <td align="left"><strong>Gebruikersnaam</strong></td>
@@ -85,7 +86,7 @@
                 <form action="verwijderAccount.php">
                     <button name="verwijderActie" type="submit" value="Verwijder'. $account['accountNr'] .'">Verwijderen</button>' .
                 '<tr>
-                </form>';
+                </form></div>';
         }
     }       
 ?>
