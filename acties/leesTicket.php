@@ -159,6 +159,15 @@
             echo "Error : " . mysqli_error($connectie);
         }
     }
+    
+    if(isset($_POST['aanwijzer'])){       
+        $aanwijzer = $_POST['aanwijzer'];
+        $aanwijsQuery = "UPDATE ticket SET aangewAccountNr = '$aanwijzer' WHERE ticketId = '$ticketId'";
+        if(!$connectie->query($aanwijsQuery)){
+            echo "Error : " . mysqli_error($connectie);
+        }
+        header("Location: ../tickets.php");
+    }
            
            
     echo '
@@ -166,6 +175,7 @@
         <html>
         <head>
         <title>Ticket Informatie FTS</title>
+        </head>
         <body>
         <h1> Ticketinfo 
          ticketnummer: '. $ticketId . ' </h1><br>
@@ -174,6 +184,30 @@
         <h3> Status: </h3> '.$status.'
         <h3> Prioriteit: </h3> '.prioriteitOmzet($ticket['prioriteit']).'
         <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';
+    
+    if($_SESSION['isAdmin'] === "1"){
+        echo '
+            <h3>Account aanwijzen</h3>
+            <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
+            <select name="aanwijzer">
+            ';
+        $aanwijsQuery = "SELECT accountNr, achterNaam FROM account";
+        $aanwijsUitkomst = $connectie->query($aanwijsQuery);
+        while($aanwijzer = $aanwijsUitkomst->fetch_array()){
+            echo "
+                <option value=".$aanwijzer['accountNr'].">".$aanwijzer['achterNaam']."</option>              
+                ";
+        }
+        echo '</select>
+            <button name="submit" type="submit" value="submit">Verstuur</button><br<br></form>
+            ';
+    }
+    
+    if($ticket['aangewAccountNr'] > 0){
+                $aangewAccountNr = $ticket['aangewAccountNr'];
+                echo'
+                <h3> Aangewezen operator: </h3> '.leesAccountAchterNaam($aangewAccountNr).'';
+            }
     
     if($ticket['vVLaptopTypeId'] > 0){
         $typeId = $ticket['vVLaptopTypeId'];
@@ -328,8 +362,11 @@
         if(!$definitief && $ticket['lijnNr'] === $_SESSION['lijnNr']){
             echo '<h2> Nieuwe oplossing </h2>
                 <form action ="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
-                    <input type ="text" name="oplossing"><br>
-                    <input type ="checkbox" name="definitief" value="1">Definitief<br>
+                    <input type ="text" name="oplossing"><br>';
+                    if($_SESSION["accountNr"] === $ticket['fstAccountNr']){
+                       echo '<input type ="checkbox" name="definitief" value="1">Definitief<br>';
+                    }                                    
+            echo'        
                     <button name="submitOplossing" type="submit" value="1">Verstuur</button>
                 </form><br>
                 <h2> Nieuw commentaar </h2>
