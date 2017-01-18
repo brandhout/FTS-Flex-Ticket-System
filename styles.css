@@ -627,3 +627,16 @@ p{
 .containert a {
     
 }
+.containert2{
+           width:80%;
+          height:80%;
+          text-align: center;
+          background-color: rgba(27, 42, 50, 0.87);
+          border-radius:4px;
+          margin:0px auto;
+                  position: relative;
+
+}
+.containert2 .table{
+    display:center;
+}

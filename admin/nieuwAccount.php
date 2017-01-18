@@ -20,11 +20,12 @@
                 <body>';
                     echo '<h2><strong>Nieuwe accounts</strong></h2>
                         <br>';
-                    echo '<div class="containert1">'
+                    echo '<div class="containert2">'
                     . '<form name="wijzigaccount" action="';
                     echo htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST"<br>';
 
-                    echo 'Indien leerling: Klassencode <br>
+                    echo '<table cellspacing="0" cellpading="5"width="90%">
+                        <tr><td>Indien leerling: Klassencode<br>
                         <select name="klassencode">
                         <option value ="">---Select---</option>';
 
@@ -33,21 +34,21 @@
                         while ($v = mysqli_fetch_assoc($resultsKlas)) {
                             echo "<option value='" . $v['schoolKlasId'] . "'>" . $v['schoolKlasId'] . " " . $v['schoolKlasOmschrijving'] . "</option>";
                         }
-                        echo '</select><br><br>';
+                        echo '</select></td></tr>';
                         
-                    echo 'Voornaam <br>
-                        <input type="text" name="naam"><br><br>
-                        Achternaam <br>
-                        <input type="text" name="achterNaam"><br><br>
+                    echo '<tr><td>Voornaam<br>
+                        <input type="text" name="naam"></td></tr>
+                        <tr><td>Achternaam<br>
+                        <input type="text" name="achterNaam"</td></tr>
 
-                        Lijnnummer <br>
+                        <tr><td>Lijnnummer<br>
                         <select name="lijnNr">
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
-                          </select><br><br>
+                          </select></td></tr>
 
-                        Vestiging <br>
+                        <tr><td>Vestiging<br>
                         <select name="vestigingId">
                         <option value = "">---Select---</option>';
 
@@ -56,16 +57,16 @@
                         while ($v = mysqli_fetch_assoc($resultsVes)) {
                             echo "<option value='" . $v['vestigingId'] . "'>" . $v['vestigingId'] . " " . $v['vesOmschrijving'] . "</option>";
                         }
-                        echo '</select><br><br>';
+                        echo '</select></td></tr>';
                                                                        
-                        echo 'Admin: <input type="checkbox" name="isAdmin" value=1 ><br><br>
-                            Gebruikersnaam <br>
-                            <input type="text" name="gebruikersNaam"><br><br>
-                            Wachtwoord <br>
-                            <input type="password" name="wachtwoord"><br><br>
+                        echo '<tr><td>Admin: <input type="checkbox" name="isAdmin" value=1 ></td></tr>
+                            <tr><td>Gebruikersnaam<br>
+                            <input type="text" name="gebruikersNaam"></td></tr>
+                            <tr><td>Wachtwoord<br>
+                            <input type="password" name="wachtwoord"></td></tr>
                             
-                            <input type="submit" name="opslaan" value="opslaan"><br> 
-                    </form></div>
+                            <tr><td><input type="submit" name="opslaan" value="opslaan"></td></tr> 
+                    </table></form></div>
             </body>  
      </html> ';   
 
