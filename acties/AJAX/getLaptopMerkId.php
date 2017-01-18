@@ -2,6 +2,7 @@
 ini_set('display_erors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+require_once '../../functies.php';
 
 /* 
  * Copyright (C) 2017 rhuijzer
@@ -19,13 +20,8 @@ error_reporting(E_ALL);
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-    //MYSQL
-    $servernaam = "localhost";
-    $username = "root";
-    $password = "Admin01!";
-    $database = "ftsPrimair";
 
-    $connectie = new mysqli($servernaam, $username, $password, $database);    
+$connectie = verbinddatabase();
 
         $searchq = $_POST['zoekval'];
         $leesLaptopTypeQuery = "SELECT * FROM veelVoorkomendeLaptopTypes WHERE vVLaptopTypeOm LIKE '%$searchq%';";
