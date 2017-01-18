@@ -70,6 +70,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 <td align="left"><strong>Klantnaam</strong></td>
                 <td align="left"><strong>Lijn</strong></td>
                 <td align="left"><strong>Aannemer</strong></td>
+                <td align="left"><strong>Aangewezen</strong></td>
                 <td align="left"><strong>Prioriteit</strong></td>
                 <td align="left"><strong>Streefdatum</strong></td>
                 <td align="left"><strong>Resterende tijd</strong></td></tr>
@@ -100,6 +101,12 @@ if(isset($_SESSION['gebruikersNaam'])) {
                                         
             }}
             
+            if($ticket['aangewAccountNr'] > 0){
+                $aangewAccountNr = $ticket['aangewAccountNr'];
+            } else {
+                $aangewAccountNr = $ticket['fstAccountNr'];
+            }
+            
             if($_SESSION['isAdmin'] != "1"){
                 if($ticket['lijnNr'] != $_SESSION['lijnNr']){
                 $uitzondering = TRUE;
@@ -114,6 +121,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 $klant['klantAchternaam'] . $td .
                 $ticket['lijnNr'] . $td .
                 leesAccountAchterNaam($ticket['fstAccountNr']) . $td .
+                leesAccountAchterNaam($aangewAccountNr) . $td .
                 prioriteitOmzet($ticket['prioriteit']) . $td .
                 $streefdatum->format('d-m-Y') . $td;
                 
