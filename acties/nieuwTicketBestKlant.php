@@ -130,146 +130,140 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                     
                 }
             </script>
-        <div class="containert">
-            <form name="nieuwTicket1" action="nieuwTicketBestKlant.php" method="POST" enctype="multipart/form-data">
-                <table cellspacing="0" cellpading="5"width="90%">
-                    <tr>
-                        <td>
-                            <input name='zoek' type="text" placeholder="zoeken in Achternaam"  onkeydown="zoekf();"/><br>
-                        </td>
-                        <td>
-                            <label>categorie:</label>
-                            <select name="categorie">
-                                <option value = "">---Select---</option>
-                                <?php
-                                    $ophaalcat = "SELECT * FROM categorie ";
-                                    $resultcat = mysqli_query($connectie, $ophaalcat);
-                                    while ($c = mysqli_fetch_assoc($resultcat)) {
-                                    echo "<option value='" . $c['categorieId'] . "'>" . $c['categorieId'] . " " . $c['catOmschrijving'] . "</option>";
-                                    }
-                                ?>
-                            </select>
-                        </td>
-                        <td>
-                            <!--datepicker-->
-                            <label>streefdatum:</label>
-                            <input type="date" name="datepicker" id="datepicker1"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>klant ID:</label><textfield  type="text" id="output" name="klantID"/></textfield>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>categorie:</label>
-                            <select name="categorie">
-                            <option value = "">---Select---</option>
+<div class="container">
+<div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <!-- Form -->
+                    <form name="nieuwTicket" action="nieuwTicketNieuwKlant.php" method="POST">
+                        <!-- Left Inputs -->
+						<div class="grid">
+						<div class="row">
+                        <div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s">
+                            <!-- zoek -->
+                            <input type="text" name="zoek" id="zoek" required="required" class="form" onkeydown="zoekf();" placeholder="zoeken in achternaam" />
+							<p type="text" class="form" id="output" name="klantID" placeholder="resultaat klant ID"></p>
+                        </div><!-- End Left Inputs -->
+						<!-- mid inputs -->
+						<div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s">
+                        <select class="form" name="instantie">
+                        <option value = "">---instanties---</option>
                             <?php
-                                $ophaalcat = "SELECT * FROM categorie ";
-                                $resultcat = mysqli_query($connectie, $ophaalcat);
-                                while ($c = mysqli_fetch_assoc($resultcat)) {
-                                echo "<option value='" . $c['categorieId'] . "'>" . $c['categorieId'] . " " . $c['catOmschrijving'] . "</option>";
-                                }
-                            ?>
-                            </select>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>klant moet gebeld worden:</label><input type="checkbox" name="nogBellen"/>
-                        </td>
-                        <td>
-                            <label>sub-categorie:</label>
-                            <select name="subCategorie">
-                            <option value = "">---Select---</option>
-                                <?php
-                                $ophaalscat = "SELECT * FROM subCategorie ";
-                                $resultscat = mysqli_query($connectie, $ophaalscat);
-                                while ($s = mysqli_fetch_assoc($resultscat)) {
-                                echo "<option value='" . $s['subCategorieId'] . "'>" . $s['subCategorieId'] . " " . $s['subCatomschrijving'] . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>binnengekomen via:</label>
-                            <select name="binnenkomstType">
-                            <option value = "">---Select---</option>
-                                <?php
-                                $ophaalb = "SELECT * FROM binnenkomstType ";
-                                $resultb = mysqli_query($connectie, $ophaalb);
-                                while ($bt = mysqli_fetch_assoc($resultb)) {
-                                echo "<option value='" . $bt['binnenkomstId '] . "'>" . $bt['binnenkomstTypeOm'] . "</option>";
-                                }
-                                ?> 
-                            </select>
-                        </td>
-                        <td>
-                            <label>Zoek laptoptype:</label>
-                            <input name='laptopType' type="text" placeholder="Voer laptoptype in"  onblur="laptop();"/>
-                        </td>
-                        <td>
-                            <label>Laptop: </label><textfield type="text" id="laptop" name="laptop"/></textfield><br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input id="text1" type="text" placeholder="trefwoorden (schijten met,)" name="trefwoorden"/></p>
-                        </td>
-                        <td>
-                            <label>besturingsysteem:</label>
-                            <select name="besturingssysteem">
-                            <option value = "">---Select---</option>
-                                <?php
-                                $ophaalbs = "SELECT * FROM besturingssysteem ";
-                                $resultbs = mysqli_query($connectie, $ophaalbs);
-                                while ( $bs=mysqli_fetch_assoc($resultbs)) {
-                                echo "<option value='".$bs['besturingssysteemId']."'>".$bs['besturingssysteemId']." ".$bs['besturingssysteemOm']."</option>";
-                                }
-                                ?>           
-                                </select>
-                        </td>
-                        <td>
-                            <label>prioriteit:</label>
-                            <select name="prioriteit">
-                            <option value = "">---Select---</option>
+                            $ophaali = "SELECT * FROM instantie ";
+                            $resulti = mysqli_query($connectie, $ophaali);
+                            while ($l = mysqli_fetch_assoc($resulti)) {
+                            echo "<option value='" . $l['instantieId'] . "'>" . $l['instantieNaam'] . "</option>";
+                            }
+                            ?> 
+                        </select>						
+                        <select class="form" name="bedrijf">
+                        <option value = "">---bedrijf---</option>
+                            <?php
+                            $ophaalv = "SELECT * FROM bedrijf ";
+                            $resultv = mysqli_query($connectie, $ophaalv);
+                            while ($v = mysqli_fetch_assoc($resultv)) {
+                            echo "<option value='" . $v['bedrijfsId'] . "'> " . $v['naam'] . "</option>";
+                            }
+                            ?> 
+                        </select>						
+                        <select class="form" name="binnenkomstType" >
+                        <option value = "">---binnengekomen via---</option>
+                            <?php
+                            $ophaalb = "SELECT * FROM binnenkomstType ";
+                            $resultb = mysqli_query($connectie, $ophaalb);
+                            while ($bt = mysqli_fetch_assoc($resultb)) {
+                            echo "<option value='" . $bt['binnenkomstId '] . "'>" . $bt['binnenkomstTypeOm'] . "</option>";
+                            }
+                            ?> 
+                        </select>
+                        <select class="form"name="prioriteit">
+                            <option value = "">---prioriteit---</option>
                             <option value = "1">laag</option>
                             <option value = "2">middel</option>
                             <option value = "3">hoog</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>probleem(korte omschrijving):</label><br>
-                            <textarea class="texta" name="probleem"></textarea>
-                        </td>
-                        <td>
-                            <label>commentaar:</label><br>
-                            <textarea class="texta" name="nieuwComment"></textarea>
-                        </td>
-                        <td>
-                            <label>potentiele oplossing:</label><br>
-                            <textarea class="texta" name="oplossing"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                            <input type="submit" class="sub" name="submit0" value="invoeren"/>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+                        </select>   						
+                        <select class="form" name="categorie">
+                        <option value = "">---categorie---</option>
+                            <?php
+                            $ophaalcat = "SELECT * FROM categorie ";
+                            $resultcat = mysqli_query($connectie, $ophaalcat);
+                            while ($c = mysqli_fetch_assoc($resultcat)) {
+                            echo "<option value='" . $c['categorieId'] . "'>" . $c['categorieId'] . " " . $c['catOmschrijving'] . "</option>";
+                            }
+                            ?>
+                        </select>	
+                        <select class="form" name="subCategorie">
+                        <option value = "">---sub-categorie---</option>
+                            <?php
+                            $ophaalscat = "SELECT * FROM subCategorie ";
+                            $resultscat = mysqli_query($connectie, $ophaalscat);
+                            while ($s = mysqli_fetch_assoc($resultscat)) {
+                            echo "<option value='" . $s['subCategorieId'] . "'>" . $s['subCategorieId'] . " " . $s['subCatomschrijving'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <select class="form" name="besturingssysteem">
+                        <option value = "">---besturingsysteem---</option>
+                            <?php
+                            $ophaalbs = "SELECT * FROM besturingssysteem ";
+                            $resultbs = mysqli_query($connectie, $ophaalbs);
+                            while ( $bs=mysqli_fetch_assoc($resultbs)) {
+                            echo "<option value='".$bs['besturingssysteemId']."'>".$bs['besturingssysteemId']." ".$bs['besturingssysteemOm']."</option>";
+                            }
+                            ?>           
+                        </select>						
+
+						</div><!-- End Mid Inputs -->
+						
+						
+						
+                        <!-- Right Inputs -->
+
+                        <div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
+						<!-- zoeklaptop -->
+						<input name='laptopType' class="form" type="text" placeholder="Voer laptoptype in"  onblur="laptop();"/>
+						<p type="text" class="form" id="laptop" name="laptop" placeholder="resultaat laptop"></p>
+                            <!-- trefwoorden -->
+                            <input type="text" name="trefwoorden" id="trefwoorden" required="required" class="form" placeholder="trefwoorden (scheiden met , )" />
+						     <!-- datepicker -->
+                            <input type="text" name="datepicker" id="datepicker" required="required" class="form" placeholder="streef-datum" />
+						<!-- checkbox -->
+                    <li class="form">
+                        klant wilt gebeld worden:
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionDefault" name="nogBellen" type="checkbox"/>
+                            <label for="someSwitchOptionDefault" class="label-default"></label>
+                        </div>
+                    </li>
+					</div></div>
+					
+					
+					<div class="row">
+						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
+                            <!-- Message -->
+                            <textarea name="probleem" id="message1" class="form textarea"  placeholder="probleem"></textarea>
+						</div>
+						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
+                            <!-- Message -->
+                            <textarea name="nieuwComment" id="message2" class="form textarea"  placeholder="commentaar"></textarea>
+                        </div>
+						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
+                            <!-- Message -->
+                            <textarea name="oplossing" id="message3" class="form textarea"  placeholder="potentpiele oplossing"></textarea>
+                        </div>
+                        <!-- Bottom Submit -->
+                        <div class="relative fullwidth col-xs-12">
+                            <!-- Send Button -->
+                            <button type="submit" id="submit1" name="submit1" class="form-btn semibold">invoeren</button> 
+                        </div><!-- End Bottom Submit -->
+                        <!-- Clear -->
+                        <div class="clear"></div></div></div>
+                    </form>
+
+
+
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner --></div>
             
             
     </body>
