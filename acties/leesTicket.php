@@ -175,7 +175,7 @@
         <h3> Prioriteit: </h3> '.prioriteitOmzet($ticket['prioriteit']).'
         <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';
     
-    if($ticket['vVLaptopTypeId'] !== 0){
+    if($ticket['vVLaptopTypeId'] > 0){
         $typeId = $ticket['vVLaptopTypeId'];
         $typeQuery = "SELECT * FROM veelVoorkomendeLaptopTypes WHERE vVLaptopTypeId = '$typeId'";
         if(!$typeUitkomst = $connectie->query($typeQuery)){
