@@ -67,30 +67,30 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                <td align="left"><strong>TicketID</strong></td>
-                <td align="left"><strong>trefwoorden</strong></td>
-                <td align="left"><strong>Klantnaam</strong></td>
-                <td align="left"><strong>Lijn</strong></td>
-                <td align="left"><strong>Aannemer</strong></td>
-                <td align="left"><strong>Aangewezen</strong></td>
-                <td align="left"><strong>Prioriteit</strong></td>
-                <td align="left"><strong>Streefdatum</strong></td>
-                <td align="left"><strong>Resterende tijd</strong></td>
+                <td><strong>TicketID</strong></td>
+                <td><strong>trefwoorden</strong></td>
+                <td><strong>Klantnaam</strong></td>
+                <td><strong>Lijn</strong></td>
+                <td><strong>Aannemer</strong></td>
+                <td><strong>Aangewezen</strong></td>
+                <td><strong>Prioriteit</strong></td>
+                <td><strong>Streefdatum</strong></td>
+                <td><strong>Resterende tijd</strong></td>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
-                <td align="left"><strong>TicketID</strong></td>
-                <td align="left"><strong>trefwoorden</strong></td>
-                <td align="left"><strong>Klantnaam</strong></td>
-                <td align="left"><strong>Lijn</strong></td>
-                <td align="left"><strong>Aannemer</strong></td>
-                <td align="left"><strong>Aangewezen</strong></td>
-                <td align="left"><strong>Prioriteit</strong></td>
-                <td align="left"><strong>Streefdatum</strong></td>
-                <td align="left"><strong>Resterende tijd</strong></td>
+                <td><strong>TicketID</strong></td>
+                <td><strong>trefwoorden</strong></td>
+                <td><strong>Klantnaam</strong></td>
+                <td><strong>Lijn</strong></td>
+                <td><strong>Aannemer</strong></td>
+                <td><strong>Aangewezen</strong></td>
+                <td><strong>Prioriteit</strong></td>
+                <td><strong>Streefdatum</strong></td>
+                <td><strong>Resterende tijd</strong></td>
                 </tr>
-                </foot>
+                </tfoot><tbody>
             ';
         // Moet functie gescreven worden voor streefdatum! Met date(), kan niet direct ingelezen worden.
 			
@@ -105,7 +105,8 @@ if(isset($_SESSION['gebruikersNaam'])) {
             }
             
             $ticketId = $ticket['ticketId'];           
-            $td = '</td><td></a>';
+            $ta = '</a></td><td>';
+            $td = '</td><td>';
             $uitzondering = FALSE;
             
             $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
@@ -128,11 +129,11 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 $uitzondering = TRUE;
                 }
             }
-                            
+            echo '';                
             if($uitzondering === FALSE){
                 $streefdatum = new DateTime($ticket['streefdatum']);
-                echo '<tbody><tr><td><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
-                $ticket['ticketId'] . $td . 
+                echo '<tr><td><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+                $ticket['ticketId'] . $ta . 
                 $ticket['trefwoorden'] . $td .
                 $klant['klantAchternaam'] . $td .
                 $ticket['lijnNr'] . $td .
@@ -146,8 +147,8 @@ if(isset($_SESSION['gebruikersNaam'])) {
                     echo '
                         <p style="color:red">
                         '.$interval->format('%R%a dagen').'
-                        </p>   
-                          ';  
+                        </p> 
+                         ';  
                 } else {
                     echo '
                         <p style="color:green">
@@ -156,13 +157,13 @@ if(isset($_SESSION['gebruikersNaam'])) {
                     ';
                     }
 
-                echo '</tr><tbody>';                                      
+                echo '</td></tr>';                                      
             }
         }
                    
             
         
-	echo "</table></div>";
+	echo "</tbody></table></div>";
 
 ?>
 
