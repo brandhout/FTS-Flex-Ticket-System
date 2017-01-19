@@ -12,11 +12,11 @@ require_once '../functies.php'; //Include de functies.
         <div style="margin: 0 auto; width: 656px; text-align: center;">
         <div id="links">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-            <input type="submit" name="but1" class="but" value="nieuwe klant">
+            <input type="submit" name="but1" class="form-btn semibold" value="nieuwe klant">
         </form></div>
 <div id="rechts">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-            <input type="submit" name="but2" class="but" value="bestaande klant">
+            <input type="submit" name="but2" class="form-btn semibold" value="bestaande klant">
         </form></div></div>
         
         
