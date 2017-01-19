@@ -14,7 +14,7 @@
     $accountQuery = "SELECT * FROM account";
         $accountUitkomst = $connectie->query($accountQuery);
         
-    $td = '</td><td align="left"></a>';
+    $td = '</td><td align="left">';
     
     echo '
         <html>
@@ -22,8 +22,8 @@
                 <h1>Accountlijst</h1>
             </head>
             <body>
-            <div class="containert1">
-                    <table align="left" cellspacing="5" cellpadding="8">
+<table id="example4" class="display" cellspacing="0" width="100%">
+<thead><tr>
                         <td align="left"><strong>Account nr</strong></td>
                         <td align="left"><strong>Gebruikersnaam</strong></td>
                         <td align="left"><strong>Voornaam</strong></td>
@@ -33,7 +33,20 @@
                         <td align="left"><strong>Actief</strong></td>
                         <td align="left"><strong>Mag inloggen</strong></td>
                         <td align="left"><strong>Laatste inlogdatum</strong></td>
-                        <td align="left"><strong>Lijn nr</strong></td></tr>
+                        <td align="left"><strong>Lijn nr</strong></td>
+                            <td><strong>Actie</strong><td></tr></thead>
+                        <tfoot><tr>
+                        <td align="left"><strong>Account nr</strong></td>
+                        <td align="left"><strong>Gebruikersnaam</strong></td>
+                        <td align="left"><strong>Voornaam</strong></td>
+                        <td align="left"><strong>Achternaam</strong></td>
+                        <td align="left"><strong>Schoolklas</strong></td>
+                        <td align="left"><strong>Admin</strong></td>
+                        <td align="left"><strong>Actief</strong></td>
+                        <td align="left"><strong>Mag inloggen</strong></td>
+                        <td align="left"><strong>Laatste inlogdatum</strong></td>
+                        <td align="left"><strong>Lijn nr</strong></td>    
+                        <td><strong>Actie</strong><td></tr></tfoot><tbody>
     ';
     if($accountUitkomst){
         while($account = $accountUitkomst->fetch_assoc()){
@@ -80,14 +93,15 @@
                 <form action="wijzigAccount.php">
                     <button name="accountActie" type="submit" value="Wijzig'. $account['accountNr'] .'">Wijzigen</button>' . 
                     //<button name="accountActie" type="submit" value="Verwijder'. $account['accountNr'] .'">Verwijderen</button>
-                '</form>';
+                '</form></td>';
             
             echo '<td>    
                 <form action="verwijderAccount.php">
                     <button name="verwijderActie" type="submit" value="Verwijder'. $account['accountNr'] .'">Verwijderen</button>' .
-                '<tr>
-                </form></div>';
+                '
+                </form></td></tr>';
         }
-    }       
+    }
+    echo'</tbody></table>';
 ?>
 

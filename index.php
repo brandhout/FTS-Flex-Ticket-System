@@ -61,10 +61,12 @@ if(isset($_SESSION['gebruikersNaam'])) {
         $ticketQuery ="SELECT * FROM ticket;";
             $ticketUitkomst = $connectie->query($ticketQuery);
             
-        echo '<div class="containert1">
+        echo '
                 <h3> Openstaande tickets lijn '.$lijnNr.': </h3>
 
-                <table align="left" cellspacing="5" cellpadding="8">
+                <table id="example" class="display" cellspacing="0" width="100%">
+                <thead>
+                <tr>
                 <td align="left"><strong>TicketID</strong></td>
                 <td align="left"><strong>trefwoorden</strong></td>
                 <td align="left"><strong>Klantnaam</strong></td>
@@ -73,8 +75,22 @@ if(isset($_SESSION['gebruikersNaam'])) {
                 <td align="left"><strong>Aangewezen</strong></td>
                 <td align="left"><strong>Prioriteit</strong></td>
                 <td align="left"><strong>Streefdatum</strong></td>
-                <td align="left"><strong>Resterende tijd</strong></td></tr>
-
+                <td align="left"><strong>Resterende tijd</strong></td>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                <td align="left"><strong>TicketID</strong></td>
+                <td align="left"><strong>trefwoorden</strong></td>
+                <td align="left"><strong>Klantnaam</strong></td>
+                <td align="left"><strong>Lijn</strong></td>
+                <td align="left"><strong>Aannemer</strong></td>
+                <td align="left"><strong>Aangewezen</strong></td>
+                <td align="left"><strong>Prioriteit</strong></td>
+                <td align="left"><strong>Streefdatum</strong></td>
+                <td align="left"><strong>Resterende tijd</strong></td>
+                </tr>
+                </foot>
             ';
         // Moet functie gescreven worden voor streefdatum! Met date(), kan niet direct ingelezen worden.
 			
@@ -89,7 +105,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
             }
             
             $ticketId = $ticket['ticketId'];           
-            $td = '</td><td align="left"></a>';
+            $td = '</td><td></a>';
             $uitzondering = FALSE;
             
             $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
@@ -115,7 +131,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
                             
             if($uitzondering === FALSE){
                 $streefdatum = new DateTime($ticket['streefdatum']);
-                echo '<tr><td align=left><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+                echo '<tbody><tr><td><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
                 $ticket['ticketId'] . $td . 
                 $ticket['trefwoorden'] . $td .
                 $klant['klantAchternaam'] . $td .
@@ -140,13 +156,13 @@ if(isset($_SESSION['gebruikersNaam'])) {
                     ';
                     }
 
-                echo '</tr>';                                      
+                echo '</tr><tbody>';                                      
             }
         }
                    
             
         
-	echo "</table></div>";
+	echo "</table>";
 
 ?>
 

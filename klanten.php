@@ -7,7 +7,7 @@ session_start();
 require_once 'functies.php'; //Include de functies.
 require_once 'header.php'; //Include de header.
 $connectie = verbinddatabase();
-$td = '</td><td align="left"></a>';
+$td = '</td><td>';
 
 $klantenQuery = "SELECT * FROM klant";
     $klantenUitkomst = $connectie->query($klantenQuery);
@@ -18,27 +18,46 @@ echo '
     <head>
         <meta charset="UTF-8">
         <title>Alle Klanten</title>
-        <h1>Klantenlijst</h1>
+
     </head>
+    
     <body>
-<div class="containert1">
-    <table align="left" cellspacing="5" cellpadding="8">
-    <td align="left"><strong>KlantID</strong></td>
-    <td align="left"><strong>Achternaam</strong></td>
-    <td align="left"><strong>Voornaam</strong></td>
-    <td align="left"><strong>Telefoon</strong></td>
-    <td align="left"><strong>E-mail</strong></td>
-    <td align="left"><strong>Adres</strong></td>
-    <td align="left"><strong>Postcode</strong></td>
-    <td align="left"><strong>Woonplaats</strong></td>
-    <td align="left"><strong>Actie</strong></tr>
+            <h1>Klantenlijst</h1>
+<table id="example3" class="display" cellspacing="0" width="100%">
+<thead>
+<tr>
+    <td><strong>KlantID</strong></td>
+    <td><strong>Achternaam</strong></td>
+    <td><strong>Voornaam</strong></td>
+    <td><strong>Telefoon</strong></td>
+    <td><strong>E-mail</strong></td>
+    <td><strong>Adres</strong></td>
+    <td><strong>Postcode</strong></td>
+    <td><strong>Woonplaats</strong></td>
+    <td><strong>Actie</strong><td>
+    </tr>
+    </thead>
+    <tfoot>
+<tr>
+    <td><strong>KlantID</strong></td>
+    <td><strong>Achternaam</strong></td>
+    <td><strong>Voornaam</strong></td>
+    <td><strong>Telefoon</strong></td>
+    <td><strong>E-mail</strong></td>
+    <td><strong>Adres</strong></td>
+    <td><strong>Postcode</strong></td>
+    <td><strong>Woonplaats</strong></td>
+    <td><strong>Actie</strong><td>
+    </tr>
+    </tfoot><tbody>
+    
     
     ';
 
 echo "Aantal klanten :".$klantenUitkomst->num_rows. "<br>";
 
 while($klant = $klantenUitkomst->fetch_assoc()){
-    echo '<tr><td align=left"> '.
+    echo '<tbody><tr><td> '.
     $klant['klantId'] . $td .
     $klant['klantAchternaam'] . $td .        
     $klant['klantNaam'] . $td .
@@ -51,9 +70,9 @@ while($klant = $klantenUitkomst->fetch_assoc()){
         <form action="acties/wijzigKlant.php">
             <button name="klantActie" type="submit" value="Wijzig'. $klant['klantId'] .'">Wijzigen</button>
             <button name="klantActie" type="submit" value="Verwijder'. $klant['klantId'] .'" disabled>Verwijderen</button>
-        </form><tr></div>';
+        </form></td></tr>';
 }
-
+echo '</tbody></table>';
 ?>
 
 <!DOCTYPE html>
