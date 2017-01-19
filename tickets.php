@@ -43,16 +43,16 @@
             }       
         }
         
-        if(isset($_GET['kipquery'])){
-            $searchq = $connectie->real_escape_string($_GET['kipquery']);
-            $zoekTicketQuery = "SELECT * FROM ticket WHERE probleem LIKE '%$searchq%';";           
-            if(!$ticketUitkomst = $connectie->query($zoekTicketQuery)){
-                echo $connectie->error;
-            }
-        } else {
+        //if(isset($_GET['kipquery'])){
+        //    $searchq = $connectie->real_escape_string($_GET['kipquery']);
+        //    $zoekTicketQuery = "SELECT * FROM ticket WHERE probleem LIKE '%$searchq%';";           
+        //    if(!$ticketUitkomst = $connectie->query($zoekTicketQuery)){
+        //        echo $connectie->error;
+        //    }
+        //} else {
             $ticketQuery ="SELECT * FROM ticket;";
             $ticketUitkomst = $connectie->query($ticketQuery);
-        }
+        //}
 
         echo '
             <!DOCTYPE html>
@@ -69,14 +69,7 @@
                            <button class="sub2" name="welkTicket" type="submit" value="open">Open</button>
                            <button class="sub2" name="welkTicket" type="submit" value="gesloten">Gesloten</button>
                     </form>
-
-                    <form action="">
-                    <p> Zoek in beschrijving </p>
-                    <input type="text" name="kipquery" required>
-                    <button name="submit" type="submit">Zoek</button><br>
-                    
-
-
+                   
                     <table id="example2" class="display" cellspacing="0" width="100%">
                     <thead>
                     <tr>

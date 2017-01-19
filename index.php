@@ -24,6 +24,13 @@ error_reporting(E_ALL);
  * - Opmaak
  */
 session_start();
+if(!isset($_SESSION['gebruikersNaam'])) {
+	$ingelogd = FALSE;
+	header('Location: acties/inloggen.php');
+} else {
+	$ingelogd = TRUE;
+}
+
 require_once 'functies.php'; //Include de functies.
 require_once 'header.php'; //Include de header.
 $connectie = verbinddatabase();
@@ -39,7 +46,7 @@ echo '<!DOCTYPE html>
       <body>
       <h1> Dasboard </h1>
       ';
-if(isset($_SESSION['gebruikersNaam'])) {
+if($ingelogd) {
     $achterNaam = leesAccountAchterNaam($_SESSION['accountNr']);
     echo "Welkom," . "  " . ($achterNaam) . "!</br>";
         if($_SESSION['isAdmin'] === "1"){
@@ -52,9 +59,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
         ";
         $lijnNr = $_SESSION["lijnNr"];
         }
-    } else {
-    header('Location: acties/inloggen.php'); 
-}   
+    }
 
     // Maak HTML tabel!
                

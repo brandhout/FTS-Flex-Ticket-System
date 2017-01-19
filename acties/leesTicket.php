@@ -306,7 +306,7 @@
             
         <p> Emailadres: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantEmail'].'"/></div>
 <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">   
-        <p> Logboek:
+        <p> Logboek:<br>
         Ticket is op <strong>'.$ticket['datumAanmaak'].'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><p><br>';
         
         if($overDatum){
@@ -320,8 +320,10 @@
             }
         }
         
+        echo '<p> Doorsturingen </p>';
+        
         while($doorstuurLog = $doorstuurLogUitkomst->fetch_assoc()){
-            echo '<p> Doorsturingen </p>'
+            echo ''
             . '<textarea class="form" disabled="disabled">Ticket is op <strong>'.$doorstuurLog['datum'].'</strong> doorgestuurd
                     van Lijn <strong>'.$doorstuurLog['vanLijn'].'</strong>
                     naar Lijn <strong>'.$doorstuurLog['naarLijn'].'</strong>
@@ -330,10 +332,10 @@
                 
         }
         
-        echo '';
+        echo '<p> Oplossingen </p>';
                 
         while($oplossingen = $oplossingUitkomst->fetch_array()){
-            echo ' <p> Oplossingen </p>
+            echo ' 
                 <textarea class="form" disabled="disabled"> Er is op <strong>'.$oplossingen['datumFix'].'</strong>
                 een oplossing aangedragen
                 door <strong>'.leesAccountAchterNaam($oplossingen['accountNr']).'</strong>
