@@ -178,6 +178,7 @@
         </head>
         <body>
         <h2> Ticketinfo </h2>
+        
 <div class="inner contact">
                 <!-- Form Area -->
                 <div class="contact-form">
@@ -185,24 +186,24 @@
 <div class="row">
 <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
 
-         <p>ticketnummer: </p><input type="text" disabled="disabled" placeholder="'. $ticketId . '"/>
+         <p>ticketnummer: </p><input class="form" type="text" disabled="disabled" placeholder="'. $ticketId . '"/>
              
-        <p>Probleem: </p><textarea disabled="disabled">'.$ticket['probleem'].'</textarea>
+        <p>Probleem: </p><textarea class="form" disabled="disabled">'.$ticket['probleem'].'</textarea>
 
-        <p>Trefwoorden: </p><textarea disabled="disabled">' .$ticket['trefwoorden'].'</textarea>
+        <p>Trefwoorden: </p><textarea class="form" disabled="disabled">' .$ticket['trefwoorden'].'</textarea>
             
-        <p> Status: </p><input type="text" disabled="disabled" placeholder="' .$status. '"/>
+        <p> Status: </p><input type="text" class="form" disabled="disabled" placeholder="' .$status. '"/>
             
-        <p> Prioriteit: </p><input type="text" disabled="disabled" placeholder="'.prioriteitOmzet($ticket['prioriteit']).'"/>
+        <p> Prioriteit: </p><input type="text" class="form" disabled="disabled" placeholder="'.prioriteitOmzet($ticket['prioriteit']).'"/>
             
-        <p> Streefdatum: </p><input type="text" disabled="disabled" placeholder="'.$ticket['streefdatum'].'"/>'
+        <p> Streefdatum: </p><input type="text" class="form" disabled="disabled" placeholder="'.$ticket['streefdatum'].'"/>'
             ;
    
     
     if($ticket['aangewAccountNr'] > 0){
                 $aangewAccountNr = $ticket['aangewAccountNr'];
                 echo'
-                <p> Aangewezen operator: </p> <input type="text" disabled="disabled" placeholder="'.leesAccountAchterNaam($aangewAccountNr).'"/> </div>';
+                <p> Aangewezen operator: </p> <input class="form" type="text" disabled="disabled" placeholder="'.leesAccountAchterNaam($aangewAccountNr).'"/> </div>';
             }else {
             echo '</div>';}
             
@@ -225,8 +226,8 @@
         echo '
             <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
             <p> Laptop: </p>
-            Merk:<input type="text" disabled="disabled" placeholder="'.$merkOm.'/>
-            Type:<input type="text" disabled="disabled" placeholder="'.$typeOm.'/>';
+            Merk:<input type="text" class="form" disabled="disabled" placeholder="'.$merkOm.'/>
+            Type:<input type="text" class="form" disabled="disabled" placeholder="'.$typeOm.'/>';
     }else{echo'<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">';}
     
  
@@ -234,8 +235,8 @@
         echo '
             <p> Doorsturing: </p>
             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
-            <p>Lijn <input type="text" disabled="disabled" placeholder="'.$ticket['lijnNr'].'"/>
-            <p>reden doorsturing</p><textarea name="opmerking" value="Reden doorsturing" maxlength="70" required></textarea><br>     
+            <p>Lijn <input type="text" class="form" disabled="disabled" placeholder="'.$ticket['lijnNr'].'"/>
+            <p>reden doorsturing</p><textarea class="form" name="opmerking" value="Reden doorsturing" maxlength="70" required></textarea><br>     
             ';
 
         if($ticket['lijnNr'] > 1 && $ticket['lijnNr'] <= 3) {
@@ -252,8 +253,8 @@
     } else {
         echo'
         <p> Behandelaar </p>
-        <input type="text" disabled="disabled" placeholder="'.leesAccountAchterNaam($ticket['fstAccountNr']).'"/>
-        <input type="text" disabled="disabled" placeholder="'.$ticket['fstAccountNr'].'"/>';
+        <input type="text" class="form" disabled="disabled" placeholder="'.leesAccountAchterNaam($ticket['fstAccountNr']).'"/>
+        <input type="text" class="form" disabled="disabled" placeholder="'.$ticket['fstAccountNr'].'"/>';
         
     }
         if($_SESSION['isAdmin'] === "1"){
@@ -277,13 +278,13 @@
     echo '<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"><p> Klant </p>';
     
     if($klant[bedrijfsId] > 0){
-        echo '<p> Bedrijfsnaam </p><input type="text" disabled="disabled" placeholder="'.leesBedrijfsNaam($klant[bedrijfsId]).'"/>';
+        echo '<p> Bedrijfsnaam </p><input class="form" type="text" disabled="disabled" placeholder="'.leesBedrijfsNaam($klant[bedrijfsId]).'"/>';
     }
         
         echo '
-        <p> Achternaam: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantAchternaam'].'"/>
-        <p> Voornaam: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantNaam'].'"/>
-        <p> Telefoon: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantTel'].'"/>';
+        <p> Achternaam: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantAchternaam'].'"/>
+        <p> Voornaam: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantNaam'].'"/>
+        <p> Telefoon: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantTel'].'"/>';
         
         echo '<form action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
         
@@ -299,11 +300,11 @@
                 ';
         }
         echo'
-        <p> Adres: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantAdres'].'"/>
-        <p> Postcode: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantPostc'].'"/>
-        <p> Woonplaats: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantStad'].'"/>
+        <p> Adres: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantAdres'].'"/>
+        <p> Postcode: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantPostc'].'"/>
+        <p> Woonplaats: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantStad'].'"/>
             
-        <p> Emailadres: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantEmail'].'"/></div>
+        <p> Emailadres: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantEmail'].'"/></div>
 <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">   
         <p> Logboek:
         Ticket is op <strong>'.$ticket['datumAanmaak'].'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><p><br>';
@@ -313,15 +314,15 @@
                 Sinds <strong>'.$ticket['streefdatum'].'</strong> is deze ticket te laat,<br>';
             if($ticket['redenTeLaat'] === NULL){
                 echo '
-                    <textarea disabled="disabled"> reden nog niet ingevuld</textarea>';
+                    <textarea class="form" disabled="disabled"> reden nog niet ingevuld</textarea>';
             } else {
-                echo '<textarea disabled="disabled">reden:'.$ticket['redenTeLaat'].'</textarea>';
+                echo '<textarea class="form" disabled="disabled">reden:'.$ticket['redenTeLaat'].'</textarea>';
             }
         }
         
         while($doorstuurLog = $doorstuurLogUitkomst->fetch_assoc()){
             echo '<p> Doorsturingen </p>'
-            . '<textarea disabled="disabled">Ticket is op <strong>'.$doorstuurLog['datum'].'</strong> doorgestuurd
+            . '<textarea class="form" disabled="disabled">Ticket is op <strong>'.$doorstuurLog['datum'].'</strong> doorgestuurd
                     van Lijn <strong>'.$doorstuurLog['vanLijn'].'</strong>
                     naar Lijn <strong>'.$doorstuurLog['naarLijn'].'</strong>
                     door <strong>'.leesAccountAchterNaam($doorstuurLog['accountNr']).'</strong><br>
@@ -333,7 +334,7 @@
                 
         while($oplossingen = $oplossingUitkomst->fetch_array()){
             echo ' <p> Oplossingen </p>
-                <textarea disabled="disabled"> Er is op <strong>'.$oplossingen['datumFix'].'</strong>
+                <textarea class="form" disabled="disabled"> Er is op <strong>'.$oplossingen['datumFix'].'</strong>
                 een oplossing aangedragen
                 door <strong>'.leesAccountAchterNaam($oplossingen['accountNr']).'</strong>
                 <br>met <strong>accountnr: '.$oplossingen['accountNr'].'
@@ -363,7 +364,7 @@
         
         while($commentaar = $commentaarUitkomst->fetch_assoc()){
             echo'
-                <textarea disabled="disabled"> Er is op <strong>'.$commentaar['datum'].'</strong>
+                <textarea class="form" disabled="disabled"> Er is op <strong>'.$commentaar['datum'].'</strong>
                 commentaar aangeleverd door <strong>'.leesAccountAchterNaam($commentaar['accountNr']).'<br></strong>
                 met <strong>accountnr: '.$commentaar['accountNr'].'</strong><br><br>
                 Het commentaar luidt:<br>'.$commentaar['commOmschrijving'].'
@@ -376,7 +377,7 @@
         if(!$definitief && $ticket['lijnNr'] === $_SESSION['lijnNr']){
             echo '<p> Nieuwe oplossing </p>
                 <form action ="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
-                    <input type ="text" name="oplossing"><br>';
+                    <input class="form" type ="text" name="oplossing"><br>';
                     if($_SESSION["accountNr"] === $ticket['fstAccountNr']){
                        echo '<input type ="checkbox" name="definitief" value="1">Definitief';
                     }                                    
