@@ -63,7 +63,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
             
         echo '
                 <h3> Openstaande tickets lijn '.$lijnNr.': </h3>
-
+<div class="centerform">
                 <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
                 <tr>
@@ -162,7 +162,7 @@ if(isset($_SESSION['gebruikersNaam'])) {
                    
             
         
-	echo "</table>";
+	echo "</table></div>";
 
 ?>
 

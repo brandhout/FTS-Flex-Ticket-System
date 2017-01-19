@@ -115,17 +115,7 @@ border:none;
 
       }
    
-table {
-    border: none;
-    height: 5%;
-width:90%;
-text-align:right;
-display: center;
-margin: auto;
-color:black;
-padding:0;
 
-}
 
 
 .sub{
@@ -441,3 +431,11 @@ input {
 	border-color: #1CA347;
 }
 
+.display{
+    width:95%;
+}
+
+.centerform{
+    width:95%;
+margin: 0 auto; 
+}
