@@ -65,12 +65,12 @@
     
     if(overDatum($ticket['streefdatum'])){
         $overDatum = TRUE;
-        $status = '<p style="color:red">
+        $status = '
                     Te laat,';
         if (!$opgelost){
-            $status .= 'Open</p>';
+            $status .= 'Open';
         } else {
-            $status .= 'Gesloten</p>';
+            $status .= 'Gesloten';
         }
         if ($ticket['redenTeLaat'] === NULL){
             $status .= '
@@ -177,38 +177,35 @@
         <title>Ticket Informatie FTS</title>
         </head>
         <body>
-        <h1> Ticketinfo 
-         ticketnummer: '. $ticketId . ' </h1><br>
-        <h3> Probleem: </h3> '.$ticket['probleem'].'<br>
-        <h3> Trefwoorden: </h3> '.$ticket['trefwoorden'].'
-        <h3> Status: </h3> '.$status.'
-        <h3> Prioriteit: </h3> '.prioriteitOmzet($ticket['prioriteit']).'
-        <h3> Streefdatum: </h3> '.$ticket['streefdatum'].'';
-    
-    if($_SESSION['isAdmin'] === "1"){
-        echo '
-            <h3>Account aanwijzen</h3>
-            <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
-            <select name="aanwijzer">
-            ';
-        $aanwijsQuery = "SELECT accountNr, achterNaam FROM account";
-        $aanwijsUitkomst = $connectie->query($aanwijsQuery);
-        while($aanwijzer = $aanwijsUitkomst->fetch_array()){
-            echo "
-                <option value=".$aanwijzer['accountNr'].">".$aanwijzer['achterNaam']."</option>              
-                ";
-        }
-        echo '</select>
-            <button name="submit" type="submit" value="submit">Verstuur</button><br<br></form>
-            ';
-    }
+        <h2> Ticketinfo </h2>
+<div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form">
+<div class="grid">
+<div class="row">
+<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+
+         <p>ticketnummer: </p><input type="text" disabled="disabled" placeholder="'. $ticketId . '"/>
+             
+        <p>Probleem: </p><textarea disabled="disabled">'.$ticket['probleem'].'</textarea>
+
+        <p>Trefwoorden: </p><textarea disabled="disabled">' .$ticket['trefwoorden'].'</textarea>
+            
+        <p> Status: </p><input type="text" disabled="disabled" placeholder="' .$status. '"/>
+            
+        <p> Prioriteit: </p><input type="text" disabled="disabled" placeholder="'.prioriteitOmzet($ticket['prioriteit']).'"/>
+            
+        <p> Streefdatum: </p><input type="text" disabled="disabled" placeholder="'.$ticket['streefdatum'].'"/>'
+            ;
+   
     
     if($ticket['aangewAccountNr'] > 0){
                 $aangewAccountNr = $ticket['aangewAccountNr'];
                 echo'
-                <h3> Aangewezen operator: </h3> '.leesAccountAchterNaam($aangewAccountNr).'';
-            }
-    
+                <p> Aangewezen operator: </p> <input type="text" disabled="disabled" placeholder="'.leesAccountAchterNaam($aangewAccountNr).'"/> </div>';
+            }else {
+            echo '</div>';}
+            
     if($ticket['vVLaptopTypeId'] > 0){
         $typeId = $ticket['vVLaptopTypeId'];
         $typeQuery = "SELECT * FROM veelVoorkomendeLaptopTypes WHERE vVLaptopTypeId = '$typeId'";
@@ -226,18 +223,19 @@
         $merk = $merkUitkomst->fetch_assoc();
         $merkOm = $merk['vVLaptopMerkOm'];
         echo '
-            <h3> Laptop: </h3>
-            Merk: <strong><i>'.$merkOm.'</strong></i><br>
-            Type: <strong><i>'.$typeOm.'</strong></i><br>';
-    }
+            <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+            <p> Laptop: </p>
+            Merk:<input type="text" disabled="disabled" placeholder="'.$merkOm.'/>
+            Type:<input type="text" disabled="disabled" placeholder="'.$typeOm.'/>';
+    }else{echo'<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">';}
     
  
     if($ticket['lijnNr'] === $_SESSION['lijnNr'] or $_SESSION['isAdmin'] === "1"){
         echo '
-            <h3> Doorsturing: </h3>
+            <p> Doorsturing: </p>
             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
-            <p><strong> Lijn '.$ticket['lijnNr'].' </strong></p>
-            <input type="text" name="opmerking" value="Reden doorsturing" maxlength="70" required>     
+            <p>Lijn <input type="text" disabled="disabled" placeholder="'.$ticket['lijnNr'].'"/>
+            <p>reden doorsturing</p><textarea name="opmerking" value="Reden doorsturing" maxlength="70" required></textarea><br>     
             ';
 
         if($ticket['lijnNr'] > 1 && $ticket['lijnNr'] <= 3) {
@@ -252,81 +250,97 @@
             echo'
                 </form>';            
     } else {
-        echo '
-        <h3> Behandelaar </h3><strong>
-        '.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><br>
-        Accountnummer <strong>'.$ticket['fstAccountNr'].'</strong>';
+        echo'
+        <p> Behandelaar </p>
+        <input type="text" disabled="disabled" placeholder="'.leesAccountAchterNaam($ticket['fstAccountNr']).'"/>
+        <input type="text" disabled="disabled" placeholder="'.$ticket['fstAccountNr'].'"/>';
         
     }
-    
-    echo '<h2> Klant </h2>';
+        if($_SESSION['isAdmin'] === "1"){
+        echo '
+            <p>Account aanwijzen</p>
+            <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
+            <select class="form" name="aanwijzer">
+            ';
+        $aanwijsQuery = "SELECT accountNr, achterNaam FROM account";
+        $aanwijsUitkomst = $connectie->query($aanwijsQuery);
+        while($aanwijzer = $aanwijsUitkomst->fetch_array()){
+            echo "
+                <option value=".$aanwijzer['accountNr'].">".$aanwijzer['achterNaam']."</option>              
+                ";
+        }
+        echo '</select>
+            <button name="submit" type="submit" value="submit">Verstuur</button><br<br></form>
+            ';
+    }
+    echo '</div>';
+    echo '<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"><p> Klant </p>';
     
     if($klant[bedrijfsId] > 0){
-        echo '<h3> Bedrijfsnaam </h3>'.leesBedrijfsNaam($klant[bedrijfsId]).'';
+        echo '<p> Bedrijfsnaam </p><input type="text" disabled="disabled" placeholder="'.leesBedrijfsNaam($klant[bedrijfsId]).'"/>';
     }
         
         echo '
-        <h3> Achternaam: </h3> '.$klant['klantAchternaam'].'
-        <h3> Voornaam: </h3> '.$klant['klantNaam'].'
-        <h3> Telefoon: </h3> '.$klant['klantTel'].'';
+        <p> Achternaam: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantAchternaam'].'"/>
+        <p> Voornaam: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantNaam'].'"/>
+        <p> Telefoon: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantTel'].'"/>';
         
         echo '<form action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
         
         if($ticket['nogBellen'] === "1"){
-            echo '<br>Klant <strong>moet nog</strong> gebeld worden! <br>
+            echo '<p>Klant <strong>moet nog</strong> gebeld worden! <p>
                 <button name="nogBellen" type="submit" value="0">Klant is gebeld</button>';
 
         } else {
             echo '
-                Klant <strong>hoeft niet</strong> gebeld te worden <br>
+                <p>Klant <strong>hoeft niet</strong> gebeld te worden <br>
                 <button name="nogBellen" type="submit" value="1">Klant moet gebeld worden</button>
                 </form>
                 ';
         }
         echo'
-        <h3> Adres: </h3> '.$klant['klantAdres'].'
-        <h3> Postcode: </h3> '.$klant['klantPostc'].'
-        <h3> Woonplaats: </h3> '.$klant['klantStad'].'
-        <h3> Emailadres: </h3> '.$klant['klantEmail'].'<br><br>
-        <h2> Logboek: </h2>
-        Ticket is op <strong>'.$ticket['datumAanmaak'].'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><br><br>';
+        <p> Adres: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantAdres'].'"/>
+        <p> Postcode: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantPostc'].'"/>
+        <p> Woonplaats: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantStad'].'"/>
+            
+        <p> Emailadres: </p> <input type="text" disabled="disabled" placeholder="'.$klant['klantEmail'].'"/></div>
+<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">   
+        <p> Logboek:
+        Ticket is op <strong>'.$ticket['datumAanmaak'].'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><p><br>';
         
         if($overDatum){
             echo'
-                Sinds <strong>'.$ticket['streefdatum'].'</strong> is deze ticket te laat,';
+                Sinds <strong>'.$ticket['streefdatum'].'</strong> is deze ticket te laat,<br>';
             if($ticket['redenTeLaat'] === NULL){
                 echo '
-                    reden nog niet ingevuld<br>';
+                    <textarea disabled="disabled"> reden nog niet ingevuld</textarea>';
             } else {
-                echo '<br>reden: <i> '.$ticket['redenTeLaat'].'</i><br>';
+                echo '<textarea disabled="disabled">reden:'.$ticket['redenTeLaat'].'</textarea>';
             }
         }
-       
-        
-        echo '<h3> Doorsturingen </h3>';
         
         while($doorstuurLog = $doorstuurLogUitkomst->fetch_assoc()){
-            echo '- Ticket is op <strong>'.$doorstuurLog['datum'].'</strong> doorgestuurd
+            echo '<p> Doorsturingen </p>'
+            . '<textarea disabled="disabled">Ticket is op <strong>'.$doorstuurLog['datum'].'</strong> doorgestuurd
                     van Lijn <strong>'.$doorstuurLog['vanLijn'].'</strong>
                     naar Lijn <strong>'.$doorstuurLog['naarLijn'].'</strong>
                     door <strong>'.leesAccountAchterNaam($doorstuurLog['accountNr']).'</strong><br>
-                    met <strong>accountnr: '.$doorstuurLog['accountNr'].'</strong> reden: <i>'.$doorstuurLog["opmerking"].'
-                    </i><br><br>';
+                    met <strong>accountnr: '.$doorstuurLog['accountNr'].'</strong> reden:'.$doorstuurLog["opmerking"].'</textarea>';
                 
         }
         
-        echo '<h3> Oplossingen </h3>';
+        echo '';
                 
         while($oplossingen = $oplossingUitkomst->fetch_array()){
-            echo ' 
-                - Er is op <strong>'.$oplossingen['datumFix'].'</strong>
+            echo ' <p> Oplossingen </p>
+                <textarea disabled="disabled"> Er is op <strong>'.$oplossingen['datumFix'].'</strong>
                 een oplossing aangedragen
                 door <strong>'.leesAccountAchterNaam($oplossingen['accountNr']).'</strong>
                 <br>met <strong>accountnr: '.$oplossingen['accountNr'].'
                 </strong><br><br>
-                De oplossing luidt:<br><i>
+                De oplossing luidt:<br>
                 '.$oplossingen['oplossOmschrijving'].'
-                </i><br>';
+                </textarea>';
             
                 if($oplossingen['definitief'] === "1"){
                     $definitief = TRUE;
@@ -338,42 +352,42 @@
                         echo '
                             <p>
                             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
-                                <button type="submit" value="def">Definitief</button></p><br>                           
+                                <button type="submit" value="def">Definitief</button></p>                           
                         ';
                     }
                 }
 
         }
         
-        echo '<h3> Commentaar </h3>';
+        echo '<p> Commentaar </p>';
         
         while($commentaar = $commentaarUitkomst->fetch_assoc()){
             echo'
-                - Er is op <strong>'.$commentaar['datum'].'</strong>
+                <textarea disabled="disabled"> Er is op <strong>'.$commentaar['datum'].'</strong>
                 commentaar aangeleverd door <strong>'.leesAccountAchterNaam($commentaar['accountNr']).'<br></strong>
                 met <strong>accountnr: '.$commentaar['accountNr'].'</strong><br><br>
-                Het commentaar luidt:<br><i>'.$commentaar['commOmschrijving'].'
-                </i></strong><br><br>    
+                Het commentaar luidt:<br>'.$commentaar['commOmschrijving'].'
+                </strong></textarea>    
                 ';
         }
       
         echo '<form name="leesTicket" action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
         
         if(!$definitief && $ticket['lijnNr'] === $_SESSION['lijnNr']){
-            echo '<h2> Nieuwe oplossing </h2>
+            echo '<p> Nieuwe oplossing </p>
                 <form action ="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
                     <input type ="text" name="oplossing"><br>';
                     if($_SESSION["accountNr"] === $ticket['fstAccountNr']){
-                       echo '<input type ="checkbox" name="definitief" value="1">Definitief<br>';
+                       echo '<input type ="checkbox" name="definitief" value="1">Definitief';
                     }                                    
             echo'        
                     <button name="submitOplossing" type="submit" value="1">Verstuur</button>
                 </form><br>
-                <h2> Nieuw commentaar </h2>
+                <p> Nieuw commentaar </p>
                 <form action ="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
                     <input type ="text" name="commentaar"><br><br>
                     <button name="submitCommentaar" type="submit" value="1">Verstuur</button>
                 ';
         }
-      
+                echo'</div></div></div></div> ';
 ?>
