@@ -386,7 +386,7 @@
                 </form><br>
                 <p> Nieuw commentaar </p>
                 <form action ="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
-                    <input type ="text" name="commentaar"><br><br>
+                    <input class="form" type ="text" name="commentaar"><br><br>
                     <button name="submitCommentaar" type="submit" value="1">Verstuur</button>
                 ';
         }
