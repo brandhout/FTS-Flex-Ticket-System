@@ -34,7 +34,7 @@ echo '
     <td><strong>Adres</strong></td>
     <td><strong>Postcode</strong></td>
     <td><strong>Woonplaats</strong></td>
-    <td><strong>Actie</strong><td>
+    <td><strong>Actie</strong></td>
     </tr>
     </thead>
     <tfoot>
@@ -47,7 +47,7 @@ echo '
     <td><strong>Adres</strong></td>
     <td><strong>Postcode</strong></td>
     <td><strong>Woonplaats</strong></td>
-    <td><strong>Actie</strong><td>
+    <td><strong>Actie</strong></td>
     </tr>
     </tfoot><tbody>
     
@@ -57,7 +57,7 @@ echo '
 echo "Aantal klanten :".$klantenUitkomst->num_rows. "<br>";
 
 while($klant = $klantenUitkomst->fetch_assoc()){
-    echo '<tbody><tr><td> '.
+    echo '<tr><td> '.
     $klant['klantId'] . $td .
     $klant['klantAchternaam'] . $td .        
     $klant['klantNaam'] . $td .

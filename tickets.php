@@ -96,7 +96,7 @@
                     <td><strong>Prioriteit</strong></td>
                     <td><strong>Status</strong></td>
                     </tr>
-                    </tfoot>
+                    </tfoot><tbody>
                     
             ';
         		
@@ -153,8 +153,8 @@
             }
                 
             if(!$uitzondering){                                            
-                echo '<tbody><tr><td><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
-                    $ticket['ticketId'] . '</td><td></a>' . 
+                echo '<tr><td><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+                    $ticket['ticketId'] . '</a></td><td>' . 
                     $ticket['trefwoorden'] . '</td><td>' .
                     $klant['klantAchternaam'] . '</td><td>' .
                     $ticket['lijnNr'] . '</td><td>' .
@@ -163,12 +163,12 @@
                     datumOmzet($ticket['streefdatum']) . '</td><td>' .
                     prioriteitOmzet($ticket['prioriteit']) . '</td><td>' .
                     $status . '</td>';
-                echo '</tr></tbody>';
+                echo '</tr>';
             }
 	}
    
 	
-	echo "</table>";
+	echo "</tbody></table>";
         echo "</div>";
  ?>
 
