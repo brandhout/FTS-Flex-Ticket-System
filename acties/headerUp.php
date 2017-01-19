@@ -191,6 +191,5 @@ $(document).ready(function(){
 	</div><!-- /.nav-collapse -->
   </nav>
 </div>
- <br><br><br>
 </body>
   </html>
