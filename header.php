@@ -86,7 +86,7 @@ $(document).ready(function(){
 </head>
 <body>
 <div class="container">
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-default">
     <div class="navbar-header">
     	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
 			<span class="sr-only">Toggle navigation</span>
