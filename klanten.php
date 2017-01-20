@@ -23,7 +23,7 @@ echo '
     
     <body>
             <h1>Klantenlijst</h1>
-<table id="example3" class="display" cellspacing="0" width="100%">
+<table id="example" class="display" cellspacing="0" width="100%">
 <thead>
 <tr>
     <td><strong>KlantID</strong></td>
