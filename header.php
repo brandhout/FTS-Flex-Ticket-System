@@ -190,12 +190,12 @@ $(document).ready(function(){
 ?>
 
 
-            <li class="">
+            <li class="achter">
     			<a href="index.php">dashboard<i class="fa fa-home"></i>	</a>			
 			</li>
 		</ul>
         <ul class="nav navbar-nav navbar-right">
-                        <li>
+                        <li class="achter">
                 <a href="acties/nieuwTicketDash.php">nieuw ticket <i class="fa fa-ticket"></i></a>
             </li>
         <li class="dropdown">
@@ -208,7 +208,7 @@ $(document).ready(function(){
             <li><a href="#">komt nog meer aan!</a></li>
           </ul>
         </li>
-        <li><a href="acties/uitloggen.php">uitloggen <i class="fa fa-sign-out"></i></a></li>
+        <li class="achter"><a href="acties/uitloggen.php">uitloggen <i class="fa fa-sign-out"></i></a></li>
       </ul>
 	</div><!-- /.nav-collapse -->
   </nav>
