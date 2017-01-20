@@ -43,6 +43,9 @@ $(document).ready(function(){
 	$.getScript("https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js", function(){
        
             $('#example').DataTable( {
+                "language": {
+    "url": "http://cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json"
+  },
                 "paging":   true,
                 "ordering": true,
                 "info":     false
@@ -59,6 +62,9 @@ $(document).ready(function(){
 	$.getScript("https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js", function(){
        
             $('#example2').DataTable( {
+                "language": {
+    "url": "http://cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json"
+  },
                 "paging":   true,
                 "ordering": true,
                 "info":     false
@@ -75,6 +81,9 @@ $(document).ready(function(){
 	$.getScript("https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js", function(){
        
             $('#example3').DataTable( {
+                "language": {
+    "url": "http//cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json";
+  },
                 "paging":   true,
                 "ordering": true,
                 "info":     false
