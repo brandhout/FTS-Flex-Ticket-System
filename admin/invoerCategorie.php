@@ -25,6 +25,8 @@
     require_once 'headerUp.php'; // Zet de header bovenaan deze pagina.
     $connectie = verbinddatabase();
     
+    print_r($_POST);
+    
     if(isset($_POST['submitCategorie'])){
         $query = $connectie->prepare("INSERT INTO categorie (categorieId, catOmschrijving) VALUES ('',?) ");
         $query->bind_param("s", $catOm);
@@ -36,8 +38,8 @@
     }
     
     if(isset($_POST['submitSubCategorie'])){
-        $query = $connectie->prepare("INSERT INTO subCategorie (subCategorieId, subCatomschrijving, categorieId) VALUES ('',?,'$catId') ");
-        $query->bind_param("s", $subCatOm);
+        $query = $connectie->prepare("INSERT INTO subCategorie (subCategorieId, subCatomschrijving, categorieId) VALUES ('',?,?) ");
+        $query->bind_param("si", $subCatOm, $catId);
         
         $subCatOm = $_POST['subCatOm'];
         $catId = $_POST['categorie'];
