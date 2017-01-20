@@ -3,19 +3,19 @@
     
     <meta charset="UTF-8">
   <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'>
-  <link rel="stylesheet" href="styles.css" type="text/css">
-  <script src="navbar.js"></script>
+  <link rel="stylesheet" href="/ticketsysteem/styles.css" type="text/css">
+  <script src="/ticketsysteem/navbar.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!--bootstrap--> 
   <link rel="stylesheet" type="text/css" href="styles/css/bootstrap.css">
-  <script src="styles/js/bootstrap.min.js"></script>
+  <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
    <!--datepicker -->
-     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- KAPOT! -->
+  <link rel="stylesheet" href="/resources/demos/style.css"> <!-- KAPOT! -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="styles/js/bootstrap.min.js"></script>
+  <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
     <!--menu--> 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>   
@@ -167,10 +167,10 @@ $(document).ready(function(){
                                         <li class="col-sm-3">
 						<ul>
                                                         <li class="dropdown-header">Admin-menu</li>
-							<li><a href="admin/adminDash.php">AdminDash</a></li>
-							<li><a href="admin/accounts.php">accountbeheer</a></li>
-                                                        <li><a href="admin/nieuwAccount.php">nieuw account aanmaken</a></li>
-							<li><a href="admin/invoerApparaten.php">invoeren apparaten</a></li>
+							<li><a href="/ticketsysteem/admin/adminDash.php">AdminDash</a></li>
+							<li><a href="/ticketsysteem/admin/accounts.php">accountbeheer</a></li>
+                                                        <li><a href="/ticketsysteem/admin/nieuwAccount.php">nieuw account aanmaken</a></li>
+							<li><a href="/ticketsysteem/admin/invoerApparaten.php">invoeren apparaten</a></li>
 							<li><a href="#">...</a></li>
 							<li><a href="#">...</a></li>
 						</ul>
@@ -191,24 +191,24 @@ $(document).ready(function(){
 
 
             <li class="achter">
-    			<a href="index.php">dashboard<i class="fa fa-home"></i>	</a>			
+    			<a href="/ticketsysteem/index.php">dashboard<i class="fa fa-home"></i>	</a>			
 			</li>
 		</ul>
         <ul class="nav navbar-nav navbar-right">
                         <li class="achter">
-                <a href="acties/nieuwTicketDash.php">nieuw ticket <i class="fa fa-ticket"></i></a>
+                <a href="/ticketsysteem/acties/nieuwTicketDash.php">nieuw ticket <i class="fa fa-ticket"></i></a>
             </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">navigeer naar <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="tickets.php">tickets</a></li>
-            <li><a href="klanten.php">klanten</a></li>
-            <li><a href="acties/nieuwTicketDash.php">nieuwe ticket</a></li>
+            <li><a href="/ticketsysteem/tickets.php">tickets</a></li>
+            <li><a href="/ticketsysteem/klanten.php">klanten</a></li>
+            <li><a href="/ticketsysteem/acties/nieuwTicketDash.php">nieuwe ticket</a></li>
             <li class="divider"></li>
             <li><a href="#">komt nog meer aan!</a></li>
           </ul>
         </li>
-        <li class="achter"><a href="acties/uitloggen.php">uitloggen <i class="fa fa-sign-out"></i></a></li>
+        <li class="achter"><a href="/ticketsysteem/acties/uitloggen.php">uitloggen <i class="fa fa-sign-out"></i></a></li>
       </ul>
 	</div><!-- /.nav-collapse -->
   </nav>
