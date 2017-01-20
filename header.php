@@ -171,7 +171,7 @@ $(document).ready(function(){
 							<li><a href="/ticketsysteem/admin/accounts.php">accountbeheer</a></li>
                                                         <li><a href="/ticketsysteem/admin/nieuwAccount.php">nieuw account aanmaken</a></li>
 							<li><a href="/ticketsysteem/admin/invoerApparaten.php">invoeren apparaten</a></li>
-							<li><a href="#">...</a></li>
+							<li><a href="/ticketsysteem/admin/invoerCategorie.php">invoeren categorieën</a></li>
 							<li><a href="#">...</a></li>
 						</ul>
 					</li>
