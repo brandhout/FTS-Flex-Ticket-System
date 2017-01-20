@@ -4,6 +4,24 @@
 .container{
 
 }
+/* menu achtergrond!! --------------------------------------------------------------------------------------------------  
+-achtergrond menu
+.collapse{
+    background-color:white;
+}
+-achtergrond li dropdown
+.dropdown{
+    background-color:blue;
+}
+- achtergrond li
+.achter{
+    
+}
+
+
+*/
+
+
 body {
     font-family: 'Open Sans', 'sans-serif';
     width: 100%;
