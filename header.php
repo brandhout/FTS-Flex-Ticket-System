@@ -105,7 +105,7 @@ $(document).ready(function(){
                     
                     
 			<li class="dropdown mega-dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin menu<span class="caret"></span></a>				
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-unlock"></i>Admin menu<span class="caret"></span></a>				
 				<ul class="dropdown-menu mega-dropdown-menu">
 					<li class="col-sm-3">
 						<ul>

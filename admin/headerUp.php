@@ -66,6 +66,11 @@ $(document).ready(function(){
 	
 	<div class="collapse navbar-collapse js-navbar-collapse">
 		<ul class="nav navbar-nav">
+                    					  <?php
+    switch ($_SESSION['isAdmin']) { 
+                case "1":
+                echo '
+                    
 			<li class="dropdown mega-dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Groot menu <span class="caret"></span></a>				
 				<ul class="dropdown-menu mega-dropdown-menu">
@@ -127,9 +132,7 @@ $(document).ready(function(){
 						</ul>
 					</li>
 					  <?php
-    switch ($_SESSION['isAdmin']) { 
-                case "1":
-                echo '<li class="col-sm-3">
+                                            <li class="col-sm-3">
 						<ul>
                                                         <li class="dropdown-header">Admin-menu</li>
 							<li><a href="adminDash.php">AdminDash</a></li>
@@ -157,20 +160,6 @@ $(document).ready(function(){
             <li class="">
     			<a href="../index.php">dashboard<i class="fa fa-home"></i>	</a>			
 			</li>
-  <?php
-    switch ($_SESSION['isAdmin']) { 
-                case "1":
-                echo '<li><a href="adminDash.php">Admin Dashboard<i class="fa fa-unlock"></i></a></li>' ;
-                break;
-
-                case "0":
-                break;
-
-                default:
-                break;
-            }
-
-?>
 		</ul>
         <ul class="nav navbar-nav navbar-right">
                         <li>
