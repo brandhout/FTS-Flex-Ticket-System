@@ -16,7 +16,7 @@
  */
 
 session_start();
-require_once 'headerUp.php'; //Include de header.
+require_once '../header.php'; //Include de header.
 require_once '../functies.php'; //Include de functies.
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
