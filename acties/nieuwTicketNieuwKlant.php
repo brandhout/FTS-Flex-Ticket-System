@@ -285,7 +285,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                         </div>
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <textarea name="oplossing" id="message3" class="form textarea"  placeholder="potentpiele oplossing"></textarea>
+                            <textarea name="oplossing" id="message3" class="form textarea"  placeholder="potentiele oplossing"></textarea>
                         </div>
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
