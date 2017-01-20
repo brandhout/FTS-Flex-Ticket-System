@@ -2,23 +2,21 @@
 <head>
     
     <meta charset="UTF-8">
-  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'>
-  <link rel="stylesheet" href="/ticketsysteem/styles.css" type="text/css">
+  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'><!-- KAPOT! -->
+  <link rel="stylesheet" href="/ticketsysteem/styles.css" type="text/css"> 
   <script src="/ticketsysteem/navbar.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!--bootstrap--> 
-  <link rel="stylesheet" type="text/css" href="styles/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/ticketsysteem/styles/css/bootstrap.css">
   <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
    <!--datepicker -->
-     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <!-- KAPOT! -->
-  <link rel="stylesheet" href="/resources/demos/style.css"> <!-- KAPOT! -->
+     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
     <!--menu--> 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>   
   
 <script>
 $(document).ready(function(){
@@ -53,45 +51,6 @@ $(document).ready(function(){
 	});
 
 </script>
-<script>
-
-    /* API method to get paging information */
-
-    'use strict';
-	var $ = jQuery;
-	$.getScript("https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js", function(){
-       
-            $('#example2').DataTable( {
-                "language": {
-    "url": "http://cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json"
-  },
-                "paging":   true,
-                "ordering": true,
-                "info":     false
-            } );
-	});
-
-</script>
-<script>
-
-    /* API method to get paging information */
-
-    'use strict';
-	var $ = jQuery;
-	$.getScript("https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js", function(){
-       
-            $('#example3').DataTable( {
-                "language": {
-    "url": "http//cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json";
-  },
-                "paging":   true,
-                "ordering": true,
-                "info":     false
-            } );
-	});
-
-</script>
-
 </head>
 <body>
 <div class="container">
