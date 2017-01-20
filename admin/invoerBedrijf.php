@@ -27,14 +27,17 @@
     if(isset($_POST['submitBedrijf'])){
         $naam = $_POST['naam'];
         $website = $_POST['website'];
+        
         if(isset($_POST['kvkNr'])){
             $kvkNr = filter_var($_POST['kvkNr'], FILTER_SANITIZE_NUMBER_INT);
         } else {
             $kvkNr = 0;
         }
+        
         $adres = $_POST['adres'];
         $postC = $_POST['postC'];
         $stad = $_POST['stad'];
+        
         if(isset($_POST['tel'])){
             $tel = filter_var($_POST['tel'], FILTER_SANITIZE_NUMBER_INT);
         } else {
