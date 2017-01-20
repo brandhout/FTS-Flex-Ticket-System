@@ -70,7 +70,7 @@
                            <button class="sub2" name="welkTicket" type="submit" value="gesloten">Gesloten</button>
                     </form>
                    
-                    <table id="example2" class="display" cellspacing="0" width="100%">
+                    <table id="example" class="display" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                     <td><strong>TicketID</strong></td>
