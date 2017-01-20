@@ -22,7 +22,7 @@
                 <h1>Accountlijst</h1>
             </head>
             <body>
-<table id="example4" class="display" cellspacing="0" width="100%">
+<table id="example" class="display" cellspacing="0" width="100%">
 <thead><tr>
                         <td align="left"><strong>Account nr</strong></td>
                         <td align="left"><strong>Gebruikersnaam</strong></td>
