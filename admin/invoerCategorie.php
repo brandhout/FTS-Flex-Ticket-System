@@ -23,6 +23,29 @@
     session_start();
     require_once '../functies.php'; //Include de functies.
     require_once 'headerUp.php'; // Zet de header bovenaan deze pagina.
+    $connectie = verbinddatabase();
+    
+    if(isset($_POST['submitCategorie'])){
+        $query = $connectie->prepare("INSERT INTO categorie (categorieId, catOmschrijving) VALUES ('',?) ");
+        $query->bind_param("s", $catOm);
+        
+        $catOm = $_POST['catOm'];
+        
+        $query->execute();
+        $query->close();
+    }
+    
+    if(isset($_POST['submitSubCategorie'])){
+        $query = $connectie->prepare("INSERT INTO subCategorie (subCategorieId, subCatomschrijving, categorieId) VALUES ('',?,'$catId') ");
+        $query->bind_param("s", $subCatOm);
+        
+        $subCatOm = $_POST['subCatOm'];
+        $catId = $_POST['categorie'];
+                
+        $query->execute();
+        $query->close();
+    }
+    
 ?>
 
  
@@ -32,31 +55,32 @@
     </header>
     <body>
          <div class="containert1">
-        <form name="merk" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <form name="cat" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
             
             <h2><strong>Categorie invoer</strong></h2>
             
             Categorie <br>
-            <input type="text" name="categorie"><br><br>
+            <input type="text" name="catOm"><br><br>
 
-          <input type="submit" name="submitCategorie" value="invoerCat"><br>    
+          <input type="submit" name="submitCategorie" value="invoeren"><br>    
         </form>
         
-        <form name="type" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <form name="subCat" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
             
             <h2><strong>Sub categorie invoer</strong></h2>
             
             Subcategorie <br>
-            <input type="text" name="laptopType"><br><br>
+            <input type="text" name="subCatOm"><br><br>
             
-            <strong> Hoort bij merk </strong><br>
-            <select name="merk">
-                    <option>Dell</option>
-                    <option>HP</option>
-                    </select>
-            
-
-          <br><input type="submit" name="submitType" value="invoeren"><br>    
+            <strong> Valt onder categorie </strong><br><select name="categorie">
+            <?php
+            $ophaalcat = "SELECT * FROM categorie ";
+                            $resultcat = mysqli_query($connectie, $ophaalcat);
+                            while ($c = mysqli_fetch_assoc($resultcat)) {
+                            echo "<option value='" . $c['categorieId'] . "'>" . $c['categorieId'] . " " . $c['catOmschrijving'] . "</option>";
+                            } ?>
+            </select><br>
+          <br><input type="submit" name="submitSubCategorie" value="invoeren"><br>    
         </form></div>
     </body>  
 </html>   
