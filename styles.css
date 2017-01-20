@@ -4,21 +4,25 @@
 .container{
 
 }
-/* menu achtergrond!! --------------------------------------------------------------------------------------------------  
--achtergrond menu
+
+
+
+/* menu achtergrond!! --------------------------------------------------------------------------------------------------
+achtergrond menu
 .collapse{
-    background-color:white;
+    background-color:#2D68B5;
 }
--achtergrond li dropdown
+achtergrond li dropdown
 .dropdown{
-    background-color:blue;
+    background-color:#2D68B5;
 }
-- achtergrond li
+.dropdown > ul > li > a:hover{
+    background-color:#2D68B5;
+}
+achtergrond li
 .achter{
-    
+    background-color:#2D68B5;
 }
-
-
 */
 
 
