@@ -1,7 +1,7 @@
 <?php 
     session_start();
     require_once '../functies.php'; //Include de functies.
-    require_once 'headerUp.php'; // Zet de header in deze pagina.
+    require_once '../header.php'; //Include de header.
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     $connectie = verbinddatabase();
