@@ -196,7 +196,7 @@
             
         <p> Prioriteit: </p><input type="text" class="form" disabled="disabled" placeholder="'.prioriteitOmzet($ticket['prioriteit']).'"/>
             
-        <p> Streefdatum: </p><input type="text" class="form" disabled="disabled" placeholder="'.$ticket['streefdatum'].'"/>'
+        <p> Streefdatum: </p><input type="text" class="form" disabled="disabled" placeholder="'.datumOmzet($ticket['streefdatum']).'"/>'
             ;
    
     
@@ -307,11 +307,11 @@
         <p> Emailadres: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantEmail'].'"/></div>
 <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">   
         <p> Logboek:<br>
-        Ticket is op <strong>'.$ticket['datumAanmaak'].'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><p><br>';
+        Ticket is op <strong>'.datumOmzet($ticket['datumAanmaak']).'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><p><br>';
         
         if($overDatum){
             echo'
-                Sinds <strong>'.$ticket['streefdatum'].'</strong> is deze ticket te laat,<br>';
+                Sinds <strong>'.datumOmzet($ticket['streefdatum']).'</strong> is deze ticket te laat,<br>';
             if($ticket['redenTeLaat'] === NULL){
                 echo '
                     <textarea class="form" disabled="disabled"> reden nog niet ingevuld</textarea>';
@@ -324,7 +324,7 @@
         
         while($doorstuurLog = $doorstuurLogUitkomst->fetch_assoc()){
             echo ''
-            . '<textarea class="form" disabled="disabled">Ticket is op <strong>'.$doorstuurLog['datum'].'</strong> doorgestuurd
+            . '<textarea class="form" disabled="disabled">Ticket is op <strong>'.datumOmzet($doorstuurLog['datum']).'</strong> doorgestuurd
                     van Lijn <strong>'.$doorstuurLog['vanLijn'].'</strong>
                     naar Lijn <strong>'.$doorstuurLog['naarLijn'].'</strong>
                     door <strong>'.leesAccountAchterNaam($doorstuurLog['accountNr']).'</strong><br>
@@ -336,7 +336,7 @@
                 
         while($oplossingen = $oplossingUitkomst->fetch_array()){
             echo ' 
-                <textarea class="form" disabled="disabled"> Er is op <strong>'.$oplossingen['datumFix'].'</strong>
+                <textarea class="form" disabled="disabled"> Er is op <strong>'.datumOmzet($oplossingen['datumFix']).'</strong>
                 een oplossing aangedragen
                 door <strong>'.leesAccountAchterNaam($oplossingen['accountNr']).'</strong>
                 <br>met <strong>accountnr: '.$oplossingen['accountNr'].'
