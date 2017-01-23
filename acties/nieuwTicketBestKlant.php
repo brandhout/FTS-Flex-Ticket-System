@@ -30,11 +30,16 @@ if(isset($_POST['laptopType'])){
 } else {
     $merklaptop = 0;
 }
-echo $merktype;
 $scategorie = $_POST["subCategorie"];
 $besturingsysteem = $_POST["besturingssysteem"];
 $binnenkomstT = $_POST["binnenkomstType"];
 $check = (isset($_POST['nogBellen'])) ? 1 : 0;
+
+if(isset($_SESSION['bedrijfsId'])){
+$bedrijfsId = $_SESSION['bedrijfsId'];
+} else {
+    $bedrijfsId = 0;
+}
 
 //overig
 $aantalXterug = NULL;
@@ -55,13 +60,12 @@ $def=NULL;
 if (isset($_POST['submit0'])) {
 $insertticket = $connectie->prepare("INSERT INTO ticket (ticketId, inBehandeling, probleem, trefwoorden, prioriteit, aantalXterug,
                         terugstuurLock, lijnNr, datumAanmaak, nogBellen, instantieId, streefdatum, redenTeLaat, klantTevreden, fstAccountNr, aangewAccountNr, klantId, subCategorieId, 
-                        binnenkomstId, vVLaptopTypeId, besturingssysteemId)
+                        binnenkomstId, vVLaptopTypeId, besturingssysteemId, bedrijfsId)
                         VALUES ('','$inbehandeling',?,?,?, '$aantalXterug','$terugstuurLock','$lijnNr','$datumAanmaak','$check','$instantie',?,'$redentelaat','$klanttevreden','$ftsAccountNr',
-                        '$aangewAccountNr','$klantID',?,?,?,?)");
+                        '$aangewAccountNr','$klantID',?,?,?,?,'$bedrijfsId')");
             if ($insertticket) {
                 $insertticket->bind_param('ssisiiii', $probleem, $trefwoorden, $prioriteit, $sdate, $scategorie, $binnenkomstT, $merktype, $besturingsysteem);
                 if ($insertticket->execute()) {
-                    echo 'ticket aangemaakt';
                     //header("Refresh:5; url=../index.php", true, 303);
                 }else {echo "Error : " . mysqli_error($connectie);}
             }else {echo "Error : " . mysqli_error($connectie);}
@@ -86,7 +90,6 @@ $ophaalticket = "SELECT * FROM ticket WHERE klantId='$klantID'";
             if ($insertcomment){
                 $insertcomment->bind_param('s',$commentaar);
                 if ($insertcomment->execute()){
-                    echo 'alles is gelukt';
                     //header("Refresh:5; url=../index.php", true, 303);
                 }else {echo "Error : " . mysqli_error($connectie);}
             }else {echo "Error : " . mysqli_error($connectie);} 
@@ -99,7 +102,6 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
         if($insertoplossing){
             $insertoplossing->bind_param('s', $oplossing);
             if ($insertoplossing->execute()){
-                echo '!';
             }else{echo "Error : " . mysqli_error($connectie);}
         }else{echo "Error : " . mysqli_error($connectie);}
 } 
@@ -128,20 +130,28 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                     });
                     
                 }
+                
+                function bedrijf(){
+                    var zoektxt = $("input[name='zoekBedrijf']").val();
+                    $.post("AJAX/getBedrijfsnaam.php", {zoekval: zoektxt}, function(bedrijfsnaam){
+                        $("#bedrijfsnaam").text(bedrijfsnaam);
+                    });
+                    
+                }                
             </script>
 <div class="container">
 <div class="inner contact">
                 <!-- Form Area -->
                 <div class="contact-form">
                     <!-- Form -->
-                    <form name="nieuwTicket" action="nieuwTicketNieuwKlant.php" method="POST">
+                    <form name="nieuwTicket" action="nieuwTicketBestKlant.php" method="POST">
                         <!-- Left Inputs -->
 						<div class="grid">
 						<div class="row">
                         <div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- zoek -->
                             <input type="text" name="zoek" id="zoek" required="required" class="form" onkeydown="zoekf();" placeholder="zoeken in achternaam" />
-							<p type="text" class="form" id="output" name="klantID" placeholder="resultaat klant ID"></p>
+				<p type="text" class="form" id="output" name="klantID" placeholder="resultaat klant ID"></p>
                         </div><!-- End Left Inputs -->
 						<!-- mid inputs -->
 						<div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s">
@@ -154,17 +164,11 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                             echo "<option value='" . $l['instantieId'] . "'>" . $l['instantieNaam'] . "</option>";
                             }
                             ?> 
-                        </select>						
-                        <select class="form" name="bedrijf">
-                        <option value = "">---bedrijf---</option>
-                            <?php
-                            $ophaalv = "SELECT * FROM bedrijf ";
-                            $resultv = mysqli_query($connectie, $ophaalv);
-                            while ($v = mysqli_fetch_assoc($resultv)) {
-                            echo "<option value='" . $v['bedrijfsId'] . "'> " . $v['naam'] . "</option>";
-                            }
-                            ?> 
-                        </select>						
+                        </select>		
+                                                    
+                        <input type="text" name="zoekBedrijf" id="zoekBedrijf" class="form" onblur="bedrijf();" placeholder="zoek op bedrijfsnaam" />
+                        <p type="text" class="form" id="bedrijfsnaam" name="bedrijfsnaam" placeholder="resultaat"></p>
+                                
                         <select class="form" name="binnenkomstType" >
                         <option value = "">---binnengekomen via---</option>
                             <?php
