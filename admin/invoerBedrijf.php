@@ -62,7 +62,7 @@
 
 <html>
     <header>
-        <title>Admin Invoer FTS</title>
+        <title>Invoer FTS</title>
     </header>
     <body> <strong>
              <form name="bedrijf" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
