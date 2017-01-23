@@ -37,6 +37,12 @@ if(isset($_POST['laptopType'])){
 } else {
     $merklaptop = 0;
 }
+if(isset($_SESSION['bedrijfsId'])){
+$bedrijfsId = $_SESSION['bedrijfsId'];
+} else {
+    $bedrijfsId = 0;
+}
+
 
 $scategorie = $_POST["subCategorie"];
 $besturingsysteem = $_POST["besturingssysteem"];
@@ -90,9 +96,9 @@ $ophaalKlantQuery = "SELECT * FROM klant WHERE klantNaam='$naam'";
     }
 $insertticket = $connectie->prepare("INSERT INTO ticket (ticketId, inBehandeling, probleem, trefwoorden, prioriteit, aantalXterug,
                         terugstuurLock, lijnNr, datumAanmaak, nogBellen, instantieId, streefdatum, redenTeLaat, klantTevreden, fstAccountNr, aangewAccountNr, klantId, subCategorieId, 
-                        binnenkomstId, vVLaptopTypeId, besturingssysteemId)
+                        binnenkomstId, vVLaptopTypeId, besturingssysteemId, bedrijfsId)
                         VALUES ('','$inbehandeling',?,?,?, '$aantalXterug','$terugstuurLock','$lijnNr','$datumAanmaak','$check','$instantie',?,'$redentelaat','$klanttevreden','$ftsAccountNr',
-                        '$aangewAccountNr','$klantID',?,?,?,?)");
+                        '$aangewAccountNr','$klantID',?,?,?,?,'$bedrijfsId)");
             if ($insertticket) {
                 $insertticket->bind_param('ssisiiii', $probleem, $trefwoorden, $prioriteit, $sdate, $scategorie, $binnenkomstT, $merktype, $besturingsysteem);
                 if ($insertticket->execute()) {
@@ -152,6 +158,13 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                 $("#laptop").text(laptop);
                 });                 
             }
+            
+            function bedrijf(){
+                var zoektxt = $("input[name='zoekBedrijf']").val();
+                $.post("AJAX/getBedrijfsnaam.php", {zoekval: zoektxt}, function(bedrijfsnaam){
+                    $("#bedrijfsnaam").text(bedrijfsnaam);
+                });             
+                }                
     </script>
 
 
@@ -192,16 +205,8 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                             }
                             ?> 
                         </select>						
-                        <select class="form" name="bedrijf">
-                        <option value = "">---bedrijf---</option>
-                            <?php
-                            $ophaalv = "SELECT * FROM bedrijf ";
-                            $resultv = mysqli_query($connectie, $ophaalv);
-                            while ($v = mysqli_fetch_assoc($resultv)) {
-                            echo "<option value='" . $v['bedrijfsId'] . "'> " . $v['naam'] . "</option>";
-                            }
-                            ?> 
-                        </select>						
+                        <input type="text" name="zoekBedrijf" id="zoekBedrijf" class="form" onblur="bedrijf();" placeholder="zoek op bedrijfsnaam" />
+                        <p type="text" class="form" id="bedrijfsnaam" name="bedrijfsnaam" placeholder="resultaat"></p>
                         <select class="form" name="binnenkomstType" >
                         <option value = "">---binnengekomen via---</option>
                             <?php
