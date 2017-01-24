@@ -168,7 +168,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                                                     
                         <input type="text" name="zoekBedrijf" id="zoekBedrijf" class="form" onblur="bedrijf();" placeholder="zoek op bedrijfsnaam" />
                         <p type="text" class="form" id="bedrijfsnaam" name="bedrijfsnaam" placeholder="resultaat"></p>
-                            <a href="/ticketsysteem/admin/invoerBedrijf.php" target="_blank">Nieuw bedrijf</a>
+                        <a href="/ticketsysteem/admin/invoerBedrijf.php" target="_blank">Nieuw bedrijf (klik hier)</a><br><br>
                                 
                         <select class="form" name="binnenkomstType" >
                         <option value = "">---binnengekomen via---</option>
