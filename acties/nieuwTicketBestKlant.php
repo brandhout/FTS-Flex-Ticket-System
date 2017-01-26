@@ -116,6 +116,9 @@ header("Refresh:0; url=../index.php", true, 303);
 ?>
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+    </head>
 
     <body>
         <!--  alle scripts  -->
@@ -142,7 +145,12 @@ header("Refresh:0; url=../index.php", true, 303);
                         $("#bedrijfsnaam").text(bedrijfsnaam);
                     });
                     
-                }                
+                }
+                
+                tinymce.init({
+                    selector: '#message1',
+                    menubar: false
+                });
             </script>
 <div class="container">
 <div class="inner contact">
@@ -251,15 +259,15 @@ header("Refresh:0; url=../index.php", true, 303);
 					<div class="row">
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <textarea name="probleem" id="message1" class="form textarea"  placeholder="probleem"></textarea>
+                            <textarea name="probleem" id="message1" class="form textarea">Probleem</textarea>
 						</div>
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <textarea name="nieuwComment" id="message2" class="form textarea"  placeholder="commentaar"></textarea>
+                            <textarea name="nieuwComment" id="message2" class="form textarea">Commentaar</textarea>
                         </div>
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <textarea name="oplossing" id="message3" class="form textarea"  placeholder="potentiele oplossing"></textarea>
+                            <textarea name="oplossing" id="message3" class="form textarea">Potentiele oplossing</textarea>
                         </div>
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
