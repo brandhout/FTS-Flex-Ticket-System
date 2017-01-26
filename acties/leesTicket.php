@@ -175,6 +175,14 @@
         <html>
         <head>
         <title>Ticket Informatie FTS</title>
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+        <script>
+            tinymce.init({
+                    selector: "#mce",
+                    menubar: false,
+                    readonly : 1
+                });
+        </script>
         </head>
         <body>
         <h2> Ticketinfo </h2>
@@ -188,7 +196,7 @@
 
          <p>ticketnummer: </p><input class="form" type="text" disabled="disabled" placeholder="'. $ticketId . '"/>
              
-        <p>Probleem: </p><textarea class="form" disabled="disabled">'.$ticket['probleem'].'</textarea>
+        <p>Probleem: </p><textarea class="form" id="mce" disabled="disabled">'.$ticket['probleem'].'</textarea>
 
         <p>Trefwoorden: </p><textarea class="form" disabled="disabled">' .$ticket['trefwoorden'].'</textarea>
             
@@ -332,9 +340,9 @@
         if($overDatum){
             echo'
                 Sinds <strong>'.datumOmzet($ticket['streefdatum']).'</strong> is deze ticket te laat,<br>';
-            if($ticket['redenTeLaat'] === NULL){
+            if($ticket['redenTeLaat'] === ""){
                 echo '
-                    <textarea class="form" disabled="disabled"> reden nog niet ingevuld</textarea>';
+                    <strong>Reden nog niet ingevuld</strong><br>';
             } else {
                 echo '<textarea class="form" disabled="disabled">reden:'.$ticket['redenTeLaat'].'</textarea>';
             }
@@ -365,6 +373,7 @@
                 <br>met <strong>accountnr: '.$oplossingen['accountNr'].'
                 </strong><br>
                 <textarea class="form" disabled="disabled">
+                
                 '.$oplossingen['oplossOmschrijving'].'
                 </textarea>';
             
