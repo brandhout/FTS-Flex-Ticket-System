@@ -7,6 +7,9 @@ require_once '../functies.php'; //Include de functies.
 
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Nieuw Ticket</title>
+    </head>
     <body>
 
         <div style="margin: 0 auto; width: 656px; text-align: center;">
