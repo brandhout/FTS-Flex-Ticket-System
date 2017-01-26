@@ -17,7 +17,7 @@
 
         $insertInstantieQuery->execute();
         $insertInstantieQuery->close();
-        header("Refresh:0; url=../index.php", true, 303);
+        header("Refresh:0; url=adminDash.php", true, 303);
     }
 ?>
 
