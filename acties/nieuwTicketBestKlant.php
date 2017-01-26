@@ -105,7 +105,12 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
             }else{echo "Error : " . mysqli_error($connectie);}
         }else{echo "Error : " . mysqli_error($connectie);}
 } 
-//header("Refresh:5; url=../index.php", true, 303);  
+
+if (isset($_FILES['userfile']['size'])){
+    //kwerrie voor bijlage
+}
+
+header("Refresh:0; url=../index.php", true, 303);  
 }
           
 ?>
@@ -168,7 +173,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                                                     
                         <input type="text" name="zoekBedrijf" id="zoekBedrijf" class="form" onblur="bedrijf();" placeholder="zoek op bedrijfsnaam" />
                         <p type="text" class="form" id="bedrijfsnaam" name="bedrijfsnaam" placeholder="resultaat"></p>
-                        <a href="/ticketsysteem/admin/invoerBedrijf.php" target="_blank">Nieuw bedrijf (klik hier)</a><br><br>
+                        <a href="/ticketsysteem/admin/invoerBedrijf.php" target="_blank">Nieuw bedrijf</a><br><br>
                                 
                         <select class="form" name="binnenkomstType" >
                         <option value = "">---binnengekomen via---</option>
@@ -233,14 +238,15 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
                             <input type="text" name="datepicker" id="datepicker" required="required" class="form" placeholder="streef-datum" />
 						<!-- checkbox -->
                     <li class="form">
-                        klant wilt gebeld worden:
+                        klant moet nog gebeld worden:
                         <div class="material-switch pull-right">
                             <input id="someSwitchOptionDefault" name="nogBellen" type="checkbox"/>
                             <label for="someSwitchOptionDefault" class="label-default"></label>
                         </div>
                     </li>
 					</div></div>
-					
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+                                           <input name="userfile" type="file" id="userfile" class="form">
 					
 					<div class="row">
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
