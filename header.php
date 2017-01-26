@@ -137,9 +137,11 @@ $(document).ready(function(){
                                                         <li class="dropdown-header">Admin-menu</li>
 							<li><a href="/ticketsysteem/admin/adminDash.php">AdminDash</a></li>
 							<li><a href="/ticketsysteem/admin/accounts.php">accountbeheer</a></li>
-                                                        <li><a href="/ticketsysteem/admin/nieuwAccount.php">nieuw account aanmaken</a></li>
+                                                        <li><a href="/ticketsysteem/admin/nieuwAccount.php">nieuw account</a></li>
+                                                        <li><a href="/ticketsysteem/admin/invoerBedrijf.php">nieuw bedrijf</a></li>
 							<li><a href="/ticketsysteem/admin/invoerApparaten.php">invoeren apparaten</a></li>
 							<li><a href="/ticketsysteem/admin/invoerCategorie.php">invoeren categorieën</a></li>
+							<li><a href="/ticketsysteem/admin/invoerInstantie.php">invoeren instanties</a></li>                                                        
 							<li><a href="#">...</a></li>
 						</ul>
 					</li>
