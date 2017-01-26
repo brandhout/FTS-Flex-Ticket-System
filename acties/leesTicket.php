@@ -228,8 +228,8 @@
         echo '
             <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
             <p> Laptop: </p>
-            Merk:<input type="text" class="form" disabled="disabled" placeholder="'.$merkOm.'/>
-            Type:<input type="text" class="form" disabled="disabled" placeholder="'.$typeOm.'/>';
+            Merk:<input type="text" class="form" disabled="disabled" placeholder="'.$merkOm.'"/><br>
+            Type:<input type="text" class="form" disabled="disabled" placeholder="'.$typeOm.'"/>';
     }else{echo'<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">';}
     
  
