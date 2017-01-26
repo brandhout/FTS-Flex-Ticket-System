@@ -156,6 +156,7 @@ header("Refresh:0; url=../index.php", true, 303);
 ?>
 <html>
     <body>
+        <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
             function laptop(){
                 var zoektxt = $("input[name='laptopType']").val();
@@ -169,7 +170,13 @@ header("Refresh:0; url=../index.php", true, 303);
                 $.post("AJAX/getBedrijfsnaam.php", {zoekval: zoektxt}, function(bedrijfsnaam){
                     $("#bedrijfsnaam").text(bedrijfsnaam);
                 });             
-                }                
+                }
+                
+            tinymce.init({
+                selector: '#message1',
+                menubar: false
+            });
+
     </script>
 
 
