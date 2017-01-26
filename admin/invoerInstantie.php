@@ -9,23 +9,15 @@
     $connectie = verbinddatabase();
     
     if(isset($_POST['submitInstantie'])){
-        
         $instantie = $_POST['instantie'];
-        //$prioriteit = $_POST['prioriteit'];
         $prioriteit = filter_var($_POST['prioriteit'], FILTER_SANITIZE_NUMBER_INT);
-        echo $instantie . '<br>' . $prioriteit . '<br>';
         
         $insertInstantieQuery = $connectie->prepare("INSERT INTO instantie (instantieId, instantieNaam, proriteit) VALUES ('', ?, '$prioriteit')");
-        echo 'prepare<br>';
         $insertInstantieQuery->bind_param("s", $instantie);
-        echo 'bind_param<br>';
 
         $insertInstantieQuery->execute();
-        echo 'execute<br>';
         $insertInstantieQuery->close();
-        //header('url=adminDash');
-        echo '<br>';
-        echo 'klaar';
+        header("Refresh:0; url=../index.php", true, 303);
     }
 ?>
 
