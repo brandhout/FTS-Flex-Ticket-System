@@ -310,7 +310,7 @@ header("Refresh:0; url=../index.php", true, 303);
 					<div class="row">
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <textarea name="probleem" id="message1" class="form textarea"  placeholder="probleem"></textarea>
+                            <textarea name="probleem" id="message1" class="form textarea"  placeholder="probleem">Probleem<strong>omschrijving</strong></textarea>
 						</div>
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
