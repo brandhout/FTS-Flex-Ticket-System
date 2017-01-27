@@ -17,10 +17,8 @@
                 <header>
                     <title>Nieuw account</title>
                 </header>
-                <body>';
-                    echo '<h2><strong>Nieuwe accounts</strong></h2>
-                        <br>';
-                    echo '<div class="containert2">'
+                ';                  
+                    echo '<div class="container"> <body> <h2> Nieuw account </h1>'
                     . '<form name="wijzigaccount" action="';
                     echo htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST"<br>';
 
@@ -83,10 +81,10 @@
         $_POST["gebruikersNaam"] = $connectie->escape_string($_POST["gebruikersNaam"]);
         $_POST["wachtwoord"] = $connectie->escape_string($_POST["wachtwoord"]);
         
-        $hashin = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
+        $hash = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
         
         $insertAccount = $connectie->prepare('INSERT INTO account (accountNr, lijnNr, isAdmin, naam, achterNaam, laasteKeerIngelogd, actief, vestigingId, gebruikersNaam, wachtwoord)
-            VALUES (0, "'  . $_POST["lijnNr"] . '","' . $admin . '","' . $_POST["naam"] . '","' . $_POST["achterNaam"] . '","' . $datum . '","' . "1" . '","' . $_POST["vestigingId"] . '","' .  $_POST["gebruikersNaam"] . '","' . $_POST["wachtwoord"] . '")');
+            VALUES (0, "'  . $_POST["lijnNr"] . '","' . $admin . '","' . $_POST["naam"] . '","' . $_POST["achterNaam"] . '","' . $datum . '","' . "1" . '","' . $_POST["vestigingId"] . '","' .  $_POST["gebruikersNaam"] . '","' . $hash . '")');
         if ($insertAccount) {
             if ($insertAccount->execute()) {
                 header("Refresh:1; url=accounts.php", true, 303);
