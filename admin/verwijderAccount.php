@@ -11,6 +11,11 @@
         $connectie = verbinddatabase();
         error_reporting(E_ALL);
         
+    if($_SESSION['isAdmin'] < 1){
+        echo '<script> window.alert("U bent geen Administrator!");</script>';
+        header("refresh:0;url= ../index.php");
+    }
+        
         if(isset($_GET['verwijderActie'])){
 
             $accountNr = filter_var($_GET['verwijderActie'], FILTER_SANITIZE_NUMBER_INT);
