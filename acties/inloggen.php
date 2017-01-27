@@ -132,9 +132,9 @@
                 $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
                 $datum_query= "UPDATE account SET laasteKeerIngelogd = CURRENT_DATE WHERE accountNr = $accountNr";
                 $connectie->query($datum_query);
-                header("refresh:2;url= ../index.php");
+                header("refresh:0;url= ../index.php");
                 echo '
-                <br><p>Welkom bij FTS!<br>systeem wordt gestart</p>';
+                <br><p>Welkom bij FTS!</p>';
             
             }
         } else {
