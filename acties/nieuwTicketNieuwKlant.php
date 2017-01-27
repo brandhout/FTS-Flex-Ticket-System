@@ -188,7 +188,37 @@ header("Refresh:0; url=../index.php", true, 303);
                 selector: '#message1',
                 menubar: false
             });
-
+            
+            function getSubcategorie(str){
+                // Het volgende stukje code ziet er op het eerste gezicht erg ingewikkeld uit
+                // Dit omdat het AJAX is zonder jquery, gemaakt om AJAX beter te begrijpen
+                // Onder het mom van 'eerst basis'
+                if (str === "") {
+                    // Als hij leeg is laten we de innterHTML ook leeg
+                    document.getElementById("subCategorieContent").innerHTML="";
+                    return;
+                }
+                    
+                if (window.XMLHttpRequest){
+                    // Code voor recente browsers (IE7+, Chromium(chrome, safari, opera etc.), Firefox(iceweasel) etc
+                    // Schept een nieuwe XML http aanvraag die naar de backend pagina gaat
+                    xmlhttp=new XMLHttpRequest();
+                } else {
+                    // Zelfde idee maar dan met ActiveX.
+                    // Dit als uitval voor oudere (MICRO$OFT) browsers
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }               
+                // Bij statusverandering
+                xmlhttp.onreadystatechange=function()
+                    {
+                    // Bij een positieve terugkoppeling van de webpagina, geef de output weer
+                    if (xmlhttp.readyState===4 && xmlhttp.status===200){
+                        document.getElementById("subCategorieContent").innerHTML=xmlhttp.responseText;
+                    }
+                    }
+                xmlhttp.open("GET","AJAX/getSubcategorie.php?cat="+str, true);
+                xmlhttp.send();
+                }
     </script>
 
 
@@ -248,26 +278,19 @@ header("Refresh:0; url=../index.php", true, 303);
                             <option value = "2">middel</option>
                             <option value = "3">hoog</option>
                         </select>   						
-                        <select class="form" name="categorie">
+                        <select class="form" name="categorie" onchange ="getSubcategorie(this.value)">
                         <option value = "">---categorie---</option>
                             <?php
                             $ophaalcat = "SELECT * FROM categorie ";
                             $resultcat = mysqli_query($connectie, $ophaalcat);
                             while ($c = mysqli_fetch_assoc($resultcat)) {
-                            echo "<option value='" . $c['categorieId'] . "'>" . $c['categorieId'] . " " . $c['catOmschrijving'] . "</option>";
+                            echo "<option value='" . $c['categorieId'] . "'>" . $c['catOmschrijving'] . "</option>";
                             }
                             ?>
                         </select>	
-                        <select class="form" name="subCategorie">
-                        <option value = "">---sub-categorie---</option>
-                            <?php
-                            $ophaalscat = "SELECT * FROM subCategorie ";
-                            $resultscat = mysqli_query($connectie, $ophaalscat);
-                            while ($s = mysqli_fetch_assoc($resultscat)) {
-                            echo "<option value='" . $s['subCategorieId'] . "'>" . $s['subCategorieId'] . " " . $s['subCatomschrijving'] . "</option>";
-                            }
-                            ?>
-                        </select>
+                        <div id="subCategorieContent">
+                            <!-- Hier wordt de tweede drop down ingezet -->
+                        </div>
                         <select class="form" name="besturingssysteem">
                         <option value = "">---besturingsysteem---</option>
                             <?php
