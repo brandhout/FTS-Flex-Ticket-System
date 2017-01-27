@@ -22,7 +22,45 @@
       */
     session_start();
     require_once '../functies.php'; //Include de functies.
-    require_once '../header.php'; //Include de header.
+    require_once '../header.php'; //Include de header
+    ini_set('display_erors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    $connectie = verbinddatabase();
+   
+    if(isset($_POST['submitMerk'])){
+        $merk = $_POST['laptopMerk'];
+                     
+        $insertLaptopMerkQuery = $connectie->prepare("INSERT INTO veelVoorkomendelaptopMerken (vVLaptopMerkId, vVLaptopMerkOm) VALUES ('', ?)");
+        echo 'param';
+        $insertLaptopMerkQuery->bind_param("s", $merk);
+        echo 'bind_param';
+
+        $insertLaptopMerkQuery->execute();
+        $insertLaptopMerkQuery->close();
+        header("Refresh:0; url=adminDash.php", true, 303);
+  
+    }
+    if(isset($_POST['submitType'])){
+        $type = $_POST['laptopType'];
+        $typeMerk =$_POST['merk']; ;
+        
+        echo $type;
+        echo $typeMerk;
+        
+        $insertLaptopTypeQuery = $connectie->prepare("INSERT INTO veelVoorkomendeLaptopTypes (vVLaptopTypeId, vVLaptopTypeOm, vVLaptopMerkId) VALUES ('', ?, '$typeMerk')");
+        echo 'param';
+        $insertLaptopTypeQuery->bind_param("s", $type);
+        echo 'bind_param';
+
+        $insertLaptopTypeQuery->execute();
+        $insertLaptopTypeQuery->close();
+        //header("Refresh:0; url=adminDash.php", true, 303);
+        
+    }
+         
+        
+    
 ?>
 
  
@@ -31,7 +69,7 @@
         <title>Admin Invoer FTS</title>
     </header>
     <body>
-         <div class="containert1">
+         
         <form name="merk" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
             
             <h2><strong>Laptop merk invoer</strong></h2>
@@ -49,14 +87,23 @@
             Typenummer <br>
             <input type="text" name="laptopType"><br><br>
             
-            <strong> Hoort bij merk </strong><br>
-            <select name="merk">
-                    <option>Dell</option>
-                    <option>HP</option>
-                    </select>
+            
+               Hoort bij merk<br>
+                <select name="merk">
+                <option value ="">---Select---</option>
+                <?php
+                   $ophaalMerk = "SELECT * FROM veelVoorkomendelaptopMerken "; //selecteerd alle klassen 
+                    echo 'werk';
+                    $resultsMerk = mysqli_query($connectie, $ophaalMerk);
+                    while ($m = mysqli_fetch_assoc($resultsMerk)) {
+                        echo "<option value='" . $m['vVLaptopMerkId'] . "'>" . $m['vVLaptopMerkId'] . " " . $m['vVLaptopMerkOm'] . "</option>";
+                    }
+                ?> 
+                    
+                </select><br><br>
             
 
           <br><input type="submit" name="submitType" value="invoeren"><br>    
-        </form></div>
+          </form>
     </body>  
 </html>   
