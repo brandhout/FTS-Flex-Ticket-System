@@ -150,7 +150,7 @@
     <footer>
         <p>Made with: html/PHP/css/bootstrap/jQuery/mariaDB/javascript
             Made by: Naomi B, Rick H, Robby M. <br>
-            <i>FTS is beschikbaar onder GPL, ROC logo is © ROC van Amsterdam</i></p>
+            <i>FTS is beschikbaar onder GPL, jquery, datatables zijn van hun respectieve eigenaren</i></p>
     </footer>
 </html>
 
