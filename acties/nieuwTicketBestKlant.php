@@ -106,8 +106,20 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
         }else{echo "Error : " . mysqli_error($connectie);}
 } 
 
-if (isset($_FILES['userfile']['size'])){
-    //kwerrie voor bijlage
+if ($_FILES['userfile']['size'] > 0){
+    $fileName = $_FILES['userfile']['name'];
+    $tmpName  = $_FILES['userfile']['tmp_name'];
+    $fileSize = $_FILES['userfile']['size'];
+    $fileType = $_FILES['userfile']['type'];
+
+    $fp      = fopen($tmpName, 'r');
+    $bijlage = addslashes(fread($fp, filesize($tmpName)));
+    fclose($fp);
+    
+    $fileQuery = "INSERT INTO bijlage (id, naam, type, bijlage, ticketId)
+        VALUES ('', '$fileName', '$fileType', '$bijlage', '$ticketID')";
+    
+    $connectie->query($fileQuery);
 }
 
 header("Refresh:0; url=../index.php", true, 303);  
@@ -157,7 +169,7 @@ header("Refresh:0; url=../index.php", true, 303);
                 <!-- Form Area -->
                 <div class="contact-form">
                     <!-- Form -->
-                    <form name="nieuwTicket" action="nieuwTicketBestKlant.php" method="POST">
+                    <form name="nieuwTicket" action="nieuwTicketBestKlant.php" method="POST" enctype="multipart/form-data">
                         <!-- Left Inputs -->
 						<div class="grid">
 						<div class="row">
