@@ -76,7 +76,7 @@
                 echo htmlspecialchars($account["gebruikersNaam"]) . '"/><br><br>';
 
                 echo 'Wachtwoord <br><input type="password" name="wachtwoord" value="';
-                echo '"/><br><br>';
+                echo '"pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"/><br><br>';
                 
                 if($account['actief'] === 0){
                     echo '<button name="actief" type="submit" value="">Account op actief zetten</button>';
