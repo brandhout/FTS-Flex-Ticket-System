@@ -9,6 +9,11 @@
     include_once '../functies.php';
     $connectie = verbinddatabase();
     
+    if($_SESSION['isAdmin'] < 1){
+        echo '<script> window.alert("U bent geen Administrator!");</script>';
+        header("refresh:0;url= ../index.php");
+    }
+    
     $datum = mysqldatum();
     
         
