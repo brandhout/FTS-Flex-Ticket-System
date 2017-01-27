@@ -12,7 +12,7 @@
         $instantie = $_POST['instantie'];
         $prioriteit = filter_var($_POST['prioriteit'], FILTER_SANITIZE_NUMBER_INT);
         
-        $insertInstantieQuery = $connectie->prepare("INSERT INTO instantie (instantieId, instantieNaam, proriteit) VALUES ('', ?, '$prioriteit')");
+        $insertInstantieQuery = $connectie->prepare("INSERT INTO instantie (instantieId, instantieNaam, prioriteit) VALUES ('', ?, '$prioriteit')");
         $insertInstantieQuery->bind_param("s", $instantie);
 
         $insertInstantieQuery->execute();
