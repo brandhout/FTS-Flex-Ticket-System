@@ -28,6 +28,7 @@
                 <h1>Accountlijst</h1>
             </head>
             <body>
+<a href="/ticketsysteem/admin/nieuwAccount.php">nieuw account</a><br><br>
 <table id="example" class="display" cellspacing="0" width="100%">
 <thead><tr>
                         <td align="left"><strong>Account nr</strong></td>
