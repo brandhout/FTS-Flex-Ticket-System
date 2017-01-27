@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.5.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 17 jan 2017 om 15:25
--- Serverversie: 10.1.19-MariaDB
--- PHP-versie: 7.0.13
+-- Gegenereerd op: 27 jan 2017 om 11:45
+-- Serverversie: 10.1.20-MariaDB
+-- PHP-versie: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -47,8 +47,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`accountNr`, `lijnNr`, `isAdmin`, `schoolKlasId`, `naam`, `achterNaam`, `actief`, `laasteKeerIngelogd`, `magInloggen`, `vestigingId`, `gebruikersNaam`, `wachtwoord`, `klantId`) VALUES
-(1, 1, 0, '', 'Naomi', 'Berkelaar', 1, '0000-00-00', 1, 0, 'naomiberkelaar', '$2y$10$BYpuuXiS4a6/tg5FAspTve9Bss1ujvALfc7wotnchzCjLrtLl88QG', 0),
-(2, 1, 1, '0', 'Jan', 'Modaal', 1, '2017-01-17', 1, 0, 'janmodaal', '$2y$10$cpKVIkOa4UjaM6VovP/VF.yiWhR02SGK/CZmd8ClxqoI1YNuZIcja', 0),
+(1, 1, 0, '', 'Naomi', 'Berkelaar', 1, '2017-01-26', 1, 0, 'naomiberkelaar', '$2y$10$BYpuuXiS4a6/tg5FAspTve9Bss1ujvALfc7wotnchzCjLrtLl88QG', 0),
+(2, 1, 1, '0', 'Jan', 'Modaal', 1, '2017-01-26', 1, 0, 'janmodaal', '$2y$10$cpKVIkOa4UjaM6VovP/VF.yiWhR02SGK/CZmd8ClxqoI1YNuZIcja', 0),
 (4, 1, 1, '', 'p', 'b', 1, '2017-01-16', 1, 0, 'pb', '$2y$10$yMqxIMoF9G6s7KtfQH067et05DY/I242LEemuKmkL9s2NoMF7TtDG', 0);
 
 -- --------------------------------------------------------
@@ -69,6 +69,13 @@ CREATE TABLE `bedrijf` (
   `tel` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `bedrijf`
+--
+
+INSERT INTO `bedrijf` (`bedrijfsId`, `naam`, `website`, `kvkNr`, `btwNr`, `adres`, `stad`, `postC`, `tel`) VALUES
+(1, 'ROCva', '', 0, 0, '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +87,13 @@ CREATE TABLE `besturingssysteem` (
   `besturingssysteemOm` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `besturingssysteem`
+--
+
+INSERT INTO `besturingssysteem` (`besturingssysteemId`, `besturingssysteemOm`) VALUES
+(1, 'Fedora');
+
 -- --------------------------------------------------------
 
 --
@@ -87,7 +101,9 @@ CREATE TABLE `besturingssysteem` (
 --
 
 CREATE TABLE `bijlage` (
-  `bijlagenId` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
+  `naam` varchar(15) NOT NULL,
+  `type` varchar(15) NOT NULL,
   `bijlage` blob NOT NULL,
   `ticketId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -103,6 +119,13 @@ CREATE TABLE `binnenkomstType` (
   `binnenkomstTypeOm` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `binnenkomstType`
+--
+
+INSERT INTO `binnenkomstType` (`binnenkomstId`, `binnenkomstTypeOm`) VALUES
+(1, 'telefoon');
+
 -- --------------------------------------------------------
 
 --
@@ -113,6 +136,13 @@ CREATE TABLE `categorie` (
   `categorieId` int(10) NOT NULL,
   `catOmschrijving` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `categorie`
+--
+
+INSERT INTO `categorie` (`categorieId`, `catOmschrijving`) VALUES
+(1, 'software');
 
 -- --------------------------------------------------------
 
@@ -128,13 +158,6 @@ CREATE TABLE `commentaar` (
   `accountNr` int(10) NOT NULL,
   `ticketId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Gegevens worden geëxporteerd voor tabel `commentaar`
---
-
-INSERT INTO `commentaar` (`commentaarId`, `commOmschrijving`, `typeCommentaar`, `datum`, `accountNr`, `ticketId`) VALUES
-(1, 'commentaaromschrijving', '', '2017-01-12', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -171,8 +194,18 @@ INSERT INTO `doorsturing` (`doorstuurId`, `vanLijn`, `naarLijn`, `opmerking`, `a
 CREATE TABLE `instantie` (
   `instantieId` int(10) NOT NULL,
   `instantieNaam` varchar(30) NOT NULL,
-  `proriteit` int(10) NOT NULL
+  `prioriteit` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `instantie`
+--
+
+INSERT INTO `instantie` (`instantieId`, `instantieNaam`, `prioriteit`) VALUES
+(1, 'bedrijf', 0),
+(2, 'Leerling', 1),
+(3, 'Prive persoon', 1),
+(4, 'Overheid', 2);
 
 -- --------------------------------------------------------
 
@@ -198,7 +231,7 @@ CREATE TABLE `klant` (
 --
 
 INSERT INTO `klant` (`klantId`, `klantAchternaam`, `klantNaam`, `klantTel`, `klantAdres`, `klantPostc`, `klantStad`, `klantEmail`, `instantieId`, `bedrijfsId`) VALUES
-(1, 'Mijnkipema', 'Jasper', '0620532107', 'vanderspekstraat 20', '1111 BB', 'Hilversum', 'jaspermijnkipema@gmail.com', 0, 0),
+(1, 'Mijnkipema', 'Jasper', '0620532107', 'vanderspekstraat 20', '1111 BB', 'Hilversum', 'jaspermijnkipema@gmail.com', 0, 1),
 (2, 'Vanderspek', 'Djoey', '0620532107', 'gabberstraat 20', '1111 BB', 'Baarn', 'rainbowhighinthesky@gmail.com', 0, 0);
 
 -- --------------------------------------------------------
@@ -215,14 +248,6 @@ CREATE TABLE `oplossingen` (
   `accountNr` int(10) NOT NULL,
   `ticketId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Gegevens worden geëxporteerd voor tabel `oplossingen`
---
-
-INSERT INTO `oplossingen` (`oplossingId`, `definitief`, `oplossOmschrijving`, `datumFix`, `accountNr`, `ticketId`) VALUES
-(1, 0, 'Oplossingstekst', '2017-01-11', 1, 2),
-(2, 0, 'Tweede oplossing', '2017-01-13', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -258,6 +283,13 @@ CREATE TABLE `subCategorie` (
   `subCatomschrijving` text NOT NULL,
   `categorieId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `subCategorie`
+--
+
+INSERT INTO `subCategorie` (`subCategorieId`, `subCatomschrijving`, `categorieId`) VALUES
+(6, 'OS', 1);
 
 -- --------------------------------------------------------
 
@@ -302,16 +334,18 @@ CREATE TABLE `ticket` (
   `subCategorieId` int(10) NOT NULL,
   `binnenkomstId` int(10) NOT NULL,
   `vVLaptopTypeId` int(10) NOT NULL,
-  `besturingssysteemId` int(10) NOT NULL
+  `besturingssysteemId` int(10) NOT NULL,
+  `bedrijfsId` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `ticket`
 --
 
-INSERT INTO `ticket` (`ticketId`, `inBehandeling`, `probleem`, `trefwoorden`, `prioriteit`, `aantalXterug`, `terugstuurLock`, `lijnNr`, `datumAanmaak`, `nogBellen`, `instantieId`, `streefdatum`, `redenTeLaat`, `klantTevreden`, `fstAccountNr`, `aangewAccountNr`, `klantId`, `subCategorieId`, `binnenkomstId`, `vVLaptopTypeId`, `besturingssysteemId`) VALUES
-(1, 1, 'Grafwindows werkt voor geen ene meter', 'kut,windows', 1, 0, 0, 2, '2016-12-31', 1, 0, '2015-06-30', 'Te weinig tijd op de afdeling', 0, 1, 0, 1, 0, 0, 0, 0),
-(2, 1, 'Koffieautomaat werkt niet', 'koffie,kutzooi', 1, 0, 0, 1, '2017-01-01', 0, NULL, '2020-06-01', NULL, 0, 2, 0, 1, 0, 0, 0, 0);
+INSERT INTO `ticket` (`ticketId`, `inBehandeling`, `probleem`, `trefwoorden`, `prioriteit`, `aantalXterug`, `terugstuurLock`, `lijnNr`, `datumAanmaak`, `nogBellen`, `instantieId`, `streefdatum`, `redenTeLaat`, `klantTevreden`, `fstAccountNr`, `aangewAccountNr`, `klantId`, `subCategorieId`, `binnenkomstId`, `vVLaptopTypeId`, `besturingssysteemId`, `bedrijfsId`) VALUES
+(1, 1, 'Grafwindows werkt voor geen ene meter', 'kut,windows', 1, 0, 0, 2, '2016-12-31', 1, 0, '2015-06-30', 'Te weinig tijd op de afdeling', 0, 1, 2, 1, 0, 0, 0, 0, NULL),
+(2, 1, 'Koffieautomaat werkt niet', 'koffie,kutzooi', 1, 0, 0, 1, '2017-01-01', 0, NULL, '2020-06-01', NULL, 0, 2, 0, 1, 0, 0, 0, 0, NULL),
+(11, 1, '<p style=\"text-align: justify; padding-left: 30px;\">asdasdasdasd<strong>asdasdasd<em>asdasdasdasdasdasdasdasdasd</em></strong></p>', 'trefw', 1, 0, 0, 1, '2017-01-26', 0, 0, '2017-01-28', '', 0, 1, 0, 1, 6, 0, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -324,6 +358,13 @@ CREATE TABLE `veelVoorkomendelaptopMerken` (
   `vVLaptopMerkOm` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `veelVoorkomendelaptopMerken`
+--
+
+INSERT INTO `veelVoorkomendelaptopMerken` (`vVLaptopMerkId`, `vVLaptopMerkOm`) VALUES
+(1, 'Lenovo');
+
 -- --------------------------------------------------------
 
 --
@@ -335,6 +376,13 @@ CREATE TABLE `veelVoorkomendeLaptopTypes` (
   `vVLaptopTypeOm` text NOT NULL,
   `vVLaptopMerkId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `veelVoorkomendeLaptopTypes`
+--
+
+INSERT INTO `veelVoorkomendeLaptopTypes` (`vVLaptopTypeId`, `vVLaptopTypeOm`, `vVLaptopMerkId`) VALUES
+(1, 'Thinkpad', 1);
 
 -- --------------------------------------------------------
 
@@ -374,7 +422,7 @@ ALTER TABLE `besturingssysteem`
 -- Indexen voor tabel `bijlage`
 --
 ALTER TABLE `bijlage`
-  ADD PRIMARY KEY (`bijlagenId`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexen voor tabel `binnenkomstType`
@@ -473,32 +521,32 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT voor een tabel `bedrijf`
 --
 ALTER TABLE `bedrijf`
-  MODIFY `bedrijfsId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `bedrijfsId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT voor een tabel `besturingssysteem`
 --
 ALTER TABLE `besturingssysteem`
-  MODIFY `besturingssysteemId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `besturingssysteemId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT voor een tabel `bijlage`
 --
 ALTER TABLE `bijlage`
-  MODIFY `bijlagenId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT voor een tabel `binnenkomstType`
 --
 ALTER TABLE `binnenkomstType`
-  MODIFY `binnenkomstId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `binnenkomstId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT voor een tabel `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `categorieId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `categorieId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT voor een tabel `commentaar`
 --
 ALTER TABLE `commentaar`
-  MODIFY `commentaarId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `commentaarId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT voor een tabel `doorsturing`
 --
@@ -508,17 +556,17 @@ ALTER TABLE `doorsturing`
 -- AUTO_INCREMENT voor een tabel `instantie`
 --
 ALTER TABLE `instantie`
-  MODIFY `instantieId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `instantieId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT voor een tabel `klant`
 --
 ALTER TABLE `klant`
-  MODIFY `klantId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `klantId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT voor een tabel `oplossingen`
 --
 ALTER TABLE `oplossingen`
-  MODIFY `oplossingId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `oplossingId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT voor een tabel `schoolKlassen`
 --
@@ -528,7 +576,7 @@ ALTER TABLE `schoolKlassen`
 -- AUTO_INCREMENT voor een tabel `subCategorie`
 --
 ALTER TABLE `subCategorie`
-  MODIFY `subCategorieId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `subCategorieId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT voor een tabel `terugsturing`
 --
@@ -538,17 +586,17 @@ ALTER TABLE `terugsturing`
 -- AUTO_INCREMENT voor een tabel `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `ticketId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ticketId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT voor een tabel `veelVoorkomendelaptopMerken`
 --
 ALTER TABLE `veelVoorkomendelaptopMerken`
-  MODIFY `vVLaptopMerkId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `vVLaptopMerkId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT voor een tabel `veelVoorkomendeLaptopTypes`
 --
 ALTER TABLE `veelVoorkomendeLaptopTypes`
-  MODIFY `vVLaptopTypeId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `vVLaptopTypeId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT voor een tabel `vestigingen`
 --
