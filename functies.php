@@ -145,3 +145,13 @@ function leesBedrijfsNaam($bedrijfsId){
     
     return $bedrijf['naam'];
 }
+
+function leesInstantieNaam ($instantieId){
+    $connectie = verbinddatabase();
+    
+    $instantieQuery = "SELECT instantieNaam FROM instantie WHERE instantieId = '$instantieId'";
+    $instantieUitkomst = $connectie->query($instantieQuery);
+    $instantie = $instantieUitkomst->fetch_assoc();
+    
+    return $instantie['instantieNaam'];
+}
