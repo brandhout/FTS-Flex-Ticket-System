@@ -24,6 +24,11 @@
     error_reporting(E_ALL);
     $connectie = verbinddatabase();
     
+    if($_SESSION['isAdmin'] < 1){
+        echo '<script> window.alert("U bent geen Administrator!");</script>';
+        header("refresh:0;url= ../index.php");
+    }
+    
     if(isset($_POST['submitBedrijf'])){
         $naam = $_POST['naam'];
         $website = $_POST['website'];

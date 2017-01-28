@@ -25,8 +25,10 @@
     require_once '../header.php'; //Include de header.
     $connectie = verbinddatabase();
     
-    print_r($_POST);
-    
+    if($_SESSION['isAdmin'] < 1){
+        echo '<script> window.alert("U bent geen Administrator!");</script>';
+        header("refresh:0;url= ../index.php");
+    }    
     if(isset($_POST['submitCategorie'])){
         $query = $connectie->prepare("INSERT INTO categorie (categorieId, catOmschrijving) VALUES ('',?) ");
         $query->bind_param("s", $catOm);

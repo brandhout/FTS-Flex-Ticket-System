@@ -85,7 +85,7 @@
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
+													<a href="#" tabindex="5" class="forgot-password">Wachtwoord vergeten?</a>
 												</div>
 											</div>
 										</div>
@@ -132,9 +132,9 @@
                 $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
                 $datum_query= "UPDATE account SET laasteKeerIngelogd = CURRENT_DATE WHERE accountNr = $accountNr";
                 $connectie->query($datum_query);
-                header("refresh:2;url= ../index.php");
+                header("refresh:0;url= ../index.php");
                 echo '
-                <br><p>Welkom bij FTS!<br>systeem wordt gestart</p>';
+                <br><p>Welkom bij FTS!</p>';
             
             }
         } else {
@@ -150,7 +150,7 @@
     <footer>
         <p>Made with: html/PHP/css/bootstrap/jQuery/mariaDB/javascript
             Made by: Naomi B, Rick H, Robby M. <br>
-            <i>FTS is beschikbaar onder GPL, ROC logo is © ROC van Amsterdam</i></p>
+            <i>FTS is beschikbaar onder GPL, jquery, datatables zijn van hun respectieve eigenaren</i></p>
     </footer>
 </html>
 

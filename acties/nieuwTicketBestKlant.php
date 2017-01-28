@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 require_once 'AJAX/zoekKlant.php';
@@ -17,7 +16,12 @@ $klantID = $_SESSION['klantId'];
 $trefwoorden = $_POST["trefwoorden"];
 $prioriteit = $_POST["prioriteit"];
 $nogbellen = $_POST["NogBellen"];
-$categorie = $_POST["categorie"];
+if(isset($_POST["categorie"])){
+    $categorie = $_POST["categorie"];
+    if(isset($_POST["subCategorie"])){
+        $scategorie = $_POST["subCategorie"];
+    }
+}
 
 $streefdatum = $_POST["datepicker"];
 $sdate = date('Y-m-d', strtotime(str_replace('-', '/', $streefdatum)));
@@ -28,9 +32,8 @@ $oplossing = $_POST["oplossing"];
 if(isset($_POST['laptopType'])){
     $merktype = leesLaptopTypeId($_POST['laptopType']);
 } else {
-    $merklaptop = 0;
+    $merktype = 0;
 }
-$scategorie = $_POST["subCategorie"];
 $besturingsysteem = $_POST["besturingssysteem"];
 $binnenkomstT = $_POST["binnenkomstType"];
 $check = (isset($_POST['nogBellen'])) ? 1 : 0;
@@ -59,10 +62,10 @@ $def=NULL;
 
 if (isset($_POST['submit0'])) {
 $insertticket = $connectie->prepare("INSERT INTO ticket (ticketId, inBehandeling, probleem, trefwoorden, prioriteit, aantalXterug,
-                        terugstuurLock, lijnNr, datumAanmaak, nogBellen, instantieId, streefdatum, redenTeLaat, klantTevreden, fstAccountNr, aangewAccountNr, klantId, subCategorieId, 
-                        binnenkomstId, vVLaptopTypeId, besturingssysteemId, bedrijfsId)
-                        VALUES ('','$inbehandeling',?,?,?, '$aantalXterug','$terugstuurLock','$lijnNr','$datumAanmaak','$check','$instantie',?,'$redentelaat','$klanttevreden','$ftsAccountNr',
-                        '$aangewAccountNr','$klantID',?,?,?,?,'$bedrijfsId')");
+                        terugstuurLock, lijnNr, datumAanmaak, nogBellen, streefdatum, redenTeLaat, klantTevreden, fstAccountNr, aangewAccountNr, klantId, subCategorieId, 
+                        binnenkomstId, vVLaptopTypeId, besturingssysteemId)
+                        VALUES ('','$inbehandeling',?,?,?, '$aantalXterug','$terugstuurLock','$lijnNr','$datumAanmaak','$check',?,'$redentelaat','$klanttevreden','$ftsAccountNr',
+                        '$aangewAccountNr','$klantID',?,?,?,?)");
             if ($insertticket) {
                 $insertticket->bind_param('ssisiiii', $probleem, $trefwoorden, $prioriteit, $sdate, $scategorie, $binnenkomstT, $merktype, $besturingsysteem);
                 if ($insertticket->execute()) {
@@ -85,14 +88,15 @@ $ophaalticket = "SELECT * FROM ticket WHERE klantId='$klantID'";
 
         }
     }
-    $insertcomment= $connectie->prepare("INSERT INTO commentaar(commentaarID, commOmschrijving, typeCommentaar, datum, accountNr, ticketId)
+    if(!empty($tcom)){
+        $insertcomment= $connectie->prepare("INSERT INTO commentaar(commentaarID, commOmschrijving, typeCommentaar, datum, accountNr, ticketId)
             VALUES ('',?,'$tcom','$datumAanmaak','$ftsAccountNr','$ticketID'  )");
             if ($insertcomment){
                 $insertcomment->bind_param('s',$commentaar);
                 if ($insertcomment->execute()){
                     //header("Refresh:5; url=../index.php", true, 303);
                 }else {echo "Error : " . mysqli_error($connectie);}
-            }else {echo "Error : " . mysqli_error($connectie);} 
+    }else {echo "Error : " . mysqli_error($connectie);}}
             
             
 if (!empty($oplossing)) {
@@ -119,7 +123,10 @@ if ($_FILES['userfile']['size'] > 0){
     $fileQuery = "INSERT INTO bijlage (id, naam, type, bijlage, ticketId)
         VALUES ('', '$fileName', '$fileType', '$bijlage', '$ticketID')";
     
-    $connectie->query($fileQuery);
+    if(!$connectie->query($fileQuery)){
+        echo "bijlageError : " . mysqli_error($connectie);
+    }
+        
 }
 
 header("Refresh:0; url=../index.php", true, 303);  
@@ -150,15 +157,6 @@ header("Refresh:0; url=../index.php", true, 303);
                     });
                     
                 }
-                
-                function bedrijf(){
-                    var zoektxt = $("input[name='zoekBedrijf']").val();
-                    $.post("AJAX/getBedrijfsnaam.php", {zoekval: zoektxt}, function(bedrijfsnaam){
-                        $("#bedrijfsnaam").text(bedrijfsnaam);
-                    });
-                    
-                }
-                
                 tinymce.init({
                     selector: '#message1',
                     menubar: false
@@ -211,21 +209,6 @@ header("Refresh:0; url=../index.php", true, 303);
                         </div><!-- End Left Inputs -->
 						<!-- mid inputs -->
 						<div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s">
-                        <select class="form" name="instantie">
-                        <option value = "">---instanties---</option>
-                            <?php
-                            $ophaali = "SELECT * FROM instantie ";
-                            $resulti = mysqli_query($connectie, $ophaali);
-                            while ($l = mysqli_fetch_assoc($resulti)) {
-                            echo "<option value='" . $l['instantieId'] . "'>" . $l['instantieNaam'] . "</option>";
-                            }
-                            ?> 
-                        </select>		
-                                                    
-                        <input type="text" name="zoekBedrijf" id="zoekBedrijf" class="form" onblur="bedrijf();" placeholder="zoek op bedrijfsnaam" />
-                        <p type="text" class="form" id="bedrijfsnaam" name="bedrijfsnaam" placeholder="resultaat"></p>
-                        <a href="/ticketsysteem/admin/invoerBedrijf.php" target="_blank">Nieuw bedrijf</a><br><br>
-                                
                         <select class="form" name="binnenkomstType" >
                         <option value = "">---binnengekomen via---</option>
                             <?php
@@ -299,11 +282,11 @@ header("Refresh:0; url=../index.php", true, 303);
 						</div>
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <textarea name="nieuwComment" id="message2" class="form textarea">Commentaar</textarea>
+                            <textarea name="nieuwComment" id="message2" class="form textarea"  placeholder="commentaar"></textarea>
                         </div>
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <textarea name="oplossing" id="message3" class="form textarea">Potentiele oplossing</textarea>
+                            <textarea name="oplossing" id="message3" class="form textarea"  placeholder="potentiele oplossing"></textarea>
                         </div>
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">

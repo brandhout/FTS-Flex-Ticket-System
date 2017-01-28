@@ -1,5 +1,11 @@
 <?php 
     session_start();
+    
+    if($_SESSION['isAdmin'] < 1){
+        echo '<script> window.alert("U bent geen Administrator!");</script>';
+        header("refresh:0;url= ../index.php");
+    }
+    
     require_once '../functies.php'; //Include de functies.
     require_once '../header.php'; //Include de header.
     ini_set('display_errors', 1);
@@ -22,6 +28,7 @@
                 <h1>Accountlijst</h1>
             </head>
             <body>
+<a href="/ticketsysteem/admin/nieuwAccount.php">nieuw account</a><br><br>
 <table id="example" class="display" cellspacing="0" width="100%">
 <thead><tr>
                         <td align="left"><strong>Account nr</strong></td>
