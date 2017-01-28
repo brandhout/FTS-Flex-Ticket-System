@@ -75,7 +75,7 @@
             </div>   
 
         
-        
+ <hr>       
 
 
 <div class="border row">
