@@ -305,10 +305,14 @@
     echo '</div>';
     echo '<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"><p><strong> Klant </strong></p>';
     
-    if($klant[bedrijfsId] > 0){
-        echo '<p> Bedrijfsnaam </p><input class="form" type="text" disabled="disabled" placeholder="'.leesBedrijfsNaam($klant[bedrijfsId]).'"/>';
+    if($klant['instantieId'] > 0){
+        echo '<p> Instantie: </p><input class="form" type="text" disabled="disabled" placeholder="'.leesInstantieNaam($klant["instantieId"]).'"/>';
     }
-        
+    
+    if($klant['bedrijfsId'] > 0){
+        echo '<p> Bedrijfsnaam </p><input class="form" type="text" disabled="disabled" placeholder="'.leesBedrijfsNaam($klant["bedrijfsId"]).'"/>';
+    }
+            
         echo '
         <p> Achternaam: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantAchternaam'].'"/>
         <p> Voornaam: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantNaam'].'"/>
