@@ -43,7 +43,7 @@
                     <div class="card card-inverse card-danger">
                         <div class="card-block bg-danger">
                             <div class="rotate">
-                                <i class="fa fa-list fa-4x"></i>
+                                <i class="fa fa-list fa-5x"></i>
                             </div>
                             <h6 class="text-uppercase">openstaande tickets</h6>
                             <h1 class="display-2">87</h1>
