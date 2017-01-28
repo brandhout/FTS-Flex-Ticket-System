@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 27 jan 2017 om 11:45
+-- Gegenereerd op: 27 jan 2017 om 22:15
 -- Serverversie: 10.1.20-MariaDB
--- PHP-versie: 5.6.30
+-- PHP-versie: 7.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -47,8 +47,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`accountNr`, `lijnNr`, `isAdmin`, `schoolKlasId`, `naam`, `achterNaam`, `actief`, `laasteKeerIngelogd`, `magInloggen`, `vestigingId`, `gebruikersNaam`, `wachtwoord`, `klantId`) VALUES
-(1, 1, 0, '', 'Naomi', 'Berkelaar', 1, '2017-01-26', 1, 0, 'naomiberkelaar', '$2y$10$BYpuuXiS4a6/tg5FAspTve9Bss1ujvALfc7wotnchzCjLrtLl88QG', 0),
-(2, 1, 1, '0', 'Jan', 'Modaal', 1, '2017-01-26', 1, 0, 'janmodaal', '$2y$10$cpKVIkOa4UjaM6VovP/VF.yiWhR02SGK/CZmd8ClxqoI1YNuZIcja', 0),
+(1, 1, 0, '', 'Naomi', 'Berkelaar', 1, '2017-01-27', 1, 0, 'naomiberkelaar', '$2y$10$BYpuuXiS4a6/tg5FAspTve9Bss1ujvALfc7wotnchzCjLrtLl88QG', 0),
+(2, 1, 1, '0', 'Jan', 'Modaal', 1, '2017-01-27', 1, 0, 'janmodaal', '$2y$10$cpKVIkOa4UjaM6VovP/VF.yiWhR02SGK/CZmd8ClxqoI1YNuZIcja', 0),
 (4, 1, 1, '', 'p', 'b', 1, '2017-01-16', 1, 0, 'pb', '$2y$10$yMqxIMoF9G6s7KtfQH067et05DY/I242LEemuKmkL9s2NoMF7TtDG', 0);
 
 -- --------------------------------------------------------
@@ -184,6 +184,23 @@ INSERT INTO `doorsturing` (`doorstuurId`, `vanLijn`, `naarLijn`, `opmerking`, `a
 (11, 1, 2, 'Ticket kan op lijn 1 niet opgelosd worden', 1, '2017-01-13', 1),
 (12, 2, 1, 'Gewoon een herinstallatie, geen lijn 2 taak.', 2, '2017-01-13', 1),
 (13, 1, 2, 'Toch te lastig, hanglul!', 1, '2017-01-13', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `faq`
+--
+
+CREATE TABLE `faq` (
+  `html` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `faq`
+--
+
+INSERT INTO `faq` (`html`) VALUES
+('<p>CMS *explosie*</p>');
 
 -- --------------------------------------------------------
 
@@ -516,7 +533,7 @@ ALTER TABLE `vestigingen`
 -- AUTO_INCREMENT voor een tabel `account`
 --
 ALTER TABLE `account`
-  MODIFY `accountNr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `accountNr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT voor een tabel `bedrijf`
 --
@@ -546,7 +563,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT voor een tabel `commentaar`
 --
 ALTER TABLE `commentaar`
-  MODIFY `commentaarId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `commentaarId` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT voor een tabel `doorsturing`
 --
@@ -561,12 +578,12 @@ ALTER TABLE `instantie`
 -- AUTO_INCREMENT voor een tabel `klant`
 --
 ALTER TABLE `klant`
-  MODIFY `klantId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `klantId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT voor een tabel `oplossingen`
 --
 ALTER TABLE `oplossingen`
-  MODIFY `oplossingId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `oplossingId` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT voor een tabel `schoolKlassen`
 --
