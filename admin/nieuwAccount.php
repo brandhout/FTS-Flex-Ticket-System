@@ -40,12 +40,12 @@
                         echo '</select></td></tr>';
                         
                     echo '<tr><td>Voornaam<br>
-                        <input type="text" name="naam"></td></tr>
+                        <input type="text" name="naam" required></td></tr>
                         <tr><td>Achternaam<br>
-                        <input type="text" name="achterNaam"</td></tr>
+                        <input type="text" name="achterNaam" required></td></tr>
 
                         <tr><td>Lijnnummer<br>
-                        <select name="lijnNr">
+                        <select name="lijnNr"required>
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
@@ -64,9 +64,9 @@
                                                                        
                         echo '<tr><td>Admin: <input type="checkbox" name="isAdmin" value=1 ></td></tr>
                             <tr><td>Gebruikersnaam<br>
-                            <input type="text" name="gebruikersNaam"></td></tr>
+                            <input type="text" name="gebruikersNaam" required></td></tr>
                             <tr><td>Wachtwoord<br>
-                            <input type="password" name="wachtwoord"></td></tr>
+                            <input type="password" name="wachtwoord" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"></td></tr>
                             
                             <tr><td><input type="submit" name="opslaan" value="opslaan"></td></tr> 
                     </table></form></div>
