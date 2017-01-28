@@ -35,7 +35,7 @@ $oplossing = $_POST["oplossing"];
 if(isset($_POST['laptopType'])){
     $merktype = leesLaptopTypeId($_POST['laptopType']);
 } else {
-    $merklaptop = 0;
+    $merktype = 0;
 }
 if(isset($_SESSION['bedrijfsId'])){
 $bedrijfsId = $_SESSION['bedrijfsId'];
@@ -75,7 +75,7 @@ if (isset($_POST['submit1'])) {
     klantAdres, klantPostc, klantStad, klantEmail, instantieId, bedrijfsId)
     VALUES ('',?,?,?,?,?,?,?,?,?)");
     if ($insertklant) {
-        $insertklant->bind_param('sssssssii', $achternaam, $naam, $tel, $adres, $postcode, $stad, $email, $instantie, $bedrijf);
+        $insertklant->bind_param('sssssssii', $achternaam, $naam, $tel, $adres, $postcode, $stad, $email, $instantie, $bedrijfsId);
         if ($insertklant->execute()) {
             echo ' klant gemaakt!';
         }
@@ -95,17 +95,17 @@ $ophaalKlantQuery = "SELECT * FROM klant WHERE klantNaam='$naam'";
         }
     }
 $insertticket = $connectie->prepare("INSERT INTO ticket (ticketId, inBehandeling, probleem, trefwoorden, prioriteit, aantalXterug,
-                        terugstuurLock, lijnNr, datumAanmaak, nogBellen, instantieId, streefdatum, redenTeLaat, klantTevreden, fstAccountNr, aangewAccountNr, klantId, subCategorieId, 
-                        binnenkomstId, vVLaptopTypeId, besturingssysteemId, bedrijfsId)
-                        VALUES ('','$inbehandeling',?,?,?, '$aantalXterug','$terugstuurLock','$lijnNr','$datumAanmaak','$check','$instantie',?,'$redentelaat','$klanttevreden','$ftsAccountNr',
-                        '$aangewAccountNr','$klantID',?,?,?,?,'$bedrijfsId)");
+                        terugstuurLock, lijnNr, datumAanmaak, nogBellen, streefdatum, redenTeLaat, klantTevreden, fstAccountNr, aangewAccountNr, klantId, subCategorieId, 
+                        binnenkomstId, vVLaptopTypeId, besturingssysteemId)
+                        VALUES ('','$inbehandeling',?,?,?, '$aantalXterug','$terugstuurLock','$lijnNr','$datumAanmaak','$check',?,'$redentelaat','$klanttevreden','$ftsAccountNr',
+                        '$aangewAccountNr','$klantID',?,?,?,?)");
             if ($insertticket) {
                 $insertticket->bind_param('ssisiiii', $probleem, $trefwoorden, $prioriteit, $sdate, $scategorie, $binnenkomstT, $merktype, $besturingsysteem);
                 if ($insertticket->execute()) {
                     echo 'ticket aangemaakt';
                     //header("Refresh:5; url=../index.php", true, 303);
-                }else {echo "Error : " . mysqli_error($connectie);}
-            }else {echo "Error : " . mysqli_error($connectie);}
+                }else {echo "ticketError : " . mysqli_error($connectie);}
+            }else {echo "ticketError : " . mysqli_error($connectie);}
 
 //ophalen tickedID
 $ophaalticket = "SELECT * FROM ticket WHERE klantId='$klantID'";
@@ -122,15 +122,15 @@ $ophaalticket = "SELECT * FROM ticket WHERE klantId='$klantID'";
 
         }
     }
-    $insertcomment= $connectie->prepare("INSERT INTO commentaar(commentaarID, commOmschrijving, typeCommentaar, datum, accountNr, ticketId)
+    if(!empty($tcom)){
+        $insertcomment= $connectie->prepare("INSERT INTO commentaar(commentaarID, commOmschrijving, typeCommentaar, datum, accountNr, ticketId)
             VALUES ('',?,'$tcom','$datumAanmaak','$ftsAccountNr','$ticketID'  )");
             if ($insertcomment){
                 $insertcomment->bind_param('s',$commentaar);
                 if ($insertcomment->execute()){
-                    echo 'alles is gelukt';
                     //header("Refresh:5; url=../index.php", true, 303);
-                }else {echo "Error : " . mysqli_error($connectie);}
-            }else {echo "Error : " . mysqli_error($connectie);} 
+                }else {echo "commentError : " . mysqli_error($connectie);}
+    }else {echo "commentError : " . mysqli_error($connectie);}}
             
             
 if (!empty($oplossing)) {
@@ -141,8 +141,8 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
             $insertoplossing->bind_param('s', $oplossing);
             if ($insertoplossing->execute()){
                 echo '!';
-            }else{echo "Error : " . mysqli_error($connectie);}
-        }else{echo "Error : " . mysqli_error($connectie);}
+            }else{echo "oplossingError : " . mysqli_error($connectie);}
+        }else{echo "oplossingError : " . mysqli_error($connectie);}
 } 
 
 if ($_FILES['userfile']['size'] > 0){
@@ -158,7 +158,10 @@ if ($_FILES['userfile']['size'] > 0){
     $fileQuery = "INSERT INTO bijlage (id, naam, type, bijlage, ticketId)
         VALUES ('', '$fileName', '$fileType', '$bijlage', '$ticketID')";
     
-    $connectie->query($fileQuery);
+    if(!$connectie->query($fileQuery)){
+        echo "bijlageError : " . mysqli_error($connectie);
+    }
+    
 }
 
 header("Refresh:0; url=../index.php", true, 303);  
@@ -227,7 +230,7 @@ header("Refresh:0; url=../index.php", true, 303);
                 <!-- Form Area -->
                 <div class="contact-form">
                     <!-- Form -->
-                    <form name="nieuwTicket" action="nieuwTicketNieuwKlant.php" method="POST">
+                    <form name="nieuwTicket" action="nieuwTicketNieuwKlant.php" method="POST" enctype="multipart/form-data">
                         <!-- Left Inputs -->
 						<div class="grid">
 						<div class="row">
