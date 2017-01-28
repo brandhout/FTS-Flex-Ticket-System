@@ -68,7 +68,7 @@
                                 <i class="fa fa-ticket fa-5x"></i>
                             </div>
                             <h6 class="text-uppercase">voltooide tickets</h6>
-                            <h1 class="display-1">36</h1>
+                            <h1 class="display-4">36</h1>
                         </div>
                     </div>
                 </div>
@@ -91,9 +91,50 @@
     <div class="border col-sm-3"> <input type="button" class="btna" value="binnenkomsttype invoeren" onclick="location.href = 'binnenkomstType.php';"></div>
 </div>
 </div>
+        <hr>
+                        <div class="clearfix"></div>
+                <div class="col-lg-6">
+                    <div class="card card-default card-block">
+                        <ul id="tabsJustified" class="nav nav-tabs nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link" href="" data-target="#tab1" data-toggle="tab">accountbeheer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="" data-target="#tab2" data-toggle="tab">bedrijf/instantie beheer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="" data-target="#tab3" data-toggle="tab">meer...</a>
+                            </li>
+                        </ul>
+                        <!--/tabs-->
+                        <br>
+                        <div id="tabsJustifiedContent" class="tab-content">
+                            <div class="tab-pane" id="tab1">
+                                <div class="list-group">
+                                    <a href="nieuwAccount.php" class="list-group-item"><span class="float-right label label-success"></span> account invoeren</a>
+                                    <a href="verwijderAccount.php" class="list-group-item"><span class="float-right label label-success"></span>account verwijderen </a>
+                                    <a href="wijzigAccount.php" class="list-group-item"><span class="float-right label label-success"></span> account wijzigen</a>
+                                </div>
+                            </div>
+                            <div class="tab-pane active" id="tab2">
+                                <div class="list-group">
+                                    <a href="invoerBedrijf.php" class="list-group-item"><span class="float-right label label-success"></span> bedrijf invoeren</a>
+                                    <a href="invoerInstantie.php" class="list-group-item"><span class="float-right label label-success"></span>instantie invoeren </a>
 
-
-?>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab3">
+                                <div class="list-group">
+                                <div class="list-group">
+                                    <a href="invoerApparaten.php" class="list-group-item"><span class="float-right label label-success"></span> apparaat invoeren</a>
+                                    <a href="invoerCategorie.php" class="list-group-item"><span class="float-right label label-success"></span>categorie invoeren </a>
+                                    <a href="binnenkomstType.php" class="list-group-item"><span class="float-right label label-success"></span> binnenkomsttype toevoegen</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/tabs content-->
+                    </div><!--/card-->
+                </div><!--/col-->
         
         
 
