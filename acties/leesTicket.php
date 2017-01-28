@@ -58,6 +58,9 @@
     $commentaarQuery = "SELECT * FROM commentaar WHERE ticketId = '$ticketId'";
         $commentaarUitkomst = $connectie->query($commentaarQuery);
         
+    $bijlageQuery = "SELECT * FROM bijlage WHERE ticketId = '$ticketId'";
+        $bijlageUitkomst = $connectie->query($bijlageQuery);
+        
     if(checkDefinitief($ticketId)){
         $opgelost = TRUE;
         $status = "Gesloten";
@@ -409,6 +412,25 @@
                 </strong></textarea>    
                 ';
         }
-      
+
+        echo '<strong><p> Bijlagen </p></strong>';
+        
+        $countBijlage = 0;
+        while($bijlage = $bijlageUitkomst->fetch_assoc()){
+
+            $countBijlage += 1;
+            $id = $bijlage['id'];
+            $naam = $bijlage['naam'];
+
+/*            echo'
+                <textarea class="form" disabled="disabled"> '.$bijlage['naam'] .'
+                <textarea class="form" disabled="disabled"> <a href="download.php?id=' . $id . '">' . $name . '</a><br>
+                </textarea>    
+                '; */
+            echo '
+                <a href="leesBijlage.php?id=' . $id .'">' . $countBijlage . ': ' . $naam . '</a><br>
+                ';
+        }
+        
                 echo'</div></div></div></div> ';
 ?>
