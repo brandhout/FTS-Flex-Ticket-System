@@ -162,16 +162,6 @@ header("Refresh:0; url=../index.php", true, 303);
                     menubar: false
                 });
                 
-                                tinymce.init({
-                    selector: '#message2',
-                    menubar: false
-                });
-                
-                                tinymce.init({
-                    selector: '#message3',
-                    menubar: false
-                });
-                
                 function getSubcategorie(str){
                     // Het volgende stukje code ziet er op het eerste gezicht erg ingewikkeld uit
                     // Dit omdat het AJAX is zonder jquery, gemaakt om AJAX beter te begrijpen
