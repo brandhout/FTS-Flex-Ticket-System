@@ -40,7 +40,7 @@ $datum = new DateTime();
 echo '<!DOCTYPE html>
       <html>
       <head>
-          <meta http-equiv="Refresh" content="15">
+          <meta http-equiv="Refresh" content="60">
           <title>Flex Ticket System</title>
       </head>
       <body>
