@@ -185,6 +185,6 @@ $(document).ready(function(){
 </div>
 
     
- <br><br><br>
+ <br>
 </body>
   </html>

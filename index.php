@@ -44,7 +44,6 @@ echo '<!DOCTYPE html>
           <title>Flex Ticket System</title>
       </head>
       <body>
-      <h1> Dasboard </h1>
       ';
 if($ingelogd) {
     $achterNaam = leesAccountAchterNaam($_SESSION['accountNr']);
@@ -60,14 +59,17 @@ if($ingelogd) {
         $lijnNr = $_SESSION["lijnNr"];
         }
     }
-
+ echo '<hr>';
+     require_once 'infodb.php'; //Include de functies.
+     echo'<br>';
+ 
     // Maak HTML tabel!
                
         $ticketQuery ="SELECT * FROM ticket;";
             $ticketUitkomst = $connectie->query($ticketQuery);
             
         echo '
-                <h3> Openstaande tickets lijn '.$lijnNr.': </h3>
+                <p> Openstaande tickets lijn '.$lijnNr.': </p>
 <div class="centerform">
                 <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
@@ -168,7 +170,7 @@ if($ingelogd) {
                    
             
         
-	echo "</tbody></table></div>";
+	echo "</tbody></table></div><hr>";
 
 ?>
 

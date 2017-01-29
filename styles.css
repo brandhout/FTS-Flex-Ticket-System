@@ -31,7 +31,8 @@ achtergrond li
 body {
     font-family: 'Open Sans', 'sans-serif';
     width: 100%;
-    height:100%
+    height:100%;
+          margin: 0 auto; 
 }
 .mega-dropdown {
   position: static !important;
@@ -474,6 +475,7 @@ footer{
 
 .container-fluid{
     width:80%;
+        margin: 0 auto; 
 }
 
 .btna{
@@ -484,6 +486,7 @@ footer{
           color: #fff;
           border:none;
           border-radius: 2px;
+
 }
 
 
@@ -494,4 +497,31 @@ footer{
 border:none;
           border-radius: 2px;
 
+
+}
+.btna2{
+      width: 100%;
+  background-color: #8BC3A3;
+            margin-top:5px;
+          padding:10px 20px;
+          color: #fff;
+          border:none;
+          border-radius: 2px;
+          margin: 0 auto;
+}
+
+
+.btna2:hover {
+  width: 100%;
+  background-color: #111;
+          color: #fff;
+border:none;
+          border-radius: 2px;
+          margin: 0 auto;
+
+}
+.container-fluid2{
+    width: 50%;
+    margin: 0 auto; 
+    text-align:center;
 }

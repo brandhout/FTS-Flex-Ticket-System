@@ -11,17 +11,19 @@ require_once '../functies.php'; //Include de functies.
         <title>Nieuw Ticket</title>
     </head>
     <body>
-
-        <div style="margin: 0 auto; width: 656px; text-align: center;">
-        <div id="links">
+    <div class="container-fluid2">    
+<div class="border row">
+    <div class="border col-sm-3"></div>
+        <div class="border col-sm-3">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-            <input type="submit" name="but1" class="form-btn semibold" value="nieuwe klant">
+            <input type="submit" name="but1" class="btna2" value="nieuwe klant">
         </form></div>
-<div id="rechts">
+        <div class="border col-sm-3">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-            <input type="submit" name="but2" class="form-btn semibold" value="bestaande klant">
-        </form></div></div>
-        
+            <input type="submit" name="but2" class="btna2" value="bestaande klant">
+        </form></div>
+    <div class="border col-sm-3"></div>
+</div></div>
         
 <?php
 
