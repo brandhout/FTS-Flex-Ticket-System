@@ -22,7 +22,8 @@ echo '
     </head>
     
     <body>
-            <h1>Klantenlijst</h1>
+    <hr>
+            <p>Klantenlijst</p>
 <table id="example" class="display" cellspacing="0" width="100%">
 <thead>
 <tr>
@@ -91,6 +92,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
+--><hr>
     </body>
 </html>
