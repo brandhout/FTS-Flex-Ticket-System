@@ -19,57 +19,62 @@
         
    if (empty($_POST)){
        echo ' <html>
-                <header>
-                    <title>Nieuw account</title>
-                </header>
-                ';                  
-                    echo '<div class="container"> <body> <h2> Nieuw account </h1>'
-                    . '<form name="wijzigaccount" action="';
-                    echo htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST"<br>';
-
-                    echo '<table cellspacing="0" cellpading="5"width="90%">
-                        <tr><td>Klassencode (indien leerling)<br>
-                        <select name="klassencode">
-                        <option value ="">---Select---</option>';
-
-                        $ophaalKlas = "SELECT * FROM schoolKlassen "; //selecteerd alle klassen 
-                        $resultsKlas = mysqli_query($connectie, $ophaalKlas);
-                        while ($v = mysqli_fetch_assoc($resultsKlas)) {
-                            echo "<option value='" . $v['schoolKlasId'] . "'>" . $v['schoolKlasId'] . " " . $v['schoolKlasOmschrijving'] . "</option>";
-                        }
-                        echo '</select></td></tr>';
-                        
-                    echo '<tr><td>Voornaam<br>
-                        <input type="text" name="naam" required></td></tr>
-                        <tr><td>Achternaam<br>
-                        <input type="text" name="achterNaam" required></td></tr>
-
-                        <tr><td>Lijnnummer<br>
-                        <select name="lijnNr"required>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          </select></td></tr>
-
-                        <tr><td>Vestiging<br>
-                        <select name="vestigingId">
-                        <option value = "">---Select---</option>';
-
-                        $ophaalVes = "SELECT * FROM vestigingen ";
-                        $resultsVes = mysqli_query($connectie, $ophaalVes);
-                        while ($v = mysqli_fetch_assoc($resultsVes)) {
-                            echo "<option value='" . $v['vestigingId'] . "'>" . $v['vestigingId'] . " " . $v['vesOmschrijving'] . "</option>";
-                        }
-                        echo '</select></td></tr>';
-                                                                       
-                        echo '<tr><td>Admin: <input type="checkbox" name="isAdmin" value=1 ></td></tr>
-                            <tr><td>Gebruikersnaam<br>
-                            <input type="text" name="gebruikersNaam" required></td></tr>
-                            <tr><td>Wachtwoord<br>
-                            <input type="password" name="wachtwoord" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"></td></tr>
-                            
-                            <tr><td><input type="submit" name="opslaan" value="opslaan"></td></tr> 
-                    </table></form></div>
+                <body>
+                    <header>
+                        <title>Nieuw account</title>
+                    </header>';                  
+       echo '<p> Nieuw account </p><br>       <hr>
+                        <div class="container">
+                            <div class="inner contact">  
+                                <div class="grid">
+                                    <div class="row">                                       
+                                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">                     
+                                            <form name="wijzigaccount" action="';
+                                            echo htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST"<br>';
+                                            echo '
+                                                Klassencode (indien leerling)<br>
+                                                <select class="form" name="klassencode">
+                                                <option value ="">---Select---</option>';
+                                                $ophaalKlas = "SELECT * FROM schoolKlassen "; //selecteerd alle klassen 
+                                                $resultsKlas = mysqli_query($connectie, $ophaalKlas);
+                                                    while ($v = mysqli_fetch_assoc($resultsKlas)) {
+                                                        echo "<option value='" . $v['schoolKlasId'] . "'>" . $v['schoolKlasId'] . " " . $v['schoolKlasOmschrijving'] . "</option>";
+                                                    }
+                                                echo '</select>';
+                                                echo 'Voornaam<br>
+                                                <input class="form" type="text" name="naam" required>
+                                                Achternaam<br>
+                                                <input class="form" type="text" name="achterNaam" required>';
+                                                
+                                                echo 'Lijnnummer<br>
+                                                <select class="form" name="lijnNr">
+                                                    <option value ="">---Select---</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">   
+                                                Vestiging<br>
+                                                <select class="form" name="vestigingId">
+                                                    <option value = "">---Select---</option>';
+                                                        $ophaalVes = "SELECT * FROM vestigingen ";
+                                                        $resultsVes = mysqli_query($connectie, $ophaalVes);
+                                                            while ($v = mysqli_fetch_assoc($resultsVes)) {
+                                                                echo "<option value='" . $v['vestigingId'] . "'>" . $v['vestigingId'] . " " . $v['vesOmschrijving'] . "</option>";
+                                                            }
+                                                echo '</select>';
+                                                echo '<br>Admin: <input class="form" type="checkbox" name="isAdmin" value=1 >
+                                                <br><br>Gebruikersnaam<br>
+                                                <input type="text" class="form" name="gebruikersNaam" required>
+                                                Wachtwoord<br>
+                                                <input type="password" class="form" name="wachtwoord" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$">
+                                                <input type="submit" name="opslaan" class="form-btn semibold" value="opslaan">
+                                            </div>
+                                            <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                                            </form>
+                                        </div></div></div></div><hr>
             </body>  
      </html> ';   
 
@@ -96,5 +101,4 @@
             }
         }
     }
-    ?>
-
+?>

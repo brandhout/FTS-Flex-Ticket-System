@@ -30,23 +30,36 @@ $klantQuery = "SELECT * FROM klant WHERE klantId = $klantId";
     $klant = $klantUitkomst->fetch_assoc();
     
 echo'
-    <h1> Klantdata </h1>
+    
+    <p> Klantdata </p>
+            <hr>
+            
+        <div class="container">
+            <div class="inner contact">  
+    		<div class="grid">
+                    <div class="row">
+                        <div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                        <div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s"> 
     <form action="wijzigKlant.php?klantActie='. $klant['klantId'] .'"method="POST">
         <strong> Klantnaam </strong><br>
-        <input type="text" name="klantNaam" value="'. $klant['klantNaam'] .'" maxlength="70" required><br>
+        <input type="text" class="form" name="klantNaam" value="'. $klant['klantNaam'] .'" maxlength="70" required><br>
         <strong> Klant achternaam</strong><br>
-        <input type="text" name="klantAchternaam" value="'. $klant['klantAchternaam'] .'" required><br>
+        <input type="text" class="form" name="klantAchternaam" value="'. $klant['klantAchternaam'] .'" required><br>
         <strong> telefoonnummer </strong><br>
-        <input type="text" name="klantTel" value="'. $klant['klantTel'] .'" required><br>
+        <input type="text" name="klantTel" class="form" value="'. $klant['klantTel'] .'" required><br>
         <strong> Adres </strong><br>
-        <input type="text" name="klantAdres" value="'. $klant['klantAdres'] .'" required><br>
+        <input type="text" name="klantAdres" class="form" value="'. $klant['klantAdres'] .'" required><br>
         <strong> Postcode </strong><br>
-        <input type="text" name="klantPostc" value="'. $klant['klantPostc'] .'" required><br>
+        <input type="text" name="klantPostc" class="form" value="'. $klant['klantPostc'] .'" required><br>
         <strong> Woonplaats </strong><br>
-        <input type="text" name="klantStad" value="'. $klant['klantStad'] .'" required><br>
+        <input type="text" name="klantStad" class="form" value="'. $klant['klantStad'] .'" required><br>
         <strong> e-mailadres </strong><br>
-        <input type="text" name="klantEmail" value="'. $klant['klantEmail'] .'" required><br>
-        <button name="submit" type="submit" value="submit">Doorvoeren</button>';
+        <input type="text" name="klantEmail" class="form" value="'. $klant['klantEmail'] .'" required><br>
+        <button name="submit" type="submit" class="form-btn semibold" value="submit">Doorvoeren</button>
+        
+
+
+                        </div><div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s"></div></div></div></div></div><hr>';
 
         if(isset($_POST['submit'])){
             $klantNaam = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['klantNaam'])));

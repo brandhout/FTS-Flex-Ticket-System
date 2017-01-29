@@ -31,69 +31,78 @@
         $wAccountUitkomst = $connectie->query($wAccountQuery);
         if( $wAccountUitkomst ){
             while($account = $wAccountUitkomst->fetch_assoc()){
-                echo '<h2><strong>Wijzig accounts</strong></h2>';
-                echo '<form name="wijzigaccount" action="';
-                echo htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST"';
-                //echo 'wijzigAccount.php' . '" method="POST"';
-                
-                echo '<br>';
+                echo '<p><strong>Wijzig accounts</strong></p>
+                    <hr>
+                        <div class="container">
+                            <div class="inner contact">  
+                                <div class="grid">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+                                        ';
+                                        echo '<form name="wijzigaccount" action="';
+                                        echo htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST"';
+                                        //echo 'wijzigAccount.php' . '" method="POST"';
 
-                echo 'Accountnummer <br><input type="text" name="accountNr" value="';
-                echo htmlspecialchars($account["accountNr"]) . '" readonly /><br><br>';
-                
-                echo 'Voornaam <br><input type="text" name="naam"value="';
-                echo htmlspecialchars($account["naam"]) . '"/><br><br>';
+                                        echo '<br>';
 
-                echo 'Achternaam <br><input type="text" name="achterNaam"value="';
-                echo htmlspecialchars($account["achterNaam"]) . '"/><br><br>';
+                                        echo 'Accountnummer <br><input type="text" class="form" name="accountNr" value="';
+                                        echo htmlspecialchars($account["accountNr"]) . '" readonly /><br><br>';
 
+                                        echo 'Voornaam <br><input type="text" class="form" name="naam"value="';
+                                        echo htmlspecialchars($account["naam"]) . '"/><br><br>';
 
-
-                echo 'Lijnnummer<br><!-- moet nog opgeslagen worden in de database net als de rest -->
-                        <select name="lijnNr">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          </select><br><br>';
+                                        echo 'Achternaam <br><input type="text" class="form" name="achterNaam"value="';
+                                        echo htmlspecialchars($account["achterNaam"]) . '"/><br><br>';
 
 
-                echo 'Vestiging <br> <!-- Moet nog gescript worden! Data moet uit database komen -->
-                    <select name="vestigingId">
-                    <option value = "">---Select---</option>';
 
-                $ophaalVes = "SELECT * FROM vestigingen ";
-                $resultsVes = mysqli_query($connectie, $ophaalVes);
-                while ($v = mysqli_fetch_assoc($resultsVes)) {
-                    echo "<option value='" . $v['vestigingId'] . "'>" . $v['vestigingId'] . " " . $v['vesOmschrijving'] . "</option>";
-                }
-                echo '</select><br><br>';
-                
-                echo 'Admin: <input type="checkbox" name="isAdmin" value="';
-                if($account["isAdmin"] == 1){
-                    echo htmlspecialchars($account["isAdmin"]) . '" checked /><br><br>';
-                } else {
-                    echo htmlspecialchars($account["isAdmin"]) . '" /><br><br>';
-                }
+                                        echo 'Lijnnummer<br><!-- moet nog opgeslagen worden in de database net als de rest -->
+                                                <select class="form" name="lijnNr">
+                                                  <option>1</option>
+                                                  <option>2</option>
+                                                  <option>3</option>
+                                                  </select><br><br></div>';
 
-                echo 'Gebruikersnaam <br><input type="text" name="gebruikersNaam" value="';
-                echo htmlspecialchars($account["gebruikersNaam"]) . '"/><br><br>';
 
-                echo 'Wachtwoord <br><input type="password" name="wachtwoord" value="';
-                echo '"pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"/><br><br>';
-                
-                if($account['actief'] === 0){
-                    echo '<button name="actief" type="submit" value="">Account op actief zetten</button>';
-                }    
-                                       
-                                
-                 if($account['actief'] == 1){
-                    echo '<button name="nonActief" type="submit" value="">Account op on-actief zetten</button><br><br>';
+                                        echo '<div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+                                            Vestiging <br> <!-- Moet nog gescript worden! Data moet uit database komen -->
+                                            <select class="form" name="vestigingId">
+                                            <option value = "">---Select---</option>';
 
-                }    
-                
-                echo' <input type="submit" name="accountActie" value="Opslaan">
+                                        $ophaalVes = "SELECT * FROM vestigingen ";
+                                        $resultsVes = mysqli_query($connectie, $ophaalVes);
+                                        while ($v = mysqli_fetch_assoc($resultsVes)) {
+                                            echo "<option value='" . $v['vestigingId'] . "'>" . $v['vestigingId'] . " " . $v['vesOmschrijving'] . "</option>";
+                                        }
+                                        echo '</select><br><br>';
+
+                                        echo 'Admin: <input type="checkbox" name="isAdmin" value="';
+                                        if($account["isAdmin"] == 1){
+                                            echo htmlspecialchars($account["isAdmin"]) . '" checked /><br><br>';
+                                        } else {
+                                            echo htmlspecialchars($account["isAdmin"]) . '" /><br><br>';
+                                        }
+
+                                        echo 'Gebruikersnaam <br><input type="text" class="form" name="gebruikersNaam" value="';
+                                        echo htmlspecialchars($account["gebruikersNaam"]) . '"/><br><br>';
+
+                                        echo 'Wachtwoord <br><input class="form" type="password" name="wachtwoord" value="';
+                                        echo '"pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"/><br><br>';
+
+                                        if($account['actief'] === 0){
+                                            echo '<button name="actief" type="submit" class="form-btn semibold" value="">Account op actief zetten</button>';
+                                        }    
+
+
+                                         if($account['actief'] == 1){
+                                            echo '<button name="nonActief" type="submit" class="form-btn semibold" value="">Account op on-actief zetten</button><br><br>';
+
+                                        }    
+
+                                        echo' <input type="submit" class="form-btn semibold" name="accountActie" value="Opslaan">
                         
-                    </form>';
+                    </form></div><div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div></div></div></div></div><hr>';
             }
         }
     }

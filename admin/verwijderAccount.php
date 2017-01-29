@@ -1,7 +1,3 @@
-<html>
-    <body>
-
-        
     <?php
         session_start();
         require_once '../functies.php'; //Include de functies.
@@ -10,7 +6,18 @@
         ini_set('display_startup_errors', 1);
         $connectie = verbinddatabase();
         error_reporting(E_ALL);
+        ?>
+<html>
+    <body><hr>
+        <div class="container">
+            <div class="inner contact">  
+    		<div class="grid">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                        <div class="col-xs-6 col-md-4 wow animated slideInLeft" data-wow-delay=".5s">   
         
+
+<?php        
     if($_SESSION['isAdmin'] < 1){
         echo '<script> window.alert("U bent geen Administrator!");</script>';
         header("refresh:0;url= ../index.php");
@@ -35,8 +42,8 @@
                     echo '
                         <form action="verwijderAccount.php">
                             <tr>
-                            <button name="accountActie" type="submit" value="ja' . $account['accountNr'] .'">JA</button>
-                            <button name="accountActie" type="submit" value="nee' . $account['accountNr'] . '">NEE</button>
+                            <button name="accountActie" class="form-btn semibold" type="submit" value="ja' . $account['accountNr'] .'">JA</button></tr>
+                            <tr><button name="accountActie" class="form-btn semibold" type="submit" value="nee' . $account['accountNr'] . '">NEE</button>
                             </tr>
                         </form>'; 
                 }
@@ -65,7 +72,7 @@
         }
 
     ?>
-
+                        </div></div></div></div></div><hr>
     </body>
 </html>
 
