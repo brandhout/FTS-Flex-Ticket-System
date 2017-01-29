@@ -192,6 +192,16 @@ header("Refresh:0; url=../index.php", true, 303);
                 menubar: false
             });
             
+                       tinymce.init({
+                selector: '#message2',
+                menubar: false
+            });
+            
+                       tinymce.init({
+                selector: '#message3',
+                menubar: false
+            });
+            
             function getSubcategorie(str){
                 // Het volgende stukje code ziet er op het eerste gezicht erg ingewikkeld uit
                 // Dit omdat het AJAX is zonder jquery, gemaakt om AJAX beter te begrijpen
@@ -336,16 +346,16 @@ header("Refresh:0; url=../index.php", true, 303);
 					<div class="row">
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <textarea name="probleem" id="message1" class="form textarea"  placeholder="probleem">Probleem<strong>omschrijving</strong></textarea>
+                            <textarea name="probleem" id="message1" class="form textarea"  placeholder="probleem">Probleem</textarea>
 						</div>
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <textarea name="nieuwComment" id="message2" class="form textarea"  placeholder="commentaar"></textarea>
+                            <textarea name="nieuwComment" id="message2" class="form textarea"  placeholder="commentaar">commentaar</textarea>
                         </div>
 						<div class="col-md-4 wow animated slideInRight" data-wow-delay=".5s">
                             <!-- Message -->
-                            <textarea name="oplossing" id="message3" class="form textarea"  placeholder="potentiele oplossing"></textarea>
-                        </div>
+                            <textarea name="oplossing" id="message3" class="form textarea"  placeholder="potentiele oplossing">potentiele oplossing</textarea>
+                                                </div><br>
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
                             <!-- Send Button -->
