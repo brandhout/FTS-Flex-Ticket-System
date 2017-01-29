@@ -51,7 +51,7 @@
                             <div class="tab-pane" id="tab1">
                                 <div class="list-group">
                                     <a href="nieuwAccount.php" class="list-group-item"><span class="float-right label label-success"></span> account invoeren</a>
-                                    <a href="Accounts.php" class="list-group-item"><span class="float-right label label-success"></span>accounts inzien/bewerken/verwijderen </a>
+                                    <a href="accounts.php" class="list-group-item"><span class="float-right label label-success"></span>accounts inzien/bewerken/verwijderen </a>
                                 </div>
                             </div>
                             <div class="tab-pane active" id="tab2">
