@@ -28,21 +28,27 @@
 
 
 <html>
+    <body>
     <header>
         <title>Admin Invoer FTS</title>
     </header>
-    <body>
-        Invoer instanties<br><br>
-        
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-                Naam instantie<br>
-                <input type="text"  name="instantie"><br>
-
-                Prioriteit<br>
-                <input type="text" name="prioriteit"><br><br>
-
-                <button  name="submitInstantie" type="submit" value="1">Invoeren</button>
-            </form>
+        <hr>
+            
+        <div class="container">
+            <div class="inner contact">  
+    		<div class="grid">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                        <div class="col-xs-6 col-md-4 wow animated slideInLeft" data-wow-delay=".5s">    
+                            <p><strong>Invoer instanties</strong></p><br>
+                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                Naam<br>
+                                <input type="text" class="form" name="instantie"><br>
+                                Prioriteit<br>
+                                <input type="text" class="form" name="prioriteit"><br><br>
+                                <button  name="submitInstantie" class="form-btn semibold" type="submit" value="1">Invoeren</button>
+                            </form>
+                        </div></div></div></div></div><hr>
     </body>
 </html>    
     

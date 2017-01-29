@@ -66,27 +66,42 @@
 ?>
 
 <html>
-    <header>
-        <title>Invoer FTS</title>
-    </header>
-    <body> <strong>
-             <form name="bedrijf" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-                Bedrijfsnaam <br>
-                <input type="text" name="naam" required><br><br>
-                Website <br>
-                <input type="text" name="website" required><br><br>
-                Kamer van Koophandel nummer <br>
-                <input type="text" name="kvkNr"><br><br>
-                BTW. Nummer <br>
-                <input type="text" name="btwNr"><br><br>
-                Adres <br>
-                <input type="text" name="adres" required><br><br>
-                Postcode <br>
-                <input type="text" name="postC" required><br><br>
-                Stad <br>
-                <input type="text" name="stad" required><br><br>
-                Telefoonnummer <br>
-                <input type="text" name="tel"><br><br></strong>
-                <button name="submitBedrijf" type="submit" value="1">Invoeren</button>
-             </form>
+    <body>
+        <header>
+            <title>Invoer FTS</title>
+        </header><hr>
+    
+    
+    
+        <div class="container">
+            <div class="inner contact">  
+    		<div class="grid">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+                            <form name="bedrijf" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                Bedrijfsnaam<br>
+                                <input type="text" class="form" name="naam" required><br>
+                                Website<br>
+                                <input type="text" class="form" name="website" required><br>
+                                Kvk nummer<br>
+                                <input type="text" class="form" name="kvkNr"><br>
+                                BTW. Nummer<br>
+                                <input type="text" class="form" name="btwNr"><br>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+                                Adres<br>
+                                <input type="text" class="form" name="adres" required><br>
+                                Postcode<br>
+                                <input type="text" class="form" name="postC" required><br>
+                                Stad<br>
+                                <input type="text" class="form" name="stad" required><br>
+                                Telefoonnummer<br>
+                                <input type="text" class="form" name="tel">
+                                <button name="submitBedrijf" class="form-btn semibold" type="submit" value="1">Invoeren</button>
+                            </form>
+                        </div><div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div></div></div></div></div>
+                                                    
+        
+        <hr>
                

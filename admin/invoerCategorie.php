@@ -54,37 +54,45 @@
 
  
 <html>
-    <header>
-        <title>Admin Invoer FTS</title>
-    </header>
     <body>
-         <div class="containert1">
-        <form name="cat" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <header>
+            <title>Admin Invoer FTS</title>
+        </header>
+        <hr>
             
-            <h2><strong>Categorie invoer</strong></h2>
-            
-            Categorie <br>
-            <input type="text" name="catOm"><br><br>
-
-          <input type="submit" name="submitCategorie" value="invoeren"><br>    
-        </form>
-        
-        <form name="subCat" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-            
-            <h2><strong>Sub categorie invoer</strong></h2>
-            
-            Subcategorie <br>
-            <input type="text" name="subCatOm"><br><br>
-            
-            <strong> Valt onder categorie </strong><br><select name="categorie">
-            <?php
-            $ophaalcat = "SELECT * FROM categorie ";
-                            $resultcat = mysqli_query($connectie, $ophaalcat);
-                            while ($c = mysqli_fetch_assoc($resultcat)) {
-                            echo "<option value='" . $c['categorieId'] . "'>" . $c['categorieId'] . " " . $c['catOmschrijving'] . "</option>";
-                            } ?>
-            </select><br>
-          <br><input type="submit" name="submitSubCategorie" value="invoeren"><br>    
-        </form></div>
+        <div class="container">
+            <div class="inner contact">  
+    		<div class="grid">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+                        <form name="cat" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                        <input type="submit" class="form-btn semibold" name="submitCategorie" value="invoeren categorie"><br>  
+                            <p><strong>Categorie invoer</strong></p>
+                            Categorie <br>
+                            <input type="text" class="form" name="catOm"><br>
+  
+                        </form></div>
+                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+                        <form name="subCat" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                            <input type="submit" class="form-btn semibold" name="submitSubCategorie" value="invoeren s-categorie"><br>  
+                            <p><strong>Sub categorie invoer</strong></p>
+                            Subcategorie <br>
+                            <input type="text" class="form" name="subCatOm"><br><br>
+                            <strong> Valt onder categorie </strong><br>
+                            <select class="form" name="categorie">
+                                <?php
+                                    $ophaalcat = "SELECT * FROM categorie ";
+                                    $resultcat = mysqli_query($connectie, $ophaalcat);
+                                    while ($c = mysqli_fetch_assoc($resultcat)) {
+                                        echo "<option value='" . $c['categorieId'] . "'>" . $c['categorieId'] . " " . $c['catOmschrijving'] . "</option>";
+                                    }
+                                ?>
+                            </select><br>
+  
+                        </form>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                    </div></div></div></div><hr>
     </body>  
 </html>   

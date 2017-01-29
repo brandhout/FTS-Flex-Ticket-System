@@ -65,45 +65,46 @@
 
  
 <html>
-    <header>
-        <title>Admin Invoer FTS</title>
-    </header>
     <body>
-         
-        <form name="merk" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-            
-            <h2><strong>Laptop merk invoer</strong></h2>
-            
-            laptop merk <br>
-            <input type="text" name="laptopMerk"><br><br>
-
-          <input type="submit" name="submitMerk" value="invoeren"><br>    
-        </form>
+        <header>
+            <title>Admin Invoer FTS</title>
+        </header><hr>
         
-        <form name="type" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-            
-            <h2><strong>Laptop type invoer</strong></h2>
-            
-            Typenummer <br>
-            <input type="text" name="laptopType"><br><br>
-            
-            
-               Hoort bij merk<br>
-                <select name="merk">
-                <option value ="">---Select---</option>
-                <?php
-                   $ophaalMerk = "SELECT * FROM veelVoorkomendelaptopMerken "; //selecteerd alle klassen 
-                    echo 'werk';
-                    $resultsMerk = mysqli_query($connectie, $ophaalMerk);
-                    while ($m = mysqli_fetch_assoc($resultsMerk)) {
-                        echo "<option value='" . $m['vVLaptopMerkId'] . "'>" . $m['vVLaptopMerkId'] . " " . $m['vVLaptopMerkOm'] . "</option>";
-                    }
-                ?> 
-                    
-                </select><br><br>
-            
-
-          <br><input type="submit" name="submitType" value="invoeren"><br>    
-          </form>
+        <div class="container">
+            <div class="inner contact">  
+    		<div class="grid">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+                            <form name="merk" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                <input type="submit" class="form-btn semibold" name="submitMerk" value="invoeren merk"><br>
+                                <p><strong>Laptop merk invoer</strong></p>
+                                laptop merk <br>
+                                <input type="text" class="form" name="laptopMerk"><br><br>
+                            </form>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+                            <form name="type" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                            <input type="submit" class="form-btn semibold" name="submitType" value="invoeren type"><br>  
+                            <p><strong>Laptop type invoer</strong></p>
+                            Typenummer <br>
+                            <input type="text" class="form" name="laptopType"><br><br>
+                            Hoort bij merk<br>
+                            <select class="form" name="merk">
+                                <option value ="">---Select---</option>
+                                <?php
+                                    $ophaalMerk = "SELECT * FROM veelVoorkomendelaptopMerken "; //selecteerd alle klassen 
+                                        echo 'werk';
+                                    $resultsMerk = mysqli_query($connectie, $ophaalMerk);
+                                        while ($m = mysqli_fetch_assoc($resultsMerk)) {
+                                            echo "<option value='" . $m['vVLaptopMerkId'] . "'>" . $m['vVLaptopMerkId'] . " " . $m['vVLaptopMerkOm'] . "</option>";
+                                        }
+                                ?>    
+                            </select><br>  
+                            </form>
+                        </div>
+                    <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div>   
+        </div></div></div></div>
+        <hr>
     </body>  
 </html>   

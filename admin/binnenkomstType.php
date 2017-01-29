@@ -42,16 +42,24 @@
 
 
 <html>
-    <header>
-        <title>Admin Invoer FTS</title>
-    </header>
-    <body> 
-            
-        <form name="binnenkomstType" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST"><br>
-            Binnenkomst type<br>
-            <input type="text" name="binnenkomstType"><br><br>
-            <button  name="submitBinnenkomstType" type="submit" value="1">Invoeren</button>
-        </form>
+    <body>
+        <header>
+            <title>Admin Invoer FTS</title>
+        </header>
+        <hr>
+        <div class="container">
+            <div class="inner contact">  
+    		<div class="grid">
+                    <div class="row"><div class="col-xs-6 col-md-4 wow animated slideInLeft" data-wow-delay=".5s"></div>
+                        <div class="col-xs-6 col-md-4 wow animated slideInLeft" data-wow-delay=".5s">        
+                            <form name="binnenkomstType" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST"><br>
+                            Binnenkomst type<br>
+                            <input type="text" name="binnenkomstType" class="form"><br><br>
+                            <button  name="submitBinnenkomstType" class="form-btn semibold" type="submit" value="1">Invoeren</button>
+                            </form>
+                        </div> 
+                        <div class="col-xs-6 col-md-4 wow animated slideInLeft" data-wow-delay=".5s">                         
+        </div></div></div></div></div><hr>
     </body>
 </html>    
 
