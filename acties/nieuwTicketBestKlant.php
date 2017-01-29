@@ -157,6 +157,7 @@ header("Refresh:0; url=../index.php", true, 303);
                     });
                     
                 }
+                
                 tinymce.init({
                     selector: '#message1',
                     menubar: false
