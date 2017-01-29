@@ -22,7 +22,7 @@
   
 <script>
 $(document).ready(function(){
-    $(".dropdown").hover(            
+    $(".dropdown").clicked(            
         function() {
             $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
             $(this).toggleClass('open');        
@@ -66,83 +66,28 @@ $(document).ready(function(){
 	
 	<div class="collapse navbar-collapse js-navbar-collapse">
 		<ul class="nav navbar-nav">
-                    					  <?php
+  					  <?php
     switch ($_SESSION['isAdmin']) { 
-                case "1":
-                echo '
-                    
-			<li class="dropdown mega-dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Groot menu <span class="caret"></span></a>				
-				<ul class="dropdown-menu mega-dropdown-menu">
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">afbeeldingen</li>                            
-                            <div id="menCollection" class="carousel slide" data-ride="carousel">
-                              <div class="carousel-inner">
-                                <div class="item active">
-                                    <a href="#"><img src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 1"></a>
-                                    <h4><small>voorbeeld</small></h4>                                        
-                                    <button class="btn btn-primary" type="button">#</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span>#</button>       
-                                </div><!-- End Item -->
-                                <div class="item">
-                                    <a href="#"><img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 2"></a>
-                                    <h4><small>voorbeeld</small></h4>                                        
-                                    <button class="btn btn-primary" type="button">#</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span>#</button>        
-                                </div><!-- End Item -->
-                                <div class="item">
-                                    <a href="#"><img src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 3"></a>
-                                    <h4><small>voorbeeld</small></h4>                                        
-                                    <button class="btn btn-primary" type="button">#</button> <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span>#</button>      
-                                </div><!-- End Item -->                                
-                              </div><!-- End Carousel Inner -->
-                              <!-- Controls -->
-                              <a class="left carousel-control" href="#menCollection" role="button" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                              </a>
-                              <a class="right carousel-control" href="#menCollection" role="button" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                              </a>
-                            </div><!-- /.carousel -->
-                            <li class="divider"></li>
-                            <li><a href="#">ga naar.... <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
-						</ul>
-					</li>
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">Features</li>
-							<li><a href="#">Auto Carousel</a></li>
-                            <li><a href="#">Carousel Control</a></li>
-                            <li><a href="#">Left & Right Navigation</a></li>
-							<li><a href="#">Four Columns Grid</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Fonts</li>
-                            <li><a href="#">Glyphicon</a></li>
-							<li><a href="#">Google Fonts</a></li>
-						</ul>
-					</li>
-					<li class="col-sm-3">
-						<ul>
-							<li class="dropdown-header">Plus</li>
-							<li><a href="#">Navbar Inverse</a></li>
-							<li><a href="#">Pull Right Elements</a></li>
-							<li><a href="#">Coloured Headers</a></li>                            
-							<li><a href="#">Primary Buttons & Default</a></li>							
-						</ul>
-					</li>
-					  <?php
-                                            <li class="col-sm-3">
-						<ul>
+                case "1": echo '                  
+                    <li><a href="/ticketsysteem/admin/adminDash.php">Admin Dashboard<span class="glyphicon glyphicon-dashboard"></span></a></li>
+                            <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="dash"></span>Admin menu<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+
                                                         <li class="dropdown-header">Admin-menu</li>
-							<li><a href="adminDash.php">AdminDash</a></li>
-							<li><a href="accounts.php">accountbeheer</a></li>
-                                                        <li><a href="nieuwAccount.php">nieuw account aanmaken</a></li>
-							<li><a href="invoerApparaten.php">invoeren apparaten</a></li>
+                                                        <li class="divider"></li>
+							<li><a href="/ticketsysteem/admin/adminDash.php">AdminDash</a></li>
+                                                        <li><a href="/ticketsysteem/admin/cms/cmsDash.php">Content Management</a></li>
+							<li><a href="/ticketsysteem/admin/accounts.php">Accountbeheer</a></li>
+                                                        <li><a href="/ticketsysteem/admin/invoerBedrijf.php">nieuw bedrijf</a></li>
+							<li><a href="/ticketsysteem/admin/invoerApparaten.php">invoeren apparaten</a></li>
+							<li><a href="/ticketsysteem/admin/invoerCategorie.php">invoeren categorieën</a></li>
+							<li><a href="/ticketsysteem/admin/invoerInstantie.php">invoeren instanties</a></li>                                                        
 							<li><a href="#">...</a></li>
-							<li><a href="#">...</a></li>
-						</ul>
-					</li>
+
+          </ul>
+        </li>
+
 				' ;
                 break;
 
@@ -155,27 +100,27 @@ $(document).ready(function(){
 
 ?>
 
-				</ul>				
-			</li>
-            <li class="">
-    			<a href="../index.php">dashboard<i class="fa fa-home"></i>	</a>			
+
+            <li class="achter">
+    			<a href="/ticketsysteem/index.php">dashboard<i class="fa fa-home"></i>	</a>			
 			</li>
 		</ul>
         <ul class="nav navbar-nav navbar-right">
-                        <li>
-                <a href="../acties/nieuwTicketDash.php">nieuw ticket <i class="fa fa-ticket"></i></a>
+                        <li class="achter">
+                <a href="/ticketsysteem/acties/nieuwTicketDash.php">Nieuw ticket <i class="fa fa-ticket"></i></a>
             </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">navigeer naar <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="../tickets.php">tickets</a></li>
-            <li><a href="../klanten.php">klanten</a></li>
-            <li><a href="../acties/nieuwTicketDash.php">nieuwe ticket</a></li>
+              <li class="dropdown-header">navigeren naar...</li>
+                                                        <li class="divider"></li>
+            <li><a href="/ticketsysteem/tickets.php">Tickets</a></li>
+            <li><a href="/ticketsysteem/klanten.php">Klanten</a></li>
             <li class="divider"></li>
-            <li><a href="#">komt nog meer aan!</a></li>
+            <li><a href="/ticketsysteem/acties/nieuwTicketDash.php">nieuwe ticket</a></li>
           </ul>
         </li>
-        <li><a href="../acties/uitloggen.php">uitloggen <i class="fa fa-sign-out"></i></a></li>
+        <li class="achter"><a href="/ticketsysteem/acties/uitloggen.php">uitloggen <i class="fa fa-sign-out"></i></a></li>
       </ul>
 	</div><!-- /.nav-collapse -->
   </nav>

@@ -17,7 +17,14 @@
   <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
     <!--menu--> 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-  
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+    $( function() {
+    $( "#datepicker1" ).datepicker();
+  } );
+  </script>  
 <script>
 $(document).ready(function(){
     $(".dropdown").clicked(            
@@ -54,7 +61,7 @@ $(document).ready(function(){
 </head>
 <body>
 <div class="container">
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-default">
     <div class="navbar-header">
     	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
 			<span class="sr-only">Toggle navigation</span>
