@@ -22,9 +22,9 @@ $query2->execute();
 $query2->store_result();
 $rowsa = $query2->num_rows;
 
-$one=0;
+$zero=0;
 $query3 = $connectie->prepare("SELECT * FROM ticket WHERE inBehandeling = ?");
-$query3->bind_param('s', $one);
+$query3->bind_param('s', $zero);
 $query3->execute();
 $query3->store_result();
 $rowsbt = $query3->num_rows;
