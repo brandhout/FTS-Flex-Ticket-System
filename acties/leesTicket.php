@@ -422,7 +422,7 @@
     }
 
     echo '<p> Bijlagen </p>';
-//HAALT DE BIJLAGE OP VAN UIT DE TICKET DIE BIJ DE BIJLAGE HOORT
+//HAALT HET TICKET ID OP DIE BIJ DE BIJLAGE HOORT EN NEEMT HEM MEE NAAR DE VERWERK PAGINA
     $countBijlage = 0; //Geeft $countbijlage de waarde 0
     while($bijlage = $bijlageUitkomst->fetch_assoc()){
 
