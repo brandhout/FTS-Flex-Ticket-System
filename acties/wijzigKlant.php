@@ -31,10 +31,11 @@ $klantQuery = "SELECT * FROM klant WHERE klantId = $klantId";
     
 echo'
     
-    <p> Klantdata </p>
+   
             <hr>
-            
+         
         <div class="container">
+        <p> Klantdata </p>    
             <div class="inner contact">  
     		<div class="grid">
                     <div class="row">

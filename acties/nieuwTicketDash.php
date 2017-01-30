@@ -10,7 +10,7 @@ require_once '../functies.php'; //Include de functies.
     <head>
         <title>Nieuw Ticket</title>
     </head>
-    <body>
+    <body><hr>
     <div class="container-fluid2">    
 <div class="border row">
     <div class="border col-sm-3"></div>
@@ -43,5 +43,5 @@ if (isset($_POST['but2'])) {
 
 ?>
 
-    </body>
+        <hr></body>
 </html>

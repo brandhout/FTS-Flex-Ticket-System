@@ -187,8 +187,8 @@
                 });
         </script>
         </head>
-        <body>
-        <h2> Ticketinfo </h2>
+        <body><hr><div class="containerlees">
+        <p><strong> Ticketinfo </strong></p>
         
 <div class="inner contact">
                 <!-- Form Area -->
@@ -246,7 +246,7 @@
  
     if($ticket['lijnNr'] === $_SESSION['lijnNr'] or $_SESSION['isAdmin'] === "1"){
         echo '
-            <p><strong> Doorsturen: </strong></p>
+            <p> Doorsturen:</p>
             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
             <textarea class="form" placeholder="reden doorsturing" name="opmerking" value="Reden doorsturing" maxlength="70" required></textarea><br>     
             ';
@@ -272,7 +272,7 @@
     echo '<form name="leesTicket" action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
 
     if(!$definitief && $ticket['lijnNr'] === $_SESSION['lijnNr']){
-        echo '<p><strong> Nieuwe oplossing: </strong></p>
+        echo '<p> Nieuwe oplossing:</p>
             <form action ="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
                 <textarea class="form" type="text" name="oplossing" maxlength="70"></textarea><br>';
                 if($_SESSION["accountNr"] === $ticket['fstAccountNr']){
@@ -282,7 +282,7 @@
                 <button name="submitOplossing" type="submit" value="1">Verstuur</button>
             </form><br>
 
-            <strong><p> Nieuw commentaar: </p></strong>
+            <p> Nieuw commentaar: </p>
             <form action ="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
                 <input class="form" type ="text" name="commentaar"><br>
                 <button name="submitCommentaar" type="submit" value="1">Verstuur</button><br><br>
@@ -312,7 +312,7 @@
     }
     
     echo '</div>';
-    echo '<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"><p><strong> Klant </strong></p>';
+    echo '<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"><p><strong> Klant</strong></p>';
     
     if($klant['instantieId'] > 0){
         echo '<p> Instantie: </p><input class="form" type="text" disabled="disabled" placeholder="'.leesInstantieNaam($klant["instantieId"]).'"/>';
@@ -347,7 +347,7 @@
 
     <p> Emailadres: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantEmail'].'"/></div>
     <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">   
-    <p><strong> Logboek: </strong><br>
+    <p> Logboek: <br>
     Ticket is op <strong>'.datumOmzet($ticket['datumAanmaak']).'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><p>';
 
     if($overDatum){
@@ -364,7 +364,7 @@
     //echo '<p><strong> Doorsturingen </strong></p>';
 
     while($doorstuurLog = $doorstuurLogUitkomst->fetch_assoc()){
-        echo '<br><strong>Doorsturing:</strong><br>'
+        echo '<br>Doorsturing:<br>'
         . 'Ticket is op <strong>'.datumOmzet($doorstuurLog['datum']).'</strong> doorgestuurd
                 van Lijn <strong>'.$doorstuurLog['vanLijn'].'</strong>
                 naar Lijn <strong>'.$doorstuurLog['naarLijn'].'</strong>
@@ -379,7 +379,7 @@
 
     while($oplossingen = $oplossingUitkomst->fetch_array()){
         echo '
-            <br><strong> Oplossing: </strong><br>
+            <br> Oplossing:<br>
             Er is op <strong>'.datumOmzet($oplossingen['datumFix']).'</strong>
             een oplossing aangedragen
             door <strong>'.leesAccountAchterNaam($oplossingen['accountNr']).'</strong>
@@ -407,7 +407,7 @@
 
     }
 
-    echo '<strong><p> Commentaar </p></strong>';
+    echo '<p> Commentaar </p>';
 
     while($commentaar = $commentaarUitkomst->fetch_assoc()){
         echo'
@@ -419,7 +419,7 @@
             ';
     }
 
-    echo '<strong><p> Bijlagen </p></strong>';
+    echo '<p> Bijlagen </p>';
 
     $countBijlage = 0;
     while($bijlage = $bijlageUitkomst->fetch_assoc()){
@@ -438,5 +438,5 @@
             ';
     }
 
-    echo'</div></div></div></div> ';
+    echo'</div></div></div></div></div></div><hr> ';
 ?>
