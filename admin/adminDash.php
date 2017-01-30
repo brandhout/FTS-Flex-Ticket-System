@@ -64,8 +64,9 @@
                             <div class="tab-pane" id="tab3">
                                 <div class="list-group">
                                 <div class="list-group">
+                                    <a href="cms/cmsDash.php.php" class="list-group-item"><span class="float-right label label-success"></span> content management</a>
                                     <a href="invoerApparaten.php" class="list-group-item"><span class="float-right label label-success"></span> apparaat invoeren</a>
-                                    <a href="invoerCategorie.php" class="list-group-item"><span class="float-right label label-success"></span>categorie invoeren </a>
+                                    <a href="invoerCategorie.php" class="list-group-item"><span class="float-right label label-success"></span> categorie invoeren </a>
                                     <a href="binnenkomstType.php" class="list-group-item"><span class="float-right label label-success"></span> binnenkomsttype toevoegen</a>
                                 </div>
                             </div>
