@@ -146,6 +146,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
         }else{echo "oplossingError : " . mysqli_error($connectie);}
 } 
 
+//ALS FILE GROTER IS DAN 1 DAN MOETEN DE BENODIGDE DINGEN IN VAR GEZET WORDEN ZODAT HET INGEVOERD KAN WORDEN
 if ($_FILES['userfile']['size'] > 0){
     $fileName = $_FILES['userfile']['name'];
     $tmpName  = $_FILES['userfile']['tmp_name'];
@@ -153,16 +154,16 @@ if ($_FILES['userfile']['size'] > 0){
     $fileType = $_FILES['userfile']['type'];
 
     $fp      = fopen($tmpName, 'r');
-    $bijlage = addslashes(fread($fp, filesize($tmpName)));
+    $bijlage = addslashes(fread($fp, $fileSize));
     fclose($fp);
     
-    $fileQuery = "INSERT INTO bijlage (id, naam, type, bijlage, ticketId)
-        VALUES ('', '$fileName', '$fileType', '$bijlage', '$ticketID')";
+    $fileQuery = "INSERT INTO bijlage (id, naam, lengte, type, bijlage, ticketId)
+        VALUES ('', '$fileName', '$fileSize', '$fileType', '$bijlage', '$ticketID')";
     
     if(!$connectie->query($fileQuery)){
         echo "bijlageError : " . mysqli_error($connectie);
     }
-    
+        
 }
 
 header("Refresh:0; url=../index.php", true, 303);  
