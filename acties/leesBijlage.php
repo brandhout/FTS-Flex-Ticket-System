@@ -13,7 +13,7 @@ session_start();
     
     
     $connectie = verbinddatabase();
-// GEEN ID WAT DIT IS MAAR ZAL WEL
+//SELECT DE BIJLAGE UIT DE DATABASE EN WEERGEEFT HEM OP HET SCHERM
     if(isset($_GET['id'])){
         $id    = $_GET['id'];   
         $bijlage2Query = "SELECT naam, type, bijlage FROM bijlage WHERE id = '$id'";
@@ -22,8 +22,8 @@ session_start();
             $naam = $bijlage2['naam'];
             $type = $bijlage2['type'];
             $bijlage = $bijlage2['bijlage'];
-            echo '<img src="data:' . $type . ';base64,'. base64_encode( $bijlage ) . '"/>';
-         }
+            echo '<img src="data:' . $type . ';base64,'. base64_encode( $bijlage ) . '"/>'; //Er kunnen alleen plaatjes gedisplayed worden op dit moment
+         }                                                                                  //Hij zet de code om in een base 64
  
     }
     

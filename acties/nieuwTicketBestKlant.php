@@ -119,11 +119,11 @@ if ($_FILES['userfile']['size'] > 0){
     $fileType = $_FILES['userfile']['type'];
 
     $fp      = fopen($tmpName, 'r');
-    $bijlage = addslashes(fread($fp, filesize($tmpName)));
+    $bijlage = addslashes(fread($fp, $fileSize));
     fclose($fp);
     
-    $fileQuery = "INSERT INTO bijlage (id, naam, type, bijlage, ticketId)
-        VALUES ('', '$fileName', '$fileType', '$bijlage', '$ticketID')";
+    $fileQuery = "INSERT INTO bijlage (id, naam, lengte, type, bijlage, ticketId)
+        VALUES ('', '$fileName', '$fileSize', '$fileType', '$bijlage', '$ticketID')";
     
     if(!$connectie->query($fileQuery)){
         echo "bijlageError : " . mysqli_error($connectie);
