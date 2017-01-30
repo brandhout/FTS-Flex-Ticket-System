@@ -95,7 +95,9 @@ function checkDefinitief($ticketId){
     while($oplossing = $oplossingUitkomst->fetch_assoc()){
         if($oplossing['definitief'] === "1"){
             return TRUE;
-        }
+        } else {
+		return FALSE;
+	} 
     }
 }
 
