@@ -5,7 +5,7 @@ require_once '../functies.php'; //Include de functies.
 ini_set('display_erors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+//ALLE VARIABELEN
 $connectie = verbinddatabase(); // connectie database
 
 $ftsAccountNr = $_SESSION["accountNr"]; //sessie gebruiker
@@ -59,15 +59,18 @@ $inbehandeling = 1;
 $tcom=NULL;
 $def=NULL;
 
-
+//BIND_PARAM INVOEREN TICKET IN DATABASE 
 if (isset($_POST['submit0'])) {
+//TICKET WORDT VOORBEREID // BIJ VALUES LATEN WE WETEN WAT BIJ WAT HOORT
 $insertticket = $connectie->prepare("INSERT INTO ticket (ticketId, inBehandeling, probleem, trefwoorden, prioriteit, aantalXterug,
                         terugstuurLock, lijnNr, datumAanmaak, nogBellen, streefdatum, redenTeLaat, klantTevreden, fstAccountNr, aangewAccountNr, klantId, subCategorieId, 
-                        binnenkomstId, vVLaptopTypeId, besturingssysteemId)
+                        binnenkomstId, vVLaptopTypeId, besturingssysteemId)         
                         VALUES ('','$inbehandeling',?,?,?, '$aantalXterug','$terugstuurLock','$lijnNr','$datumAanmaak','$check',?,'$redentelaat','$klanttevreden','$ftsAccountNr',
                         '$aangewAccountNr','$klantID',?,?,?,?)");
+//BIND_PARAM HIER WORD ALLES AAN ELKAAR GEWEZEN EN WORDT ZO GEFILTERD ZODAT ER DAADWERKELIJK ALLEEN MAAR INTEGERS EN STRINGS ERAAN GEKOPPELD WORDEN
             if ($insertticket) {
                 $insertticket->bind_param('ssisiiii', $probleem, $trefwoorden, $prioriteit, $sdate, $scategorie, $binnenkomstT, $merktype, $besturingsysteem);
+// HIER WORDT HET INVOEREN GEACTIVEERD
                 if ($insertticket->execute()) {
                     //header("Refresh:5; url=../index.php", true, 303);
                 }else {echo "Error : " . mysqli_error($connectie);}
@@ -79,15 +82,14 @@ $ophaalticket = "SELECT * FROM ticket WHERE klantId='$klantID'";
     if (mysqli_num_rows($resultticket) == 0) {
         echo "ticketid niet gevonden";
     }
+// HIER WORDT GEKEKEN OF RIJ ID GELIJK IS AAN TICKET ID EN ZET TICKET ID IN VAR
     while ($rowt = $resultticket->fetch_assoc()) {
         if ($rowt['klantId'] === $klantID) {
             echo 'ticketID:' . $rowt['ticketId'];
             $ticketID = $rowt['ticketId'];
-           
-
-
         }
     }
+//OMDAT WE NU TICKETID HEBBEN OPGEHAALD KUNNEN WE NU INSERTEN NAAR COMMENTAAR    
     if(!empty($tcom)){
         $insertcomment= $connectie->prepare("INSERT INTO commentaar(commentaarID, commOmschrijving, typeCommentaar, datum, accountNr, ticketId)
             VALUES ('',?,'$tcom','$datumAanmaak','$ftsAccountNr','$ticketID'  )");
@@ -100,7 +102,7 @@ $ophaalticket = "SELECT * FROM ticket WHERE klantId='$klantID'";
             
             
 if (!empty($oplossing)) {
-
+//DATA WORDT INGEVOERD IN OPLOSSINGEN
 $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, definitief, oplossOmschrijving, datumFix, accountNr, ticketId)
         VALUES ('','$def', ?,'$datumAanmaak','$ftsAccountNr','$ticketID')");
         if($insertoplossing){
@@ -109,7 +111,7 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
             }else{echo "Error : " . mysqli_error($connectie);}
         }else{echo "Error : " . mysqli_error($connectie);}
 } 
-
+//ALS FILE GROTER IS DAN 1 DAN MOETEN DE BENODIGDE DINGEN IN VAR GEZET WORDEN ZODAT HET INGEVOERD KAN WORDEN
 if ($_FILES['userfile']['size'] > 0){
     $fileName = $_FILES['userfile']['name'];
     $tmpName  = $_FILES['userfile']['tmp_name'];
@@ -142,6 +144,7 @@ header("Refresh:0; url=../index.php", true, 303);
     <body>
         <!--  alle scripts  -->
             <script>
+//AJAX REALTIME ZOEKFUNCTIE, DATA WORDT OPGEHAALD IN ZOEKKLANT IN KAN ZOEKEN DOOR DE INGETYPTE WOORDEN/CIJFERS IN INPUT ZOEK EN LAAT DAT ZIEN IN OUTPUT                
                 function zoekf(){
                     var zoektxt = $("input[name='zoek']").val();
                     $.post("AJAX/zoekKlant.php", {zoekval: zoektxt}, function(output){
@@ -157,7 +160,7 @@ header("Refresh:0; url=../index.php", true, 303);
                     });
                     
                 }
-                
+//VERWIJST NAAR #MESSAGE 1 OM DE TINYMCE VELD TE GEBRUIKEN               
                 tinymce.init({
                     selector: '#message1',
                     menubar: false
