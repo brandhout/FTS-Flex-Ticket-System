@@ -1,4 +1,5 @@
 <?php
+// UITLEG STAAT IN TICKETBESTKLANT.PHP  IS EIGENLIJK HETZELFDE MAAR DAN MET INVOEREN NIEUWE KLANT VERDER GEEN NIEUWE MANIER GEBRUIKT
 session_start();
 require_once '../functies.php'; //Include de functies.
 ini_set('display_erors', 1);
