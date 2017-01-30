@@ -43,7 +43,7 @@ $rowsbt = $query3->num_rows;
                             <div class="rotate">
                                 <i class="fa fa-user fa-5x"></i>
                             </div>
-                            <h6 class="text-uppercase">account</h6>
+                            <h6 class="text-uppercase">aantal accounts</h6>
                             <h1 class="display-1">'.$rowsa.'</h1>
                         </div>
                     </div>
@@ -76,7 +76,7 @@ $rowsbt = $query3->num_rows;
                             <div class="rotate">
                                 <i class="fa fa-ticket fa-5x"></i>
                             </div>
-                            <h6 class="text-uppercase">alle tickets</h6>
+                            <h6 class="text-uppercase">totaal aantal tickets</h6>
                             <h1 class="display-3"><?php echo $rowsat; ?></h1>
                         </div>
                     </div>
@@ -87,7 +87,7 @@ $rowsbt = $query3->num_rows;
                             <div class="rotate">
                                 <i class="fa fa-ticket fa-5x"></i>
                             </div>
-                            <h6 class="text-uppercase">voltooide tickets</h6>
+                            <h6 class="text-uppercase">gesloten tickets</h6>
                             <h1 class="display-4"><?php echo $rowsbt ?></h1>
                         </div>
                     </div>
