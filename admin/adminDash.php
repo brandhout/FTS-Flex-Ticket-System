@@ -3,7 +3,7 @@
     session_start();
     require_once '../functies.php'; //Include de functies.
 
-    require_once 'headerUp.php'; //Include de header.
+    require_once '../header.php'; //Include de header.
     
     if($_SESSION['isAdmin'] < 1){
         echo '<script> window.alert("U bent geen Administrator!");</script>';
