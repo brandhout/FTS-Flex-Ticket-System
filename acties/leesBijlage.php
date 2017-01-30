@@ -22,8 +22,8 @@ session_start();
             $naam = $bijlage2['naam'];
             $type = $bijlage2['type'];
             $bijlage = $bijlage2['bijlage'];
-            echo '<img src="data:' . $type . ';base64,'. base64_encode( $bijlage ) . '"/>'; //ER KUNNEN ALLEEN PLAATJES GEDYSPLAYED WORDEN (OP DIT MOMENT)
-         }
+            echo '<img src="data:' . $type . ';base64,'. base64_encode( $bijlage ) . '"/>'; //Er kunnen alleen plaatjes gedisplayed worden op dit moment
+         }                                                                                  //Hij zet de code om in een base 64
  
     }
     
