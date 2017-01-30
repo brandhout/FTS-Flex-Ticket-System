@@ -164,8 +164,8 @@ $query->execute();
 $query->store_result();
 $rowsat = $query->num_rows;
 
-$one=1;
-$query1 = $connectie->prepare("SELECT * FROM ticket WHERE inBehandeling = ?");
+$one=0;
+$query1 = $connectie->prepare("SELECT * FROM oplossingen WHERE definitief = ?");
 $query1->bind_param('s', $one);
 $query1->execute();
 $query1->store_result();
@@ -176,8 +176,8 @@ $query2->execute();
 $query2->store_result();
 $rowsa = $query2->num_rows;
 
-$zero=0;
-$query3 = $connectie->prepare("SELECT * FROM ticket WHERE inBehandeling = ?");
+$zero=1;
+$query3 = $connectie->prepare("SELECT * FROM oplossingen WHERE definitief = ?");
 $query3->bind_param('s', $zero);
 $query3->execute();
 $query3->store_result();
