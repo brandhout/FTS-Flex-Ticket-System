@@ -59,6 +59,20 @@ $(document).ready(function() {
 } );
 
 </script>
+<script>
+$(document).ready(function() {
+    var table = $('#examplead').DataTable( {
+        "language": {
+    "url": "http://cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json"
+  },
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
+} );
+
+</script>
 </head>
 <body>
 <div class="container">
@@ -140,8 +154,5 @@ $(document).ready(function() {
 	</div><!-- /.nav-collapse -->
   </nav>
 </div>
-
-    
- <br>
 </body>
   </html>
