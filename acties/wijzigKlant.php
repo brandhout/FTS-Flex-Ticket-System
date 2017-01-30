@@ -24,7 +24,7 @@ error_reporting(E_ALL);
 $connectie = verbinddatabase();
 
 $klantId = filter_var($_GET['klantActie'], FILTER_SANITIZE_NUMBER_INT);
-
+// klant wordt opgehaald zodat het geupdate kan worden
 $klantQuery = "SELECT * FROM klant WHERE klantId = $klantId";
     $klantUitkomst = $connectie->query($klantQuery);
     $klant = $klantUitkomst->fetch_assoc();
