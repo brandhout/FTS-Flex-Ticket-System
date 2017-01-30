@@ -31,26 +31,7 @@
         .containeradmin{
             width:90%;
         }
-/* menu achtergrond!! --------------------------------------------------------------------------------------------------
-achtergrond menu
-.collapse{
-    background-color:#2D68B5;
-}
-achtergrond li dropdown
-.dropdown{
-    background-color:#2D68B5;
-}
-.dropdown > ul > li > a:hover{
-    background-color:#2D68B5;
-}
-achtergrond li
-.achter{
-    background-color:#2D68B5;
-}
-*/
 
-
-/*    einde    */
 
 body {
     font-family: 'Open Sans', 'sans-serif';
@@ -112,8 +93,6 @@ body {
 }
 
 /*main site ----------------------------------------------------------------------------------------------------*/
-
-
 
 #links
 {
@@ -193,10 +172,6 @@ border:none;
           border-radius: 2px;
 
 }
-
-
-
-
 
 
 /* nieuwe form bootstrap  */
