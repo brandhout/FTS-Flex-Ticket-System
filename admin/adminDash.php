@@ -26,11 +26,17 @@
         </header><hr>
         <!-- hier begint het -->
         <div class="containertabel">
+            						<div class="grid">
+						<div class="row">
+                        
  <?php
      infoBar();
  ?>  
+                                                </div>
+                                                      <div class="row">      
+                            
                         <div class="clearfix"></div>
-                <div class="col-lg-6">
+                <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                     <div class="card card-default card-block">
                         <ul id="tabsJustified" class="nav nav-tabs nav-justified">
                             <li class="nav-item">
@@ -72,11 +78,116 @@
                         <!--/tabs content-->
                     </div><!--/card-->
                 </div><!--/col-->
-        </div>
+                <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+<?php
+  $connectie = verbinddatabase();
+              $ticketQuery ="SELECT * FROM ticket;";
+            $ticketUitkomst = $connectie->query($ticketQuery);
+echo '       <table id="examplead" class="display" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                    <td><strong>TicketID</strong></td>
+                    <td><strong>trefwoorden</strong></td>
+                    <td><strong>Klantnaam</strong></td>
+                    <td><strong>Lijn</strong></td>
+                    <td><strong>Aannemer</strong></td>
+                    <td><strong>Aangewezen</strong></td>
+                    <td><strong>Streefdatum</strong></td>
+                    <td><strong>Prioriteit</strong></td>
+                    <td><strong>Status</strong></td>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                    <td><strong>TicketID</strong></td>
+                    <td><strong>trefwoorden</strong></td>
+                    <td><strong>Klantnaam</strong></td>
+                    <td><strong>Lijn</strong></td>
+                    <td><strong>Aannemer</strong></td>
+                    <td><strong>Aangewezen</strong></td>
+                    <td><strong>Streefdatum</strong></td>
+                    <td><strong>Prioriteit</strong></td>
+                    <td><strong>Status</strong></td>
+                    </tr>
+                    </tfoot><tbody>
+                    
+            ';
+        		
+        echo "<hp>Aantal tickets :<strong>".$ticketUitkomst->num_rows. "</strong></p>";
+			
+	while($ticket = $ticketUitkomst->fetch_assoc()){
+            $status = "Open";
+            $opgelost = FALSE;
+            $uitzondering = FALSE;
+                                           
+            $klantId = $ticket['klantId'];
+                $klantQuery ="SELECT klantAchternaam FROM klant WHERE klantId = '$klantId'";
+                    $klantUitkomst = $connectie->query($klantQuery);
+                         
+            if(!$klant = $klantUitkomst->fetch_assoc()){
+                echo "Klant query mislukt..." . mysqli_error($connectie);
+            }
+            
+            if($ticket['aangewAccountNr'] > 0){
+                $aangewAccountNr = $ticket['aangewAccountNr'];
+            } else {
+                $aangewAccountNr = $ticket['fstAccountNr'];
+            }
+            
+            $ticketId = $ticket['ticketId'];
+            $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
+                $oplossingUitkomst = $connectie->query($oplossingQuery);
+
+            
+            //Nieuw oplossing script
+            while($oplossing = $oplossingUitkomst->fetch_assoc()){
+                if($oplossing['definitief'] === "1"){
+                    $status = "Gesloten";
+                    $opgelost = TRUE;
+                } 
+            }
+            
+            if(overDatum($ticket['streefdatum'])){
+                $status = '<p style="color:red">
+                    Te laat,';
+                if (!$opgelost){
+                $status .= '<br>Open</p>';
+                } else {
+                    $status .= '<br>Gesloten</p>';
+                }
+            }
+            
+            if($opgelost === TRUE && $alleenOpen === TRUE){
+                $uitzondering = TRUE;
+            }
+            
+            if($opgelost === FALSE && $alleenGesloten === TRUE){
+                $uitzondering = TRUE;
+            }
+                
+            if(!$uitzondering){                                            
+                echo '<tr><td><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+                    $ticket['ticketId'] . '</a></td><td>' . 
+                    $ticket['trefwoorden'] . '</td><td>' .
+                    $klant['klantAchternaam'] . '</td><td>' .
+                    $ticket['lijnNr'] . '</td><td>' .
+                    leesAccountAchterNaam($ticket['fstAccountNr']) . '</td><td>' .
+                    leesAccountAchterNaam($aangewAccountNr) . '</td><td>' .
+                    datumOmzet($ticket['streefdatum']) . '</td><td>' .
+                    prioriteitOmzet($ticket['prioriteit']) . '</td><td>' .
+                    $status . '</td>';
+                echo '</tr>';
+            }
+	}
+   
+	
+	echo "</tbody></table>";
+        ?></div>
+                            </div></div></div>
                 
 
 
 
 
-    </body>
+        <hr></body>
 </html>    

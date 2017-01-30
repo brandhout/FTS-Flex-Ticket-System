@@ -34,6 +34,26 @@ $(document).ready(function(){
     );
 });
 </script>
+
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/rowreorder/1.2.0/js/dataTables.rowReorder.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    var table = $('#examplead').DataTable( {
+        "language": {
+    "url": "http://cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json"
+  },
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
+} );
+
+</script>
 </head>
 <body>
 <div class="container">
