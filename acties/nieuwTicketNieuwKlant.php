@@ -32,7 +32,7 @@ $sdate = date('Y-m-d', strtotime(str_replace('-', '/', $streefdatum)));
 $commentaar = $_POST["nieuwComment"];
 $probleem = $_POST["probleem"];
 $oplossing = $_POST["oplossing"];
-if(isset($_POST['laptopType'])){
+if($_POST['laptopType'] != ""){
     $merktype = leesLaptopTypeId($_POST['laptopType']);
 } else {
     $merktype = 0;
