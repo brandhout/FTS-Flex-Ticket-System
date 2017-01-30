@@ -60,7 +60,7 @@ if($ingelogd) {
         }
     }
  echo '<hr>';
-     require_once 'infodb.php'; //Include de functies.
+     infoBar(); //Include de functies.
      echo'<br>';
  
     // Maak HTML tabel!
