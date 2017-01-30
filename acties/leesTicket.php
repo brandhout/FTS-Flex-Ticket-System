@@ -422,21 +422,15 @@
     }
 
     echo '<p> Bijlagen </p>';
-// BIJLAGE KRIJGT WAARDE 0 EN WORDT STEEDS OPGETELD TOT ALLE BIJLAGE ZIJN GETELD EN ZET DE ALLES IN VAR
-    $countBijlage = 0;
+//HAALT DE BIJLAGE OP VAN UIT DE TICKET DIE BIJ DE BIJLAGE HOORT
+    $countBijlage = 0; //Geeft $countbijlage de waarde 0
     while($bijlage = $bijlageUitkomst->fetch_assoc()){
 
-        $countBijlage += 1;
+        $countBijlage += 1; //Hier gaat hij alle mogelijke bijlages optellen zodat er een genummerd lijstje op het scherm verschijnt
         $id = $bijlage['id'];
         $naam = $bijlage['naam'];
 
-/*            echo'
-            <textarea class="form" disabled="disabled"> '.$bijlage['naam'] .'
-            <textarea class="form" disabled="disabled"> <a href="download.php?id=' . $id . '">' . $name . '</a><br>
-            </textarea>    
-            '; */
-        echo '
-            <a href="leesBijlage.php?id=' . $id .'">' . $countBijlage . ': ' . $naam . '</a><br>
+        echo '<a href="leesBijlage.php?id=' . $id .'">' . $countBijlage . ': ' . $naam . '</a><br>
             ';
     }
 
