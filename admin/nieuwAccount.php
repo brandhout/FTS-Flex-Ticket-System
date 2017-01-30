@@ -24,7 +24,7 @@
                         <title>Nieuw account</title>
                     </header>';                  
        echo '      <hr>
-           <p> Nieuw account </p><br> 
+           
                         <div class="container">
                             <div class="inner contact">  
                                 <div class="grid">

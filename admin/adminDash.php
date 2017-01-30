@@ -25,16 +25,18 @@
             <title>Admin Pagina</title>
         </header><hr>
         <!-- hier begint het -->
-        <div class="containertabel">
-            						<div class="grid">
-						<div class="row">
+        
+            						
+						
                         
  <?php
      infoBar();
  ?>  
-                                                </div>
-                                                      <div class="row">      
-                            
+                                                
+                                                        
+                      <div class="containeradmin">
+                          <div class="grid">
+                          <div class="row">
                         <div class="clearfix"></div>
                 <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                     <div class="card card-default card-block">
@@ -78,12 +80,14 @@
                         <!--/tabs content-->
                     </div><!--/card-->
                 </div><!--/col-->
-                <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                
 <?php
   $connectie = verbinddatabase();
               $ticketQuery ="SELECT * FROM ticket;";
             $ticketUitkomst = $connectie->query($ticketQuery);
-echo '       <table id="examplead" class="display" cellspacing="0" width="100%">
+echo '<div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+
+    <table id="examplead" class="display nowrap" cellspacing="0" width:100%>
                     <thead>
                     <tr>
                     <td><strong>TicketID</strong></td>
@@ -113,7 +117,7 @@ echo '       <table id="examplead" class="display" cellspacing="0" width="100%">
                     
             ';
         		
-        echo "<hp>Aantal tickets :<strong>".$ticketUitkomst->num_rows. "</strong></p>";
+        echo "<p>Aantal tickets :<strong>".$ticketUitkomst->num_rows. "</strong></p>";
 			
 	while($ticket = $ticketUitkomst->fetch_assoc()){
             $status = "Open";
@@ -166,7 +170,7 @@ echo '       <table id="examplead" class="display" cellspacing="0" width="100%">
             }
                 
             if(!$uitzondering){                                            
-                echo '<tr><td><a href=acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
+                echo '<tr><td><a href=../acties/leesTicket.php?ticket='. $ticket['ticketId'] .' >' .
                     $ticket['ticketId'] . '</a></td><td>' . 
                     $ticket['trefwoorden'] . '</td><td>' .
                     $klant['klantAchternaam'] . '</td><td>' .
@@ -181,9 +185,9 @@ echo '       <table id="examplead" class="display" cellspacing="0" width="100%">
 	}
    
 	
-	echo "</tbody></table>";
-        ?></div>
-                            </div></div></div>
+	echo "</tbody></table></div>";
+        ?>
+                          </div></div></div>
                 
 
 
