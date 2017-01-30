@@ -34,6 +34,26 @@ $(document).ready(function(){
     );
 });
 </script>
+
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/rowreorder/1.2.0/js/dataTables.rowReorder.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    var table = $('#examplead').DataTable( {
+        "language": {
+    "url": "http://cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json"
+  },
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
+} );
+
+</script>
 </head>
 <body>
 <div class="container">
@@ -53,21 +73,23 @@ $(document).ready(function(){
   					  <?php
     switch ($_SESSION['isAdmin']) { 
                 case "1": echo '                  
-                    <li><a href="/ticketsysteem/admin/adminDash.php">Admin Dashboard<span class="glyphicon glyphicon-dashboard"></span></a></li>
+                    <li><a href="/ticketsysteem/admin/adminDash.php">Admin Dashboard <span class="glyphicon glyphicon-dashboard"></span></a></li>
                             <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="dash"></span>Admin menu<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="dash"></span>Admin menu <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
 
-                                                        <li class="dropdown-header">Admin-menu</li>
+                                                        <li class="dropdown-header">navigeren naar...</li>
                                                         <li class="divider"></li>
-							<li><a href="/ticketsysteem/admin/adminDash.php">AdminDash</a></li>
-                                                        <li><a href="/ticketsysteem/admin/cms/cmsDash.php">Content Management</a></li>
+							<li><a href="/ticketsysteem/admin/adminDash.php">Admin dashboard</a></li>                                                      
 							<li><a href="/ticketsysteem/admin/accounts.php">Accountbeheer</a></li>
-                                                        <li><a href="/ticketsysteem/admin/invoerBedrijf.php">nieuw bedrijf</a></li>
-							<li><a href="/ticketsysteem/admin/invoerApparaten.php">invoeren apparaten</a></li>
-							<li><a href="/ticketsysteem/admin/invoerCategorie.php">invoeren categorieën</a></li>
-							<li><a href="/ticketsysteem/admin/invoerInstantie.php">invoeren instanties</a></li>                                                        
-							<li><a href="#">...</a></li>
+                                                        <li><a href="/ticketsysteem/klanten.php">Klantenbeheer</a></li>
+                                                        <li><a href="/ticketsysteem/admin/invoerBedrijf.php">Nieuw bedrijf</a></li>
+							<li><a href="/ticketsysteem/admin/invoerApparaten.php">Invoeren apparaten</a></li>
+							<li><a href="/ticketsysteem/admin/invoerCategorie.php">Invoeren categorieën</a></li>
+							<li><a href="/ticketsysteem/admin/invoerInstantie.php">Invoeren instanties</a></li>
+                                                        <li><a href="/ticketsysteem/admin/binnenkomstType.php">Invoeren nieuwe binnenkomsttype</a></li>                                                         
+							<li class="divider"></li>
+                                                        <li><a href="/ticketsysteem/admin/cms/cmsDash.php">Content Management</a></li>
 
           </ul>
         </li>
@@ -94,14 +116,18 @@ $(document).ready(function(){
                 <a href="/ticketsysteem/acties/nieuwTicketDash.php">Nieuw ticket <i class="fa fa-ticket"></i></a>
             </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Menu <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
               <li class="dropdown-header">navigeren naar...</li>
-                                                        <li class="divider"></li>
-            <li><a href="/ticketsysteem/tickets.php">Tickets</a></li>
-            <li><a href="/ticketsysteem/klanten.php">Klanten</a></li>
+            <li class="divider"></li>
+            <li><a href="/ticketsysteem/index.php">Dashboard</a></li>  
+            <li class="divider"></li>
+            <li><a href="/ticketsysteem/tickets.php">Tickets overzicht</a></li>
+            <li><a href="/ticketsysteem/klanten.php">Klanten overzicht</a></li>
             <li class="divider"></li>
             <li><a href="/ticketsysteem/acties/nieuwTicketDash.php">nieuwe ticket</a></li>
+            <li class="divider"></li>
+            <li><a href="/ticketsysteem/faq.php">FAQ pagina</a></li>
           </ul>
         </li>
         <li class="achter"><a href="/ticketsysteem/acties/uitloggen.php">uitloggen <i class="fa fa-sign-out"></i></a></li>

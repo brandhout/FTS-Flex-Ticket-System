@@ -22,7 +22,15 @@
             
         }
 
+        .containertabel{
+                        width:90%;
+                margin-left: auto;
+    margin-right: auto
+        }
 
+        .containeradmin{
+            width:90%;
+        }
 /* menu achtergrond!! --------------------------------------------------------------------------------------------------
 achtergrond menu
 .collapse{

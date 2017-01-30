@@ -61,7 +61,7 @@
                     <meta http-equiv="Refresh" content="15">
                     <title> FTS Ticketlijst </title>
                 </head>
-                <body>
+                <body><hr><div class="containertabel">
                 
                     <form action="">
                             <p> Geef weer: </p>
@@ -70,7 +70,7 @@
                            <button class="sub2" name="welkTicket" type="submit" value="gesloten">Gesloten</button>
                     </form>
                    
-                    <table id="example" class="display" cellspacing="0" width="100%">
+                    <table id="example" class="display nowrap" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                     <td><strong>TicketID</strong></td>
@@ -100,7 +100,7 @@
                     
             ';
         		
-        echo "<br><h3>Aantal tickets :<strong>".$ticketUitkomst->num_rows. "</strong><br><br></h3>";
+        echo "<hp>Aantal tickets :<strong>".$ticketUitkomst->num_rows. "</strong></p>";
 			
 	while($ticket = $ticketUitkomst->fetch_assoc()){
             $status = "Open";
@@ -169,7 +169,7 @@
    
 	
 	echo "</tbody></table>";
-        echo "</div>";
+        echo "</div></div><hr>";
  ?>
 
  
