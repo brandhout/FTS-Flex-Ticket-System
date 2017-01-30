@@ -27,7 +27,7 @@
         </header>
         <!-- hier begint het -->
  <?php
-     require_once '../infodb.php'; //Include de functies.
+     infoBar();
  ?>  
 
         <hr>
