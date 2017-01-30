@@ -23,13 +23,12 @@
     <body>
         <header>
             <title>Admin Pagina</title>
-        </header>
+        </header><hr>
         <!-- hier begint het -->
+        <div class="containertabel">
  <?php
      infoBar();
  ?>  
-
-        <hr>
                         <div class="clearfix"></div>
                 <div class="col-lg-6">
                     <div class="card card-default card-block">
@@ -73,6 +72,7 @@
                         <!--/tabs content-->
                     </div><!--/card-->
                 </div><!--/col-->
+        </div>
                 
 
 

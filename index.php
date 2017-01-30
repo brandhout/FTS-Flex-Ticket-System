@@ -43,7 +43,7 @@ echo '<!DOCTYPE html>
           <meta http-equiv="Refresh" content="60">
           <title>Flex Ticket System</title>
       </head>
-      <body>
+      <body><div class="containertabel">
       ';
 if($ingelogd) {
     $achterNaam = leesAccountAchterNaam($_SESSION['accountNr']);
@@ -170,7 +170,7 @@ if($ingelogd) {
                    
             
         
-	echo "</tbody></table></div><hr>";
+	echo "</tbody></table></div></div><hr>";
 
 ?>
 

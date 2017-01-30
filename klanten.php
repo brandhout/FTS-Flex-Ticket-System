@@ -22,7 +22,7 @@ echo '
     </head>
     
     <body>
-    <hr>
+    <hr><div class="containertabel">
             <p>Klantenlijst</p>
 <table id="example" class="display" cellspacing="0" width="100%">
 <thead>
@@ -73,7 +73,7 @@ while($klant = $klantenUitkomst->fetch_assoc()){
             <button name="klantActie" type="submit" value="Verwijder'. $klant['klantId'] .'" disabled>Verwijderen</button>
         </form></td></tr>';
 }
-echo '</tbody></table>';
+echo '</tbody></table></div>';
 ?>
 
 <!DOCTYPE html>
