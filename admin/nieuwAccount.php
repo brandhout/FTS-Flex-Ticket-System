@@ -23,7 +23,8 @@
                     <header>
                         <title>Nieuw account</title>
                     </header>';                  
-       echo '<p> Nieuw account </p><br>       <hr>
+       echo '      <hr>
+           <p> Nieuw account </p><br> 
                         <div class="container">
                             <div class="inner contact">  
                                 <div class="grid">
