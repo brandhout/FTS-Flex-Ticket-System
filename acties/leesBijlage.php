@@ -6,11 +6,14 @@ session_start();
 
     require_once '../header.php'; //Include de header.
     require_once '../functies.php'; //Include de functies.
+
     //ini_set('display_errors', 1);
     //ini_set('display_startup_errors', 1);
     //error_reporting(E_ALL);
+    
+    
     $connectie = verbinddatabase();
-
+// GEEN ID WAT DIT IS MAAR ZAL WEL
     if(isset($_GET['id'])){
         $id    = $_GET['id'];   
         $bijlage2Query = "SELECT naam, type, bijlage FROM bijlage WHERE id = '$id'";
