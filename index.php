@@ -37,6 +37,8 @@ $connectie = verbinddatabase();
 
 $datum = new DateTime();
 
+
+
 echo '<!DOCTYPE html>
       <html>
       <head>

@@ -88,7 +88,7 @@ $rowsbt = $query3->num_rows;
                                 <i class="fa fa-ticket fa-5x"></i>
                             </div>
                             <h6 class="text-uppercase">gesloten tickets</h6>
-                            <h1 class="display-4"><?php echo $rowsbt ?></h1>
+                            <h1 class="display-4"><?php echo $rowsbt; ?></h1>
                         </div>
                     </div>
                 </div>

@@ -9,22 +9,11 @@
     <!--bootstrap--> 
   <link rel="stylesheet" type="text/css" href="/ticketsysteem/styles/css/bootstrap.css">
   <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
-   <!--datepicker -->
-     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script> 
     <!--menu--> 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-    $( function() {
-    $( "#datepicker1" ).datepicker();
-  } );
-  </script>  
+ 
 <script>
 $(document).ready(function(){
     $(".dropdown").clicked(            

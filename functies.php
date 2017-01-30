@@ -183,6 +183,15 @@ $query3->execute();
 $query3->store_result();
 $rowsbt = $query3->num_rows;
 
+$ato=0;
+$query10="SELECT ticketId FROM ticket";
+$uitkomst10 = $connectie->query($query10);
+    while($ticket=$uitkomst10->fetch_assoc()){
+        if(!checkDefinitief($ticket['ticketId'])){
+            $ato++;
+        }
+    }
+
 echo '
 
 <html>  
@@ -219,7 +228,7 @@ echo '
                                 <i class="fa fa-ticket fa-5x"></i>
                             </div>
                             <h6 class="text-uppercase">openstaande tickets alle lijnen</h6>
-                            <h1 class="display-2">'.$rowsot.'</h1>
+                            <h1 class="display-2">'.$ato.'</h1>
                         </div>
                     </div>
                 </div>
