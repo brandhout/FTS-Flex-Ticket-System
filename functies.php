@@ -218,7 +218,7 @@ echo '
                             <div class="rotate">
                                 <i class="fa fa-ticket fa-5x"></i>
                             </div>
-                            <h6 class="text-uppercase">openstaande tickets</h6>
+                            <h6 class="text-uppercase">openstaande tickets alle lijnen</h6>
                             <h1 class="display-2">'.$rowsot.'</h1>
                         </div>
                     </div>
