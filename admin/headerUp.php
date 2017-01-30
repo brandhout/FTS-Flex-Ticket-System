@@ -34,22 +34,6 @@ $(document).ready(function(){
     );
 });
 </script>
-<script>
-
-    /* API method to get paging information */
-
-    'use strict';
-	var $ = jQuery;
-	$.getScript("https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js", function(){
-       
-            $('#example4').DataTable( {
-                "paging":   true,
-                "ordering": true,
-                "info":     false
-            } );
-	});
-
-</script>
 </head>
 <body>
 <div class="container">

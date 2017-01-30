@@ -71,7 +71,7 @@ if($ingelogd) {
         echo '
                 <p> Openstaande tickets lijn '.$lijnNr.': </p>
 <div class="centerform">
-                <table id="example" class="display" cellspacing="0" width="100%">
+                <table id="example" class="display nowrap" cellspacing="0" width="100%">
                 <thead>
                 <tr>
                 <td><strong>TicketID</strong></td>
