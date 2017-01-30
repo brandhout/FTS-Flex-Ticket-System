@@ -14,13 +14,6 @@
      * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
-     /*
-      * TODO:
-      * - Nieuw commentaar
-      * - Nieuwe oplossing
-      * - Oplossing definitief kunnen zetten (mits eerste behandelaar)
-      */
-
     session_start();
     ini_set('display_erors', 1);
     ini_set('display_startup_errors', 1);
@@ -31,41 +24,44 @@
     //ini_set('display_errors', 1);
     //ini_set('display_startup_errors', 1);
     //error_reporting(E_ALL);
+    
+//VAR
     $connectie = verbinddatabase();
     $opgelost = FALSE;
     $fstAccount = FALSE;
     $status = "Open";
     
+//HAALT TICKETID OP VAN VORIGE PAGINA EN ZET HET IN VAR
     if (is_numeric($_GET['ticket'])) {
         $ticketId = $_GET['ticket'];
     }
-    
+//SELECTEERD ALLES VAN DB EN KIJKT OF HET GELIJK IS AAN VAR ID
     $ticketQuery = "SELECT * FROM ticket WHERE ticketId = '$ticketId'";
         $ticketUitkomst = $connectie->query($ticketQuery);
         $ticket = $ticketUitkomst->fetch_assoc();
-        
+//SELECTEERD AAN DE HAND VAN TICKETID DE RIJ DIE BIJ TICKETID HOORT IN DOORSTURING
     $doorstuurLogQuery = "SELECT * FROM doorsturing WHERE ticketId = '$ticketId'";
         $doorstuurLogUitkomst = $connectie->query($doorstuurLogQuery);
-        
+//SELECTEERD ALLES VAN KLANT WAARVAN DE RIJ OVEREENKOMT MET KLANTID VAN TICKET       
     $klantId = $ticket['klantId'];
         $klantQuery ="SELECT * FROM klant WHERE klantId = '$klantId'";
         $klantUitkomst = $connectie->query($klantQuery);             
         $klant = $klantUitkomst->fetch_assoc();
-        
+//SELECTERD ALLES VAN OPLOSSINGEN WAARVAN DE RIJ OVEREENKOMT MET TICKETID VAN TICKET        
     $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
         $oplossingUitkomst = $connectie->query($oplossingQuery);
-        
+//SELECTEERD ALLES VAN COMMENTAAR WAARVAN DE RIJ OVEREENKOMT MET TICKETID VAN TICKET        
     $commentaarQuery = "SELECT * FROM commentaar WHERE ticketId = '$ticketId'";
         $commentaarUitkomst = $connectie->query($commentaarQuery);
-        
+//SELECTEERD ALLES VAN BIJLAGE WAARVAN DE RIJ OVEREENKOMT MET TICKETID VAN TICKET        
     $bijlageQuery = "SELECT * FROM bijlage WHERE ticketId = '$ticketId'";
         $bijlageUitkomst = $connectie->query($bijlageQuery);
-        
+//FUNCTIE CHECK FUNCTIES.PHP
     if(checkDefinitief($ticketId)){
         $opgelost = TRUE;
         $status = "Gesloten";
     }
-    
+//FUNCTIE CHECK FUNCTIES.PHP    
     if(overDatum($ticket['streefdatum'])){
         $overDatum = TRUE;
         $status = '
@@ -75,6 +71,7 @@
         } else {
             $status .= 'Gesloten';
         }
+//ALS REDENTELAAT LEEG IS DAN MOET ER EEN REDEN INGEVULD WORDEN FORM WORDT WEERGEGEVEN      
         if ($ticket['redenTeLaat'] === NULL){
             $status .= '
                         <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
@@ -84,21 +81,21 @@
     }
    
     $accountNr = $_SESSION["accountNr"]; 
-    
+// ALS LIJNUP(FORM) IN IS GEDRUKT EN GELIJK IS AAN LIJNUP EN LIJNNR VAN TICKET KLEINER OF GELIJK IS AAN 3 DAN WORDEN ALLE VELDEN DIE ZIJN INGEVULD GEUPDATE IN DB VIA FUNCTIE    
     if($_POST['lijnUp'] === "lijnUp" && $ticket['lijnNr'] <= 3 ){
         $opmerking = $_POST['opmerking'];
         $vanLijn = $ticket['lijnNr'];
         $naarLijn = $vanLijn+1;           
         updateLijn($vanLijn, $naarLijn, $opmerking, $ticketId, $accountNr);                               
     }
-
+//ZELFDE ALS HIERBOVEN MAAR DAN HET TEGENOVERGESTELDE
     if($_POST['lijnDwn'] === "lijnDwn" && $ticket['lijnNr'] >1){
         $opmerking = $_POST['opmerking'];
         $vanLijn = $ticket['lijnNr'];
         $naarLijn = $vanLijn-1;
         updateLijn($vanLijn, $naarLijn, $opmerking, $ticketId, $accountNr);
     }
-
+//ALS CHECKBOX IN IS GEVULT DAN WORDT NOGBELLEN GEUPDATE MET 1 EN ANDERS 0 VIA FUNTIE
     if(isset($_POST['nogBellen'])){
         if($_POST['nogBellen'] === "0"){
             updateNogBellen("0",$ticketId);
@@ -108,7 +105,7 @@
         }            
         header("Location: ../index.php");
     }
-
+//HIER WORDT REDENTELAAT GEUPDATE AAN DE HAND VAN TICKETID
     if(isset($_POST['redenTekst'])){
         $ticketId = $ticket['ticketId'];
         $redenTekst = $_POST['redenTekst'];
@@ -118,7 +115,7 @@
         }
         header("Location: ../tickets.php");
     }
-        
+// HIER WORDT COMMENTAAR IN DE DATABASE GEZET MET EEN BIND_PARAM METHODE  OM SQL-INJECTIES TEGEN TE GAAN       
     if(isset($_POST['commentaar'])){
         $commentaar = $_POST['commentaar'];
         $tcom = 0;
@@ -138,7 +135,7 @@
             echo "Error : " . mysqli_error($connectie);               
         } 
     }
-        
+ //ALS ER EEN OPLOSSING IS DAN WORDT DAT IN DE DATABASE GEDAAN VIA BIND_PARAM       
     if (isset($_POST['oplossing'])){
         $oplossing = $_POST['oplossing'];
         $def = '0';
@@ -162,7 +159,7 @@
             echo "Error : " . mysqli_error($connectie);
         }
     }
-    
+//ALS AANWIJZER NIET LEEG IS DAN WORDT DE TICKET GEKOPPELD AAN EEN ANDER ACCOUNT    
     if(isset($_POST['aanwijzer'])){       
         $aanwijzer = $_POST['aanwijzer'];
         $aanwijsQuery = "UPDATE ticket SET aangewAccountNr = '$aanwijzer' WHERE ticketId = '$ticketId'";
@@ -172,7 +169,7 @@
         header("Location: ../tickets.php");
     }
            
-           
+ // PAGINA WORDT WEERGEGEVEN           
     echo '
         <!DOCTYPE html>
         <html>
@@ -212,14 +209,14 @@
         <p> Streefdatum: </p><input type="text" class="form" disabled="disabled" placeholder="'.datumOmzet($ticket['streefdatum']).'"/>'
             ;
    
-    
+//ALS AANGEWEZENACCOUNTNR GROTER IS DAN NUL DAN WORDT DIT WEERGEGEVEN     
     if($ticket['aangewAccountNr'] > 0){
                 $aangewAccountNr = $ticket['aangewAccountNr'];
                 echo'
                 <p> Aangewezen operator: </p> <input class="form" type="text" disabled="disabled" placeholder="'.leesAccountAchterNaam($aangewAccountNr).'"/> </div>';
             }else {
             echo '</div>';}
-            
+//ALS AAN DE HAND VAN TICKET, LAPTOPTYPEID GROTER IS DAN O DAN SELECTEERD DE QUERY DE DESBETREFFENDE VELD EN ZET HET IN EEN VAR          
     if($ticket['vVLaptopTypeId'] > 0){
         $typeId = $ticket['vVLaptopTypeId'];
         $typeQuery = "SELECT * FROM veelVoorkomendeLaptopTypes WHERE vVLaptopTypeId = '$typeId'";
@@ -229,7 +226,7 @@
         $type = $typeUitkomst->fetch_assoc();
         $merkId = $type['vVLaptopMerkId'];
         $typeOm = $type['vVLaptopTypeOm'];
-        
+//MERK WORDT OPGEHAALD AAN DE DE HAND VAN LAPTOPMERKID EN ZET ZE IN VAR       
         $merkQuery = "SELECT vVLaptopMerkOm FROM veelVoorkomendelaptopMerken WHERE vVLaptopMerkId = '$merkId'";
         if(!$merkUitkomst = $connectie->query($merkQuery)){
             echo "Merk query mislukt..." . mysqli_error($connectie);
@@ -243,19 +240,19 @@
             Type:<input type="text" class="form" disabled="disabled" placeholder="'.$typeOm.'"/>';
     }else{echo'<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">';}
     
- 
+//ALS HET LIJNR VAN DE TICKET HETZELFDE IS ALS HET LIJNNR VAN DE SESSIE OF HET EEN ADMIN IS DAN MAG ER DOORGESTUURD WORDEN 
     if($ticket['lijnNr'] === $_SESSION['lijnNr'] or $_SESSION['isAdmin'] === "1"){
         echo '
             <p> Doorsturen:</p>
             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
             <textarea class="form" placeholder="reden doorsturing" name="opmerking" value="Reden doorsturing" maxlength="70" required></textarea><br>     
             ';
-
+//ALS TICKET LIJNNR GROTER IS DAN 1 EN KLEINER OF GELIJK IS AAN 3 DAN VERSCHIJNT LIJNOMLAAG KNOP
         if($ticket['lijnNr'] > 1 && $ticket['lijnNr'] <= 3) {
             echo '
                 <button name="lijnDwn" type="submit" value="lijnDwn">Lijnomlaag</button> ';
             }
-            
+ //ALS TICKET LIJNR KLEINER IS DAN 3 DAN VERSCHIJNT LIJN OMHOOG KNOP           
         if($ticket['lijnNr'] < 3) {
             echo '
                 <button name="lijnUp" type="submit" value="lijnUp">Lijnomhoog</button> ';
@@ -263,6 +260,7 @@
             echo'
                 </form>';            
     } else {
+// ALS REGEL243 NIET HET GEVAL IS DAN VERSCHIJNEN DE VOLGENDE VELDEN
         echo'
         <p> Behandelaar </p>
         <input type="text" class="form" disabled="disabled" placeholder="'.leesAccountAchterNaam($ticket['fstAccountNr']).'"/>
@@ -270,11 +268,12 @@
     }
     
     echo '<form name="leesTicket" action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
-
+//ALS HET NIET DEFINITIEF IS EN LIJN NR GELIJK IS AAN SESSIE DAN KOMT ER EEN TEXTVELD BIJ
     if(!$definitief && $ticket['lijnNr'] === $_SESSION['lijnNr']){
         echo '<p> Nieuwe oplossing:</p>
             <form action ="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
                 <textarea class="form" type="text" name="oplossing" maxlength="70"></textarea><br>';
+//ALS SESSIE GELIJK IS AAN ACCOUNTNR VAN DE TICKET DAN VERSCHIJNT ER EEN CHECKBOX OM EEN TICKET AFTERONDEN         
                 if($_SESSION["accountNr"] === $ticket['fstAccountNr']){
                    echo '<input type ="checkbox" name="definitief" value="1">Definitief';
                 }                                    
@@ -292,8 +291,9 @@
     }
 
     
-
+//ALS ADMIN IN SESSIE IS (1) DAN KAN ADMIN EEN TICKET VERWIJZEN NAAR EEN ANDER PERSOON
     if($_SESSION['isAdmin'] === "1"){
+//SELECT VELD WORDT WEERGEGEVEN EN KAN GEKOZEN WORDEN UIT ACCOUNT DIE ZIJN OPGEHAALD
         echo ' <br><br>
             <p>Account aanwijzen</p>
             <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'"method="POST">
@@ -313,7 +313,7 @@
     
     echo '</div>';
     echo '<div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"><p><strong> Klant</strong></p>';
-    
+//ALS INSTANTIE ID GROTER IS DAN 0 DAN LAAT DIE INSTANTIE ZIEN DMV FUNCTIE    
     if($klant['instantieId'] > 0){
         echo '<p> Instantie: </p><input class="form" type="text" disabled="disabled" placeholder="'.leesInstantieNaam($klant["instantieId"]).'"/>';
     }
@@ -328,7 +328,7 @@
     <p> Telefoon: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantTel'].'"/>';
 
     echo '<form action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">';
-
+// ALS DE WAARDE 1 OF 0 IS DAN WORDEN 1 VAN DE VOLGENDE ZINNEN WEERGEGEVEN
     if($ticket['nogBellen'] === "1"){
         echo '<p>Klant <strong>moet nog</strong> gebeld worden! <p>
             <button name="nogBellen" type="submit" value="0">Klant is gebeld</button>';
@@ -340,6 +340,7 @@
             </form>
             ';
     }
+    
     echo'
     <p> Adres: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantAdres'].'"/>
     <p> Postcode: </p> <input type="text" class="form" disabled="disabled" placeholder="'.$klant['klantPostc'].'"/>
@@ -349,7 +350,7 @@
     <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">   
     <p> Logboek: <br>
     Ticket is op <strong>'.datumOmzet($ticket['datumAanmaak']).'</strong> aangemaakt door <strong>'.leesAccountAchterNaam($ticket['fstAccountNr']).'</strong><p>';
-
+// ALS OVERDATUM VAR IS GEMAAKT DAN WORDEN DE DATUM, REDEN OF DAT HET NOG NIET IS INGEVULD WEERGEGEVEN
     if($overDatum){
         echo'
             Sinds <strong>'.datumOmzet($ticket['streefdatum']).'</strong> is deze ticket te laat,<br>';
@@ -362,7 +363,7 @@
     }
 
     //echo '<p><strong> Doorsturingen </strong></p>';
-
+// WHILE LOOP DIT HAALT ALLE LOGS VAN DESBETREFFENDE TICKET UIT DE DATABASE EN LAAT DIT ZIEN
     while($doorstuurLog = $doorstuurLogUitkomst->fetch_assoc()){
         echo '<br>Doorsturing:<br>'
         . 'Ticket is op <strong>'.datumOmzet($doorstuurLog['datum']).'</strong> doorgestuurd
@@ -376,7 +377,7 @@
     }
 
     //echo '<p><strong> Oplossingen </strong></p>';
-
+//WHILE LOOP DIT HAALT ALLE OPLOSSINGEN VAN DB EN LAAT DIT ZIEN
     while($oplossingen = $oplossingUitkomst->fetch_array()){
         echo '
             <br> Oplossing:<br>
@@ -389,12 +390,13 @@
 
             '.$oplossingen['oplossOmschrijving'].'
             </textarea>';
-
+//ALS DEFINITIEF DE WAARDE 1 HEEFT IS DIE AFGESLOTEN EN LAAT DAT OOK ZIEN
             if($oplossingen['definitief'] === "1"){
                 $definitief = TRUE;
                 echo 'De oplossing is <strong>definitief</strong>,
                  de ticket is afgesloten<br>';                 
             } else {
+// ALS DIE NOG NIET IS AFGESLOTEN EN ACCOUNT NR GELIJK IS AAN FTSACCOUNT DAN VERSCHIJNT DE DEFINITIEF KNOP 
                 echo '<br>De oplossing is <strong>niet</strong> definitief.<br>';
                 if($_SESSION['accountNr'] === $ticket['fstAccountNr']){
                     echo '
@@ -406,7 +408,7 @@
             }
 
     }
-
+// DIT LAAT ALLE COMMENTAAR DIE BIJ DE TICKET HOREN ZIEN IN EEN TEXTAREA
     echo '<p> Commentaar </p>';
 
     while($commentaar = $commentaarUitkomst->fetch_assoc()){
@@ -420,7 +422,7 @@
     }
 
     echo '<p> Bijlagen </p>';
-
+// BIJLAGE KRIJGT WAARDE 0 EN WORDT STEEDS OPGETELD TOT ALLE BIJLAGE ZIJN GETELD EN ZET DE ALLES IN VAR
     $countBijlage = 0;
     while($bijlage = $bijlageUitkomst->fetch_assoc()){
 
