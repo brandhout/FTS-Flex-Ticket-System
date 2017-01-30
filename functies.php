@@ -155,3 +155,99 @@ function leesInstantieNaam ($instantieId){
     
     return $instantie['instantieNaam'];
 }
+
+function infoBar(){
+$connectie = verbinddatabase();
+    
+$query = $connectie->prepare("SELECT * FROM ticket");
+$query->execute();
+$query->store_result();
+$rowsat = $query->num_rows;
+
+$one=1;
+$query1 = $connectie->prepare("SELECT * FROM ticket WHERE inBehandeling = ?");
+$query1->bind_param('s', $one);
+$query1->execute();
+$query1->store_result();
+$rowsot = $query1->num_rows;
+
+$query2 = $connectie->prepare("SELECT * FROM account");
+$query2->execute();
+$query2->store_result();
+$rowsa = $query2->num_rows;
+
+$zero=0;
+$query3 = $connectie->prepare("SELECT * FROM ticket WHERE inBehandeling = ?");
+$query3->bind_param('s', $zero);
+$query3->execute();
+$query3->store_result();
+$rowsbt = $query3->num_rows;
+
+echo '
+
+<html>  
+<div class="container-fluid">
+ <div class="row mb-3">
+  ';
+    switch ($_SESSION['isAdmin']) { 
+                case "1": echo '     
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-inverse card-success">
+                        <div class="card-block bg-success">
+                            <div class="rotate">
+                                <i class="fa fa-user fa-5x"></i>
+                            </div>
+                            <h6 class="text-uppercase">aantal accounts</h6>
+                            <h1 class="display-1">'.$rowsa.'</h1>
+                        </div>
+                    </div>
+                </div>
+                    				' ;
+                break;
+
+                case "0":
+                break;
+
+                default:
+                break;
+            }
+echo '
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-inverse card-danger">
+                        <div class="card-block bg-danger">
+                            <div class="rotate">
+                                <i class="fa fa-ticket fa-5x"></i>
+                            </div>
+                            <h6 class="text-uppercase">openstaande tickets</h6>
+                            <h1 class="display-2">'.$rowsot.'</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-inverse card-info">
+                        <div class="card-block bg-info">
+                            <div class="rotate">
+                                <i class="fa fa-ticket fa-5x"></i>
+                            </div>
+                            <h6 class="text-uppercase">totaal aantal tickets</h6>
+                            <h1 class="display-3">'.$rowsat.'</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-inverse card-warning">
+                        <div class="card-block bg-warning">
+                            <div class="rotate">
+                                <i class="fa fa-ticket fa-5x"></i>
+                            </div>
+                            <h6 class="text-uppercase">gesloten tickets</h6>
+                            <h1 class="display-4">'.$rowsbt.'</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+
+             </div>           
+</html>
+';
+}
