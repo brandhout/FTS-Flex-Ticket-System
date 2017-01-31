@@ -1,0 +1,74 @@
+Functioneel ontwerp
+
+Er is in de eerste instantie onderzoek gedaan naar de oude situatie. Zoals eerder vermeld is er een ticketsysteem
+nodig om in de eerste instantie de leerlingen van niveau 2 ICT ROCva op te leiden om te werken met een soortgelijk systeem.
+Daarnaast bestaat de behoefte om ook een servicedesk te openen voor leerlingen binnen de school, men heeft hier al testen mee
+gedaan. 
+
+Men heeft ten eerste gewerkt met een losse database, en die handmatig te vullen met tickets. Dit voldeed niet. Het is moeilijk
+te beheren, en er zijn weinig functies te implementeren die eigenlijk wel behoren tot een ticketsysteem.
+
+Men werkt nu met zogenaamde probeerversies van bestaande 'gesloten' softwarepaketten. Dit is net zo goed vrijwel onmogelijk
+centraal te beheren, de installates zijn allemaal lokaal en tijdsgebonden. Daarnaast wordt de database elke bepaalde termijn 
+leeggehaald, het is immers een probeerversie. Dit is niet werkbaar voor zowel de werknemers als de administratoren.
+
+Zoals hierboven aangehaald is er geen concreet bestaand pakket voor het probleem wat wij trachten op te lossen. Het
+compleet vanaf de grond opbouwen van een nieuwe applicatie is de enige realistische oplossing. Met de bestaande database
+verder gaan vinden wij ook niet verantwoord. Door een nieuwe database aan de nieuw te ontwikkelen applicatie te koppelen 
+zitten wij niet vast aan de limitaties die eerder opgelegd zijn door de ontwerper van die database. Daarnaast kan er 
+opnieuw (?) gedacht worden over de toekomstbestendigheid van de database. We weten namelijk niet wat
+de toekomst brengt, maar moeten er wel zoveel mogelijk op voorbereid zijn.
+
+Het is een webapplicatie. Wij hoeven daarom ook zeker in dit stadium niet veel rekening te houden met bestaande systemen
+en de compatibiliteit tussen die systemem. Internetstandaarden (HTML, PHP, CSS) worden tegenwoordig voldoende gevolgd door
+de gangbare browsers. Er word een webserver voor ons ingericht, de programmatuur mogen wij in grote lijnen zelf kiezen. 
+(denk aan apache2, NGINX).
+
+USE-CASE 1
+1ste lijn registreert gegevens van de klant en vult de ticket verder aan.
+Ticket staat vanaf dan open voor behandeling.
+1ste lijn kan nu de ticket selecteren en in behandeling nemen
+1ste lijn behandeld de ticket en heeft de mogelijkheid om de ticket door te sturen naar de 2de lijn
+En de 2de naar de 3de. Bij uitzondering kan de ticket ook teruggestuurd worden, dit kan maar een aantal keer.
+Als ticket na een ingestelde vaste tijdslimiet niet behandeld is komt er een melding in het dashboard.
+Zodra de ticket is voltooid of niet gemaakt kan worden, word de klant opgebeld door de 1ste lijn
+Tevens word de ticket altijd opgeslagen. Opgelosd of niet.
+
+
+Use-case description
+
+Naam: Ticketsystem
+
+Aanleiding:
+1. 1ste lijn voert gegevens in en maakt ticket
+2. 1ste lijn behandelt ticket en heeft de mogelijkheid om tickets door te sluizen
+3. Ticket wordt door medewerker opgelosd
+4. Oplossing wordt definitief gezet
+5. 1ste lijn contacteerd klant met de status.
+6. Ticket word bewaard
+Actoren:
+
+				Admin
+				1ste lijn, 2de lijn, 3de lijn
+				database
+
+doel:
+
+Leerlingen van niveau 2,3,4 kunnen aanmelden
+Leerlingen van niveau 2 kunnen tickets aanmaken ( 1ste lijn )
+1ste lijn kan tickets doorsluizen naar een hogere lijn
+Zowel 1,2 en 3 kunnen tickets in behandelen mits het is doorgezet
+3 en 2 kunnen tickets terug sturen naar 1
+Alleen lijn 1 kan contact opnemen met klant
+Iedereen die gebruikt maakt van het systeem kan alle tickets inzien
+Alleen admin kan tickets verwijderen.
+1ste lijn is altijd verantwoordelijk voor de afhandeling van de ticket
+1stelijn controleert of ticket is behandeld
+Alles wordt in log bijgehouden
+
+
+Beschrijving:
+1.Mederwerker kan een ticket aanmaken
+2.kan een ticket doorsluizen
+3.andere lijnen kunnen tickets terugsturen
+4. 1ste lijn kan voltooide muziek
