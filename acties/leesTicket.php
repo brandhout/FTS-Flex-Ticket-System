@@ -19,7 +19,6 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    require_once '../header.php'; //Include de header.
     require_once '../functies.php'; //Include de functies.
     //ini_set('display_errors', 1);
     //ini_set('display_startup_errors', 1);
@@ -35,25 +34,25 @@
     if (is_numeric($_GET['ticket'])) {
         $ticketId = $_GET['ticket'];
     }
-//SELECTEERD ALLES VAN DB EN KIJKT OF HET GELIJK IS AAN VAR ID
+//SELECTEERT ALLES VAN DB EN KIJKT OF HET GELIJK IS AAN VAR ID
     $ticketQuery = "SELECT * FROM ticket WHERE ticketId = '$ticketId'";
         $ticketUitkomst = $connectie->query($ticketQuery);
         $ticket = $ticketUitkomst->fetch_assoc();
-//SELECTEERD AAN DE HAND VAN TICKETID DE RIJ DIE BIJ TICKETID HOORT IN DOORSTURING
+//SELECTEERT AAN DE HAND VAN TICKETID DE RIJ DIE BIJ TICKETID HOORT IN DOORSTURING
     $doorstuurLogQuery = "SELECT * FROM doorsturing WHERE ticketId = '$ticketId'";
         $doorstuurLogUitkomst = $connectie->query($doorstuurLogQuery);
-//SELECTEERD ALLES VAN KLANT WAARVAN DE RIJ OVEREENKOMT MET KLANTID VAN TICKET       
+//SELECTEERT ALLES VAN KLANT WAARVAN DE RIJ OVEREENKOMT MET KLANTID VAN TICKET       
     $klantId = $ticket['klantId'];
         $klantQuery ="SELECT * FROM klant WHERE klantId = '$klantId'";
         $klantUitkomst = $connectie->query($klantQuery);             
         $klant = $klantUitkomst->fetch_assoc();
-//SELECTERD ALLES VAN OPLOSSINGEN WAARVAN DE RIJ OVEREENKOMT MET TICKETID VAN TICKET        
+//SELECTERT ALLES VAN OPLOSSINGEN WAARVAN DE RIJ OVEREENKOMT MET TICKETID VAN TICKET        
     $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
         $oplossingUitkomst = $connectie->query($oplossingQuery);
-//SELECTEERD ALLES VAN COMMENTAAR WAARVAN DE RIJ OVEREENKOMT MET TICKETID VAN TICKET        
+//SELECTEERT ALLES VAN COMMENTAAR WAARVAN DE RIJ OVEREENKOMT MET TICKETID VAN TICKET        
     $commentaarQuery = "SELECT * FROM commentaar WHERE ticketId = '$ticketId'";
         $commentaarUitkomst = $connectie->query($commentaarQuery);
-//SELECTEERD ALLES VAN BIJLAGE WAARVAN DE RIJ OVEREENKOMT MET TICKETID VAN TICKET        
+//SELECTEERT ALLES VAN BIJLAGE WAARVAN DE RIJ OVEREENKOMT MET TICKETID VAN TICKET        
     $bijlageQuery = "SELECT * FROM bijlage WHERE ticketId = '$ticketId'";
         $bijlageUitkomst = $connectie->query($bijlageQuery);
 //FUNCTIE CHECK FUNCTIES.PHP
@@ -105,6 +104,45 @@
         }            
         header("Location: ../index.php");
     }
+// ALS zetDef MEEGESTUURD WORDT    
+    if($_GET['actie'] === "zetDef"){
+// CHECK INDIEN INT        
+        if(is_numeric($_GET['oplosId'])){
+            $oplossingId = $_GET['oplosId'];
+        } else {
+            $oplossingId = FALSE;
+        }
+//WORDT EEN QUERY UITGEVOERD DIE DE OPLOSSING OP TRUE ZET, CHECKT OOK OF DE OPLOSSING WEL BIJ TICKET HOORT
+        $definitiefQuery = "UPDATE oplossingen SET definitief=1 WHERE ticketId = '$ticketId' AND oplossingId = '$oplossingId' ";
+        
+        if(!$connectie->query($definitiefQuery)){
+            echo "Kan oplossing niet definitief zetten : " . mysqli_error($connectie);
+        } else {
+            header("Location: ../tickets.php");
+            die();
+        }
+    }
+
+//ZELFDE ALS BOVENSTAAND MAAR ZET TICKET NIET DEFINITIEF
+    if($_GET['actie'] === "onDef"){
+// CHECK INDIEN INT        
+        if(is_numeric($_GET['oplosId'])){
+            $oplossingId = $_GET['oplosId'];
+        } else {
+            $oplossingId = FALSE;
+        }
+//WORDT EEN QUERY UITGEVOERD DIE DE OPLOSSING OP FALSE ZET, CHECKT OOK OF DE OPLOSSING WEL BIJ TICKET HOORT
+        $definitiefQuery = "UPDATE oplossingen SET definitief=0 WHERE ticketId = '$ticketId' AND oplossingId = '$oplossingId' ";
+        
+        if(!$connectie->query($definitiefQuery)){
+            echo "Kan ticket niet openen : " . mysqli_error($connectie);
+        } else {
+            header("Location: ../tickets.php");
+            die();
+        }
+    }
+    
+    
 //HIER WORDT REDENTELAAT GEUPDATE AAN DE HAND VAN TICKETID
     if(isset($_POST['redenTekst'])){
         $ticketId = $ticket['ticketId'];
@@ -114,6 +152,7 @@
             echo "teLaatReden query mislukt..." . mysqli_error($connectie);
         }
         header("Location: ../tickets.php");
+        die();
     }
 // HIER WORDT COMMENTAAR IN DE DATABASE GEZET MET EEN BIND_PARAM METHODE  OM SQL-INJECTIES TEGEN TE GAAN       
     if(isset($_POST['commentaar'])){
@@ -167,7 +206,10 @@
             echo "Error : " . mysqli_error($connectie);
         }
         header("Location: ../tickets.php");
+        die();
     }
+    
+    require_once '../header.php'; //Include de header.
            
  // PAGINA WORDT WEERGEGEVEN           
     echo '
@@ -393,16 +435,22 @@
 //ALS DEFINITIEF DE WAARDE 1 HEEFT IS DIE AFGESLOTEN EN LAAT DAT OOK ZIEN
             if($oplossingen['definitief'] === "1"){
                 $definitief = TRUE;
-                echo 'De oplossing is <strong>definitief</strong>,
-                 de ticket is afgesloten<br>';                 
+                echo '<p>De oplossing is <strong>definitief</strong>,
+                 de ticket is afgesloten<br></p>';
+                    if($_SESSION['accountNr'] === $ticket['fstAccountNr']){
+                        echo'
+                        <p>
+                        <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'&oplosId='.$oplossingen['oplossingId'].'&actie=onDef" method="POST">
+                            <button type="submit" value="onDef">Ongedaan maken</button></p>';
+                    }
             } else {
-// ALS DIE NOG NIET IS AFGESLOTEN EN ACCOUNT NR GELIJK IS AAN FTSACCOUNT DAN VERSCHIJNT DE DEFINITIEF KNOP 
+// ALS DIE NOG NIET IS AFGESLOTEN EN ACCOUNT NR GELIJK IS AAN FSTACCOUNTNR DAN VERSCHIJNT DE DEFINITIEF KNOP 
                 echo '<br>De oplossing is <strong>niet</strong> definitief.<br>';
                 if($_SESSION['accountNr'] === $ticket['fstAccountNr']){
                     echo '
                         <p>
-                        <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'" method="POST">
-                            <button type="submit" value="def">Definitief</button></p>                           
+                        <form action="leesTicket.php?ticket='. $ticket['ticketId'] .'&oplosId='.$oplossingen['oplossingId'].'&actie=zetDef" method="POST">
+                            <button type="submit" value="zetDef">Definitief</button></p>                           
                     ';
                 }
             }
