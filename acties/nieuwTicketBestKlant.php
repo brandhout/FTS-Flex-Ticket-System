@@ -8,7 +8,9 @@ error_reporting(E_ALL);
 //ALLE VARIABELEN
 $connectie = verbinddatabase(); // connectie database
 
-$ftsAccountNr = $_SESSION["accountNr"]; //sessie gebruiker
+if(is_numeric($_SESSION["accountNr"])){
+    $ftsAccountNr = $_SESSION["accountNr"]; //sessie gebruiker
+}
 //ticket id
 $klantID = $_SESSION['klantId'];
 
@@ -85,7 +87,6 @@ $ophaalticket = "SELECT * FROM ticket WHERE klantId='$klantID'";
 // HIER WORDT GEKEKEN OF RIJ ID GELIJK IS AAN TICKET ID EN ZET TICKET ID IN VAR
     while ($rowt = $resultticket->fetch_assoc()) {
         if ($rowt['klantId'] === $klantID) {
-            echo 'ticketID:' . $rowt['ticketId'];
             $ticketID = $rowt['ticketId'];
         }
     }
