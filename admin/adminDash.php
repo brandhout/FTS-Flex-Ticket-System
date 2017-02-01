@@ -42,13 +42,13 @@
                     <div class="card card-default card-block">
                         <ul id="tabsJustified" class="nav nav-tabs nav-justified">
                             <li class="nav-item">
-                                <a class="nav-link" href="" data-target="#tab1" data-toggle="tab">accountbeheer</a>
+                                <a class="nav-link" href="" data-target="#tab1" data-toggle="tab">Accountbeheer</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="" data-target="#tab2" data-toggle="tab">bedrijf/instantie beheer</a>
+                                <a class="nav-link active" href="" data-target="#tab2" data-toggle="tab">Bedrijf/instantie beheer</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="" data-target="#tab3" data-toggle="tab">meer...</a>
+                                <a class="nav-link" href="" data-target="#tab3" data-toggle="tab">Meer...</a>
                             </li>
                         </ul></div>
                         <!--/tabs-->
@@ -56,13 +56,13 @@
                         <div id="tabsJustifiedContent" class="tab-content">
                             <div class="tab-pane" id="tab1">
                                 <div class="list-group">
-                                    <a href="nieuwAccount.php" class="list-group-item"><span class="float-right label label-success"></span> account invoeren</a>
-                                    <a href="accounts.php" class="list-group-item"><span class="float-right label label-success"></span>accounts inzien/bewerken/verwijderen </a>
+                                    <a href="nieuwAccount.php" class="list-group-item"><span class="float-right label label-success"></span>Nieuw account</a>
+                                    <a href="accounts.php" class="list-group-item"><span class="float-right label label-success"></span>Accounts inzien/bewerken/verwijderen </a>
                                 </div>
                             </div>
                             <div class="tab-pane active" id="tab2">
                                 <div class="list-group">
-                                    <a href="invoerBedrijf.php" class="list-group-item"><span class="float-right label label-success"></span> bedrijf invoeren</a>
+                                    <a href="invoerBedrijf.php" class="list-group-item"><span class="float-right label label-success"></span>Bedrijf invoeren</a>
                                     <a href="invoerInstantie.php" class="list-group-item"><span class="float-right label label-success"></span>instantie invoeren </a>
 
                                 </div>
@@ -70,10 +70,10 @@
                             <div class="tab-pane" id="tab3">
                                 <div class="list-group">
                                 <div class="list-group">
-                                    <a href="cms/cmsDash.php" class="list-group-item"><span class="float-right label label-success"></span> content management</a>
-                                    <a href="invoerApparaten.php" class="list-group-item"><span class="float-right label label-success"></span> apparaat invoeren</a>
-                                    <a href="invoerCategorie.php" class="list-group-item"><span class="float-right label label-success"></span> categorie invoeren </a>
-                                    <a href="binnenkomstType.php" class="list-group-item"><span class="float-right label label-success"></span> binnenkomsttype toevoegen</a>
+                                    <a href="cms/cmsDash.php" class="list-group-item"><span class="float-right label label-success"></span>Content <anagement</a>
+                                    <a href="invoerApparaten.php" class="list-group-item"><span class="float-right label label-success"></span> Laptop invoeren</a>
+                                    <a href="invoerCategorie.php" class="list-group-item"><span class="float-right label label-success"></span> Categorie invoeren </a>
+                                    <a href="binnenkomstType.php" class="list-group-item"><span class="float-right label label-success"></span> Binnenkomsttype toevoegen</a>
                                 </div>
                             </div>
                         </div>
