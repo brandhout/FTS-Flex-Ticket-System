@@ -66,7 +66,8 @@
                 $verwijderQuery = "DELETE FROM account WHERE accountNr = " . $accountNr;
                 $verwijderResult = $connectie->query($verwijderQuery);
                 echo "Account verwijderd";
-                header("Refresh:3; url=accounts.php", true, 303);
+                echo '
+                <script> location.replace("accounts.php"); </script>';
                 
             }
         }
