@@ -49,8 +49,7 @@
                                                 <input class="form" type="text" name="achterNaam" required>';
                                                 
                                                 echo 'Lijnnummer<br>
-                                                <select class="form" name="lijnNr">
-                                                    <option value ="">---Select---</option>
+                                                <select class="form" name="lijnNr">                                                   
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>3</option>
@@ -81,25 +80,29 @@
 
     }
     if ( !empty($_POST) ){
-        if ( $_POST["isAdmin"] == 1 ) {
+        if ( $_POST["isAdmin"] === '1' ) {
             $admin = 1;
         } else { 
             $admin = 0;
         }
+    
+    if(is_numeric($_POST["vestigingId"])){
+        $vestigingId = $_POST["vestigingId"];
+    }
         
-        $_POST["naam"] = $connectie->escape_string($_POST["naam"]);
-        $_POST["achterNaam"] = $connectie->escape_string($_POST["achterNaam"]);
-        $_POST["gebruikersNaam"] = $connectie->escape_string($_POST["gebruikersNaam"]);
-        $_POST["wachtwoord"] = $connectie->escape_string($_POST["wachtwoord"]);
-        
-        $hash = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
-        
-        $insertAccount = $connectie->prepare('INSERT INTO account (accountNr, lijnNr, isAdmin, naam, achterNaam, laasteKeerIngelogd, actief, vestigingId, gebruikersNaam, wachtwoord)
-            VALUES (0, "'  . $_POST["lijnNr"] . '","' . $admin . '","' . $_POST["naam"] . '","' . $_POST["achterNaam"] . '","' . $datum . '","' . "1" . '","' . $_POST["vestigingId"] . '","' .  $_POST["gebruikersNaam"] . '","' . $hash . '")');
-        if ($insertAccount) {
-            if ($insertAccount->execute()) {
-                header("Refresh:1; url=accounts.php", true, 303);
-            }
+    $naam = $connectie->escape_string($_POST["naam"]);
+    $achterNaam = $connectie->escape_string($_POST["achterNaam"]);
+    $gebruikersNaam = $connectie->escape_string($_POST["gebruikersNaam"]);
+
+    $hash = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
+
+    $insertAccount = $connectie->prepare('INSERT INTO account (accountNr, lijnNr, isAdmin, naam, achterNaam, laasteKeerIngelogd, actief, vestigingId, gebruikersNaam, wachtwoord)
+        VALUES (0, "'  . $_POST["lijnNr"] . '","' . $admin . '","' . $naam . '","' . $achterNaam . '","' . $datum . '","' . "1" . '","' . $vestigingId . '","' .  $gebruikersNaam . '","' . $hash . '")');
+    if ($insertAccount) {
+        if ($insertAccount->execute()) {
+            echo '
+             <script> location.replace("accounts.php"); </script>';
         }
     }
+}
 ?>
