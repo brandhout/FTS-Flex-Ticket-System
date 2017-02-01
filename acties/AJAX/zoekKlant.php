@@ -1,14 +1,9 @@
 <?php
-    //MYSQL
-    $servernaam = "localhost";
-    $username = "root";
-    $password = "Admin01!";
-    $database = "ftsPrimair";
-
-    $connectie = new mysqli($servernaam, $username, $password, $database);    
-
+require_once '../../functies.php';
 $output = '';
 session_start();
+
+$connectie = verbinddatabase();
 
 if (isset($_POST['zoekval'])) {
     $searchq = preg_replace("#[^0-9a-z]#i","",$_POST['zoekval']);
