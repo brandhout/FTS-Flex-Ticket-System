@@ -57,7 +57,8 @@
             }
             if(strpos($_GET['accountActie'],'nee') !== FALSE){
                 $delete = FALSE;
-                header("Refresh:0; url=accounts.php", true, 303);
+                echo '
+                <script> location.replace("accounts.php"); </script>';
 
             }
             $accountNr = filter_var($_GET['accountActie'], FILTER_SANITIZE_NUMBER_INT);
