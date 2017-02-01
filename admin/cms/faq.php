@@ -21,19 +21,22 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include_once '../../functies.php';
-require_once '../../header.php';
 $connectie = verbinddatabase();
     
 if($_SESSION['isAdmin'] < 1){
     echo '<script> window.alert("U bent geen Administrator!");</script>';
-    header("refresh:0;url= ../index.php");
+    header("refresh:0;url= ../../index.php");
+    die();
    }
+   
+require_once '../../header.php';
+   
 $faqLeesQuery = "SELECT * FROM faq";
 $faqLeesUitkomst = $connectie->query($faqLeesQuery);
 $faq = $faqLeesUitkomst->fetch_assoc();
 
 if(isset($_POST['html'])){
-    $html = $connectie->escape_string($_POST['html']);
+    $html = $connectie->real_escape_string($_POST['html']);
     $faqUpdateQuery = "UPDATE faq SET html = '$html'";
     if($connectie->query($faqUpdateQuery)){
         header("refresh:1; url=../../faq.php", true, 303);
