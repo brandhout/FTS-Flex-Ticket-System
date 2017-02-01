@@ -150,7 +150,8 @@
         if ($prep) {
             if ($prep->execute()) {
                 echo '
-                 <script> location.replace("accounts.php"); </script>';                  
+                 <script> location.replace("accounts.php"); </script>';
+                die();
             }
        }
     } 
