@@ -101,7 +101,7 @@
     if ($insertAccount) {
         if ($insertAccount->execute()) {
             echo '
-             <script> location.replace("accounts.php"); </script>';
+                <script> location.replace("accounts.php"); </script>';
         }
     }
 }
