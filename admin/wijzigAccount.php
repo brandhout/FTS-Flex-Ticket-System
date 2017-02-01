@@ -31,6 +31,7 @@
         $wAccountUitkomst = $connectie->query($wAccountQuery);
         if( $wAccountUitkomst ){
             while($account = $wAccountUitkomst->fetch_assoc()){
+                $_SESSION['wActief'] = $account['actief'];
                 echo '<p><strong>Wijzig accounts</strong></p>
                     <hr>
                         <div class="container">
@@ -90,12 +91,12 @@
                                         echo 'Wachtwoord <br><input class="form" type="password" name="wachtwoord" value="';
                                         echo '"pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"/><br><br>';
 
-                                        if($account['actief'] === 0){
-                                            echo '<button name="actief" type="submit" class="form-btn semibold" value="">Account op actief zetten</button>';
+                                        if($account['actief'] === '0'){
+                                            echo '<button name="actief" type="submit" class="form-btn semibold" value="">Account op actief zetten</button><br><br>';
                                         }    
 
 
-                                         if($account['actief'] == 1){
+                                         if($account['actief'] === '1'){
                                             echo '<button name="nonActief" type="submit" class="form-btn semibold" value="">Account op on-actief zetten</button><br><br>';
 
                                         }    
@@ -107,38 +108,50 @@
         }
     }
     if ( !empty($_POST)){
-            //echo $_POST["isAdmin"];
-            if ( isset($_POST["isAdmin"]))  {
-                $admin = 1;
-            } else { 
-                $admin = 0;
-            }
-            if(isset($_POST['actief'])){
-                $wActief = 1;
-            }    
-            if(isset($_POST['nonActief'])){
-                $wActief = 0;
-            }
-            
-            if(!empty($_POST["wachtwoord"])){
-                $hashin = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
-                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', actief='$wActief', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}', wachtwoord='$hashin' WHERE accountNr='{$_POST['accountNr']}' ";
-            } else {
-                $updateAccount = "UPDATE account SET accountNr='{$_POST['accountNr']}', lijnNr='{$_POST['lijnNr']}', isAdmin='$admin', actief='$wActief', naam='{$_POST['naam']}', achterNaam='{$_POST['achterNaam']}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$_POST['gebruikersNaam']}' WHERE accountNr='{$_POST['accountNr']}' ";
-                
-            }     
-        
-        //echo $updateAccount;
-        $prep = $connectie->prepare($updateAccount);
-            if ($prep) {
-                if ($prep->execute()) {
-                    echo 'Wijziging opgeslagen';
-                    header("Refresh:5; url=accounts.php", true, 303);
-                }
-           }
+        //echo $_POST["isAdmin"];
+        if (isset($_POST["isAdmin"]))  {
+            $admin = 1;
+        } else { 
+            $admin = 0;
+        }
+
+        $wActief = $_SESSION['wActief'];
+
+        if(isset($_POST['actief'])){
+            $wActief = 1;
+        }    
+        if(isset($_POST['nonActief'])){
+            $wActief = 0;
+        }
+
+        $accountNr = $connectie->real_escape_string($_POST['accountNr']);
+        $naam = $connectie->real_escape_string($_POST['naam']);
+        $achterNaam = $connectie->real_escape_string($_POST['achterNaam']);
+        $gebruikersNaam = $connectie->real_escape_string($_POST['gebruikersNaam']);
+
+        if(is_numeric($_POST['lijnNr'])){
+            $lijnNr = $_POST['lijnNr'];
         }
         
-    
-    
-    
+        if(is_numeric($_POST['accountNr'])){
+            $accountNr = $_POST['accountNr'];
+        }
+
+        if(!empty($_POST["wachtwoord"])){
+            $hashin = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
+            $updateAccount = "UPDATE account SET accountNr='{$accountNr}', lijnNr='{$lijnNr}', isAdmin='$admin', actief='$wActief', naam='{$naam}', achterNaam='{$achterNaam}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$gebruikersNaam}', wachtwoord='$hashin' WHERE accountNr='{$accountNr}' ";
+        } else {
+            $updateAccount = "UPDATE account SET accountNr='{$accountNr}', lijnNr='{$lijnNr}', isAdmin='$admin', actief='$wActief', naam='{$naam}', achterNaam='{$achterNaam}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$gebruikersNaam}' WHERE accountNr='{$accountNr}' ";
+
+        }     
+
+    //echo $updateAccount;
+    $prep = $connectie->prepare($updateAccount);
+        if ($prep) {
+            if ($prep->execute()) {
+                echo '
+                 <script> location.replace("accounts.php"); </script>';                  
+            }
+       }
+    } 
 ?>
