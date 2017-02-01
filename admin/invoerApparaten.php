@@ -32,13 +32,10 @@
         $merk = $_POST['laptopMerk'];
                      
         $insertLaptopMerkQuery = $connectie->prepare("INSERT INTO veelVoorkomendelaptopMerken (vVLaptopMerkId, vVLaptopMerkOm) VALUES ('', ?)");
-        echo 'param';
         $insertLaptopMerkQuery->bind_param("s", $merk);
-        echo 'bind_param';
 
         $insertLaptopMerkQuery->execute();
         $insertLaptopMerkQuery->close();
-        header("Refresh:0; url=adminDash.php", true, 303);
   
     }
     if(isset($_POST['submitType'])){
@@ -55,12 +52,9 @@
 
         $insertLaptopTypeQuery->execute();
         $insertLaptopTypeQuery->close();
-        //header("Refresh:0; url=adminDash.php", true, 303);
         
-    }
-         
-        
-    
+    }               
+require_once '../header.php'; //Include de header 
 ?>
 
  

@@ -21,6 +21,7 @@
     if($_SESSION['isAdmin'] < 1){
         echo '<script> window.alert("U bent geen Administrator!");</script>';
         header("refresh:0;url= ../index.php");
+        die();
     }
         
         if(isset($_GET['verwijderActie'])){
@@ -69,6 +70,7 @@
                 echo "Account verwijderd";
                 echo '
                 <script> location.replace("accounts.php"); </script>';
+                die();
                 
             }
         }

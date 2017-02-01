@@ -27,6 +27,7 @@
     if($_SESSION['isAdmin'] < 1){
         echo '<script> window.alert("U bent geen Administrator!");</script>';
         header("refresh:0;url= ../index.php");
+        die();
     }
     
     if(isset($_POST['submitBedrijf'])){
@@ -62,6 +63,7 @@
         $insertBedrijfQuery->execute();
         $insertBedrijfQuery->close();
         header('url=../index.php');
+        die();
     }
 ?>
 

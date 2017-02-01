@@ -27,6 +27,7 @@ session_start();
 if(!isset($_SESSION['gebruikersNaam'])) {
 	$ingelogd = FALSE;
 	header('Location: acties/inloggen.php');
+        die();
 } else {
 	$ingelogd = TRUE;
 }

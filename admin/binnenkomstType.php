@@ -2,7 +2,6 @@
 
    session_start();
     require_once '../functies.php'; //Include de functies.
-    require_once '../header.php'; //Include de header.
     ini_set('display_erors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -11,30 +10,23 @@
     if($_SESSION['isAdmin'] < 1){
         echo '<script> window.alert("U bent geen Administrator!");</script>';
         header("refresh:0;url= ../index.php");
+        die();
     }
-    
-    if($_SESSION['isAdmin'] < 1){
-        echo '<script> window.alert("U bent geen Administrator!");</script>';
-        header("refresh:0;url= ../index.php");
-    }
-    
+        
     if(isset($_POST['submitBinnenkomstType'])){
         
-        $binnenkomst = $_POST['binnenkomstType'];
-       
-        
+        $binnenkomst = $_POST['binnenkomstType'];           
         
         $insertBinnenkomstQuery = $connectie->prepare("INSERT INTO binnenkomstType (binnenkomstId, binnenkomstTypeOm) VALUES ('', ?)");
-        echo 'prepare<br>';
         $insertBinnenkomstQuery->bind_param("s", $binnenkomst);
-        echo 'bind_param<br>';
 
         $insertBinnenkomstQuery->execute();
-        echo 'execute<br>';
         $insertBinnenkomstQuery->close();
-        header('url=adminDash');
-        echo '<br>';
-        echo 'klaar';
+        echo '
+        <script> location.replace("adminDash.php"); </script>';   
+        die();
+    } else {
+        require_once '../header.php'; //Include de header.
     }
 ?>
 
