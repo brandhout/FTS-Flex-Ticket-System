@@ -78,7 +78,7 @@ $(document).ready(function() {
 	
 	<div class="collapse navbar-collapse js-navbar-collapse">
 		<ul class="nav navbar-nav">
-  					  <?php
+<?php
     switch ($_SESSION['isAdmin']) { 
                 case "1": echo '                  
                     <li><a href="/ticketsysteem/admin/adminDash.php">Admin Dashboard <span class="glyphicon glyphicon-dashboard"></span></a></li>
@@ -111,6 +111,10 @@ $(document).ready(function() {
                 default:
                 break;
             }
+        if(!isset($_SESSION['gebruikersNaam'])) {
+            header('Location: /ticketsysteem/acties/inloggen.php');
+            die();
+}
 
 ?>
 

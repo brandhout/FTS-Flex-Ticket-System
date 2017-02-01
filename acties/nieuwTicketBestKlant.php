@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['gebruikersNaam'])) {
+    header('Location: /ticketsysteem/acties/inloggen.php');
+    die();
+}
+
 require_once '../functies.php'; //Include de functies.
 ini_set('display_erors', 1);
 ini_set('display_startup_errors', 1);
