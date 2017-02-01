@@ -9,7 +9,9 @@ error_reporting(E_ALL);
 
 $connectie = verbinddatabase(); // connectie database
 
-$ftsAccountNr = $_SESSION["accountNr"]; //sessie gebruiker
+if(is_numeric($_SESSION["accountNr"])){
+    $ftsAccountNr = $_SESSION["accountNr"]; //sessie gebruiker
+}
 //naw
 $naam = $_POST["klantNaam"];
 $achternaam = $_POST["klantAchternaam"];
@@ -103,7 +105,6 @@ $insertticket = $connectie->prepare("INSERT INTO ticket (ticketId, inBehandeling
             if ($insertticket) {
                 $insertticket->bind_param('ssisiiii', $probleem, $trefwoorden, $prioriteit, $sdate, $scategorie, $binnenkomstT, $merktype, $besturingsysteem);
                 if ($insertticket->execute()) {
-                    echo 'ticket aangemaakt';
                     //header("Refresh:5; url=../index.php", true, 303);
                 }else {echo "ticketError : " . mysqli_error($connectie);}
             }else {echo "ticketError : " . mysqli_error($connectie);}
