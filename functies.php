@@ -37,6 +37,11 @@ return $datum;
 
 function updateNogBellen($in,$ticketId){
     $connectie = verbinddatabase();
+    
+    if(!is_numeric($ticketId)){
+        return FALSE;
+    }
+    
     if($in === "0"){
         $nogBellenQuery = "UPDATE ticket SET nogBellen=0 WHERE ticketId = $ticketId";
     }
@@ -53,6 +58,22 @@ function updateNogBellen($in,$ticketId){
 
 function updateLijn($vanLijn,$naarLijn,$opmerking,$ticketId,$accountNr){
     $connectie = verbinddatabase();
+    
+    if(!is_numeric($ticketId)){
+        return FALSE;
+    }
+    
+    if(!is_numeric($vanLijn)){
+        return FALSE;
+    }
+    
+    if(!is_numeric($naarLijn)){
+        return FALSE;
+    }
+    
+    if(!is_numeric($accountNr)){
+        return FALSE;
+    }
     
     $doorstuurUpQuery = "INSERT INTO doorsturing (doorstuurId, vanLijn, naarLijn,
         opmerking, accountNr,
@@ -73,6 +94,11 @@ function updateLijn($vanLijn,$naarLijn,$opmerking,$ticketId,$accountNr){
 }
 
 function leesAccountAchterNaam($accountNr){
+    
+    if(!is_numeric($accountNr)){
+        return FALSE;
+    }
+    
     $connectie = verbinddatabase();
     
     $leesAccountQuery = "SELECT achterNaam FROM account WHERE accountNr = '$accountNr'";
@@ -89,6 +115,11 @@ function sqlbuster($in){
 }
 
 function checkDefinitief($ticketId){
+    
+    if(!is_numeric($ticketId)){
+        return FALSE;
+    }
+    
     $connectie = verbinddatabase();    
     $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
     $oplossingUitkomst = $connectie->query($oplossingQuery);
@@ -96,7 +127,7 @@ function checkDefinitief($ticketId){
         if($oplossing['definitief'] === "1"){
             return TRUE;
         } else {
-		return FALSE;
+            return FALSE;
 	} 
     }
 }
@@ -113,7 +144,6 @@ function overDatum($eindDatum){
         } else {
             return FALSE;          
         }
-    
 }
 
 function leesLaptopTypeId($typeOm){
@@ -141,6 +171,10 @@ function prioriteitOmzet ($prioriteitINT){
 function leesBedrijfsNaam($bedrijfsId){
     $connectie = verbinddatabase();
     
+    if(!is_numeric($bedrijfsId)){
+        return FALSE;
+    }
+    
     $bedrijfsQuery = "SELECT naam FROM bedrijf WHERE bedrijfsId = '$bedrijfsId'";
     $bedrijfsUitkomst = $connectie->query($bedrijfsQuery);
     $bedrijf = $bedrijfsUitkomst->fetch_assoc();
@@ -150,6 +184,10 @@ function leesBedrijfsNaam($bedrijfsId){
 
 function leesInstantieNaam ($instantieId){
     $connectie = verbinddatabase();
+    
+    if(!is_numeric($instantieId)){
+        return FALSE;
+    }
     
     $instantieQuery = "SELECT instantieNaam FROM instantie WHERE instantieId = '$instantieId'";
     $instantieUitkomst = $connectie->query($instantieQuery);
@@ -165,13 +203,6 @@ $query = $connectie->prepare("SELECT * FROM ticket");
 $query->execute();
 $query->store_result();
 $rowsat = $query->num_rows;
-
-$one=0;
-$query1 = $connectie->prepare("SELECT * FROM oplossingen WHERE definitief = ?");
-$query1->bind_param('s', $one);
-$query1->execute();
-$query1->store_result();
-$rowsot = $query1->num_rows;
 
 $query2 = $connectie->prepare("SELECT * FROM account");
 $query2->execute();
@@ -198,67 +229,60 @@ echo '
 
 <html>  
 <div class="container-fluid">
+<strong> Statistiek lijn*:</strong>
  <div class="row mb-3">
   ';
-    switch ($_SESSION['isAdmin']) { 
-                case "1": echo '     
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-inverse card-success">
-                        <div class="card-block bg-success">
-                            <div class="rotate">
-                                <i class="fa fa-user fa-5x"></i>
-                            </div>
-                            <h6 class="text-uppercase">aantal accounts</h6>
-                            <h1 class="display-1">'.$rowsa.'</h1>
+    if ($_SESSION['isAdmin'] === '1') { 
+        echo '     
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-inverse card-success">
+                    <div class="card-block bg-success">
+                        <div class="rotate">
+                            <i class="fa fa-user fa-5x"></i>
                         </div>
+                        <h6 class="text-uppercase">aantal accounts</h6>
+                        <h1 class="display-1">'.$rowsa.'</h1>
                     </div>
                 </div>
-                    				' ;
-                break;
-
-                case "0":
-                break;
-
-                default:
-                break;
-            }
+            </div>
+        ' ;
+    }
 echo '
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-inverse card-danger">
-                        <div class="card-block bg-danger">
-                            <div class="rotate">
-                                <i class="fa fa-ticket fa-5x"></i>
-                            </div>
-                            <h6 class="text-uppercase">openstaande tickets alle lijnen</h6>
-                            <h1 class="display-2">'.$ato.'</h1>
-                        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-inverse card-danger">
+                <div class="card-block bg-danger">
+                    <div class="rotate">
+                        <i class="fa fa-ticket fa-5x"></i>
                     </div>
+                    <h6 class="text-uppercase">openstaande tickets</h6>
+                    <h1 class="display-2">'.$ato.'</h1>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-inverse card-info">
-                        <div class="card-block bg-info">
-                            <div class="rotate">
-                                <i class="fa fa-ticket fa-5x"></i>
-                            </div>
-                            <h6 class="text-uppercase">totaal aantal tickets</h6>
-                            <h1 class="display-3">'.$rowsat.'</h1>
-                        </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-inverse card-info">
+                <div class="card-block bg-info">
+                    <div class="rotate">
+                        <i class="fa fa-ticket fa-5x"></i>
                     </div>
+                    <h6 class="text-uppercase">aantal tickets</h6>
+                    <h1 class="display-3">'.$rowsat.'</h1>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-inverse card-warning">
-                        <div class="card-block bg-warning">
-                            <div class="rotate">
-                                <i class="fa fa-ticket fa-5x"></i>
-                            </div>
-                            <h6 class="text-uppercase">gesloten tickets</h6>
-                            <h1 class="display-4">'.$rowsbt.'</h1>
-                        </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-inverse card-warning">
+                <div class="card-block bg-warning">
+                    <div class="rotate">
+                        <i class="fa fa-ticket fa-5x"></i>
                     </div>
+                    <h6 class="text-uppercase">gesloten tickets</h6>
+                    <h1 class="display-4">'.$rowsbt.'</h1>
                 </div>
-            </div>   
-
-             </div>           
-</html>
+            </div>
+        </div>
+        </div>   
+    </div>           
+    </html>
 ';
 }
