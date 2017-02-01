@@ -28,7 +28,8 @@ $klantId = filter_var($_GET['klantActie'], FILTER_SANITIZE_NUMBER_INT);
 $klantQuery = "SELECT * FROM klant WHERE klantId = $klantId";
     $klantUitkomst = $connectie->query($klantQuery);
     $klant = $klantUitkomst->fetch_assoc();
-    
+
+if(!isset($_POST['submit'])){
 echo'
     
    
@@ -60,7 +61,7 @@ echo'
         
 
 
-                        </div><div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s"></div></div></div></div></div><hr>';
+        </div><div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s"></div></div></div></div></div><hr>';}
 
         if(isset($_POST['submit'])){
             $klantNaam = mysqli_real_escape_string($connectie, stripcslashes(trim($_POST['klantNaam'])));
@@ -75,5 +76,8 @@ echo'
                 klantEmail = '$klantEmail' WHERE klantId = '$klantId'";
             if(!$connectie->query($wijzigklantquery)){
               echo "Klant update query mislukt..." . mysqli_error($connectie);  
+            } else {
+                echo'<script> location.replace("../accounts.php"); </script>';
+                die();
             }
         }
