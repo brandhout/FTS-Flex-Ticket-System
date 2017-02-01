@@ -199,19 +199,18 @@ function leesInstantieNaam ($instantieId){
 function infoBar(){
 $connectie = verbinddatabase();
     
-$query = $connectie->prepare("SELECT * FROM ticket");
+$query = $connectie->prepare("SELECT ticketId FROM ticket");
 $query->execute();
 $query->store_result();
 $rowsat = $query->num_rows;
 
-$query2 = $connectie->prepare("SELECT * FROM account");
+$query2 = $connectie->prepare("SELECT accountNr FROM account");
 $query2->execute();
 $query2->store_result();
 $rowsa = $query2->num_rows;
 
 $zero=1;
-$query3 = $connectie->prepare("SELECT * FROM oplossingen WHERE definitief = ?");
-$query3->bind_param('s', $zero);
+$query3 = $connectie->prepare("SELECT oplossingId FROM oplossingen WHERE definitief = '1'");
 $query3->execute();
 $query3->store_result();
 $rowsbt = $query3->num_rows;
