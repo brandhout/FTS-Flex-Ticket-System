@@ -7,11 +7,6 @@ session_start();
     require_once '../header.php'; //Include de header.
     require_once '../functies.php'; //Include de functies.
 
-    //ini_set('display_errors', 1);
-    //ini_set('display_startup_errors', 1);
-    //error_reporting(E_ALL);
-    
-    
     $connectie = verbinddatabase();
 //SELECT DE BIJLAGE UIT DE DATABASE EN WEERGEEFT HEM OP HET SCHERM
     if(isset($_GET['id'])){
