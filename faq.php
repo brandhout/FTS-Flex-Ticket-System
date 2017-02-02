@@ -19,6 +19,7 @@ session_start();
 if(!isset($_SESSION['gebruikersNaam'])) {
 	$ingelogd = FALSE;
 	header('Location: acties/inloggen.php');
+        die();
 } else {
 	$ingelogd = TRUE;
 }
@@ -36,4 +37,4 @@ $faqQuery = "SELECT * FROM faq";
 $faqUitkomst = $connectie->query($faqQuery);
 $faq = $faqUitkomst->fetch_assoc();
 
-echo $faq['html'];
+echo preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $faq['html']);
