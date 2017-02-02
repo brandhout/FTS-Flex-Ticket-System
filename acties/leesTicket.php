@@ -14,15 +14,8 @@
      * along with this program.  If not, see <http://www.gnu.org/licenses/>.
      */
 
-    session_start();
-    ini_set('display_erors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
-    require_once '../functies.php'; //Include de functies.
-    //ini_set('display_errors', 1);
-    //ini_set('display_startup_errors', 1);
-    //error_reporting(E_ALL);
+session_start();
+require_once '../functies.php'; //Include de functies.
     
 //VAR
     $connectie = verbinddatabase();
@@ -34,6 +27,8 @@
     if (is_numeric($_GET['ticket'])) {
         $ticketId = $_GET['ticket'];
     }
+// Zet de map waarin de uploads staan
+    $dir = "../userUpload/".$ticketId;
 //SELECTEERT ALLES VAN DB EN KIJKT OF HET GELIJK IS AAN VAR ID
     $ticketQuery = "SELECT * FROM ticket WHERE ticketId = '$ticketId'";
         $ticketUitkomst = $connectie->query($ticketQuery);
@@ -469,18 +464,22 @@
             ';
     }
 
-    echo '<p> Bijlagen </p>';
-//HAALT HET TICKET ID OP DIE BIJ DE BIJLAGE HOORT EN NEEMT HEM MEE NAAR DE VERWERK PAGINA
-    $countBijlage = 0; //Geeft $countbijlage de waarde 0
-    while($bijlage = $bijlageUitkomst->fetch_assoc()){
-
-        $countBijlage += 1; //Hier gaat hij alle mogelijke bijlages optellen zodat er een genummerd lijstje op het scherm verschijnt
-        $id = $bijlage['id'];
-        $naam = $bijlage['naam'];
-
-        echo '<a href="leesBijlage.php?id=' . $id .'">' . $countBijlage . ': ' . $naam . '</a><br>
-            ';
-    }
+    if(file_exists($dir)){ //ALS DE MAP BESTAAT (/USERUPLOAD/TICKETID)
+        echo '<p> Bijlage </p>';
+        if ($openMap = opendir($dir)) {//MAP WORDT GEOPEND, WORDT IN $OPENMAP GEZET           
+            while (false !== ($bestand = readdir($openMap))) {// ZOLANG ER BESTANDEN IN MAP ZITTEN
+                if ($bestand != "." && $bestand != "..") {// ZOLANG BESTANDSNAAM GEEN . EN .. IS (LINUX WEBSERVERS)
+                    $bestandLijst .= '<li><a href="'.$dir.'/'.$bestand.'">'.$bestand.'</a></li>';// mAAKT EEN LINK AAN
+                }
+            }
+            closedir($openMap);// GOOIT MAP WEER DICHT
+        }
+        echo $bestandLijst; // GEEFT UITEINDELIJKE LIJST WEER
+        //echo '<br><p> Nieuwe bijlage </p>
+        //    <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+        //        <input name="userfile" type="file" id="userfile" class="form">
+        //';
+}
 
     echo'</div></div></div></div></div></div><hr> ';
 ?>
