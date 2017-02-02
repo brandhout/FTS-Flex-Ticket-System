@@ -80,7 +80,7 @@
      </html> ';   
 
     }
-    if ( !empty($_POST) ){
+    if ( !empty($_POST) && $_SESSION['isAdmin'] === '1'){
         if ( $_POST["isAdmin"] === '1' ) {
             $admin = 1;
         } else { 
