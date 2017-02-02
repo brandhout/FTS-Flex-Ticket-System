@@ -7,9 +7,6 @@ if(!isset($_SESSION['gebruikersNaam'])) {
 }
 
 require_once '../functies.php'; //Include de functies.
-ini_set('display_erors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 //ALLE VARIABELEN
 $connectie = verbinddatabase(); // connectie database
 
@@ -128,8 +125,8 @@ if ($_FILES['userfile']['size'] > 0){
     $bijlage = addslashes(fread($fp, $fileSize));
     fclose($fp);
     
-    $fileQuery = "INSERT INTO bijlage (id, naam, lengte, type, bijlage, ticketId)
-        VALUES ('', '$fileName', '$fileSize', '$fileType', '$bijlage', '$ticketID')";
+    $fileQuery = "INSERT INTO bijlage (id, naam, type, bijlage, ticketId)
+        VALUES ('', '$fileName', '$fileType', '$bijlage', '$ticketID')";
     
     if(!$connectie->query($fileQuery)){
         echo "bijlageError : " . mysqli_error($connectie);
