@@ -10,7 +10,7 @@ if (isset($_POST['zoekval'])) {
     // Dit moet uitgebreider met realescapestring e.d
     $leesKlantQuery= mysqli_query($connectie,"SELECT * FROM klant WHERE klantAchternaam LIKE '%$searchq%';");
     $count = mysqli_num_rows($leesKlantQuery);
-        if($count ==0){
+        if($count === 0 Or $count > 1){
             $output = 'geen resultaten';
         }else{
             while($row= mysqli_fetch_array($leesKlantQuery)){
@@ -18,7 +18,7 @@ if (isset($_POST['zoekval'])) {
                     $vnaam=$row['klantNaam'];
                     $_SESSION['klantId']=$row['klantId'];
                     $kid=$row['klantId'];
-                    $output.=$kid.'';
+                    $output.=$vnaam.' '.$anaam.' (id:'.$kid.')';
             
 }}}
 echo($output);
