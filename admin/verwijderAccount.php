@@ -24,7 +24,7 @@
         die();
     }
         
-        if(isset($_GET['verwijderActie'])){
+        if(isset($_GET['verwijderActie']) && $_SESSION['isAdmin'] === '1'){
 
             $accountNr = filter_var($_GET['verwijderActie'], FILTER_SANITIZE_NUMBER_INT);
             
