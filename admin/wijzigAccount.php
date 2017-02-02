@@ -107,7 +107,7 @@
             }
         }
     }
-    if ( !empty($_POST)){
+    if (!empty($_POST) && $_SESSION['isAdmin'] === '1'){
         //echo $_POST["isAdmin"];
         if (isset($_POST["isAdmin"]))  {
             $admin = 1;
@@ -154,5 +154,7 @@
                 die();
             }
        }
-    } 
+    } else {
+        die();
+    }
 ?>
