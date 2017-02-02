@@ -155,24 +155,10 @@ $insertoplossing=$connectie->prepare("INSERT INTO oplossingen(oplossingId, defin
 
 //ALS FILE GROTER IS DAN 1 DAN MOETEN DE BENODIGDE DINGEN IN VAR GEZET WORDEN ZODAT HET INGEVOERD KAN WORDEN
 if ($_FILES['userfile']['size'] > 0){
-    $fileName = $_FILES['userfile']['name'];
-    $tmpName  = $_FILES['userfile']['tmp_name'];
-    $fileSize = $_FILES['userfile']['size'];
-    $fileType = $_FILES['userfile']['type'];
-
-    $fp      = fopen($tmpName, 'r');
-    $bijlage = addslashes(fread($fp, $fileSize));
-    fclose($fp);
-    
-    $fileQuery = "INSERT INTO bijlage (id, naam, lengte, type, bijlage, ticketId)
-        VALUES ('', '$fileName', '$fileSize', '$fileType', '$bijlage', '$ticketID')";
-    
-    if(!$connectie->query($fileQuery)){
-        echo "bijlageError : " . mysqli_error($connectie);
-    }
-        
+    $fileName = $_FILES["userfile"]["name"];
+    mkdir("../userUpload/".$ticketID, 0777, true);
+    move_uploaded_file($_FILES["userfile"]["tmp_name"], "../userUpload/{$ticketID}/{$fileName}");   
 }
-
 header("Refresh:0; url=../index.php", true, 303);  
 }
            
