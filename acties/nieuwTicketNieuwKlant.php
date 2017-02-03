@@ -159,6 +159,7 @@ if ($_FILES['userfile']['size'] > 0){
     mkdir("../userUpload/".$ticketID, 0777, true);
     move_uploaded_file($_FILES["userfile"]["tmp_name"], "../userUpload/{$ticketID}/{$fileName}");   
 }
+nieuwTicketMail($klantEmail, $klantID);
 header("Refresh:0; url=../index.php", true, 303);  
 }
            
