@@ -2,7 +2,7 @@
 <head>
     
     <meta charset="UTF-8">
-  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'><!-- KAPOT! -->
+  <!--<link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'><!-- KAPOT! -->
   <link rel="stylesheet" href="/ticketsysteem/styles.css" type="text/css"> 
   <script src="/ticketsysteem/navbar.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -48,20 +48,6 @@ $(document).ready(function() {
 } );
 
 </script>
-<script>
-$(document).ready(function() {
-    var table = $('#examplead').DataTable( {
-        "language": {
-    "url": "http://cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json"
-  },
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true
-    } );
-} );
-
-</script>
 </head>
 <body>
 <div class="container">
@@ -91,11 +77,12 @@ $(document).ready(function() {
 							<li><a href="/ticketsysteem/admin/adminDash.php">Admin dashboard</a></li>                                                      
 							<li><a href="/ticketsysteem/admin/accounts.php">Accountbeheer</a></li>
                                                         <li><a href="/ticketsysteem/klanten.php">Klantenbeheer</a></li>
-                                                        <li><a href="/ticketsysteem/admin/invoerBedrijf.php">Nieuw bedrijf</a></li>
+                                                        <li><a href="/ticketsysteem/bedrijven.php">Bedrijfbeheer</a></li>
+                                                        <li class="divider"></li>
 							<li><a href="/ticketsysteem/admin/invoerApparaten.php">Invoeren apparaten</a></li>
 							<li><a href="/ticketsysteem/admin/invoerCategorie.php">Invoeren categorieën</a></li>
 							<li><a href="/ticketsysteem/admin/invoerInstantie.php">Invoeren instanties</a></li>
-                                                        <li><a href="/ticketsysteem/admin/binnenkomstType.php">Invoeren nieuwe binnenkomsttype</a></li>                                                         
+                                                        <li><a href="/ticketsysteem/admin/binnenkomstType.php">Invoeren binnenkomsttypes</a></li>                                                         
 							<li class="divider"></li>
                                                         <li><a href="/ticketsysteem/admin/cms/cmsDash.php">Content Management</a></li>
 
