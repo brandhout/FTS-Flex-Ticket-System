@@ -57,13 +57,13 @@
                         <div id="tabsJustifiedContent" class="tab-content">
                             <div class="tab-pane" id="tab1">
                                 <div class="list-group">
-                                    <a href="nieuwAccount.php" class="list-group-item"><span class="float-right label label-success"></span>Nieuw account</a>
+                                    <a href="accounts.php" class="list-group-item"><span class="float-right label label-success"></span>Accountbeheer</a>
                                     <a href="accounts.php" class="list-group-item"><span class="float-right label label-success"></span>Accounts inzien/bewerken/verwijderen </a>
                                 </div>
                             </div>
                             <div class="tab-pane active" id="tab2">
                                 <div class="list-group">
-                                    <a href="invoerBedrijf.php" class="list-group-item"><span class="float-right label label-success"></span>Bedrijf invoeren</a>
+                                    <a href="../bedrijven.php" class="list-group-item"><span class="float-right label label-success"></span>Bedrijfbeheer</a>
                                     <a href="invoerInstantie.php" class="list-group-item"><span class="float-right label label-success"></span>instantie invoeren </a>
 
                                 </div>
@@ -88,7 +88,7 @@
             $ticketUitkomst = $connectie->query($ticketQuery);
 echo '<div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
 
-    <table id="examplead" class="display nowrap" cellspacing="0" width:100%>
+    <table id="example" class="display nowrap" cellspacing="0" width:100%>
                     <thead>
                     <tr>
                     <td><strong>TicketID</strong></td>
