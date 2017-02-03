@@ -123,7 +123,11 @@ if ($_FILES['userfile']['size'] > 0){
     mkdir("../userUpload/".$ticketID, 0777, true);
     move_uploaded_file($_FILES["userfile"]["tmp_name"], "../userUpload/{$ticketID}/{$fileName}");   
 }
-header("Refresh:0; url=../index.php", true, 303);  
+$klantMailQuery = "SELECT klantEmail FROM klant WHERE klantId = '$klantID' ";
+$klantMailUitkomst = $connectie->query($klantMailQuery);
+$klantMail = $klantMailUitkomst->fetch_assoc();
+nieuwTicketMail($klantMail['klantEmail'], $ftsAccountNr);
+header("Refresh:0; url=../index.php", true, 303);
 }
           
 ?>
