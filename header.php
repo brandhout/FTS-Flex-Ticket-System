@@ -124,7 +124,7 @@ $(document).ready(function() {
             <li><a href="/ticketsysteem/tickets.php">Tickets overzicht</a></li>
             <li><a href="/ticketsysteem/klanten.php">Klanten overzicht</a></li>
             <li class="divider"></li>
-            <li><a href="/ticketsysteem/acties/nieuwTicketDash.php">nieuwe ticket</a></li>
+            <li><a href="/ticketsysteem/acties/nieuwTicketDash.php">Nieuw ticket</a></li>
             <li class="divider"></li>
             <li><a href="/ticketsysteem/faq.php">FAQ pagina</a></li>
           </ul>
