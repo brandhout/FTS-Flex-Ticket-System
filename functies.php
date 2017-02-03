@@ -285,3 +285,12 @@ echo '
     </html>
 ';
 }
+
+function nieuwTicketMail($klantEmail, $accountNr){
+    $onderwerp = 'Uw ticket is in behandeling genomen!';
+    $bericht = 'Beste'.leesAccountAchterNaam($accountNr).',
+            uw ticket is in behandeling genomen';
+    $headers = 'From: noreply@flexticketsystem.com';
+    
+    mail($klantEmail, $onderwerp, $bericht, $headers);
+}
