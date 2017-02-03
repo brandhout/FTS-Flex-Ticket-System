@@ -77,11 +77,14 @@
     
         <div class="container">
             <div class="inner contact">  
-    		<div class="grid">
+                <div class="contact-form">
+
+
+                        
+                            <form name="bedrijf" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST"enctype="multipart/form-data">
+                                    		<div class="grid">
                     <div class="row">
-                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div>
-                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
-                            <form name="bedrijf" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
                                 Bedrijfsnaam<br>
                                 <input type="text" class="form" name="naam" required><br>
                                 Website<br>
@@ -91,7 +94,7 @@
                                 BTW. Nummer<br>
                                 <input type="text" class="form" name="btwNr"><br>
                         </div>
-                        <div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
+                        <div class=" col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
                                 Adres<br>
                                 <input type="text" class="form" name="adres" required><br>
                                 Postcode<br>
@@ -100,9 +103,9 @@
                                 <input type="text" class="form" name="stad" required><br>
                                 Telefoonnummer<br>
                                 <input type="text" class="form" name="tel">
-                                <button name="submitBedrijf" class="form-btn semibold" type="submit" value="1">Invoeren</button>
+                                <button name="submitBedrijf" class="form-btn semibold" type="submit" value="1">Invoeren</button></div></div></div>
                             </form>
-                        </div><div class="col-xs-6 col-sm-3 wow animated slideInLeft" data-wow-delay=".5s"></div></div></div></div></div>
+                        </div></div></div>
                                                     
         
         <hr>
