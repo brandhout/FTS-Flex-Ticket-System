@@ -28,9 +28,7 @@ if($_SESSION['isAdmin'] < 1){
     header("refresh:0;url= ../../index.php");
     die();
    }
-   
-require_once '../../header.php';
-   
+      
 $faqLeesQuery = "SELECT * FROM faq";
 $faqLeesUitkomst = $connectie->query($faqLeesQuery);
 $faq = $faqLeesUitkomst->fetch_assoc();
@@ -40,8 +38,11 @@ if(isset($_POST['html'])){
     $faqUpdateQuery = "UPDATE faq SET html = '$html'";
     if($connectie->query($faqUpdateQuery)){
         header("refresh:1; url=../../faq.php", true, 303);
+        die();
     }
 }
+
+require_once '../../header.php';
 
 ?>
 
