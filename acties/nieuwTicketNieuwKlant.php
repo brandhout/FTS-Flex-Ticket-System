@@ -33,7 +33,16 @@ $bedrijf = $_POST["bedrijf"];
 $trefwoorden = $_POST["trefwoorden"];
 $prioriteit = $_POST["prioriteit"];
 $nogbellen = $_POST["NogBellen"];
-$categorie = $_POST["categorie"];
+if(isset($_POST["categorie"])){
+    $categorie = $_POST["categorie"];
+    if(isset($_POST["subCategorie"])){
+        $scategorie = $_POST["subCategorie"];
+    } else {
+        $scategorie = FALSE;
+    }
+} else {
+    $categorie = FALSE;
+}
 
 $streefdatum = $_POST["datepicker"];
 $sdate = date('Y-m-d', strtotime(str_replace('-', '/', $streefdatum)));
@@ -41,8 +50,9 @@ $sdate = date('Y-m-d', strtotime(str_replace('-', '/', $streefdatum)));
 $commentaar = $_POST["nieuwComment"];
 $probleem = $_POST["probleem"];
 $oplossing = $_POST["oplossing"];
-if($_POST['laptopType'] != ""){
-    $merktype = leesLaptopTypeId($_POST['laptopType']);
+if($_SESSION['typeId'] != ""){
+    $merktype = $_SESSION['typeId'];
+    $_SESSION['typeId'] = '';
 } else {
     $merktype = 0;
 }
@@ -52,6 +62,9 @@ $bedrijfsId = $_SESSION['bedrijfsId'];
     $bedrijfsId = 0;
 }
 
+if($_POST["nieuwComment"] !== "Commentaar"){
+    $com = TRUE;
+}
 
 $scategorie = $_POST["subCategorie"];
 $besturingsysteem = $_POST["besturingssysteem"];
@@ -130,7 +143,7 @@ $ophaalticket = "SELECT * FROM ticket WHERE klantId='$klantID'";
 
         }
     }
-    if(!empty($tcom)){
+    if($com){
         $insertcomment= $connectie->prepare("INSERT INTO commentaar(commentaarID, commOmschrijving, typeCommentaar, datum, accountNr, ticketId)
             VALUES ('',?,'$tcom','$datumAanmaak','$ftsAccountNr','$ticketID'  )");
             if ($insertcomment){

@@ -97,7 +97,7 @@
 
 
                                          if($account['actief'] === '1'){
-                                            echo '<button name="nonActief" type="submit" class="form-btn semibold" value="">Account op on-actief zetten</button><br><br>';
+                                            echo '<button name="nonActief" type="submit" class="form-btn semibold" value="">Account op non-actief zetten</button><br><br>';
 
                                         }    
 

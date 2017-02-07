@@ -22,6 +22,7 @@ require_once '../../functies.php';
  */
 
 $connectie = verbinddatabase();
+session_start();
 
         $searchq = $_POST['zoekval'];
         $leesLaptopTypeQuery = "SELECT * FROM veelVoorkomendeLaptopTypes WHERE vVLaptopTypeOm LIKE '%$searchq%';";
@@ -34,6 +35,7 @@ $connectie = verbinddatabase();
             $type = $leesLaptopTypeUitkomst->fetch_array();
                 $merkId = $type['vVLaptopMerkId'];
                 $typeOm = $type['vVLaptopTypeOm'];
+                $_SESSION['typeId'] = $type['vVLaptopTypeId'];
                 $laptopMerkQuery = "SELECT * FROM veelVoorkomendelaptopMerken WHERE vVLaptopMerkId = $merkId";
                 $laptopMerkUitkomst = $connectie->query($laptopMerkQuery);
                     $merk = $laptopMerkUitkomst->fetch_array();

@@ -39,7 +39,6 @@
                         <td align="left"><strong>Schoolklas</strong></td>
                         <td align="left"><strong>Admin</strong></td>
                         <td align="left"><strong>Actief</strong></td>
-                        <td align="left"><strong>Mag inloggen</strong></td>
                         <td align="left"><strong>Laatste inlogdatum</strong></td>
                         <td align="left"><strong>Lijn nr</strong></td>
                             <td><strong>Actie</strong><td></tr></thead>
@@ -51,7 +50,6 @@
                         <td align="left"><strong>Schoolklas</strong></td>
                         <td align="left"><strong>Admin</strong></td>
                         <td align="left"><strong>Actief</strong></td>
-                        <td align="left"><strong>Mag inloggen</strong></td>
                         <td align="left"><strong>Laatste inlogdatum</strong></td>
                         <td align="left"><strong>Lijn nr</strong></td>    
                         <td><strong>Actie</strong><td></tr></tfoot><tbody>
@@ -95,7 +93,6 @@
                 $schoolKlas['schoolKlasCode'] . $td .
                 $isAdmin . $td .
                 $actief . $td .
-                $magInloggen . $td .
                 datumOmzet($account['laasteKeerIngelogd']) . $td .
                 $account['lijnNr'] . $td ;            
             echo '
