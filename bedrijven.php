@@ -23,7 +23,7 @@ $td = '</td><td>';
 $bedrijfQuery = 'SELECT * FROM bedrijf';
 $bedrijfUitkomst = $connectie->query($bedrijfQuery);
 
-echo '
+echo '    
     <!DOCTYPE html>
     <html>
     <head>
@@ -36,10 +36,12 @@ echo '
     <hr><div class="containertabel">
             <h3>Bedrijven</h3>
 ';
+//als sessie gebruiker een admin is 
 if($_SESSION['isAdmin'] === '1'){
     echo '<a href="/ticketsysteem/admin/invoerBedrijf.php">nieuw bedrijf</a><br><br>';
 }
 echo'
+
 <table id="example" class="display" class="display nowrap" cellspacing="0" width="100%">
     <thead>
     <tr>
