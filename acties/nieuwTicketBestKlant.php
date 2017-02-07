@@ -27,7 +27,11 @@ if(isset($_POST["categorie"])){
     $categorie = $_POST["categorie"];
     if(isset($_POST["subCategorie"])){
         $scategorie = $_POST["subCategorie"];
+    } else {
+        $scategorie = FALSE;
     }
+} else {
+    $categorie = FALSE;
 }
 
 $streefdatum = $_POST["datepicker"];
@@ -40,7 +44,7 @@ if($_SESSION['typeId'] != ""){
     $merktype = $_SESSION['typeId'];
     $_SESSION['typeId'] = '';
 } else {
-    $merktype = 0;
+    $merktype = FALSE;
 }
 $besturingsysteem = $_POST["besturingssysteem"];
 $binnenkomstT = $_POST["binnenkomstType"];
@@ -50,6 +54,10 @@ if(isset($_SESSION['bedrijfsId'])){
 $bedrijfsId = $_SESSION['bedrijfsId'];
 } else {
     $bedrijfsId = 0;
+}
+
+if($_POST["nieuwComment"] !== "Commentaar"){
+    $com = TRUE;
 }
 
 //overig
@@ -64,7 +72,6 @@ $typeCommentaar = NULL;
 $aangewAccountNr = NULL;
 $redentelaat = NULL;
 $inbehandeling = 1;
-$tcom=NULL;
 $def=NULL;
 
 //BIND_PARAM INVOEREN TICKET IN DATABASE 
@@ -97,7 +104,7 @@ $ophaalticket = "SELECT * FROM ticket WHERE klantId='$klantID'";
         }
     }
 //OMDAT WE NU TICKETID HEBBEN OPGEHAALD KUNNEN WE NU INSERTEN NAAR COMMENTAAR    
-    if(!empty($tcom)){
+    if($com){
         $insertcomment= $connectie->prepare("INSERT INTO commentaar(commentaarID, commOmschrijving, typeCommentaar, datum, accountNr, ticketId)
             VALUES ('',?,'$tcom','$datumAanmaak','$ftsAccountNr','$ticketID'  )");
             if ($insertcomment){
@@ -128,7 +135,7 @@ $klantMailQuery = "SELECT klantEmail FROM klant WHERE klantId = '$klantID' ";
 $klantMailUitkomst = $connectie->query($klantMailQuery);
 $klantMail = $klantMailUitkomst->fetch_assoc();
 nieuwTicketMail($klantMail['klantEmail'], $ftsAccountNr);
-//header("Refresh:0; url=../index.php", true, 303);
+header("Refresh:0; url=../index.php", true, 303);
 }
           
 ?>
