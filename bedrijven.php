@@ -34,7 +34,7 @@ echo '
     
     <body>
     <hr><div class="containertabel">
-            <h3>Bedrijven</h3>
+            <h1>Bedrijven</h1>
 ';
 //als sessie gebruiker een admin is 
 if($_SESSION['isAdmin'] === '1'){
