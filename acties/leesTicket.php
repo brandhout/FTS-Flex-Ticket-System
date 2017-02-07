@@ -452,15 +452,14 @@ require_once '../functies.php'; //Include de functies.
 
     }
 // DIT LAAT ALLE COMMENTAAR DIE BIJ DE TICKET HOREN ZIEN IN EEN TEXTAREA
-    echo '<p> Commentaar </p>';
 
     while($commentaar = $commentaarUitkomst->fetch_assoc()){
-        echo'
-            <textarea class="form" disabled="disabled"> Er is op <strong>'.$commentaar['datum'].'</strong>
-            commentaar aangeleverd door <strong>'.leesAccountAchterNaam($commentaar['accountNr']).'<br></strong>
-            met <strong>accountnr: '.$commentaar['accountNr'].'</strong><br><br>
-            Het commentaar luidt:<br>'.$commentaar['commOmschrijving'].'
-            </strong></textarea>    
+        echo' <br>Commentaar:<br>
+            Er is op <strong>'.datumOmzet($commentaar['datum']).
+            '</strong> commentaar aangeleverd door <strong>'.leesAccountAchterNaam($commentaar['accountNr']).
+            '</strong><br> met <strong>accountnr: '.$commentaar['accountNr'].
+            '</strong><textarea class="form" disabled="disabled"> '.$commentaar['commOmschrijving'].'
+            </textarea>    
             ';
     }
 
