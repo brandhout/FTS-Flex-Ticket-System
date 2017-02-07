@@ -17,13 +17,13 @@ echo '
     <html>
     <head>
         <meta charset="UTF-8">
-        <title>Alle Klanten</title>
+        <title>Klanten</title>
 
     </head>
     
     <body>
     <hr><div class="containertabel">
-            <p>Klantenlijst</p>
+            <h1>Klantenlijst</h1>
 <table id="example" class="display" cellspacing="0" width="100%">
 <thead>
 <tr>
