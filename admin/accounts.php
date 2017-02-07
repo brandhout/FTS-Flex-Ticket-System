@@ -17,7 +17,7 @@
     
     $alleenActief = FALSE;
     $alleenNonActief = FALSE;
-    
+    // query voor het selecteren van alles van account
     $accountQuery = "SELECT * FROM account";
         $accountUitkomst = $connectie->query($accountQuery);
         
@@ -54,30 +54,31 @@
                         <td align="left"><strong>Lijn nr</strong></td>    
                         <td><strong>Actie</strong><td></tr></tfoot><tbody>
     ';
+    //als u=accountuitkomst is uitgevoerd dan zet ie accountuitkomst in account
     if($accountUitkomst){
         while($account = $accountUitkomst->fetch_assoc()){
             $schoolKlas['schoolKlasCode'] = "NVT";
             $isAdmin = "Nee";
-            if($account['schoolKlasId'] > 0){
+            if($account['schoolKlasId'] > 0){//als schoolklasid groter is dan nul dan neem var over van db
                 $schoolKlasId = $account['schoolKlasId'];            
                     $schoolKlasQuery = "SELECT schoolKlasCode FROM schoolKlassen WHERE schoolKlasId = $schoolKlasId";
                     $schoolKlasUitkomst = $connectie->query($schoolKlasQuery);
                     if(!$schoolKlas = $schoolKlasUitkomst->fetch_assoc()){
                         echo "Schoolklas query mislukt..." . mysqli_error($connectie);
                     }
-            }
+            }//controleerd of admin is
             if($account['isAdmin'] === "1"){
                 $isAdmin = "Ja";
             } else {
                 $isAdmin = "Nee";
             }
-            
+            // controlleert of atief account is
             if($account['actief'] === '1'){
                 $actief = "Ja";
             } else {
                 $actief = "Nee!";
             }
-            
+            //controleert of diegene mag inloggen
             if($account['magInloggen'] === '1'){
                 $magInloggen = "Ja";
             } else {
