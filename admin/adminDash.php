@@ -83,9 +83,11 @@
                 </div><!--/col-->
                 
 <?php
+//connectie is functie voor verbinding
   $connectie = verbinddatabase();
-              $ticketQuery ="SELECT * FROM ticket;";
+              $ticketQuery ="SELECT * FROM ticket;";//selecteer alles van ticket
             $ticketUitkomst = $connectie->query($ticketQuery);
+            //tabel en bootstrap
 echo '<div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
 
     <table id="example" class="display nowrap" cellspacing="0" width:100%>
@@ -117,40 +119,46 @@ echo '<div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                     </tfoot><tbody>
                     
             ';
-        		
+//laat aantal tickets zien dus ticketuitkomst is het aantal rijen        		
         echo "<p>Aantal tickets :<strong>".$ticketUitkomst->num_rows. "</strong></p>";
 			
 	while($ticket = $ticketUitkomst->fetch_assoc()){
             $status = "Open";
             $opgelost = FALSE;
             $uitzondering = FALSE;
-                                           
+ //klantid is gelijk aan klantid van db
+            //selecteer achternaam van klant waarvan de rij klant id gelijk is aan de var klantid
             $klantId = $ticket['klantId'];
                 $klantQuery ="SELECT klantAchternaam FROM klant WHERE klantId = '$klantId'";
                     $klantUitkomst = $connectie->query($klantQuery);
-                         
+            //als query niet is uitgevoerd dan laat ie zien dat het is mislukt             
             if(!$klant = $klantUitkomst->fetch_assoc()){
                 echo "Klant query mislukt..." . mysqli_error($connectie);
             }
+            //als aangnr groter is dan nul dan wordt de var gelijk aan ticket aangewaccountnr
+            //anders wordt het gelijk aan diegene die is ingelogd
             
             if($ticket['aangewAccountNr'] > 0){
                 $aangewAccountNr = $ticket['aangewAccountNr'];
             } else {
                 $aangewAccountNr = $ticket['fstAccountNr'];
             }
-            
+            //ticketid is gelijk aan de ticket ticketid
+            //selecteer alles van oplossingen waarvan de id gelijk is aan var id
             $ticketId = $ticket['ticketId'];
             $oplossingQuery = "SELECT * FROM oplossingen WHERE ticketId = $ticketId";
                 $oplossingUitkomst = $connectie->query($oplossingQuery);
 
             
             //Nieuw oplossing script
+                //while loop,hier wordt gekeken of definitief op 1 staat zo ja dan wordt status gesloten en opgelost true
             while($oplossing = $oplossingUitkomst->fetch_assoc()){
                 if($oplossing['definitief'] === "1"){
                     $status = "Gesloten";
                     $opgelost = TRUE;
                 } 
             }
+            // functie die kijkt of de ticket overdatum is of niet
             
             if(overDatum($ticket['streefdatum'])){
                 $status = '<p style="color:red">
