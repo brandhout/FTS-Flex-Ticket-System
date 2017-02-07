@@ -26,7 +26,8 @@
     echo '
         <html>
             <head>
-                <h1>Accountlijst</h1>
+                <h1>Accountbeheer</h1>
+                <title>Accountbeheer</title>
             </head>
             <body>
 <a href="/ticketsysteem/admin/nieuwAccount.php">nieuw account</a><br><br>
