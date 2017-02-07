@@ -23,7 +23,7 @@
         </head>
     <body>
         <header>
-            <title>Admin Pagina</title>
+            <title>Admin Dash FTS</title>
         </header><hr>
         <!-- hier begint het -->
         
