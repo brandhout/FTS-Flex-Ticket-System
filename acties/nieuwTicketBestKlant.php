@@ -36,8 +36,9 @@ $sdate = date('Y-m-d', strtotime(str_replace('-', '/', $streefdatum)));
 $commentaar = $_POST["nieuwComment"];
 $probleem = $_POST["probleem"];
 $oplossing = $_POST["oplossing"];
-if($_POST['laptopType'] != ""){
-    $merktype = leesLaptopTypeId($_POST['laptopType']);
+if($_SESSION['typeId'] != ""){
+    $merktype = $_SESSION['typeId'];
+    $_SESSION['typeId'] = '';
 } else {
     $merktype = 0;
 }
@@ -127,7 +128,7 @@ $klantMailQuery = "SELECT klantEmail FROM klant WHERE klantId = '$klantID' ";
 $klantMailUitkomst = $connectie->query($klantMailQuery);
 $klantMail = $klantMailUitkomst->fetch_assoc();
 nieuwTicketMail($klantMail['klantEmail'], $ftsAccountNr);
-header("Refresh:0; url=../index.php", true, 303);
+//header("Refresh:0; url=../index.php", true, 303);
 }
           
 ?>
