@@ -41,8 +41,9 @@ $sdate = date('Y-m-d', strtotime(str_replace('-', '/', $streefdatum)));
 $commentaar = $_POST["nieuwComment"];
 $probleem = $_POST["probleem"];
 $oplossing = $_POST["oplossing"];
-if($_POST['laptopType'] != ""){
-    $merktype = leesLaptopTypeId($_POST['laptopType']);
+if($_SESSION['typeId'] != ""){
+    $merktype = $_SESSION['typeId'];
+    $_SESSION['typeId'] = '';
 } else {
     $merktype = 0;
 }
