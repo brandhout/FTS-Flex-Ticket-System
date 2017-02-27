@@ -1,12 +1,3 @@
-<script>
-    function bedrijf(){
-        var zoektxt = $("input[name='zoekBedrijf']").val();
-        $.post("AJAX/getBedrijfsnaam.php", {zoekval: zoektxt}, function(bedrijfsnaam){
-            $("#bedrijfsnaam").text(bedrijfsnaam);
-        });             
-        }
-</script>
-
 <?php
 
 /* 
@@ -28,36 +19,61 @@
 
 session_start();
 require_once '../functies.php'; //Include de functies.
-require_once '../header.php'; //Include de header.
+require_once '../lib/php/dispatch.php';
 $connectie = verbinddatabase();
 
-ini_set('display_erors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
-//naw
-$naam = $_POST["klantNaam"];
-$achternaam = $_POST["klantAchternaam"];
-$tel = $_POST["klantTel"];
-$adres = $_POST["klantAdres"];
-$postcode = $_POST["klantPostc"];
-$stad = $_POST["klantStad"];
-$email = $_POST["klantEmail"];
-$instantie = $_POST["instantie"];
-$bedrijf = $_POST["bedrijf"];
+if(!isset($_SESSION['gebruikersNaam'])) {
+    header('Location: /ticketsysteem/acties/inloggen.php');
+    die();
+}
 
 if (isset($_POST['nieuwKlant'])){
-    echo 'test';
+    //naw
+    $naam = $_POST["klantNaam"];
+    $achternaam = $_POST["klantAchternaam"];
+    $tel = $_POST["klantTel"];
+    $adres = $_POST["klantAdres"];
+    $postcode = $_POST["klantPostc"];
+    $stad = $_POST["klantStad"];
+    $email = $_POST["klantEmail"];
+    $instantie = $_POST["instantie"];
+    $bedrijf = $_POST["bedrijf"];
+    
+    if(isset($_SESSION['bedrijfsId'])){
+        $bedrijfsId = $_SESSION['bedrijfsId'];
+    } else {
+        $bedrijfsId = 0;
+    }
+
+    $insertklant = $connectie->prepare("INSERT INTO klant (klantId, klantAchternaam, klantNaam, klantTel,
+        klantAdres, klantPostc, klantStad, klantEmail, instantieId, bedrijfsId)
+        VALUES ('',?,?,?,?,?,?,?,?,?)");
+
+    $insertklant->bind_param('sssssssii', $achternaam, $naam, $tel, $adres, $postcode, $stad, $email, $instantie, $bedrijfsId);
+    $insertklant->execute();
+    flush();
+    echo '<script> location.replace("../index.php"); </script>';
+    die();
+            
 } else {
-    echo '
-         
+    require_once '../header.php'; //Include de header.
+}
+?>
+        <script>
+            function bedrijf(){
+                var zoektxt = $("input[name='zoekBedrijf']").val();
+                $.post("AJAX/getBedrijfsnaam.php", {zoekval: zoektxt}, function(bedrijfsnaam){
+                    $("#bedrijfsnaam").text(bedrijfsnaam);
+                });             
+                }
+        </script>
+ 
         <div class="container">
             <div class="inner contact">
                 <!-- Form Area -->
                 <div class="contact-form">
                     <!-- Form -->
-                    <form name="nieuwTicket" action="nieuwTicketNieuwKlant.php" method="POST" enctype="multipart/form-data">
+                    <form name="nieuwTicket" action="nieuwKlant.php" method="POST">
                         <!-- Left Inputs -->
 			<div class="grid">
 			<div class="row">
@@ -83,15 +99,22 @@ if (isset($_POST['nieuwKlant'])){
                             <select class="form" name="instantie">
                             <option value = "">---instanties---</option>';
 
-                                $ophaali = "SELECT * FROM instantie ";
-                                $resulti = mysqli_query($connectie, $ophaali);
-                                while ($l = mysqli_fetch_assoc($resulti)) {
-                                echo "<option value='" . $l['instantieId'] . "'>" . $l['instantieNaam'] . "</option>";
-                                }
-                            echo'    
+                            <?php
+                            $ophaali = "SELECT * FROM instantie ";
+                            $resulti = mysqli_query($connectie, $ophaali);
+                            while ($l = mysqli_fetch_assoc($resulti)) {
+                            echo "<option value='" . $l['instantieId'] . "'>" . $l['instantieNaam'] . "</option>";
+                            }
+                            ?> 
 
                             </select>						
                             <input type="text" name="zoekBedrijf" id="zoekBedrijf" class="form" onblur="bedrijf();" placeholder="zoek op bedrijfsnaam" />
                             <p type="text" class="form" id="bedrijfsnaam" name="bedrijfsnaam" placeholder="resultaat"></p>
-                            <a href="/ticketsysteem/admin/invoerBedrijf.php" target="_blank">Nieuw bedrijf</a><br><br>';
-}
+                            <a href="/ticketsysteem/admin/invoerBedrijf.php" target="_blank">Nieuw bedrijf</a><br><br>
+                            
+                            <!-- End Mid Inputs -->
+                            </div>
+                            
+                            <div class="relative fullwidth col-xs-12">
+                            <button type="submit" id="nieuwKlant" name="nieuwKlant" class="form-btn semibold">invoeren</button>
+                            </div> </form></body></html>                                                      
