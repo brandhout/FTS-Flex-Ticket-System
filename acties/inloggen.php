@@ -103,7 +103,7 @@
             session_start();
             $accountNr = $uitkomst['accountNr'];
 //LANGER DAN 30 DAGEN NIET INGELOGD WORDT ACCOUNT-OP NON-ACTIEF GEZET 
-            if($laatsteKeerIngelogd < strtotime('-30 days')){
+            if($laatsteKeerIngelogd < strtotime('-30 days') && $uitkomst['isAdmin'] != '1'){
                 $_SESSION["uitlogReden"] = "Om misbruik te voorkomen,<br> heeft FTS uw account op non-actief gezet, u heeft te lang niet ingelogd. Raadpleeg uw beheerder.";
                 $nonActiefQuery = "UPDATE account SET actief = 0 WHERE accountNr = $accountNr";
                 $connectie->query($nonActiefQuery);
@@ -151,9 +151,9 @@
         
     </body>
     <footer>
-        <p>Made with: html/PHP/css/bootstrap/jQuery/mariaDB/javascript
+        <p>Made with: bootstrap/jQuery/Datatables
             Made by: Naomi B, Rick H, Robby M.    <br>
-            <i>FTS is beschikbaar onder GPL, jquery, datatables zijn van hun respectieve eigenaren    </i></p>
+            <i>FTS is beschikbaar onder GPLv3, zie licenties van bovenstaande library's</i></p>
     </footer>
 </html>
 
