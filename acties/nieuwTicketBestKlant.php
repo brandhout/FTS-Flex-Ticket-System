@@ -136,6 +136,7 @@ $klantMailUitkomst = $connectie->query($klantMailQuery);
 $klantMail = $klantMailUitkomst->fetch_assoc();
 nieuwTicketMail($klantMail['klantEmail'], $ftsAccountNr);
 header("Refresh:0; url=../index.php", true, 303);
+die();
 }
           
 ?>
