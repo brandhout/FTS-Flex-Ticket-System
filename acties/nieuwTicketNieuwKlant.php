@@ -173,7 +173,8 @@ if ($_FILES['userfile']['size'] > 0){
     move_uploaded_file($_FILES["userfile"]["tmp_name"], "../userUpload/{$ticketID}/{$fileName}");   
 }
 nieuwTicketMail($klantEmail, $klantID);
-header("Refresh:0; url=../index.php", true, 303);  
+header("Refresh:0; url=../index.php", true, 303);
+die();
 }
            
 
