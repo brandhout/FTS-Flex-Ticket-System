@@ -395,7 +395,7 @@ require_once '../functies.php'; //Include de functies.
             echo '
                 <strong>Reden nog niet ingevuld</strong><br>';
         } else {
-            echo '<textarea class="form" disabled="disabled">reden:'.$ticket['redenTeLaat'].'</textarea>';
+            echo '<textarea class="form" disabled="disabled">'.$ticket['redenTeLaat'].'</textarea>';
         }
     }
 
