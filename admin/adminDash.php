@@ -18,8 +18,12 @@
         <head>
             <link rel="stylesheet" href="../styles.css">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-
-
+            <script>
+                function invoerInstantie(){
+                    $("#tabel").load("invoerInstantie.php?mini=1");
+                    return true;
+                }
+            </script>
         </head>
     <body>
         <header>
@@ -64,7 +68,7 @@
                             <div class="tab-pane active" id="tab2">
                                 <div class="list-group">
                                     <a href="../bedrijven.php" class="list-group-item"><span class="float-right label label-success"></span>Bedrijfbeheer</a>
-                                    <a href="invoerInstantie.php" class="list-group-item"><span class="float-right label label-success"></span>instantie invoeren </a>
+                                    <a onclick="invoerInstantie()" class="list-group-item"><span class="float-right label label-success"></span>instantie invoeren </a>
 
                                 </div>
                             </div>
@@ -81,6 +85,7 @@
                         <!--/tabs content-->
                     </div><!--/card-->
                 </div><!--/col-->
+                <div id="tabel">
                 
 <?php
 //connectie is functie voor verbinding
@@ -194,7 +199,7 @@ echo '<div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
 	}
    
 	
-	echo "</tbody></table></div>";
+	echo "</tbody></table></div></div>";
         ?>
                           </div></div></div>
                 
