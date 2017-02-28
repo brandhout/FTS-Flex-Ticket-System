@@ -128,6 +128,7 @@
         $naam = $connectie->real_escape_string($_POST['naam']);
         $achterNaam = $connectie->real_escape_string($_POST['achterNaam']);
         $gebruikersNaam = $connectie->real_escape_string($_POST['gebruikersNaam']);
+        $datum = mysqldatum();
 
         if(is_numeric($_POST['lijnNr'])){
             $lijnNr = $_POST['lijnNr'];
@@ -139,9 +140,9 @@
 
         if(!empty($_POST["wachtwoord"])){
             $hashin = password_hash($_POST["wachtwoord"], PASSWORD_BCRYPT);
-            $updateAccount = "UPDATE account SET accountNr='{$accountNr}', lijnNr='{$lijnNr}', isAdmin='$admin', actief='$wActief', naam='{$naam}', achterNaam='{$achterNaam}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$gebruikersNaam}', wachtwoord='$hashin' WHERE accountNr='{$accountNr}' ";
+            $updateAccount = "UPDATE account SET accountNr='{$accountNr}', lijnNr='{$lijnNr}', isAdmin='$admin', actief='$wActief', laasteKeerIngelogd='$datum', naam='{$naam}', achterNaam='{$achterNaam}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$gebruikersNaam}', wachtwoord='$hashin' WHERE accountNr='{$accountNr}' ";
         } else {
-            $updateAccount = "UPDATE account SET accountNr='{$accountNr}', lijnNr='{$lijnNr}', isAdmin='$admin', actief='$wActief', naam='{$naam}', achterNaam='{$achterNaam}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$gebruikersNaam}' WHERE accountNr='{$accountNr}' ";
+            $updateAccount = "UPDATE account SET accountNr='{$accountNr}', lijnNr='{$lijnNr}', isAdmin='$admin', actief='$wActief', laasteKeerIngelogd='$datum', naam='{$naam}', achterNaam='{$achterNaam}', vestigingId='{$_POST['vestigingId']}', gebruikersNaam='{$gebruikersNaam}' WHERE accountNr='{$accountNr}' ";
 
         }     
 
