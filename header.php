@@ -1,53 +1,47 @@
 <html>
 <head>
-    
     <meta charset="UTF-8">
-  <!--<link rel='stylesheet' href='//fonts.googleapis.com/css?family=font1|font2|etc' type='text/css'><!-- KAPOT! -->
-  <link rel="stylesheet" href="/ticketsysteem/styles.css" type="text/css"> 
-  <script src="/ticketsysteem/navbar.js"></script>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/ticketsysteem/styles.css" type="text/css"> 
+    <script src="/ticketsysteem/navbar.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!--bootstrap--> 
-  <link rel="stylesheet" type="text/css" href="/ticketsysteem/styles/css/bootstrap.css">
-  <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script> 
-    <!--menu--> 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-<!-- functie voor menu --> 
-<script>
-$(document).ready(function(){
-    $(".dropdown").clicked(            
-        function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-            $(this).toggleClass('open');        
-        },
-        function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-            $(this).toggleClass('open');       
-        }
-    );
-});
-</script>
-<!-- ophalen functies en codes tabellen -->
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/rowreorder/1.2.0/js/dataTables.rowReorder.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
-<!-- functie voor tabellen -->
-<script>
-$(document).ready(function() {
-    var table = $('#example').DataTable( {
-        "language": {
-    "url": "http://cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json"
-  },
-        rowReorder: {
-            selector: 'td:nth-child(2)'
-        },
-        responsive: true
+    <link rel="stylesheet" type="text/css" href="/ticketsysteem/styles/css/bootstrap.css">
+    <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
+    <script src="/ticketsysteem/lib/js/jquery-3.1.1.slim.min"></script>
+    <!-- functie voor menu --> 
+    <script>
+    $(document).ready(function(){
+        $(".dropdown").clicked(            
+            function() {
+                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+                $(this).toggleClass('open');        
+            },
+            function() {
+                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+                $(this).toggleClass('open');       
+            }
+        );
+    });
+    </script>
+    <!-- ophalen functies en codes tabellen -->
+      <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/rowreorder/1.2.0/js/dataTables.rowReorder.min.js"></script>
+      <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+    <!-- functie voor tabellen -->
+    <script>
+    $(document).ready(function() {
+        var table = $('#example').DataTable( {
+            "language": {
+        "url": "http://cdn.datatables.net/plug-ins/1.10.13/i18n/Dutch.json"
+      },
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true
+        } );
     } );
-} );
-
-</script>
+    </script>
 </head>
 <body>
 <div class="container">
