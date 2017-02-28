@@ -19,7 +19,6 @@
 
 session_start();
 require_once '../functies.php'; //Include de functies.
-require_once '../lib/php/dispatch.php';
 $connectie = verbinddatabase();
 
 if(!isset($_SESSION['gebruikersNaam'])) {
