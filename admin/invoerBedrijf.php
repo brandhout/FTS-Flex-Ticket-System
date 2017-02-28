@@ -18,12 +18,16 @@
  */
     session_start();
     require_once '../functies.php'; //Include de functies.
-    require_once '../header.php'; //Include de header.
+    if(!$_GET['popup'] == 1){
+        require_once '../header.php'; //Include de header.
+    }
+
+    
     ini_set('display_erors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     $connectie = verbinddatabase();
-    
+        
     // NEE DE ISADMIN CHECK MOET HIER NIET IN!!!!!!!!!!!
     
     if(isset($_POST['submitBedrijf'])){
@@ -58,7 +62,13 @@
         $insertBedrijfQuery->bind_param("ssssss", $naam, $website, $kvkNr, $adres, $stad, $postC);
         $insertBedrijfQuery->execute();
         $insertBedrijfQuery->close();
-        header('url=../index.php');
+        
+        if(!$_GET['popup'] == 1){
+            header('url=../index.php');
+        } else {
+            echo 'window.close()';
+        }
+
         die();
     }
 ?>
@@ -67,7 +77,7 @@
     <body>
         <header>
             <title>Invoer FTS</title>
-        </header><hr>
+        </header>
     
     
     
@@ -98,11 +108,8 @@
                                 Stad<br>
                                 <input type="text" class="form" name="stad" required><br>
                                 Telefoonnummer<br>
-                                <input type="text" class="form" name="tel">
+                                <input type="text" class="form" name="tel"><br><br>
                                 <button name="submitBedrijf" class="form-btn semibold" type="submit" value="1">Invoeren</button></div></div></div>
                             </form>
                         </div></div></div>
-                                                    
-        
-        <hr>
                
