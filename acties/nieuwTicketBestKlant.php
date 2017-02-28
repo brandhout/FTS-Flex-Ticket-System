@@ -221,13 +221,12 @@ die();
                     <!-- Form -->
                     <form name="nieuwTicket" action="nieuwTicketBestKlant.php" method="POST" enctype="multipart/form-data">
                         <!-- Left Inputs -->
-						<div class="grid">
-						<div class="row">
+			<div class="grid">
+			<div class="row">
                         <div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- zoek -->
                             <input type="text" name="zoek" id="zoek" required="required" class="form" onkeydown="zoekf();" placeholder="zoeken in achternaam" />
 				<p type="text" class="form" id="output" name="klantID" placeholder="resultaat klant ID"></p>
-                                <a href="/ticketsysteem/acties/nieuwKlant.php" target="_blank">Nieuwe klant?</a>
                         </div><!-- End Left Inputs -->
 						<!-- mid inputs -->
 						<div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s">
