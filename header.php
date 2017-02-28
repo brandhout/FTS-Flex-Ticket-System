@@ -1,14 +1,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/ticketsysteem/styles.css" type="text/css"> 
+    <script src="/ticketsysteem/lib/js/jquery-3.1.1.slim.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/ticketsysteem/styles/styles.css" type="text/css"> 
     <script src="/ticketsysteem/navbar.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!--bootstrap--> 
     <link rel="stylesheet" type="text/css" href="/ticketsysteem/styles/css/bootstrap.css">
     <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
-    <script src="/ticketsysteem/lib/js/jquery-3.1.1.slim.min"></script>
-    <!-- functie voor menu --> 
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.2.0/js/dataTables.rowReorder.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+
     <script>
     $(document).ready(function(){
         $(".dropdown").clicked(            
@@ -24,10 +26,6 @@
     });
     </script>
     <!-- ophalen functies en codes tabellen -->
-      <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-      <script src="https://cdn.datatables.net/rowreorder/1.2.0/js/dataTables.rowReorder.min.js"></script>
-      <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
     <!-- functie voor tabellen -->
     <script>
     $(document).ready(function() {
