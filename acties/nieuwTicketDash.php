@@ -9,38 +9,33 @@ require_once '../functies.php'; //Include de functies.
 <html>
     <head>
         <title>Nieuw Ticket</title>
+        <script>
+            function nieuwBedrijf(){
+                window.open('/ticketsysteem/admin/invoerBedrijf.php?popup=1','Nieuwbedrijf', 'width=400,height=525,scrollbars=yes,toolbar=no,location=no');
+            }
+            
+            function nieuwKlant(){
+                window.open('/ticketsysteem/acties/nieuwKlant.php?popup=1','Nieuweklant', 'width=400,height=525,scrollbars=yes,toolbar=no,location=no');
+            }
+
+        </script>
+
     </head>
     <body><hr>
     <div class="container-fluid2">    
 <div class="border row">
     <div class="border col-sm-3"></div>
         <div class="border col-sm-3">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-            <input type="submit" name="but1" class="btna2" value="nieuwe klant">
-        </form></div>
+            <input type="submit" name="but1" class="btna2" value="nieuwe klant" onclick="nieuwKlant()">
+        </div>
         <div class="border col-sm-3">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-            <input type="submit" name="but2" class="btna2" value="bestaande klant">
-        </form></div>
+            <input type="submit" name="but2" class="btna2" value="nieuw bedrijf" onclick="nieuwBedrijf()">
+        </div>
     <div class="border col-sm-3"></div>
-</div></div>
+</div></div><br>
         
 <?php
-
-
-
-if (isset($_POST['but1'])) {
-    include 'nieuwTicketNieuwKlant.php';
-    
-}
-
-
-if (isset($_POST['but2'])) {
-    include 'nieuwTicketBestKlant.php';
-}
-
-
-
+include 'nieuwTicketBestKlant.php';
 ?>
 
         <hr></body>
