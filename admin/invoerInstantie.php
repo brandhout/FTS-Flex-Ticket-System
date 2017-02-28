@@ -2,11 +2,14 @@
 
    session_start();
     require_once '../functies.php'; //Include de functies.
-    require_once '../header.php'; //Include de header.
     ini_set('display_erors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     $connectie = verbinddatabase();
+    
+    if(!$_GET['mini'] == 1){
+        require_once '../header.php'; //Include de header.
+    }
     
     if($_SESSION['isAdmin'] < 1){
         echo '<script> window.alert("U bent geen Administrator!");</script>';
@@ -33,7 +36,6 @@
     <header>
         <title>Admin Invoer FTS</title>
     </header>
-        <hr>
             
         <div class="container">
             <div class="inner contact">  
@@ -46,7 +48,7 @@
                                 Naam<br>
                                 <input type="text" class="form" name="instantie"><br>
                                 Prioriteit<br>
-                                <input type="text" class="form" name="prioriteit"><br><br>
+                                <input type="text" class="form" name="prioriteit"><br>
                                 <button  name="submitInstantie" class="form-btn semibold" type="submit" value="1">Invoeren</button>
                             </form>
                         </div></div></div></div></div><hr>
