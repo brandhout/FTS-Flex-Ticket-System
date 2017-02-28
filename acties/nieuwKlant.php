@@ -21,6 +21,11 @@ session_start();
 require_once '../functies.php'; //Include de functies.
 $connectie = verbinddatabase();
 
+if($_GET['popup'] == 1){
+    echo'<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>';
+}
+
+
 if(!isset($_SESSION['gebruikersNaam'])) {
     header('Location: /ticketsysteem/acties/inloggen.php');
     die();
@@ -51,11 +56,12 @@ if (isset($_POST['nieuwKlant'])){
     $insertklant->bind_param('sssssssii', $achternaam, $naam, $tel, $adres, $postcode, $stad, $email, $instantie, $bedrijfsId);
     $insertklant->execute();
     flush();
-    echo '<script> location.replace("../index.php"); </script>';
     die();
             
 } else {
-    require_once '../header.php'; //Include de header.
+    if(!$_GET['popup'] == 1){
+        require_once '../header.php'; //Include de header.
+    }
 }
 ?>
         <script>
@@ -66,6 +72,7 @@ if (isset($_POST['nieuwKlant'])){
                 });             
                 }
         </script>
+        
  
         <div class="container">
             <div class="inner contact">
@@ -76,25 +83,25 @@ if (isset($_POST['nieuwKlant'])){
                         <!-- Left Inputs -->
 			<div class="grid">
 			<div class="row">
-                        <div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s">
+                        <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
                             <!-- voornaam -->
-                            <input type="text" name="klantNaam" id="name" required="required" class="form" placeholder="voornaam" />
+                            <input type="text" name="klantNaam" id="name" required="required" class="form" placeholder="voornaam" /><br>
                             <!-- achternaam -->
-                            <input type="text" name="klantAchternaam" id="lname" required="required" class="form" placeholder="achternaam" />
+                            <input type="text" name="klantAchternaam" id="lname" required="required" class="form" placeholder="achternaam" /><br>
                             <!-- adres -->
-                            <input type="text" name="klantAdres" id="adres" required="required" class="form" placeholder="adres" />
+                            <input type="text" name="klantAdres" id="adres" required="required" class="form" placeholder="adres" /><br>
                             <!-- postcode -->
-                            <input type="text" name="klantPostc" id="zipcode" required="required" class="form" placeholder="postcode" />
+                            <input type="text" name="klantPostc" id="zipcode" required="required" class="form" placeholder="postcode" /><br>
                             <!-- woonplaats -->
-                            <input type="text" name="klantStad" id="city" required="required" class="form" placeholder="woonplaats" />	
+                            <input type="text" name="klantStad" id="city" required="required" class="form" placeholder="woonplaats" /><br>	
                             <!-- telefoonnummer -->
-                            <input type="text" name="klantTel" id="phone" required="required" class="form" placeholder="telefoonnummer" />	
+                            <input type="text" name="klantTel" id="phone" required="required" class="form" placeholder="telefoonnummer" /><br>	
                             <!-- email -->
-                            <input type="email" name="klantEmail" id="email" required="required" class="form" placeholder="E-mail" />							
+                            <input type="email" name="klantEmail" id="email" required="required" class="form" placeholder="E-mail" /><br>							
                         </div>
                         <!-- End Left Inputs -->
                         <!-- mid inputs -->
-                            <div class="col-md-4 wow animated slideInLeft" data-wow-delay=".5s">
+                            <div class="col-sm-3 wow animated slideInLeft" data-wow-delay=".5s">
                             <select class="form" name="instantie">
                             <option value = "">---instanties---</option>';
 
@@ -106,14 +113,13 @@ if (isset($_POST['nieuwKlant'])){
                             }
                             ?> 
 
-                            </select>						
+                            </select><br>						
                             <input type="text" name="zoekBedrijf" id="zoekBedrijf" class="form" onblur="bedrijf();" placeholder="zoek op bedrijfsnaam" />
                             <p type="text" class="form" id="bedrijfsnaam" name="bedrijfsnaam" placeholder="resultaat"></p>
-                            <a href="/ticketsysteem/admin/invoerBedrijf.php" target="_blank">Nieuw bedrijf</a><br><br>
                             
                             <!-- End Mid Inputs -->
                             </div>
                             
                             <div class="relative fullwidth col-xs-12">
                             <button type="submit" id="nieuwKlant" name="nieuwKlant" class="form-btn semibold">invoeren</button>
-                            </div> </form></body></html>                                                      
+                            </div></form></body></html>                                                      
