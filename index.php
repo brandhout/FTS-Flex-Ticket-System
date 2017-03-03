@@ -27,6 +27,7 @@ error_reporting(E_ALL);
  */
 
 //functie voor het kijken of er iemand is ingelogd
+require_once 'classes/gebruiker.php';
 session_start();//sessie starten
 if(!isset($_SESSION['gebruikersNaam'])) { //als sessie niet is ingelogd dan word header false en ga je naar het inlogpagina.
 	$ingelogd = FALSE;
@@ -42,7 +43,7 @@ $connectie = verbinddatabase();//aanroepen van een functie connectie met databas
 
 $datum = new DateTime();
 
-
+$gebruiker = $_SESSION["gebruiker"];
 
 echo '<!DOCTYPE html>
       <html>
@@ -53,9 +54,9 @@ echo '<!DOCTYPE html>
       <body><div class="containertabel">
       ';
 if($ingelogd) {//als er is ingelogd 
-    $achterNaam = leesAccountAchterNaam($_SESSION['accountNr']);//zet achternaam in een var
+    $achterNaam = leesAccountAchterNaam($gebruiker->getAccountNr());//zet achternaam in een var
     echo "Welkom," . "  " . ($achterNaam) . "!</br>";//laat achternaam zien
-        if($_SESSION['isAdmin'] === "1"){//als gebruiker admin is laat ie wat zien.
+        if($gebruiker->getAdmin()){//als gebruiker admin is laat ie wat zien.
             echo 'U bent een administrator.';
             $lijnNr = "*"; 
         } else {//als geen admin dan laat ie zien welk lijn mederwerker diegene is
