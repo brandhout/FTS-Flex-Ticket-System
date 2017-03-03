@@ -19,7 +19,8 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     
-    require_once '../functies.php'; 
+    require_once '../functies.php';
+    require_once '../classes/gebruiker.php';
     
     $connectie = verbinddatabase();    
 ?>
@@ -117,6 +118,9 @@
                 $_SESSION["accountNr"] = $uitkomst['accountNr'];
                 $_SESSION["isAdmin"] = $uitkomst['isAdmin'];
                 $_SESSION["lijnNr"] = $uitkomst['lijnNr'];
+                
+                $_SESSION["gebruiker"] = new gebruiker($uitkomst['gebruikersNaam'], $uitkomst['accountNr'], $uitkomst['isAdmin'], $uitkomst['lijnNr']);
+                
 //LAATSTEKEERINGELOGD WORDT GEUPDATED NAAR HUIDIGE DATUM                
                 $datum_query= "UPDATE account SET laasteKeerIngelogd = CURRENT_DATE WHERE accountNr = $accountNr";
                 $connectie->query($datum_query);
