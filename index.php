@@ -81,14 +81,15 @@ $achternaam = leesAccountAchterNaam($gebruiker->getAccountNr());
         </div>
         <h3 style="text-align:center;"> Openstaande Tickets: </h3>
         
-        <div class=" ticketCard w3-card-8 w3-green w3-hover-shadow w3-padding-64 w3-center">
+        <div class="ticketCard w3-card-8 w3-green w3-hover-shadow w3-center">
             <div class="w3-container w3-center">
                 <h3>Ticket</h3>
             </div>
             <p>
-            <i class="fa fa-ticket fa-5x"></i><strong>1</strong><p>
+            <i class="fa fa-ticket fa-5x"></i><strong>2</strong><p>
             <p> 
-            Info: 66 
+            Trefw: windows,office
+            <hr>
             Info: 99 
             Info: 99
             <div class="w3-section">
@@ -96,6 +97,23 @@ $achternaam = leesAccountAchterNaam($gebruiker->getAccountNr());
             </div>
             
             </p></div>
+        <div class="ticketCard w3-card-8 w3-green w3-hover-shadow w3-center">
+            <div class="w3-container w3-center">
+                <h3>Ticket</h3>
+            </div>
+            <p>
+            <i class="fa fa-ticket fa-5x"></i><strong>2</strong><p>
+            <p> 
+            Trefw: windows,office
+            <hr>
+            Info: 99 
+            Info: 99
+            <div class="w3-section">
+                <button class="w3-button w3-grey">Openen</button>
+            </div>
+            
+            </p></div>
+
 
         
     </div>
