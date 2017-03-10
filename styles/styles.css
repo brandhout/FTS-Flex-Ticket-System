@@ -45,7 +45,7 @@ body {
 }
 
 .ticketCard {
-    width:50%; width:30%; height:30%; float:left;
+    width:50%; width:30%; height:30%; float:left; margin: 10px;
 }
 
 .mega-dropdown {
