@@ -39,6 +39,15 @@ body {
     height:100%;
           margin: 0 auto; 
 }
+
+.nieuwDataBar {
+    width:30%; height:25%; float:left; margin: 10px;
+}
+
+.ticketCard {
+    width:50%; width:30%; height:30%; float:left;
+}
+
 .mega-dropdown {
   position: static !important;
 
