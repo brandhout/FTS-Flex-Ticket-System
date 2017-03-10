@@ -1,9 +1,4 @@
 <?php
-// laat foutmeldingen zien
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 /* 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
