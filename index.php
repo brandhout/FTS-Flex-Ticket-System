@@ -81,7 +81,7 @@ $achternaam = leesAccountAchterNaam($gebruiker->getAccountNr());
         </div>
         <h3 style="text-align:center;"> Openstaande Tickets: </h3>
         
-        <div class="ticketCard w3-card-8 w3-green w3-hover-shadow w3-center">
+        <div class="ticketCard w3-card-8 w3-green w3-center">
             <div class="w3-container w3-center">
                 <h3>Ticket</h3>
             </div>
@@ -97,7 +97,7 @@ $achternaam = leesAccountAchterNaam($gebruiker->getAccountNr());
             </div>
             
             </p></div>
-        <div class="ticketCard w3-card-8 w3-green w3-hover-shadow w3-center">
+        <div class="ticketCard w3-card-8 w3-green w3-center">
             <div class="w3-container w3-center">
                 <h3>Ticket</h3>
             </div>
