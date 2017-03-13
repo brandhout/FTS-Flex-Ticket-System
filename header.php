@@ -4,6 +4,7 @@
     <script src="/ticketsysteem/lib/js/jquery-3.1.1.slim.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="/ticketsysteem/styles/styles.css" type="text/css"> 
     <script src="/ticketsysteem/navbar.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/ticketsysteem/styles/css/bootstrap.css">
     <script src="/ticketsysteem/styles/js/bootstrap.min.js"></script>
@@ -39,7 +40,21 @@
             responsive: true
         } );
     } );
+    
+    $(document).ready(function(){
+        $(".dropdown").clicked(            
+            function() {
+                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+                $(this).toggleClass('open');        
+            },
+            function() {
+                $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+                $(this).toggleClass('open');       
+            }
+        );
+    });
     </script>
+    
 </head>
 <body>
 <div class="container">
@@ -65,7 +80,6 @@
                             <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="dash"></span>Admin menu <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-
             <li class="dropdown-header">navigeren naar...</li>
             <li class="divider"></li>
             <li><a href="/ticketsysteem/admin/adminDash.php">Admin dashboard</a></li>                                                      
@@ -79,16 +93,13 @@
             <li><a href="/ticketsysteem/admin/binnenkomstType.php">Invoeren binnenkomsttypes</a></li>                                                         
             <li class="divider"></li>
             <li><a href="/ticketsysteem/admin/cms/cmsDash.php">Content Management</a></li>
-
           </ul>
         </li>
-
 				' ;
                 break;
 // als case 0 dan doe niks
                 case "0":
                 break;
-
                 default:
                 break;
             }
@@ -97,7 +108,6 @@
             header('Location: /ticketsysteem/acties/inloggen.php');
             die();
 }
-
 ?>
 
 
@@ -130,4 +140,4 @@
   </nav>
 </div>
 </body>
-  </html>
+</html>
