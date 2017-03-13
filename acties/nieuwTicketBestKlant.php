@@ -219,7 +219,7 @@ die();
                 <!-- Form Area -->
                 <div class="contact-form">
                     <!-- Form -->
-                    <form name="nieuwTicket" action="nieuwTicketBestKlant.php" method="POST" enctype="multipart/form-data">
+                    <form name="nieuwTicket" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" action="nieuwTicketBestKlant.php" method="POST" enctype="multipart/form-data">
                         <!-- Left Inputs -->
 			<div class="grid">
 			<div class="row">
@@ -312,7 +312,9 @@ die();
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
                             <!-- Send Button -->
-                            <button type="submit" id="submit0" name="submit0" class="form-btn semibold">invoeren</button> 
+                            <p class="w3-center">
+                                <button type="submit" id="submit0" name="submit0" class="w3-button w3-section w3-large w3-blue w3-ripple">invoeren</button>
+                            </p>
                         </div><!-- End Bottom Submit -->
                         <!-- Clear -->
                         <div class="clear"></div></div></div>
