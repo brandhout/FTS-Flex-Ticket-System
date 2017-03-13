@@ -41,16 +41,26 @@ body {
 }
 
 .nieuwDataBar {
-    width:30%; height:22%; float:left; margin: 10px;
+    margin: 15px; 
+
 }
 
 .ticketCard {
-    width:50%; width:30%; height:32%; float:left; margin: 10px;
+    width:50%; width:20%; height:32%; float:left; margin: 15px;
+    display: inline-block; overflow:hidden; text-overflow: ellipsis;
+
+
 }
 
 .teLaat {
     color:red;
 }
+
+.indexBlok {
+    text-align:center;
+    background-color:lightblue;
+}
+
 
 .mega-dropdown {
   position: static !important;
