@@ -21,15 +21,15 @@ require_once '../functies.php'; //Include de functies.
         </script>
 
     </head>
-    <body><hr>
+    <body>
     <div class="container-fluid2">    
 <div class="border row">
     <div class="border col-sm-3"></div>
         <div class="border col-sm-3">
-            <input type="submit" name="but1" class="w3-button w3-teal w3-large w3-hover-shadow" value="nieuwe klant" onclick="nieuwKlant()">
+            <input type="submit" name="but1" class="w3-button w3-large w3-blue w3-ripple" value="nieuwe klant" onclick="nieuwKlant()">
         </div>
         <div class="border col-sm-3">
-            <input type="submit" name="but2" class="w3-button w3-teal w3-large w3-hover-shadow" value="nieuw bedrijf" onclick="nieuwBedrijf()">
+            <input type="submit" name="but2" class="w3-button w3-large w3-blue w3-ripple" value="nieuw bedrijf" onclick="nieuwBedrijf()">
         </div>
     <div class="border col-sm-3"></div>
 </div></div><br>
@@ -38,5 +38,5 @@ require_once '../functies.php'; //Include de functies.
 include 'nieuwTicketBestKlant.php';
 ?>
 
-        <hr></body>
+    </body>
 </html>
