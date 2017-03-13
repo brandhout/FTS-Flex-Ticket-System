@@ -1,3 +1,4 @@
+<div class='w3-dark-grey'>
 <?php
 /* 
  * This program is free software: you can redistribute it and/or modify
@@ -46,16 +47,14 @@ $achternaam = leesAccountAchterNaam($gebruiker->getAccountNr());
     <html>
     <head>
         <title>Flex Ticket System</title>
-        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
-        <style>
-            body{
-                background-image:url("back.jpg");
-            }
-        
-        </style>
     </head>
     <body>
-        <div class="container w3-container w3-sand" style="text-align:center;">
+        <div class="w3-container" style="text-align:center;">
+            <div class="w3-panel w3-red">
+                <span class="w3-closebtn" onclick="this.parentElement.style.display='none'">X</span>
+                <h3>Let op!</h3>
+                <p>Alpha release, niet geschikt voor productie</p>
+            </div> 
         <h2>Welkom, <?php echo $achternaam?> </h2>
         <div id="insert"></div>
     </body>
