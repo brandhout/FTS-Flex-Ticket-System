@@ -25,7 +25,7 @@
     $datum = new DateTime();
 
 
-    $ticketQuery ="SELECT * FROM ticket LIMIT 5;";
+    $ticketQuery ="SELECT * FROM ticket LIMIT 4;";
     $ticketUitkomst = $connectie->query($ticketQuery);
     
     $query3 = $connectie->prepare("SELECT oplossingId FROM oplossingen WHERE definitief = '1'");
@@ -38,25 +38,31 @@
     $rowsat = $uitkomst10->num_rows;
     $ato = $rowsat-$rowsbt;
     
-    echo '<div class="nieuwDataBar w3-teal w3-hover-shadow w3-padding-32 w3-center">
-                <i class="fa fa-pencil-square-o fa-5x"></i>
+    echo '
+        
+        <div class="w3-quarter">
+        <div class="nieuwDatabar w3-teal w3-hover-shadow w3-padding-32 w3-center">
+                <i class="fa fa-pencil-square-o fa-5x"></i>             
                 <p> Openstaande Tickets </p>
                 <h1> '.$ato.' </h1>
-        </div>
-
+        </div></div>
+        
+        <div class="w3-quarter">
         <div class="nieuwDataBar w3-green w3-hover-shadow w3-padding-32 w3-center">
             <i class="fa fa-ticket fa-5x"></i>
             <p> Aantal Tickets </p>
             <h1> '.$rowsat.' </h1>
-        </div>
+        </div></div>
 
+        <div class="w3-quarter">
         <div class="nieuwDataBar w3-indigo w3-hover-shadow w3-padding-32 w3-center">
             <i class="fa fa-times fa-5x"></i>
             <p> Gesloten Tickets </p>
             <h1> '.$rowsbt.' </h1>
+        </div></div></div>
+        <div class="container">
         </div>
-
-        <h3 style="text-align:center;"> Openstaande Tickets: </h3>
+        <p><h3 style="text-align:middle;"> Openstaande Tickets: </h3></p>
 ';
     
     while($ticket = $ticketUitkomst->fetch_assoc()){
@@ -67,9 +73,11 @@
         $klant = $klantUitkomst->fetch_assoc();
             
         if(overDatum($ticket['streefdatum'])){
-            echo '<div class="ticketCard w3-card-8 w3-red w3-center">';
+            echo ' <div class="w3-quarter">
+               <div class="nieuwDataBar w3-card-8 w3-red w3-center">';
         } else {
-            echo '<div class="ticketCard w3-card-8 w3-green w3-center">';
+            echo ' <div class="w3-quarter">
+               <div class="nieuwDataBar w3-card-8 w3-green w3-center">';
         }
         
         echo '
@@ -105,7 +113,7 @@
         echo '
             <div class="w3-section">
             </div>          
-            </p></div></a>
+            </p></div></div></a>
         ';
         
     }
