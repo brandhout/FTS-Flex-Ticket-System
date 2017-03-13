@@ -30,9 +30,10 @@
                 <title>Accountbeheer</title>
             </head>
             <body>
-<a href="/ticketsysteem/admin/nieuwAccount.php">nieuw account</a><br><br>
-<table id="example" class="display" cellspacing="0" width="100%">
-<thead><tr>
+            
+                <a class="w3-button w3-teal" href="/ticketsysteem/admin/nieuwAccount.php">Nieuw Account</a><br><br>
+                <table id="example" class="display" cellspacing="0" width="100%">
+                <thead><tr>
                         <td align="left"><strong>Account nr</strong></td>
                         <td align="left"><strong>Gebruikersnaam</strong></td>
                         <td align="left"><strong>Voornaam</strong></td>
