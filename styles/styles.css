@@ -41,11 +41,15 @@ body {
 }
 
 .nieuwDataBar {
-    width:30%; height:25%; float:left; margin: 10px;
+    width:30%; height:22%; float:left; margin: 10px;
 }
 
 .ticketCard {
-    width:50%; width:30%; height:30%; float:left; margin: 10px;
+    width:50%; width:30%; height:32%; float:left; margin: 10px;
+}
+
+.teLaat {
+    color:red;
 }
 
 .mega-dropdown {
